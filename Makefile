@@ -22,6 +22,7 @@
 
 
 #****************	VARIABLES	****************
+UNAME		=	$(shell uname)
 EXEC		=	doom-nukem
 
 #SOURCES
@@ -54,7 +55,6 @@ SDL_FOLDER	=	./SDL
 SDL			=	$(SDL_FOLDER)/build
 INCLUDES	:=	$(INCLUDES) -I $(SDL_FOLDER)/include
 LDFLAGS		:=	$(LDFLAGS) -L $(SDL_FOLDER) `sdl2-config --cflags --libs`
-# -Wl, -rpath, $(SDL_FOLDER)/extlibs/libs-osx/Frameworks
 
 
 
@@ -72,8 +72,9 @@ $(LIBFT):
 	make -C libft
 
 $(SDL):
-	cd $(SDL_FOLDER);\
-	./configure;\
+	@printf "compiling SDL it may takes long time ~3mn <3\n";
+	@cd $(SDL_FOLDER) > /dev/null;\
+	./configure > /dev/null;\
 	make > /dev/null
 
 cl:
@@ -86,7 +87,7 @@ libft-clean:
 	make -C $(LIBFT_FOLDER) clean > /dev/null
 
 sdl-clean:
-	cd $(SDL_FOLDER);\
+	@cd $(SDL_FOLDER);\
 	make clean > /dev/null
 
 fcl: cl
@@ -99,8 +100,10 @@ libft-fclean:
 	make -C $(LIBFT_FOLDER) fclean > /dev/null
 
 sdl-fclean:
-	cd $(SDL_FOLDER);\
+	@cd $(SDL_FOLDER);\
 	make clean > /dev/null
+
+r: cl all
 
 re: fclean all
 
