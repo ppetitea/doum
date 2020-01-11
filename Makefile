@@ -69,13 +69,13 @@ $(OBJS_FOLDER)%.o: $(SRCS_FOLDER)%.c
 	@$(CC) -c $< -o $@ $(INCLUDES) $(CFLAGS)
 
 $(LIBFT):
-	make -C libft
+	@make -C libft
 
 $(SDL):
 	@printf "compiling SDL it may takes long time ~3mn <3\n";
-	@cd $(SDL_FOLDER) > /dev/null;\
-	./configure > /dev/null;\
-	make > /dev/null
+	@cd $(SDL_FOLDER) &&\
+	./configure &&\
+	make > /dev/null;
 
 cl:
 	@rm -rf $(OBJS_FOLDER)
@@ -84,11 +84,11 @@ clean: libft-clean sdl-clean
 	@rm -rf $(OBJS_FOLDER)
 
 libft-clean:
-	make -C $(LIBFT_FOLDER) clean > /dev/null
+	@make -C $(LIBFT_FOLDER) clean > /dev/null
 
 sdl-clean:
-	@cd $(SDL_FOLDER);\
-	make clean > /dev/null
+	@cd $(SDL_FOLDER) &&\
+	make clean > /dev/null;
 
 fcl: cl
 	@rm -rf $(EXEC)
@@ -97,7 +97,7 @@ fclean: clean libft-fclean sdl-fclean
 	@rm -rf $(EXEC)
 
 libft-fclean:
-	make -C $(LIBFT_FOLDER) fclean > /dev/null
+	@make -C $(LIBFT_FOLDER) fclean > /dev/null
 
 sdl-fclean:
 	@cd $(SDL_FOLDER);\
