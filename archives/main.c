@@ -48,21 +48,6 @@ uint32_t	pp_get_SDLcolor(SDL_Color color)
 	return (c);
 }
 
-int pp_putpixel(uint32_t *pixel, int x, int y, SDL_Color color)
-{
-	uint32_t c;
-	c = 0xFFFFFFFF;
-	c = c | color.a;
-	c = c << 8;
-	c = c | color.r;
-	c = c << 8;
-	c = c | color.g;
-	c = c << 8;
-	c = c | color.b;
-	pixel[y * WIDTH + x] = c; 
-	return (0);
-}
-
 int pp_putpixel_renderer(SDL_Renderer *renderer, int x, int y, SDL_Color color)
 {
 	SDL_Color tmp;

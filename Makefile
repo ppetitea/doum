@@ -28,22 +28,25 @@ EXEC		=	doom-nukem
 #SOURCES
 SRCS_LIST	=	main.c														\
 																			\
-				debug/debug.c											\
+				bitmap/load_bmp.c												\
+																			\
+				debug/debug.c												\
 																			\
 				error/throw_error.c											\
 				error/throw_null.c											\
 				error/throw_void.c											\
 																			\
-				events/handle.c											\
-				events/keyboard/handle.c											\
-				events/mouse/handle.c											\
+				events/handle.c												\
+				events/keyboard/handle.c									\
+				events/mouse/handle.c										\
 																			\
 				game/init.c													\
 				game/loop.c													\
 																			\
 				screen/init.c												\
+				screen/fill.c												\
 																			\
-				sdl/destroy.c													\
+				sdl/destroy.c												\
 				sdl/init.c													\
 																			\
 

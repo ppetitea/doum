@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 01:47:49 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/12 01:48:44 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/12 17:38:30 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include "index.h"
 
-void	debug(t_game *game);
+t_result	debug(t_game *game);
+
+void	debug_bmp_header(t_bitmap_header head);
+
+
 
 #endif

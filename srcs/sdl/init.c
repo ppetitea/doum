@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 23:50:37 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/12 01:06:04 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/12 21:36:36 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,8 @@ t_result	initialize_sdl(t_sdl *self, size_t width, size_t height)
 	if (!(self->renderer = SDL_CreateRenderer(self->window, -1,
 		SDL_RENDERER_SOFTWARE)))
 		return (throw_error("initialize_sdl", "SDL_CreateRenderer() failed"));
+	if (!(self->texture =  SDL_CreateTexture(self->renderer,
+		SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STATIC, width, height)))
+		return (throw_error("initialize_sdl", "SDL_CreateTexture() failed"));
 	return (OK);
 }

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 23:51:42 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/12 01:08:23 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/12 21:29:55 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "libft.h"
 
 // # define SDL_OK 0
-# define SDL_ERROR 1
+# define SDL_ERROR -1
 
 typedef struct			s_sdl
 {
