@@ -26,7 +26,26 @@ UNAME		=	$(shell uname)
 EXEC		=	doom-nukem
 
 #SOURCES
-SRCS_LIST	=	main.c
+SRCS_LIST	=	main.c														\
+																			\
+				error/throw_error.c											\
+				error/throw_null.c											\
+				error/throw_void.c											\
+																			\
+				events/handle.c											\
+				events/keyboard/handle.c											\
+				events/mouse/handle.c											\
+																			\
+				game/init.c													\
+				game/loop.c													\
+																			\
+				screen/init.c												\
+																			\
+				sdl/destroy.c													\
+				sdl/init.c													\
+																			\
+
+
 SRCS_FOLDER	=	./srcs/
 SRCS		=	$(addprefix $(SRCS_FOLDER), $(SRCS_LIST))
 
@@ -41,8 +60,8 @@ INCLUDES	:=	-I includes
 
 #COMPILATION
 CC			=	gcc
-CFLAGS		:=	#-Wall -Werror -Wextra
-LDFLAGS		:=	#-Wall -Werror -Wextra
+CFLAGS		:=	-Wall -Werror -Wextra
+LDFLAGS		:=	-Wall -Werror -Wextra
 
 #LIBRARIES
 #	libft
@@ -74,7 +93,7 @@ $(LIBFT):
 $(SDL):
 	@printf "compiling SDL it may takes long time ~3mn <3\n";
 	@cd $(SDL_FOLDER) &&\
-	./configure &&\
+	./configure > /dev/null &&\
 	make > /dev/null;
 
 cl:

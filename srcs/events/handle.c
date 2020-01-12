@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   index.h                                            :+:      :+:    :+:   */
+/*   handle.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/11 22:52:11 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/11 22:53:19 by ppetitea         ###   ########.fr       */
+/*   Created: 2020/01/12 01:13:53 by ppetitea          #+#    #+#             */
+/*   Updated: 2020/01/12 01:23:14 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INDEX_H
-# define INDEX_H
+#include "SDL.h"
+#include "game/game.h"
+#include "events/keyboard.h"
 
-/*
-**	game
-*/
-# include "game/game.h"
-
-#endif
+void	handle_events(t_game *game)
+{
+	if (game->sdl.event.type == SDL_QUIT)
+		game->is_running = FALSE;
+	if (game->sdl.event.type == SDL_KEYDOWN)
+		handle_keyboard_events(game, game->sdl.event.key.keysym.sym);
+}

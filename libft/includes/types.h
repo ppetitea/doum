@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 17:41:35 by lbenard           #+#    #+#             */
-/*   Updated: 2019/11/21 03:22:06 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/12 00:23:22 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ typedef int			t_u64;
 typedef int64_t		t_i64;
 
 typedef int			t_bool;
+
+#define FALSE 0
+#define TRUE 1
 
 typedef enum		e_result
 {

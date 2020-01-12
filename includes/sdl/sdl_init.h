@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   index.h                                            :+:      :+:    :+:   */
+/*   sdl_init.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/11 22:52:11 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/11 22:53:19 by ppetitea         ###   ########.fr       */
+/*   Created: 2020/01/11 23:51:42 by ppetitea          #+#    #+#             */
+/*   Updated: 2020/01/12 01:08:23 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INDEX_H
-# define INDEX_H
+#ifndef SDL_INIT_H
+# define SDL_INIT_H
 
-/*
-**	game
-*/
-# include "game/game.h"
+# include "SDL.h"
+# include "libft.h"
+
+// # define SDL_OK 0
+# define SDL_ERROR 1
+
+typedef struct			s_sdl
+{
+	SDL_Window			*window;
+	SDL_Renderer		*renderer;
+	SDL_Texture			*texture;
+	SDL_Event			event;
+}						t_sdl;
+
+t_result				initialize_sdl(t_sdl *self, size_t width, size_t height);
 
 #endif

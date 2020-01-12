@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   index.h                                            :+:      :+:    :+:   */
+/*   mouse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/11 22:52:11 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/11 22:53:19 by ppetitea         ###   ########.fr       */
+/*   Created: 2020/01/12 01:15:15 by ppetitea          #+#    #+#             */
+/*   Updated: 2020/01/12 01:17:09 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INDEX_H
-# define INDEX_H
+#ifndef MOUSE_H
+# define MOUSE_H
 
-/*
-**	game
-*/
 # include "game/game.h"
+
+void	handle_mouse_events(t_game *game);
 
 #endif

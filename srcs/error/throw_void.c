@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   index.h                                            :+:      :+:    :+:   */
+/*   throw_void.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/11 22:52:11 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/11 22:53:19 by ppetitea         ###   ########.fr       */
+/*   Created: 2020/01/11 23:15:40 by ppetitea          #+#    #+#             */
+/*   Updated: 2020/01/12 00:39:23 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INDEX_H
-# define INDEX_H
+#include "libft.h"
 
-/*
-**	game
-*/
-# include "game/game.h"
-
-#endif
+void	throw_void(char *location, char *message)
+{
+	ft_putstr(location);
+	ft_putstr("() -> ");
+	ft_putstr(message);
+	ft_putchar('\n');
+}

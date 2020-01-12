@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   index.h                                            :+:      :+:    :+:   */
+/*   events.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/11 22:52:11 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/11 22:53:19 by ppetitea         ###   ########.fr       */
+/*   Created: 2020/01/12 01:15:15 by ppetitea          #+#    #+#             */
+/*   Updated: 2020/01/12 01:16:07 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INDEX_H
-# define INDEX_H
+#ifndef EVENTS_H
+# define EVENTS_H
 
-/*
-**	game
-*/
 # include "game/game.h"
+
+void	handle_events(t_game *game);
 
 #endif

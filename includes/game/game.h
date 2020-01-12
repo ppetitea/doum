@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   index.h                                            :+:      :+:    :+:   */
+/*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/11 22:52:11 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/11 22:53:19 by ppetitea         ###   ########.fr       */
+/*   Created: 2020/01/11 22:52:07 by ppetitea          #+#    #+#             */
+/*   Updated: 2020/01/12 00:32:24 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INDEX_H
-# define INDEX_H
+#ifndef GAME_H
+# define GAME_H
 
-/*
-**	game
-*/
-# include "game/game.h"
+# include "screen/screen.h"
+# include "sdl/sdl_init.h"
+
+typedef struct			s_game
+{
+	t_bool				is_running;
+	t_sdl				sdl;
+	t_screen			screen;
+}						t_game;
+
+t_game					*initialize_game();
+void					loop(t_game *game);
 
 #endif
