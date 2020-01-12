@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:34:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/12 01:24:43 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/12 01:50:32 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,12 @@
 #include "game/game.h"
 #include "events/events.h"
 
+#include "debug/debug.h"
+
 void	loop(t_game *game)
 {
+	debug(game);
+	
 	game->is_running = TRUE;
 	while (game->is_running)
 	{

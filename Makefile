@@ -28,6 +28,8 @@ EXEC		=	doom-nukem
 #SOURCES
 SRCS_LIST	=	main.c														\
 																			\
+				debug/debug.c											\
+																			\
 				error/throw_error.c											\
 				error/throw_null.c											\
 				error/throw_void.c											\
