@@ -6,20 +6,20 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:36:31 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/12 23:12:56 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/13 04:03:27 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "bitmap/bitmap.h"
-#include "error/error.h"
+#include "textures/bitmap.h"
+#include "utils/error.h"
 #include <stdlib.h>
 #include <stdio.h>
 
 static t_result			fill_pixels(FILE *file, uint32_t *pixels,
 						int32_t width, int32_t height)
 {
-	t_argb			color;
+	t_rgba			color;
 	int32_t			x;
 	int32_t			y;
 
@@ -33,6 +33,7 @@ static t_result			fill_pixels(FILE *file, uint32_t *pixels,
 		{
 			fread(&color, 1, 3, file);
 			pixels[x + (height - y - 1) * width] = color.px;
+			color.rgba.a = 255;
 			x++;
 		}
 		fseek(file, (x * 3) % 4, SEEK_CUR);

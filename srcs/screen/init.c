@@ -6,14 +6,14 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 23:09:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/12 14:13:45 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/13 04:03:27 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "SDL.h"
 #include "screen/screen.h"
-#include "error/error.h"
+#include "utils/error.h"
 
 t_result	initialize_screen(t_screen *self, size_t width, size_t height)
 {

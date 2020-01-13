@@ -6,12 +6,16 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:31:09 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/12 22:26:07 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/13 04:05:35 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BITMAP_H
 # define BITMAP_H
+
+# include "libft.h"
+# include "screen/screen.h"
+# include "utils/color.h"
 
 # define BMP_HEADER_SIZE 54
 # define DIB_HEADER_SIZE 40
@@ -51,34 +55,8 @@ typedef struct		s_bitmap_texture
     uint32_t		*pixels;
 }					t_bitmap_texture;
 
-typedef struct		s_rgba_uchar
-{
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
-	unsigned char	a;
-}					t_rgba_uchar;
-
-typedef union		u_rgba
-{
-	t_rgba_uchar	rgba;
-	uint32_t		px;
-}					t_rgba;
-
-typedef struct		s_argb_uchar
-{
-	unsigned char	a;
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
-}					t_argb_uchar;
-
-typedef union		u_argb
-{
-	t_argb_uchar	argb;
-	uint32_t		px;
-}					t_argb;
-
 t_bitmap_texture	*load_bmp(char *path);
+void				render_bmp(t_vec2i offset, t_screen screen,
+						t_bitmap_texture bmp);
 
 #endif

@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.c                                            :+:      :+:    :+:   */
+/*   button.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/12 22:07:04 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/12 23:33:22 by ppetitea         ###   ########.fr       */
+/*   Created: 2020/01/13 04:12:43 by ppetitea          #+#    #+#             */
+/*   Updated: 2020/01/13 05:04:46 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"index.h"
-#include	"libft.h"
-#include	<stdio.h>
-#include	<stdlib.h>
+#ifndef BUTTON_H
+# define BUTTON_H
 
-t_result	debug(t_game *game)
+# include "user_interface/ui.h"
+# include "textures/texture.h"
+
+typedef struct		s_button
 {
-	static	t_bool			init = TRUE;
-	static t_bitmap_texture	*bmp;
+	t_ui_component	parent;
+	t_texture		*normal;
+	t_texture		*hover;
+	t_texture		*selected;
+	t_texture		*checked;
+	t_texture		*dragged;
+}					t_button;
 
-	if (init)
-	{
-		if (!(bmp = load_bmp("resources/textures/tmp/pepe2.bmp")))
-			return (throw_error("debug", "failed to load bmp"));
-		init = FALSE;
-	}
-	fill_screen(ft_vec2i(0, 0), game->screen, *bmp);
-	return (OK);
-}
+t_button			*create_ui_button(t_texture *normal, t_texture *selected);
+
+#endif

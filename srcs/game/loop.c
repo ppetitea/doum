@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:34:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/12 22:27:41 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/13 04:09:32 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "game/game.h"
 #include "events/events.h"
 
-#include "debug/debug.h"
+#include "utils/debug.h"
 
 void	loop(t_game *game)
 {

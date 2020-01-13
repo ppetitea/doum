@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:52:11 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/12 16:57:09 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/13 04:04:40 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,9 @@
 # define INDEX_H
 
 /*
-**	bitmap
-*/
-# include "bitmap/bitmap.h"
-
-/*
 **	error
 */
-# include "error/error.h"
+# include "utils/error.h"
 
 /*
 **	events
@@ -44,5 +39,11 @@
 **	sdl
 */
 # include "sdl/sdl_init.h"
+
+/*
+**	textures
+*/
+# include "textures/bitmap.h"
+# include "textures/texture.h"
 
 #endif

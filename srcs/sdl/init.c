@@ -6,13 +6,13 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 23:50:37 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/12 21:36:36 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/13 04:03:27 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "SDL.h"
 #include "sdl/sdl_init.h"
-#include "error/error.h"
+#include "utils/error.h"
 
 t_result	initialize_sdl(t_sdl *self, size_t width, size_t height)
 {
@@ -26,8 +26,10 @@ t_result	initialize_sdl(t_sdl *self, size_t width, size_t height)
 	if (!(self->renderer = SDL_CreateRenderer(self->window, -1,
 		SDL_RENDERER_SOFTWARE)))
 		return (throw_error("initialize_sdl", "SDL_CreateRenderer() failed"));
+	SDL_SetRenderDrawBlendMode(self->renderer, SDL_BLENDMODE_BLEND);
 	if (!(self->texture =  SDL_CreateTexture(self->renderer,
 		SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STATIC, width, height)))
 		return (throw_error("initialize_sdl", "SDL_CreateTexture() failed"));
+	SDL_SetTextureBlendMode(self->texture, SDL_BLENDMODE_BLEND);
 	return (OK);
 }

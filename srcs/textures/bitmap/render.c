@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill.c                                             :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/12 23:31:27 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/12 23:32:04 by ppetitea         ###   ########.fr       */
+/*   Created: 2020/01/13 01:21:49 by ppetitea          #+#    #+#             */
+/*   Updated: 2020/01/13 01:22:36 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "screen/screen.h"
-#include "bitmap/bitmap.h"
+#include "textures/bitmap.h"
 
-void	fill_screen(t_vec2i offset, t_screen screen, t_bitmap_texture bmp)
+void	render_bmp(t_vec2i offset, t_screen screen, t_bitmap_texture bmp)
 {
 	size_t	x_start;
 	size_t	y_start;

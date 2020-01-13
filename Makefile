@@ -28,14 +28,6 @@ EXEC		=	doom-nukem
 #SOURCES
 SRCS_LIST	=	main.c														\
 																			\
-				bitmap/load_bmp.c												\
-																			\
-				debug/debug.c												\
-																			\
-				error/throw_error.c											\
-				error/throw_null.c											\
-				error/throw_void.c											\
-																			\
 				events/handle.c												\
 				events/keyboard/handle.c									\
 				events/mouse/handle.c										\
@@ -44,10 +36,20 @@ SRCS_LIST	=	main.c														\
 				game/loop.c													\
 																			\
 				screen/init.c												\
-				screen/fill.c												\
 																			\
 				sdl/destroy.c												\
 				sdl/init.c													\
+																			\
+				textures/bitmap/load_bmp.c									\
+				textures/bitmap/render.c									\
+				textures/render.c											\
+				textures/texture.c											\
+																			\
+				utils/color/add_blend.c										\
+				utils/debug/debug.c											\
+				utils/error/throw_null.c									\
+				utils/error/throw_void.c									\
+				utils/error/throw_error.c									\
 																			\
 
 
