@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 23:55:41 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/13 04:05:17 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/14 01:37:02 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_texture		*create_texture(t_texture_args args)
 	if (!(self->pixels = (u_int32_t*)malloc(sizeof(u_int32_t)
 		* args.size.x * args.size.y)))
 		return (throw_null("create_texture", "pixels array -> malloc failed"));
-	self->name = args.name;
+	self->name = ft_strdup(args.name);
 	self->offset = args.offset;
 	self->size = args.size;
 	return (self);

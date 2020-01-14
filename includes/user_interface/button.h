@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:12:43 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/13 05:04:46 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/14 01:38:41 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ typedef struct		s_button
 	t_texture		*normal;
 	t_texture		*hover;
 	t_texture		*selected;
-	t_texture		*checked;
 	t_texture		*dragged;
 }					t_button;
 

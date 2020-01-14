@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.h                                           :+:      :+:    :+:   */
+/*   collide.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/12 01:15:15 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/13 20:33:24 by ppetitea         ###   ########.fr       */
+/*   Created: 2020/01/13 18:59:39 by ppetitea          #+#    #+#             */
+/*   Updated: 2020/01/13 21:31:40 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EVENTS_H
-# define EVENTS_H
+#include "libft.h"
+#include "textures/texture.h"
 
-# include "game/game.h"
-
-void	handle_events(t_game *game);
-
-#endif
+t_bool	is_texture_collide(t_texture self, t_vec2i pos, t_vec2i anchor)
+{
+	if (pos.x < self.offset.x + anchor.x ||
+		pos.x > (int)self.size.x + self.offset.x + anchor.x)
+		return (FALSE);
+	if (pos.y < self.offset.y + anchor.y ||
+		pos.y > (int)self.size.y + self.offset.y + anchor.y)
+		return (FALSE);
+	return (TRUE);
+}

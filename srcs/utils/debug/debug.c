@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 22:07:04 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/13 03:16:29 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/13 21:04:22 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ t_result	debug(t_game *game)
 	}
 
 	render_bmp(ft_vec2i(0, 0), game->screen, *bmp);
-	render_texture(game->screen, texture1);
-	render_texture(game->screen, texture2);
-	render_texture(game->screen, texture3);
+	render_texture(game->screen, texture1, ft_vec2i(0, 0));
+	render_texture(game->screen, texture2, ft_vec2i(0, 0));
+	render_texture(game->screen, texture3, ft_vec2i(0, 0));
 	return (OK);
 }

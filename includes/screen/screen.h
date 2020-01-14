@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:55:08 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/13 01:25:00 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/13 18:29:07 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ typedef struct			s_screen
 }						t_screen;
 
 t_result	initialize_screen(t_screen *self, size_t width, size_t height);
+void		reset_screen(t_screen screen);
 
 #endif

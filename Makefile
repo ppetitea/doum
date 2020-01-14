@@ -34,16 +34,30 @@ SRCS_LIST	=	main.c														\
 																			\
 				game/init.c													\
 				game/loop.c													\
+				game/render.c												\
 																			\
 				screen/init.c												\
+				screen/reset.c												\
 																			\
 				sdl/destroy.c												\
 				sdl/init.c													\
 																			\
 				textures/bitmap/load_bmp.c									\
 				textures/bitmap/render.c									\
+				textures/list/get.c											\
+				textures/list/init.c										\
+				textures/collide.c											\
+				textures/filter.c											\
 				textures/render.c											\
 				textures/texture.c											\
+																			\
+				user_interface/update/hover.c								\
+				user_interface/update/select.c								\
+				user_interface/update/drag.c								\
+				user_interface/init.c										\
+				user_interface/ui_button.c									\
+				user_interface/ui_component.c								\
+				user_interface/ui_spawner.c									\
 																			\
 				utils/color/add_blend.c										\
 				utils/debug/debug.c											\

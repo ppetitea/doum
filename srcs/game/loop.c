@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:34:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/13 04:09:32 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/13 23:12:18 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ void	loop(t_game *game)
 	game->is_running = TRUE;
 	while (game->is_running)
 	{
-		debug(game);
+		reset_screen(game->screen);
+		//debug(game);
+		render(game);
 		if (SDL_UpdateTexture(game->sdl.texture, NULL, game->screen.pixels,
 			game->screen.size.x * sizeof(uint32_t)) == SDL_ERROR)
 			return (throw_void("loop", "SDL_UpdateTexture failed"));
