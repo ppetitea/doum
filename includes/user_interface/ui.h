@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:13:23 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/14 02:58:26 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/14 08:27:15 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 # include "libft.h"
 # include "textures/texture.h"
 # include "game/game.h"
+# include <time.h>
 
 typedef enum	e_ui_component_type
 {
 	BUTTON,
 	SPAWNER,
+	SPRITE,
 }				t_ui_component_type;
 
 typedef struct	s_listener_component
@@ -49,12 +51,15 @@ typedef struct	s_ui_component
 	t_list_head				node;
 	t_vec2i					anchor;
 	t_texture				*texture;
+	struct timespec			last;
 	t_listener_component	status;
 	t_ui_component_type		type;
 	t_result				(*update_anchor)(struct s_ui_component*, t_vec2i);
 	t_result				(*update_offset)(struct s_ui_component*, t_vec2i);
 	t_result				(*update_texture)(struct s_ui_component*);
 }				t_ui_component;
+
+typedef t_ui_component t_component;
 
 typedef struct	s_ui_component_args
 {
@@ -66,6 +71,8 @@ typedef struct	s_ui_component_args
 	t_result				(*update_offset)(t_ui_component*, t_vec2i);
 	t_result				(*update_texture)(t_ui_component*);
 }				t_ui_component_args;
+
+typedef t_ui_component_args t_component_args;
 
 t_result	build_ui_component(t_ui_component *self, t_ui_component_args args);
 t_listener_component	listener_component(t_listener_args args);

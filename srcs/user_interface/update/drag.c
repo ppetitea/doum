@@ -46,14 +46,14 @@ static t_bool	update_ui_components_drag_status(t_game *game,
 t_result	update_ui_components_draggable(t_game *game, t_vec2i mouse)
 {
 	t_list_head		*pos;
-	t_list_head		*next;
+	t_list_head		*prev;
 	t_ui_component	*component;
 
 	pos = &game->ui_components;
-	next = pos->next;
-	while ((pos = next) != &game->ui_components)
+	prev = pos->prev;
+	while ((pos = prev) != &game->ui_components)
 	{
-		next = next->next;
+		prev = prev->prev;
 		component = (t_ui_component*)pos;
 		if (component->status.is_draggable)
 		{

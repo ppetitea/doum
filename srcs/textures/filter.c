@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:24:43 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/14 03:05:59 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/14 04:32:55 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_texture	*texture_filter(t_texture old, t_filter_type filter)
 	t_texture_args	args;
 	t_usize			i;
 
-	args = texture_args(old.name, old.offset, old.size);
+	args = texture_args(old.name, old.offset, old.size, -1.0f);
 	if (!(new = create_texture(args)))
 		return (throw_null("hover_filter", "create_texture failed"));
 	i.y = 0;

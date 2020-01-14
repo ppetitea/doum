@@ -6,12 +6,13 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:44:34 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/14 02:20:40 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/14 08:27:39 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "user_interface/ui.h"
 #include "libft.h"
+#include <time.h>
 
 t_listener_component	listener_component(t_listener_args args)
 {
@@ -38,5 +39,6 @@ t_result	build_ui_component(t_ui_component *self, t_ui_component_args args)
 	self->update_anchor = args.update_anchor;
 	self->update_offset = args.update_offset;
 	self->update_texture = args.update_texture;
+	timespec_get(&self->last, TIME_UTC);
 	return (OK);
 }

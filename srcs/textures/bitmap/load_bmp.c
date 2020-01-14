@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:36:31 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/14 00:42:19 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/14 05:22:17 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ t_bitmap_texture	*load_bmp(char *path)
 	if (!(file = fopen(path, "rb")))
 		return (throw_null("load_bmp", "wrong path provided"));
 	fread(&bmp->head, sizeof(t_bitmap_header), 1, file);
+	if (bmp->head.width % 2)
+		bmp->head.width++;
+	if (bmp->head.height % 2)
+		bmp->head.height++;
 	fseek(file, bmp->head.offset, SEEK_SET);
 	if (bmp->head.type != 0x4d42)
 		return (throw_null("load_bmp", "file provided is not a bmp"));

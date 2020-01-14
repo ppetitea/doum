@@ -42,6 +42,9 @@ SRCS_LIST	=	main.c														\
 				sdl/destroy.c												\
 				sdl/init.c													\
 																			\
+				sprites/init/init.c											\
+				sprites/sprites.c											\
+																			\
 				textures/bitmap/load_bmp.c									\
 				textures/bitmap/render.c									\
 				textures/list/get.c											\

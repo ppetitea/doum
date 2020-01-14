@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:26:15 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/14 02:01:03 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/14 10:10:08 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,27 +32,62 @@ t_result	list_add_image(t_game *game, t_bitmap_texture *image, char *name)
 	return (OK);
 }
 
-t_result	initialize_images_list(t_game *game)
+t_result	load_pistol_textures(t_game *game)
 {
 	t_bitmap_texture	*bmp;
 	
-	if (!(bmp = load_bmp("resources/textures/ui/buttons/down_white.bmp")))
-		return (throw_error("initialize_images_list", "failed to load bmp"));
-	list_add_image(game, bmp, ft_strdup("down_white"));
-	if (!(bmp = load_bmp("resources/textures/ui/buttons/down_orange.bmp")))
-		return (throw_error("initialize_images_list", "failed to load bmp"));
-	list_add_image(game, bmp, ft_strdup("down_orange"));
-	if (!(bmp = load_bmp("resources/textures/ui/buttons/up_white.bmp")))
-		return (throw_error("initialize_images_list", "failed to load bmp"));
-	list_add_image(game, bmp, ft_strdup("up_white"));
-	if (!(bmp = load_bmp("resources/textures/ui/buttons/up_orange.bmp")))
-		return (throw_error("initialize_images_list", "failed to load bmp"));
-	list_add_image(game, bmp, ft_strdup("up_orange"));
-	if (!(bmp = load_bmp("resources/textures/tmp/brick.bmp")))
-		return (throw_error("initialize_images_list", "failed to load bmp"));
-	list_add_image(game, bmp, ft_strdup("brick"));
-	if (!(bmp = load_bmp("resources/textures/tmp/msi.bmp")))
-		return (throw_error("initialize_images_list", "failed to load bmp"));
-	list_add_image(game, bmp, ft_strdup("msi"));
+	if (!(bmp = load_bmp("resources/textures/sprites/guns/pistol/fire1.bmp")))
+		return (throw_error("load_pistol_textures", "failed to load bmp"));
+	list_add_image(game, bmp, ft_strdup("pistol_fire1"));
+	if (!(bmp = load_bmp("resources/textures/sprites/guns/pistol/fire2.bmp")))
+		return (throw_error("load_pistol_textures", "failed to load bmp"));
+	list_add_image(game, bmp, ft_strdup("pistol_fire2"));
+	if (!(bmp = load_bmp("resources/textures/sprites/guns/pistol/fire3.bmp")))
+		return (throw_error("load_pistol_textures", "failed to load bmp"));
+	list_add_image(game, bmp, ft_strdup("pistol_fire3"));
+	if (!(bmp = load_bmp("resources/textures/sprites/guns/pistol/reload1.bmp")))
+		return (throw_error("load_pistol_textures", "failed to load bmp"));
+	list_add_image(game, bmp, ft_strdup("pistol_reload1"));
+	if (!(bmp = load_bmp("resources/textures/sprites/guns/pistol/reload2.bmp")))
+		return (throw_error("load_pistol_textures", "failed to load bmp"));
+	list_add_image(game, bmp, ft_strdup("pistol_reload2"));
+	return (OK);
+}
+
+t_result	load_shotgun_textures(t_game *game)
+{
+	t_bitmap_texture	*bmp;
+	
+	if (!(bmp = load_bmp("resources/textures/sprites/guns/shotgun/aim1.bmp")))
+		return (throw_error("load_shotgun_textures", "failed to load bmp"));
+	list_add_image(game, bmp, ft_strdup("shotgun_aim1"));
+	if (!(bmp = load_bmp("resources/textures/sprites/guns/shotgun/aim1fire.bmp")))
+		return (throw_error("load_shotgun_textures", "failed to load bmp"));
+	list_add_image(game, bmp, ft_strdup("shotgun_aim1fire"));
+	if (!(bmp = load_bmp("resources/textures/sprites/guns/shotgun/aim2.bmp")))
+		return (throw_error("load_shotgun_textures", "failed to load bmp"));
+	list_add_image(game, bmp, ft_strdup("shotgun_aim2"));
+	if (!(bmp = load_bmp("resources/textures/sprites/guns/shotgun/aim2fire.bmp")))
+		return (throw_error("load_shotgun_textures", "failed to load bmp"));
+	list_add_image(game, bmp, ft_strdup("shotgun_aim2fire"));
+	if (!(bmp = load_bmp("resources/textures/sprites/guns/shotgun/reload1.bmp")))
+		return (throw_error("load_shotgun_textures", "failed to load bmp"));
+	list_add_image(game, bmp, ft_strdup("shotgun_reload1"));
+	if (!(bmp = load_bmp("resources/textures/sprites/guns/shotgun/reload2.bmp")))
+		return (throw_error("load_shotgun_textures", "failed to load bmp"));
+	list_add_image(game, bmp, ft_strdup("shotgun_reload2"));
+	if (!(bmp = load_bmp("resources/textures/sprites/guns/shotgun/reload3.bmp")))
+		return (throw_error("load_shotgun_textures", "failed to load bmp"));
+	list_add_image(game, bmp, ft_strdup("shotgun_reload3"));
+	return (OK);
+}
+
+
+t_result	initialize_images_list(t_game *game)
+{
+	if (!load_pistol_textures(game))
+		return (throw_error("initialize_images_list", "failed to load pistol"));
+	if (!load_shotgun_textures(game))
+		return (throw_error("initialize_images_list", "failed to load shotgun"));
 	return (OK);
 }

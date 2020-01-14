@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:36:09 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/14 00:31:55 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/14 06:01:33 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "utils/error.h"
 #include "user_interface/ui.h"
 #include "textures/image_list.h"
+#include "sprites/sprites.h"
 
 static void	initialize_mouse_state(t_mouse_state *mouse)
 {
@@ -40,6 +41,8 @@ t_game	*initialize_game()
 	initialize_images_list(self);
 	init_list_head(&self->ui_components);
 	initialize_user_interface(self);
+	init_list_head(&self->sprites);
+	initialize_sprites(self);
 	initialize_mouse_state(&self->mouse);
 	self->is_running = FALSE;
 	return (self);

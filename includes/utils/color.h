@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 02:40:52 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/13 04:04:09 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/14 05:27:15 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,19 @@ typedef union		u_rgba
 	u_int32_t		px;
 }					t_rgba;
 
-typedef struct		s_argb_uchar
+typedef struct		s_bgra_uchar
 {
-	unsigned char	a;
-	unsigned char	r;
-	unsigned char	g;
 	unsigned char	b;
-}					t_argb_uchar;
+	unsigned char	g;
+	unsigned char	r;
+	unsigned char	a;
+}					t_bgra_uchar;
 
-typedef union		u_argb
+typedef union		u_bgra
 {
-	t_argb_uchar	argb;
+	t_bgra_uchar	bgra;
 	u_int32_t		px;
-}					t_argb;
+}					t_bgra;
 
 u_int32_t	blend_add(t_rgba current, t_rgba old);
 u_int32_t	blend_add_average(t_rgba current, t_rgba old);

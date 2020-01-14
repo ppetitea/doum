@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:52:07 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/14 00:04:27 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/14 06:00:47 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct			s_game
 	t_screen			screen;
 	t_list_head			ui_components;
 	t_list_head			images;
+	t_list_head			sprites;
 	t_mouse_state		mouse;
 }						t_game;
 
