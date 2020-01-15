@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   animate.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/13 16:33:04 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 08:21:36 by ppetitea         ###   ########.fr       */
+/*   Created: 2020/01/15 07:02:47 by ppetitea          #+#    #+#             */
+/*   Updated: 2020/01/15 07:11:15 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
-#include "entities/ui/button.h"
-#include "entities/ui/spawner.h"
-#include "resources/textures/bitmap.h"
-#include "resources/textures/texture.h"
-#include "resources/resources.h"
+#include "entities/entities.h"
 #include "utils/error.h"
-#include "libft.h"
 
-t_result	initialize_entities(t_game *game)
+t_result	trigger_animation(t_entity *entity)
 {
-	initialize_buttons_entities(game);
-	initialize_spawners_entities(game);
-	initialize_sprites_entities(game);
+	if (entity == NULL)
+		return (throw_error("update_listener", "NULL pointer provided"));
+	if (entity->status.display)
+		entity->texture.animation = IN_PROGRESS;
 	return (OK);
 }

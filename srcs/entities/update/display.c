@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/13 16:33:04 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 08:21:36 by ppetitea         ###   ########.fr       */
+/*   Created: 2020/01/15 07:27:39 by ppetitea          #+#    #+#             */
+/*   Updated: 2020/01/15 08:21:28 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
-#include "entities/ui/button.h"
-#include "entities/ui/spawner.h"
-#include "resources/textures/bitmap.h"
-#include "resources/textures/texture.h"
-#include "resources/resources.h"
-#include "utils/error.h"
-#include "libft.h"
 
-t_result	initialize_entities(t_game *game)
+#include "entities/entities.h"
+#include "utils/error.h"
+
+t_result	toggle_display_entity(t_entity *entity)
 {
-	initialize_buttons_entities(game);
-	initialize_spawners_entities(game);
-	initialize_sprites_entities(game);
+	if (entity == NULL)
+		return (throw_error("update_listener", "NULL pointer provided"));
+	entity->status.display = !entity->status.display;
+	list_del_entry(&entity->node);
+	if (entity->status.display)
+		list_add_entry(&entity->node, entity->status.render_list);
+	else
+		list_add_entry(&entity->node, entity->status.storage_list);
 	return (OK);
 }

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 01:39:22 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 06:13:31 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/15 08:12:53 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,19 @@ static t_result	duplicate_spawner(t_game *game, t_entity *entity)
 	if (self->initial_texture->offset.x != self->normal->offset.x ||
 		self->initial_texture->offset.y != self->normal->offset.y)
 		return (OK);
-	if (!(self = self->create_spawner(self->initial_texture, TRUE)))
+	if (!(self = self->create_spawner(game, self->initial_texture, TRUE)))
 		return (throw_error("duplicate_spawner", "malloc failed"));
-	list_add_entry(&self->super.node, &game->renderer.ui_components);
 	return (OK);
 }
 
-static	t_listener_args entity_spawner_listener_args(t_bool display)
+static	t_listener_args entity_spawner_listener_args(t_game *game,
+			t_bool display)
 {
 	t_listener_args	args;
 
 	args.display = display;
+	args.render_list = &game->renderer.ui_components;
+	args.storage_list = &game->entities.ui_components;
 	args.is_hoverable = TRUE;
 	args.is_selectable = FALSE;
 	args.action_select = NULL;
@@ -60,20 +62,20 @@ static	t_entity_texture_args	entity_spawner_texture_args(
 	return (args);
 }
 
-static	t_entity_args	entity_spawner_args(t_texture *texture,
+static	t_entity_args	entity_spawner_args(t_game *game, t_texture *texture,
 			t_animation_status animation, t_bool display)
 {
 	t_entity_args	args;
 
 	args.texture_args = entity_spawner_texture_args(texture, animation);
-	args.listener_args = entity_spawner_listener_args(display);
+	args.listener_args = entity_spawner_listener_args(game, display);
 	args.type = SPAWNER;
 	args.pos = ft_vec2f(0, 0);
 	args.dir = ft_vec2f(0, 0);
 	return (args);
 }
 
-t_spawner	*create_spawner(t_texture *texture, t_bool display)
+t_spawner	*create_spawner(t_game *game, t_texture *texture, t_bool display)
 {
 	t_spawner		*self;
 	t_entity_args	args;
@@ -88,7 +90,7 @@ t_spawner	*create_spawner(t_texture *texture, t_bool display)
 	if (!(self->dragged = texture_filter(*texture, FILTER_BLEND)))
 		return (throw_null("create_spawner", "filter failed"));
 	self->create_spawner = create_spawner;
-	args = entity_spawner_args(self->normal, NONE, display);
+	args = entity_spawner_args(game, self->normal, NONE, display);
 	build_entity(&self->super, args);
 	return (self);
 }

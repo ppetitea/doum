@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 03:28:38 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 05:46:26 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/15 08:05:47 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 #include "entities/sprites/sprites.h"
 #include "utils/error.h"
 
-static	t_listener_args entity_sprite_listener_args(t_bool display)
+static	t_listener_args entity_sprite_listener_args(t_game *game, t_bool display)
 {
 	t_listener_args	args;
 
 	args.display = display;
+	args.render_list = &game->renderer.sprites;
+	args.storage_list = &game->entities.sprites;
 	args.is_hoverable = FALSE;
 	args.is_selectable = FALSE;
 	args.action_select = NULL;
@@ -48,12 +50,16 @@ void		entity_sprite_args1(t_entity_args *self, t_texture *texture,
 	self->type = SPRITE;
 }
 
-void		entity_sprite_args2(t_entity_args *self, t_vec2f pos, t_vec2f dir,
-				t_bool display)
+void		entity_sprite_args2(t_entity_args *self, t_vec2f pos, t_vec2f dir)
 {
-	self->listener_args = entity_sprite_listener_args(display);
 	self->pos = pos;
 	self->dir = dir;
+}
+
+void		entity_sprite_args3(t_entity_args *self, t_game *game,
+				t_bool display)
+{
+	self->listener_args = entity_sprite_listener_args(game, display);
 }
 
 t_sprite	*create_sprite(t_entity_args entity_args)

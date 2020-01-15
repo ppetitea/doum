@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:13:23 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 06:00:27 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/15 08:16:36 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@
 typedef struct	s_listener
 {
 	t_bool		display;
+	t_list_head	*render_list;
+	t_list_head	*storage_list;
 	t_bool		is_hoverable;
 	t_bool		is_hover;
 	t_bool		is_selectable;
@@ -50,6 +52,8 @@ typedef struct	s_listener
 typedef struct	s_listener_args
 {
 	t_bool		display;
+	t_list_head	*render_list;
+	t_list_head	*storage_list;
 	t_bool		is_hoverable;
 	t_bool		is_selectable;
 	t_result	(*action_select)(t_game*, void*); // void* -> t_entity*
@@ -136,5 +140,8 @@ t_result	update_selectables_entities(t_game *game, t_list_head *entities,
  				t_mouse mouse);
 t_result	update_draggables_entities(t_game *game, t_list_head *entities,
  				t_mouse mouse);
+
+t_result	trigger_animation(t_entity *entity);
+t_result	toggle_display_entity(t_entity *entity);
 
 #endif

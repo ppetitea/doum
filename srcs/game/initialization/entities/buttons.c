@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 23:23:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 04:58:34 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/15 07:54:53 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,8 @@ static t_result	add_button(t_game *game, t_texture_args args1,
 		return (throw_error("add_button", args2.name));
 	if (!(selected = create_texture_with_bmp(args2, *bmp)))
 		return (throw_error("add_button", "texture creation failed"));
-	if (!(button = create_button(normal, selected, display)))
+	if (!(button = create_button(game, normal, selected, display)))
 		return (throw_error("add_button", "button creation failed"));
-	if (display)
-		list_add_entry(&button->super.node, &game->renderer.ui_components);
-	else
-		list_add_entry(&button->super.node, &game->entities.ui_components);
 	return (OK);
 }
 

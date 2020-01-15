@@ -30,6 +30,8 @@ SRCS_LIST	=	main.c														\
 																			\
 				entities/sprites/sprites.c									\
 				entities/sprites/update.c									\
+				entities/update/animate.c									\
+				entities/update/display.c									\
 				entities/update/drag.c										\
 				entities/update/hover.c										\
 				entities/update/select.c									\

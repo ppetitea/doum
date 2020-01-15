@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:44:34 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 02:23:58 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/15 08:11:36 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 t_result	build_entity_listener(t_listener *self, t_listener_args args)
 {
 	self->display = args.display;
+	self->render_list = args.render_list;
+	self->storage_list = args.storage_list;
 	self->is_hoverable = args.is_hoverable;
 	self->is_hover = FALSE;
 	self->is_selectable = args.is_selectable;
@@ -53,5 +55,9 @@ t_result	build_entity(t_entity *self, t_entity_args args)
 		return (throw_error("build_entity", "failed to build texture"));
 	self->pos = args.pos;
 	self->dir = args.dir;
+	if (self->status.display)
+		list_add_entry(&self->node, self->status.render_list);
+	else
+		list_add_entry(&self->node, self->status.storage_list);
 	return (OK);
 }
