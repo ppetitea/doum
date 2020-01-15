@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 23:23:33 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/12 00:51:00 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/15 00:12:29 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 # define ERROR_H
 
 # include "libft.h"
+
+/*
+**	Gestion des erreurs
+**
+**	Quitte la fonction en retournant la valeur adaptee ERROR | NULL | void
+**	print un message d'erreur de type :
+**	"nom_de_la_fonction()", "description de l'erreur"
+**
+*/
 
 // typedef enum			e_error_type
 // {

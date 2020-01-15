@@ -6,11 +6,11 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:59:39 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/12 21:49:19 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/14 23:43:54 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game/game.h"
+#include "game.h"
 
 int		main()
 {

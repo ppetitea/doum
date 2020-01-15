@@ -6,14 +6,14 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 01:15:15 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/13 20:34:49 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/14 23:53:20 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MOUSE_H
 # define MOUSE_H
 
-# include "game/game.h"
+# include "game.h"
 # include "SDL.h"
 # include "libft.h"
 

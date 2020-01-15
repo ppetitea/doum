@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:52:11 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/13 04:04:40 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/14 23:55:03 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,22 @@
 /*
 **	game
 */
-# include "game/game.h"
+# include "game.h"
 
 /*
 **	screen
 */
-# include "screen/screen.h"
+# include "interface/screen.h"
 
 /*
 **	sdl
 */
-# include "sdl/sdl_init.h"
+# include "interface/sdl_init.h"
 
 /*
 **	textures
 */
-# include "textures/bitmap.h"
-# include "textures/texture.h"
+# include "resources/textures/bitmap.h"
+# include "resources/textures/texture.h"
 
 #endif

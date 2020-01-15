@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 02:40:52 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/14 05:27:15 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/15 00:24:50 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,20 @@
 # define DN_COLOR_H
 
 # include "libft.h"
+
+/*
+**	Gestion des format d'encodage des pixels
+**
+**	les fichiers bitmap encode les couleurs en [Blue Green Red] en 24bpp
+**	je crois que la SDL encode en [Blue Green Red Alpha] en uint32
+**
+**	Utilisation des unions: (voir plus bas)
+**
+**	Les unions sont des struct speciales ou chaque variable pointe en memoire 
+**	l'adresse de la structure. Ce qui permet d'acceder a la memoire en fonction 
+**	de la taille de la variable utilisee.
+**
+*/
 
 typedef struct		s_rgba_uchar
 {

@@ -28,39 +28,45 @@ EXEC		=	doom-nukem
 #SOURCES
 SRCS_LIST	=	main.c														\
 																			\
+				entities/sprites/sprites.c									\
+				entities/sprites/update.c									\
+				entities/update/drag.c										\
+				entities/update/hover.c										\
+				entities/update/select.c									\
+				entities/user_interface/button/button.c						\
+				entities/user_interface/button/update.c						\
+				entities/user_interface/spawner/spawner.c					\
+				entities/user_interface/spawner/update.c					\
+				entities/entity.c											\
+																			\
 				events/handle.c												\
 				events/keyboard/handle.c									\
 				events/mouse/handle.c										\
 																			\
+				game/initialization/entities/buttons.c						\
+				game/initialization/entities/init.c							\
+				game/initialization/entities/spawners.c						\
+				game/initialization/entities/sprites.c						\
+				game/initialization/interface/screen/init.c					\
+				game/initialization/interface/screen/reset.c				\
+				game/initialization/interface/sdl/init.c					\
+				game/initialization/interface/sdl/destroy.c					\
+				game/initialization/resources/buttons.c						\
+				game/initialization/resources/init.c						\
+				game/initialization/resources/pistol.c						\
+				game/initialization/resources/shotgun.c						\
 				game/init.c													\
 				game/loop.c													\
 				game/render.c												\
 																			\
-				screen/init.c												\
-				screen/reset.c												\
 																			\
-				sdl/destroy.c												\
-				sdl/init.c													\
-																			\
-				sprites/init/init.c											\
-				sprites/sprites.c											\
-																			\
-				textures/bitmap/load_bmp.c									\
-				textures/bitmap/render.c									\
-				textures/list/get.c											\
-				textures/list/init.c										\
-				textures/collide.c											\
-				textures/filter.c											\
-				textures/render.c											\
-				textures/texture.c											\
-																			\
-				user_interface/update/hover.c								\
-				user_interface/update/select.c								\
-				user_interface/update/drag.c								\
-				user_interface/init.c										\
-				user_interface/ui_button.c									\
-				user_interface/ui_component.c								\
-				user_interface/ui_spawner.c									\
+				resources/textures/bitmap/load_bmp.c						\
+				resources/textures/bitmap/render.c							\
+				resources/textures/collide.c								\
+				resources/textures/filter.c									\
+				resources/textures/get.c									\
+				resources/textures/render.c									\
+				resources/textures/texture.c								\
 																			\
 				utils/color/add_blend.c										\
 				utils/debug/debug.c											\
