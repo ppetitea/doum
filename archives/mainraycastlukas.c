@@ -4,9 +4,14 @@
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "bitmap/bitmap.h"
+#include "error/error.h"
+
 #define RATIO 16 / 9
-#define HEIGHT 1080
+#define HEIGHT 180
 #define WIDTH (HEIGHT * RATIO) 
+#include <math.h>
 
 typedef struct s_point
 {
@@ -79,39 +84,42 @@ void	draw_column(uint32_t *pixels, int x, int height, uint32_t color)
 {
 	if (height > HEIGHT)
 		height = HEIGHT;
+	if (height < 0)
+		height = 0;
 	while(height--)
 		pixels[(HEIGHT - height - 1) * WIDTH + x] = color;
 }
 
-void	render(uint32_t *pixels, uint32_t *heightmap, t_point player, float ag, int renderdistance)
+void	render(uint32_t *pixels, int *heightmap, uint32_t *img, t_point player, float ag, int renderdistance)
 {
-	(void)pixels;
-	(void)heightmap;
-	(void)player.x;
-	(void)ag;
-	(void)renderdistance;
 	memset(pixels, 0xFFFFFFFF, WIDTH * HEIGHT * (sizeof(uint32_t)));
-	int scale;
-	scale = HEIGHT / 255;
-	float cosag = cos(ag);
-	float sinag = sin(ag);
-	
+	float value;
 	int columny;
 	int columnx;
-
-	while(renderdistance)
+	float dx = 90 * M_PI / 180;
+	float ad;
+	ad = dx / WIDTH;
+	dx = ad;
+	dx = 0;
+	float gd;
+	while(renderdistance > 0)
 	{		
 		for(int i = 0; i < WIDTH; i++)
 		{
-			columny = sinag * renderdistance;
-			columnx = cosag * renderdistance;
-			draw_column(pixels, i, get_blue(heightmap[columny * WIDTH + columnx] * scale), 0xFF00FFFF);	
+			columny = sin(ag + dx) * (float)renderdistance + player.y;
+			columnx = cos(ag + dx) * (float)renderdistance + player.x;
+			value = (float)heightmap[columny * WIDTH + columnx];
+			gd = (float)heightmap[columny * WIDTH + columnx];
+			value *= HEIGHT;
+			value /= 255;
+			draw_column(pixels, i, value, 0xFFFFFFFF / renderdistance);	
+			dx += ad;
 		}
 		renderdistance--;
 	}
 }
 
-int main()
+int main(int argc, char **argv)
 {
 	SDL_Event e;
 	int quit = 0;
@@ -119,6 +127,11 @@ int main()
 	SDL_Renderer *renderer = NULL;
 	int statut = EXIT_FAILURE;
 	SDL_Texture *texture = NULL;
+
+	if (argc != 2)
+		return (0);
+	t_bitmap_texture *img = load_bmp(argv[1]);
+	uint32_t *map = img->pixels;
 
 	if(0 != SDL_Init(SDL_INIT_VIDEO))
 		goto Quit;
@@ -137,38 +150,56 @@ int main()
 	screen = malloc(sizeof(uint32_t) * HEIGHT * WIDTH );
 	//memset(screen, 255, WIDTH * HEIGHT * (sizeof(uint32_t)));
 
-	uint32_t *hm;
-	hm = malloc(sizeof(uint32_t) * HEIGHT * WIDTH );
-	
+	int *hm;
+	hm = malloc(sizeof(int) * HEIGHT * WIDTH);
+
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
 	SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_NONE);
 
 	memset(screen, 0x00000000, WIDTH * HEIGHT * sizeof(uint32_t));
-	memset(hm, 0xFF0A0A0A, WIDTH * HEIGHT * sizeof(uint32_t));
+	memset(hm, 0, WIDTH * HEIGHT * sizeof(int));
 
 	t_point player;
 	player.x = WIDTH/2;
 	player.y = HEIGHT/2;
 
-	render(screen, hm, player, 0, 50);
+	(void)player.x;
 
+	for(int i = 0; i < WIDTH * HEIGHT; i++)
+		hm[i] = get_blue(map[i]);	
+	//for(int i = 0; i < WIDTH * HEIGHT; i++)
+	//	printf("%d\n",hm[i]);	
+	float ag = 0;
 	while(!quit)
 	{
 		SDL_UpdateTexture(texture, NULL, screen, WIDTH * sizeof(uint32_t));
 		while(SDL_PollEvent(&e))
 		{
 			if (e.type == SDL_QUIT) {quit = 1;}
-			if (e.type == SDL_KEYDOWN){
+			if (e.type == SDL_KEYDOWN)
+			{
 				if (e.key.keysym.sym == SDLK_SPACE)
 					memset(screen, 0x00000000, WIDTH * HEIGHT * sizeof(uint32_t));
-				else
-					quit = 1;}
+				if (e.key.keysym.sym == SDLK_UP)
+					player.y--;
+				if (e.key.keysym.sym == SDLK_DOWN)
+					player.y++;
+				if (e.key.keysym.sym == SDLK_LEFT)
+					player.x--;
+				if (e.key.keysym.sym == SDLK_RIGHT)
+					player.x++;
+				if (e.key.keysym.sym == SDLK_ESCAPE)
+					quit = 1;
+			}
 			if (e.type == SDL_MOUSEBUTTONDOWN)
 			{
 				if (e.button.button == SDL_BUTTON_LEFT)
-					printf("%d %d \n", e.button.x, e.button.y);
+				ag += 0.1;
+				if (e.button.button == SDL_BUTTON_RIGHT)
+				ag -= 0.1;
 			}
 		}
+		render(screen, hm,img->pixels, player, ag, 70);
 		SDL_RenderClear(renderer);
 		SDL_RenderCopy(renderer, texture, NULL, NULL);
 		SDL_RenderPresent(renderer);
