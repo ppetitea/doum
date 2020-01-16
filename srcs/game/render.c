@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 17:16:52 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 05:58:17 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/16 07:00:17 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@ static	void	animate_texture(t_entity *entity)
 		if (entity->texture.animation == IN_PROGRESS && next == head)
 			entity->texture.animation = STOP;
 		entity->texture.t = (t_texture*)entity->texture.t->node.next;
+		if (entity->texture.animation == EPHEMERAL && next == head)
+		{
+			entity->texture.animation = STOP;
+			entity->texture.t = (t_texture*)entity->texture.t_last;
+			entity->texture.t_head = (t_texture*)entity->texture.t_last;
+		}
 	}
 }
 
@@ -53,18 +59,21 @@ static t_result	render_ui_components(t_game *game)
 		if (entity->status.is_dragged)
 			SDL_GetMouseState(&entity->texture.anchor.x,
 				&entity->texture.anchor.y);
-		render_texture(game->interface.screen, entity->texture.t,
-			entity->texture.anchor);
+		if (entity->texture.t != NULL)
+			render_texture(game->interface.screen, entity->texture.t,
+				entity->texture.anchor);
 	}
 	return (OK);
 }
+
+#include <stdio.h>
 
 static t_result	render_sprites(t_game *game)
 {
 	t_list_head			*pos;
 	t_list_head			*next;
 	t_entity			*entity;
-
+	
 	pos = &game->renderer.sprites;
 	next = pos->next;
 	while ((pos = next) != &game->renderer.sprites)
@@ -73,9 +82,10 @@ static t_result	render_sprites(t_game *game)
 		entity = (t_entity*)pos;
 		if (entity->texture.animation != NONE &&
 				entity->texture.animation != STOP)
-			animate_texture(entity);
-		render_texture(game->interface.screen, entity->texture.t,
-			entity->texture.anchor);
+				animate_texture(entity);
+		if (entity->texture.t != NULL)
+			render_texture(game->interface.screen, entity->texture.t,
+				entity->texture.anchor);
 	}
 	return (OK);
 }

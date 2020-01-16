@@ -24,7 +24,8 @@ static void	set_entity_draggable_on(t_game *game, t_entity *entity,
 	entity->texture.t->offset = offset;
 	entity->texture.anchor = mouse.pos;
 	entity->status.is_dragged = TRUE;
-	entity->texture.update_texture(entity);
+	if (entity->texture.update_texture != NULL)
+		entity->texture.update_texture(entity);
 	if (entity->status.action_drag != NULL)
 		entity->status.action_drag(game, entity);
 }
@@ -38,7 +39,8 @@ static void	set_entity_draggable_off(t_entity *entity, t_mouse mouse)
 	entity->texture.t->offset = offset;
 	entity->texture.anchor = ft_vec2i(0, 0);
 	entity->status.is_dragged = FALSE;
-	entity->texture.update_texture(entity);
+	if (entity->texture.update_texture != NULL)
+		entity->texture.update_texture(entity);
 }
 
 static t_bool	update_entity_drag_status(t_game *game, t_entity *entity,

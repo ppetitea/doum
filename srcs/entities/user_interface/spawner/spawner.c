@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 01:39:22 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 08:12:53 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/15 23:34:54 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,7 @@ static	t_entity_texture_args	entity_spawner_texture_args(
 	args.anchor = ft_vec2i(0, 0);
 	args.texture = texture;
 	args.animation = animation;
-	args.update_anchor = (t_result(*)(void*, t_vec2i))update_spawner_anchor;
-	args.update_offset = (t_result(*)(void*, t_vec2i))update_spawner_offset;
-	args.update_texture = 
-		(t_result(*)(void*))update_spawner_texture_with_status;
+	args.update_texture = (t_result(*)(void*))update_spawner_texture;
 	return (args);
 }
 

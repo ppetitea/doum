@@ -28,6 +28,11 @@ EXEC		=	doom-nukem
 #SOURCES
 SRCS_LIST	=	main.c														\
 																			\
+				entities/player/build_camera.c								\
+				entities/player/build_player.c								\
+				entities/player/build_weapon.c								\
+				entities/player/update_player.c								\
+				entities/player/update_weapon.c								\
 				entities/sprites/sprites.c									\
 				entities/sprites/update.c									\
 				entities/update/animate.c									\
@@ -47,6 +52,7 @@ SRCS_LIST	=	main.c														\
 																			\
 				game/initialization/entities/buttons.c						\
 				game/initialization/entities/init.c							\
+				game/initialization/entities/player.c						\
 				game/initialization/entities/spawners.c						\
 				game/initialization/entities/sprites.c						\
 				game/initialization/interface/screen/init.c					\
@@ -56,7 +62,7 @@ SRCS_LIST	=	main.c														\
 				game/initialization/resources/buttons.c						\
 				game/initialization/resources/init.c						\
 				game/initialization/resources/pistol.c						\
-				game/initialization/resources/shotgun.c						\
+				game/initialization/resources/shootgun.c						\
 				game/init.c													\
 				game/loop.c													\
 				game/render.c												\
@@ -93,7 +99,7 @@ INCLUDES	:=	-I includes
 #COMPILATION
 CC			=	gcc
 CFLAGS		:=	-Wall -Werror -Wextra
-LDFLAGS		:=	-Wall -Werror -Wextra
+LDFLAGS		:=	-Wall -Werror -Wextra -lm
 
 #LIBRARIES
 #	libft

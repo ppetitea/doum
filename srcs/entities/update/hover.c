@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:56:45 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 05:19:38 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/16 05:52:58 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ static t_bool	update_entity_hover_status(t_entity *entity, t_mouse mouse)
 			entity->texture.anchor))
 	{
 		entity->status.is_hover = TRUE;
-		entity->texture.update_texture(entity);
+		if (entity->texture.update_texture != NULL)
+			entity->texture.update_texture(entity);
 	}
 	else if (entity->status.is_hover == TRUE)
 	{
 		entity->status.is_hover = FALSE;
-		entity->texture.update_texture(entity);
+		if (entity->texture.update_texture != NULL)
+			entity->texture.update_texture(entity);
 	}
 	return (FALSE);
 }

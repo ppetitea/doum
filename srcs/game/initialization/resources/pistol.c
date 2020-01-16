@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:26:15 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 04:09:11 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/16 08:04:38 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,11 @@ t_result	load_pistol_textures(t_game *game)
 	if (!(bmp = load_bmp("resources/textures/sprites/guns/pistol/reload2.bmp")))
 		return (throw_error("load_pistol_textures", "failed to load bmp"));
 	list_add_image(game, bmp, ft_strdup("pistol_reload2"));
+	if (!(bmp = load_bmp("resources/textures/sprites/guns/pistol/reload3.bmp")))
+		return (throw_error("load_pistol_textures", "failed to load bmp"));
+	list_add_image(game, bmp, ft_strdup("pistol_reload3"));
+	if (!(bmp = load_bmp("resources/textures/sprites/guns/pistol/reload4.bmp")))
+		return (throw_error("load_pistol_textures", "failed to load bmp"));
+	list_add_image(game, bmp, ft_strdup("pistol_reload4"));
 	return (OK);
 }

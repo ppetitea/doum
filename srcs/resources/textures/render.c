@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 01:19:09 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/14 23:56:49 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/16 06:38:12 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "resources/textures/bitmap.h"
 #include "interface/screen.h"
 #include "utils/color.h"
+
+#include <stdio.h>
 
 void	set_texture_pixel(t_texture texture, t_screen screen, t_vec2i offset,
 	t_usize i)
@@ -27,6 +29,11 @@ void	set_texture_pixel(t_texture texture, t_screen screen, t_vec2i offset,
 	curr.px = texture.pixels[i.x + i.y * texture.size.x];
 	new.px = blend_add(curr, old);
 	screen.pixels[(offset.x + i.x) + (offset.y + i.y) * screen.size.x] = new.px;
+	// printf("r %d ", new.rgba.r);
+	// printf("g %d ", new.rgba.g);
+	// printf("b %d ", new.rgba.b);
+	// printf("a %d\n", new.rgba.a);
+
 }
 
 void	render_texture(t_screen screen, t_texture *texture, t_vec2i anchor)

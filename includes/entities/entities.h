@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:13:23 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 08:16:36 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/16 04:05:43 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef enum	e_animation_status
 {
 	INFINITE,
 	IN_PROGRESS,
+	EPHEMERAL,
 	STOP,
 	NONE
 }				t_animation_status;
@@ -81,6 +82,7 @@ typedef struct			s_entity_texture
 	t_vec2i				anchor;
 	t_texture			*t;
 	t_texture			*t_head;
+	t_texture			*t_last;
 	t_animation_status	animation;
 	t_result			(*update_anchor)(void*, t_vec2i);
 	t_result			(*update_offset)(void*, t_vec2i);
@@ -92,8 +94,8 @@ typedef struct	s_entity_texture_args
 	t_vec2i					anchor;
 	t_texture				*texture;
 	t_animation_status		animation;
-	t_result				(*update_anchor)(void*, t_vec2i);
-	t_result				(*update_offset)(void*, t_vec2i);
+	// t_result				(*update_anchor)(void*, t_vec2i);
+	// t_result				(*update_offset)(void*, t_vec2i);
 	t_result				(*update_texture)(void*);
 }				t_entity_texture_args;
 
@@ -106,6 +108,7 @@ typedef enum	e_entity_type
 	BUTTON,
 	SPAWNER,
 	SPRITE,
+	PLAYER,
 }				t_entity_type;
 
 typedef struct	s_entity
@@ -134,6 +137,8 @@ t_result	initialize_buttons_entities(t_game *game);
 t_result	initialize_spawners_entities(t_game *game);
 t_result	initialize_sprites_entities(t_game *game);
 
+t_result	update_entity_anchor(t_entity *entity, t_vec2i anchor);
+t_result	update_entity_offset(t_entity *entity, t_vec2i offset);
 
 t_result	update_hoverables_entities(t_list_head *entities, t_mouse mouse);
 t_result	update_selectables_entities(t_game *game, t_list_head *entities,

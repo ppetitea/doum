@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:56:45 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 05:21:33 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/16 05:53:15 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static t_bool	update_entity_select_status(t_game *game, t_entity *entity,
 	}
 	else if (entity->status.is_selected == TRUE)
 		entity->status.is_selected = FALSE;
-	entity->texture.update_texture(entity);
+	if (entity->texture.update_texture != NULL)
+		entity->texture.update_texture(entity);
 	return (FALSE);
 }
 

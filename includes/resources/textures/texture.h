@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 23:57:01 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 00:44:54 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/16 06:10:56 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "resources/textures/bitmap.h"
 # include "interface/screen.h"
+# include "game.h"
 
 /*
 **	Chaque texture est un noeud dans une liste
@@ -43,6 +44,11 @@ typedef struct			s_texture_args
 t_texture		*create_texture(t_texture_args args);
 t_texture		*create_texture_with_bmp(t_texture_args args,
 					t_bitmap_texture bmp);
+t_texture		*create_texture_with_bmp_name(t_game *game,
+					t_texture_args args);
+t_result		add_texture(t_game *game, t_texture **list,
+					t_texture_args args);
+
 t_texture_args	texture_args(char *name, t_vec2i offset, t_usize size,
 					float delay);
 void			render_texture(t_screen screen, t_texture *texture,
@@ -61,6 +67,10 @@ typedef enum			e_filter_type
 {
 	FILTER_HOVER,
 	FILTER_BLEND,
+	FILTER_ROTATE_RIGHT,
+	FILTER_ROTATE_LEFT,
+	FILTER_MIRROR_HORIZONTAL,
+	FILTER_MIRROR_VERTICAL,
 	FILTER_NONE,
 }						t_filter_type;
 

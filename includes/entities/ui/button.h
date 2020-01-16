@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:12:43 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 07:54:18 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/15 23:36:10 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ typedef struct		s_button
 
 t_button			*create_button(t_game *game, t_texture *hover,
 						t_texture *selected, t_bool display);
-t_result			update_button_anchor(t_entity *entity, t_vec2i anchor);
-t_result			update_button_offset(t_entity *entity, t_vec2i offset);
-t_result			update_button_texture_with_status(t_entity *entity);
+t_result			update_button_texture(t_entity *entity);
 
 
 #endif

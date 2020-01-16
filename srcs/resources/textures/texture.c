@@ -6,16 +6,15 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 23:55:41 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/14 23:52:32 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/16 06:36:09 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "resources/textures/texture.h"
+#include "resources/resources.h"
 #include "utils/error.h"
 #include "libft.h"
 #include <sys/time.h>
-
-
 
 t_vec2i		get_texture_center(t_texture texture)
 {
@@ -97,3 +96,27 @@ t_texture		*create_texture_with_bmp(t_texture_args args,
 	return (self);
 }
 
+t_texture		*create_texture_with_bmp_name(t_game *game, t_texture_args args)
+{
+	t_bitmap_texture	*bmp;
+	t_texture			*ret;
+	
+	if (!(bmp = get_image_by_name(game, args.name)))
+		return (throw_null("create_texture_bmp_name", "get_image failed"));
+	if (!(ret = create_texture_with_bmp(args, *bmp)))
+		return (throw_null("create_texture_bmp_name", "creation failed"));
+	return (ret);
+}
+
+t_result	add_texture(t_game *game, t_texture **list, t_texture_args args)
+{
+	t_texture	*new;
+
+	if (!(new = create_texture_with_bmp_name(game, args)))
+		return (throw_error("build texture", "create_texture failed"));
+	if (*list == NULL)
+		*list = new;
+	else
+		list_add_entry(&new->node, (t_list_head*)*list);
+	return (OK);
+}

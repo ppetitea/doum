@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 03:29:06 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 07:53:25 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/15 23:42:52 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 /*
 **	Entite de type sprite
-**	
 */
 
 typedef struct		s_sprite_textures
@@ -44,9 +43,6 @@ void				entity_sprite_args2(t_entity_args *self, t_vec2f pos,
 void				entity_sprite_args3(t_entity_args *self, t_game *game,
 						t_bool display);
 
-
-t_result			update_sprite_anchor(t_entity *component, t_vec2i anchor);
-t_result			update_sprite_offset(t_entity *component, t_vec2i offset);
-t_result			update_sprite_texture_with_status(t_entity *component);
+t_result			update_sprite_texture(t_entity *entity);
 
 #endif

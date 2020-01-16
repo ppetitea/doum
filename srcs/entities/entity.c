@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:44:34 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 08:11:36 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/16 05:51:03 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,22 @@
 #include "utils/error.h"
 #include "libft.h"
 #include <time.h>
+
+t_result	update_entity_anchor(t_entity *entity, t_vec2i anchor)
+{
+	if (entity == NULL)
+		return (throw_error("update_entity_anchor", "NULL pointer provided"));
+	entity->texture.anchor = anchor;
+	return (OK);
+}
+
+t_result	update_entity_offset(t_entity *entity, t_vec2i offset)
+{
+	if (entity == NULL)
+		return (throw_error("update_entity_offset", "NULL pointer provided"));
+	entity->texture.t->offset = offset;
+	return (OK);
+}
 
 t_result	build_entity_listener(t_listener *self, t_listener_args args)
 {
@@ -39,8 +55,8 @@ t_result	build_entity_texture(t_entity_texture *self,
 	self->t = args.texture;
 	self->t_head = args.texture;
 	self->animation = args.animation;
-	self->update_anchor = args.update_anchor;
-	self->update_offset = args.update_offset;
+	self->update_anchor = (t_result(*)(void*, t_vec2i))update_entity_anchor;
+	self->update_offset = (t_result(*)(void*, t_vec2i))update_entity_offset;
 	self->update_texture = args.update_texture;
 	return (OK);
 }
