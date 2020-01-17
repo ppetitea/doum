@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 00:28:13 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/16 08:34:56 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/17 17:31:58 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_result	initialize_player_entity(t_game *game, t_player *player)
 	build_player_listener(&player->super.status, &game->renderer.sprites,
 		&game->entities.sprites, TRUE);
 	args.dir = ft_vec2f(0, 1);
-	args.pos = ft_vec2f(0, 1);
+	args.pos = ft_vec2f(10, 20);
 	args.type = PLAYER;
 	build_player_entity(&player->super, args);
 	return (OK);
@@ -125,23 +125,23 @@ t_result	add_shootgun_weapon(t_game *game, t_player *player)
 	return (OK);
 }
 
-t_result	initialize_player(t_game *game)
+t_player	*initialize_player(t_game *game)
 {
 	t_player		*player;
 
 	if (!(player = create_player()))
-		return (throw_error("init_player", "failed to create player"));
+		return (throw_null("init_player", "failed to create player"));
 	if(!add_pistol_weapon(game, player))
-		return (throw_error("init_player", "failed to add pistol"));
+		return (throw_null("init_player", "failed to add pistol"));
 	if(!add_shootgun_weapon(game, player))
-		return (throw_error("init_player", "failed to add shootgun"));
+		return (throw_null("init_player", "failed to add shootgun"));
 	if (!(initialize_player_entity(game, player)))
-		return (throw_error("init_player", "failed to init entity"));
+		return (throw_null("init_player", "failed to init entity"));
 	if (!initialize_player_camera(game, &player->cam))
-		return (throw_error("init_player", "failed to init camera"));
+		return (throw_null("init_player", "failed to init camera"));
 	bind_key(&game->interface.keys_bind, SDLK_TAB, &player->super, weapon_next);
 	bind_key(&game->interface.keys_bind, SDLK_SPACE, &player->super, weapon_fire);
 	bind_key(&game->interface.keys_bind, SDLK_r, &player->super, weapon_reload);
 	update_weapon_ammo(player->weapons, 20);
-	return (OK);
+	return (player);
 }

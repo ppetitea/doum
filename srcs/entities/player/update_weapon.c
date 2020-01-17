@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 01:16:28 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/16 08:34:32 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/17 17:07:20 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ t_result	weapon_fire(t_entity *entity)
 		player->super.texture.t = player->weapons->fire;
 		player->super.texture.t_head = player->weapons->fire;
 		player->super.texture.animation = IN_PROGRESS;
+		timespec_get(&player->super.texture.last, TIME_UTC);
 	}
 	weapon_status(*player->weapons);
 	return (OK);

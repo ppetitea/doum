@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+         #
+#    By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/05 18:02:14 by lbenard           #+#    #+#              #
-#    Updated: 2019/02/20 21:56:15 by lbenard          ###   ########.fr        #
+#    Updated: 2019/12/17 06:06:50 by ppetitea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRCS_LIST		=	containers/list/init_list_head.c		\
 					colors/hsv/ft_hsv.c						\
 					colors/hsv/hsv_to_int.c					\
 					sizes/ft_usize.c						\
+					sizes/is_contain.c						\
 					sizes/ft_isize.c						\
 					maths/maths/ft_abs.c					\
 					maths/maths/ft_max.c					\
@@ -64,7 +65,13 @@ SRCS_LIST		=	containers/list/init_list_head.c		\
 					maths/vec4i/ft_vec4i.c					\
 					maths/vec2f/ft_vec2f.c					\
 					maths/vec2f/vec2f_dot.c					\
+					maths/vec2f/vec2f_add.c					\
+					maths/vec2f/vec2f_sub.c					\
 					maths/vec2f/vec2f_scalar.c				\
+					maths/vec2f/vec2f_magnitude.c			\
+					maths/vec2f/vec2f_normalize.c			\
+					maths/vec2f/vec2f_is_equal.c			\
+					maths/vec2f/vec2f_opposite.c			\
 					maths/vec3f/ft_vec3f.c					\
 					maths/vec3f/vec3f_dot.c					\
 					maths/vec3f/vec3f_scalar.c				\
@@ -167,7 +174,8 @@ SRCS_LIST		=	containers/list/init_list_head.c		\
 					ft/str/ft_islower.c						\
 					ft/str/ft_toupper.c						\
 					ft/str/ft_tolower.c						\
-					ft/str/ft_get_next_line.c
+					ft/str/ft_get_next_line.c				\
+					callbacks/error.c
 
 SRCS_FOLDER		=	./srcs/
 SRCS			=	$(addprefix $(SRCS_FOLDER), $(SRCS_LIST))

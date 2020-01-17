@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec2f_scalar.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 17:30:38 by lbenard           #+#    #+#             */
-/*   Updated: 2019/02/20 19:11:25 by lbenard          ###   ########.fr       */
+/*   Updated: 2019/12/17 21:23:34 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 t_vec2f	vec2f_scalar(t_vec2f src, float a)
 {
-	src.x *= a;
-	src.y *= a;
-	return (src);
+	t_vec2f		ret;
+	ret.x = src.x * a;
+	ret.y = src.y * a;
+	return (ret);
 }

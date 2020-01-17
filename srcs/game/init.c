@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:36:09 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 09:01:19 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/17 16:36:31 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "entities/entities.h"
 #include "resources/resources.h"
 #include "entities/sprites/sprites.h"
+#include "init.h"
 
 static void	initialize_game_interface(t_game_interface *interface)
 {

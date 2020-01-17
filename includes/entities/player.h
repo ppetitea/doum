@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 17:04:35 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/16 09:01:16 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/17 16:31:33 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ t_result			update_player_velocity(t_player *self, float velocity);
 t_result			update_player_life(t_player *self, float life);
 t_result			update_player_armor(t_player *self, float armor);
 
-t_result			initialize_player(t_game *game);
 t_result			build_player_listener(t_listener *self, t_list_head *render,
 						t_list_head *storage, t_bool display);
 t_result			build_player_entity_texture(t_entity_texture *self,

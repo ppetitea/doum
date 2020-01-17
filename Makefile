@@ -28,6 +28,8 @@ EXEC		=	doom-nukem
 #SOURCES
 SRCS_LIST	=	main.c														\
 																			\
+				entities/ennemies/ennemy.c									\
+				entities/ennemies/update.c									\
 				entities/player/build_camera.c								\
 				entities/player/build_player.c								\
 				entities/player/build_weapon.c								\
@@ -51,6 +53,7 @@ SRCS_LIST	=	main.c														\
 				events/mouse/handle.c										\
 																			\
 				game/initialization/entities/buttons.c						\
+				game/initialization/entities/ennemy.c						\
 				game/initialization/entities/init.c							\
 				game/initialization/entities/player.c						\
 				game/initialization/entities/spawners.c						\
@@ -60,9 +63,10 @@ SRCS_LIST	=	main.c														\
 				game/initialization/interface/sdl/init.c					\
 				game/initialization/interface/sdl/destroy.c					\
 				game/initialization/resources/buttons.c						\
+				game/initialization/resources/ennemy.c						\
 				game/initialization/resources/init.c						\
 				game/initialization/resources/pistol.c						\
-				game/initialization/resources/shootgun.c						\
+				game/initialization/resources/shootgun.c					\
 				game/init.c													\
 				game/loop.c													\
 				game/render.c												\
@@ -81,6 +85,11 @@ SRCS_LIST	=	main.c														\
 				utils/error/throw_null.c									\
 				utils/error/throw_void.c									\
 				utils/error/throw_error.c									\
+				utils/matrix/mult.c											\
+				utils/matrix/rotate.c										\
+				utils/matrix/scale.c										\
+				utils/matrix/to_vtx.c										\
+				utils/matrix/translate.c									\
 																			\
 
 

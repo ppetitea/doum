@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 18:29:38 by lbenard           #+#    #+#             */
-/*   Updated: 2019/02/20 20:20:19 by lbenard          ###   ########.fr       */
+/*   Updated: 2020/01/17 13:04:01 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,13 @@ t_result		init_list_head(t_list_head *list);
 /*
 ** Iterators
 */
-void			list_foreach(t_list_head *list, size_t offset, void (*fn)());
+typedef	enum	e_iterator_callback
+{
+	CONTINUE,
+	STOP_ITERATION,
+}				t_iterator_callback;
+t_bool			list_foreach(t_list_head *list, size_t offset,
+	t_iterator_callback (*fn)());
 
 /*
 ** Capacity

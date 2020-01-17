@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:13:23 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/16 04:05:43 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/17 17:01:48 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef enum	e_entity_type
 	SPAWNER,
 	SPRITE,
 	PLAYER,
+	ENNEMY,
 }				t_entity_type;
 
 typedef struct	s_entity
@@ -132,13 +133,9 @@ typedef struct	s_entity_args
 
 t_result	build_entity(t_entity *self, t_entity_args args);
 
-t_result	initialize_entities(t_game *game);
-t_result	initialize_buttons_entities(t_game *game);
-t_result	initialize_spawners_entities(t_game *game);
-t_result	initialize_sprites_entities(t_game *game);
-
 t_result	update_entity_anchor(t_entity *entity, t_vec2i anchor);
 t_result	update_entity_offset(t_entity *entity, t_vec2i offset);
+t_result	update_entity_texture(t_entity *entity, t_texture *texture);
 
 t_result	update_hoverables_entities(t_list_head *entities, t_mouse mouse);
 t_result	update_selectables_entities(t_game *game, t_list_head *entities,

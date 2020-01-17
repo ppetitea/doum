@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 14:43:39 by lbenard           #+#    #+#             */
-/*   Updated: 2020/01/14 23:45:25 by ppetitea         ###   ########.fr       */
+/*   Updated: 2019/12/17 05:57:31 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,10 @@
 # include "ft/io.h"
 # include "ft/mem.h"
 # include "ft/str.h"
+
+/*
+** callbacks
+*/
+# include "callbacks/error.h"
 
 #endif

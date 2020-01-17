@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 23:57:01 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/16 06:10:56 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/17 15:02:22 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,14 @@ typedef struct			s_texture_args
 	t_usize				size;
 	float				delay_ms;
 }						t_texture_args;
+
+typedef struct		s_oriented_textures
+{
+	t_texture		*front;
+	t_texture		*right;
+	t_texture		*back;
+	t_texture		*left;
+}					t_oriented_textures;
 
 t_texture		*create_texture(t_texture_args args);
 t_texture		*create_texture_with_bmp(t_texture_args args,
