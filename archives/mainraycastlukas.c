@@ -8,9 +8,10 @@
 #include "bitmap/bitmap.h"
 #include "error/error.h"
 
-#define RATIO 16 / 9
-#define HEIGHT 180
-#define WIDTH (HEIGHT * RATIO) 
+//#define RATIO 16 / 9
+#define HEIGHT 1080
+#define WIDTH 1080
+//#define WIDTH (HEIGHT * RATIO) 
 #include <math.h>
 
 typedef struct s_point
@@ -33,22 +34,13 @@ uint32_t	pp_get_SDLcolor(SDL_Color color)
 	return (c);
 }
 
-int pp_putpixel(uint32_t *pixel, int x, int y, SDL_Color color)
+int pp_putpixel(uint32_t *pixel, int x, int y, uint32_t color)
 {
-	uint32_t c;
-	c = 0xFFFFFFFF;
-	c = c | color.a;
-	c = c << 8;
-	c = c | color.r;
-	c = c << 8;
-	c = c | color.g;
-	c = c << 8;
-	c = c | color.b;
-	pixel[y * WIDTH + x] = c; 
+	pixel[y * WIDTH + x] = color; 
 	return (0);
 }
 
-void	pp_liner(uint32_t *pixel, t_point *a, t_point *b, SDL_Color color)
+void	pp_liner(uint32_t *pixel, t_point *a, t_point *b, uint32_t color)
 {
 	int tab[10];
 
@@ -80,6 +72,7 @@ int	get_blue(uint32_t color)
 	c = (int) color;
 	return (c);
 }
+
 void	draw_column(uint32_t *pixels, int x, int height, uint32_t color)
 {
 	if (height > HEIGHT)
@@ -90,34 +83,92 @@ void	draw_column(uint32_t *pixels, int x, int height, uint32_t color)
 		pixels[(HEIGHT - height - 1) * WIDTH + x] = color;
 }
 
-void	render(uint32_t *pixels, int *heightmap, uint32_t *img, t_point player, float ag, int renderdistance)
+void	draw_vertical_line(uint32_t *pixels, int x, int ytop, int ybot, uint32_t color)
 {
-	memset(pixels, 0xFFFFFFFF, WIDTH * HEIGHT * (sizeof(uint32_t)));
-	float value;
-	int columny;
-	int columnx;
-	float dx = 90 * M_PI / 180;
-	float ad;
-	ad = dx / WIDTH;
-	dx = ad;
-	dx = 0;
-	float gd;
-	while(renderdistance > 0)
-	{		
-		for(int i = 0; i < WIDTH; i++)
+	t_point a;
+	t_point b;
+
+	a.x = x;
+	b.x = x;
+
+	a.y = ytop;
+	b.y = ybot;
+
+	pp_liner(pixels, &a, &b, color);
+}
+/*
+   void	render(uint32_t *pixels, int *heightmap, uint32_t *img, t_point player, float ag, int renderdistance)
+   {
+   memset(pixels, 0xFFFFFFFF, WIDTH * HEIGHT * (sizeof(uint32_t)));
+   float value;
+   int columny;
+   int columnx;
+   float dx = 60 * M_PI / 180;
+   float ad;
+   ad = dx / WIDTH;
+   dx = ad;
+   dx = 0;
+   float gd;
+   while(renderdistance > 0)
+   {		
+   for(int i = 0; i < WIDTH; i++)
+   {
+   columny = sin(ag + dx) * (float)renderdistance + player.y;
+   columnx = cos(ag + dx) * (float)renderdistance + player.x;
+   value = (float)heightmap[columny * WIDTH + columnx];
+   gd = (float)heightmap[columny * WIDTH + columnx];
+   value *= HEIGHT;
+   value /= 255;
+//draw_column(pixels, i, value, 0xFFAAAAAA - renderdistance);	
+draw_column(pixels, i, value, img[(int)gd]);	
+dx += ad;
+}
+renderdistance--;
+}
+}
+ */
+
+
+void	render2(uint32_t *pixels, int *hm, uint32_t *colormap, t_point player, float phi, int height, int horizon, int scale_height, int distance)
+{
+	float mapwidthperiod = WIDTH - 1;
+	float mapheightperiod = HEIGHT - 1;
+
+	float sinang = sin(phi);
+	float cosang = cos(phi);
+
+	uint32_t *hiddeny = malloc(sizeof(uint32_t) * WIDTH);
+
+	for(int i = 0; i < WIDTH; i++)
+		hiddeny[i] = HEIGHT;
+
+	float deltaz = 1;
+
+	for(float z=1; z < distance; z += deltaz)
+	{
+		float plx =  -cosang * z - sinang * z;
+		float ply =   sinang * z - cosang * z;
+		float prx =   cosang * z - sinang * z;
+		float pry =  -sinang * z - cosang * z;
+
+		float dx = (prx - plx) / WIDTH;
+		float dy = (pry - ply) / WIDTH;
+		plx += player.x;
+		ply += player.y;
+		float invz = 1 / z * 240;
+		for(int i=0; i< WIDTH; i++)
 		{
-			columny = sin(ag + dx) * (float)renderdistance + player.y;
-			columnx = cos(ag + dx) * (float)renderdistance + player.x;
-			value = (float)heightmap[columny * WIDTH + columnx];
-			gd = (float)heightmap[columny * WIDTH + columnx];
-			value *= HEIGHT;
-			value /= 255;
-			draw_column(pixels, i, value, 0xFFFFFFFF / renderdistance);	
-			dx += ad;
+			float mapoffset = ((floorf(ply) & mapwidthperiod) << 10) + (floorf(plx) & mapheightperiod);
+			float heightonscreen = (height - hm[mapoffset]) * invz + horizon;
+			draw_vertical_line(i, heightonscreen, hiddeny[i], colormap[mapoffset]);
+			if (heightonscreen < hiddeny[i]) hiddeny[i] = heightonscreen;
+			plx += dx;
+			ply += dy;
 		}
-		renderdistance--;
+		deltaz += 0.005;
 	}
 }
+
 
 int main(int argc, char **argv)
 {
@@ -128,10 +179,12 @@ int main(int argc, char **argv)
 	int statut = EXIT_FAILURE;
 	SDL_Texture *texture = NULL;
 
-	if (argc != 2)
+	if (argc != 3)
 		return (0);
 	t_bitmap_texture *img = load_bmp(argv[1]);
+	t_bitmap_texture *texturemap = load_bmp(argv[2]);
 	uint32_t *map = img->pixels;
+	uint32_t *colormap = texturemap->pixels;
 
 	if(0 != SDL_Init(SDL_INIT_VIDEO))
 		goto Quit;
@@ -194,12 +247,13 @@ int main(int argc, char **argv)
 			if (e.type == SDL_MOUSEBUTTONDOWN)
 			{
 				if (e.button.button == SDL_BUTTON_LEFT)
-				ag += 0.1;
+					ag += 2 * M_PI / 10;
 				if (e.button.button == SDL_BUTTON_RIGHT)
-				ag -= 0.1;
+					ag -= 2 * M_PI / 10;
 			}
 		}
-		render(screen, hm,img->pixels, player, ag, 70);
+		//render(screen, hm,colormap, player, ag, 300);
+		render2(screen, hm, colormap, player, ag, 50, 120, 120, 300);
 		SDL_RenderClear(renderer);
 		SDL_RenderCopy(renderer, texture, NULL, NULL);
 		SDL_RenderPresent(renderer);
