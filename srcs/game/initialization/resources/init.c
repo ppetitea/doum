@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:26:15 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/17 16:36:16 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/18 06:01:58 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,19 @@
 #include "utils/error.h"
 #include "libft.h"
 
-t_result	list_add_image(t_game *game, t_bitmap_texture *image, char *name)
+t_result	list_add_image(t_list_head *list, t_bitmap_texture *image,
+				char *name)
 {
 	t_image_node		*node;
 
+	if (list == NULL || image == NULL || name == NULL)
+		return (throw_error("list_add_image", "NULL pointer provided"));
 	if (!(node = (t_image_node*)malloc(sizeof(t_image_node))))
-		return (throw_error("image_node", "malloc failed"));
+		return (throw_error("list_add_image", "malloc failed"));
 	node->name = name;
 	node->image = image;
 	init_list_head(&node->node);
-	list_add_entry(&node->node, &game->resources.images);
+	list_add_entry(&node->node, list);
 	return (OK);
 }
 

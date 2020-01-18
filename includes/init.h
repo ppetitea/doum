@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 16:27:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/17 16:34:27 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/18 06:08:10 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,14 @@ t_result	initialize_spawners_entities(t_game *game);
 t_player	*initialize_player(t_game *game);
 t_result	initialize_sprites_entities(t_game *game);
 t_result	initialize_ennemy(t_game *game, t_player *player);
+
+
+/*
+**	GAME SCENE
+*/
+
+t_result	load_pistol_textures(t_list_head *images);
+t_result	load_shootgun_textures(t_list_head *images);
+
 
 #endif

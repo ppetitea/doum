@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:33:04 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 08:08:09 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/17 22:59:05 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_result	add_spawner(t_game *game, t_texture_args args, t_bool display)
 	t_texture			*texture;
 	t_bitmap_texture	*bmp;
 
-	if (!(bmp = get_image_by_name(game, args.name)))
+	if (!(bmp = get_image_by_name(&game->resources.images, args.name)))
 		return (throw_error("add_spawner", args.name));
 	if (!(texture = create_texture_with_bmp(args, *bmp)))
 		return (throw_error("add_spawner", "texture creation failed"));

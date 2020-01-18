@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 05:59:37 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/16 06:08:53 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/17 22:59:05 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 // 	t_texture			*texture;
 // 	t_bitmap_texture	*bmp;
 
-// 	if (!(bmp = get_image_by_name(game, args.name)))
+// 	if (!(bmp = get_image_by_name(&game->resources.images, args.name)))
 // 		return (throw_error("get_sprite_texture", "texture not found"));
 // 	if (!(texture = create_texture_with_bmp(args, *bmp)))
 // 		return (throw_error("get_sprite_texture", "texture creation failed"));

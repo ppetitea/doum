@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 17:04:35 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/17 16:31:33 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/18 01:20:05 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PLAYER_H
 
 # include "entities/entities.h"
+# include "utils/matrix.h"
 
 typedef enum	e_weapon_type
 {
@@ -76,8 +77,14 @@ typedef struct		s_camera_args
 	t_vec2f	*dir;
 }					t_camera_args;
 
-t_camera_args		camera_args(float fov, float plan_width, float height);
 t_result			build_player_camera(t_camera *self, t_camera_args args);
+t_camera_args		camera_args(float fov, float plan_width, float height);
+t_result			rotate_camera_right(t_entity *entity);
+t_result			rotate_camera_left(t_entity *entity);
+t_result			translate_camera_forward(t_entity *entity);
+t_result			translate_camera_left(t_entity *entity);
+t_result			translate_camera_right(t_entity *entity);
+t_result			translate_camera_backward(t_entity *entity);
 
 typedef struct		s_player
 {

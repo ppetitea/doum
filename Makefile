@@ -33,6 +33,7 @@ SRCS_LIST	=	main.c														\
 				entities/player/build_camera.c								\
 				entities/player/build_player.c								\
 				entities/player/build_weapon.c								\
+				entities/player/update_camera.c								\
 				entities/player/update_player.c								\
 				entities/player/update_weapon.c								\
 				entities/sprites/sprites.c									\

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 01:39:22 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 23:34:54 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/17 22:57:02 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "entities/ui/spawner.h"
 #include "entities/entities.h"
 #include "resources/textures/texture.h"
+#include "game.h"
 
 static t_result	duplicate_spawner(t_game *game, t_entity *entity)
 {
@@ -43,7 +44,7 @@ static	t_listener_args entity_spawner_listener_args(t_game *game,
 	args.is_selectable = FALSE;
 	args.action_select = NULL;
 	args.is_draggable = TRUE;
-	args.action_drag = (t_result(*)(t_game*, void*))duplicate_spawner;
+	args.action_drag = (t_result(*)(void*, void*))duplicate_spawner;
 	return (args);
 }
 

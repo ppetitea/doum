@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 03:29:06 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 23:42:52 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/17 22:56:02 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "resources/textures/texture.h"
 # include "entities/entities.h"
+# include "game.h"
 
 /*
 **	Entite de type sprite

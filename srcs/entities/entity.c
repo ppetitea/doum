@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:44:34 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/16 05:51:03 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/18 01:40:19 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ t_result	build_entity_texture(t_entity_texture *self,
 				t_entity_texture_args args)
 {
 	timespec_get(&self->last, TIME_UTC);
+	self->scale = 1.0f;
 	self->anchor = args.anchor;
 	self->t = args.texture;
 	self->t_head = args.texture;

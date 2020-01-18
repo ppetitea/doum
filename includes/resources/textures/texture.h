@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 23:57:01 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/17 15:02:22 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/18 01:38:25 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "libft.h"
 # include "resources/textures/bitmap.h"
 # include "interface/screen.h"
-# include "game.h"
 
 /*
 **	Chaque texture est un noeud dans une liste
@@ -44,23 +43,29 @@ typedef struct			s_texture_args
 typedef struct		s_oriented_textures
 {
 	t_texture		*front;
+	t_texture		*front_r;
+	t_texture		*front_l;
 	t_texture		*right;
 	t_texture		*back;
+	t_texture		*back_r;
+	t_texture		*back_l;
 	t_texture		*left;
 }					t_oriented_textures;
 
 t_texture		*create_texture(t_texture_args args);
 t_texture		*create_texture_with_bmp(t_texture_args args,
 					t_bitmap_texture bmp);
-t_texture		*create_texture_with_bmp_name(t_game *game,
+t_texture		*create_texture_with_bmp_name(t_list_head *list,
 					t_texture_args args);
-t_result		add_texture(t_game *game, t_texture **list,
+t_result		add_texture(t_list_head *resources, t_texture **texture_list,
 					t_texture_args args);
 
 t_texture_args	texture_args(char *name, t_vec2i offset, t_usize size,
 					float delay);
 void			render_texture(t_screen screen, t_texture *texture,
 					t_vec2i anchor);
+void			render_texture_with_scale(t_screen screen, t_texture *texture,
+					t_vec2i anchor, float scale);
 t_bool			is_texture_collide(t_texture self, t_vec2i pos, t_vec2i anchor);
 
 /*

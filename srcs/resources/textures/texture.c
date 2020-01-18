@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 23:55:41 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/16 06:36:09 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/17 23:07:54 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,27 +96,28 @@ t_texture		*create_texture_with_bmp(t_texture_args args,
 	return (self);
 }
 
-t_texture		*create_texture_with_bmp_name(t_game *game, t_texture_args args)
+t_texture		*create_texture_with_bmp_name(t_list_head *list, t_texture_args args)
 {
 	t_bitmap_texture	*bmp;
 	t_texture			*ret;
 	
-	if (!(bmp = get_image_by_name(game, args.name)))
+	if (!(bmp = get_image_by_name(list, args.name)))
 		return (throw_null("create_texture_bmp_name", "get_image failed"));
 	if (!(ret = create_texture_with_bmp(args, *bmp)))
 		return (throw_null("create_texture_bmp_name", "creation failed"));
 	return (ret);
 }
 
-t_result	add_texture(t_game *game, t_texture **list, t_texture_args args)
+t_result	add_texture(t_list_head *resources, t_texture **texture_list,
+	t_texture_args args)
 {
 	t_texture	*new;
 
-	if (!(new = create_texture_with_bmp_name(game, args)))
+	if (!(new = create_texture_with_bmp_name(resources, args)))
 		return (throw_error("build texture", "create_texture failed"));
-	if (*list == NULL)
-		*list = new;
+	if (*texture_list == NULL)
+		*texture_list = new;
 	else
-		list_add_entry(&new->node, (t_list_head*)*list);
+		list_add_entry(&new->node, (t_list_head*)*texture_list);
 	return (OK);
 }

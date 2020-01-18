@@ -6,7 +6,7 @@
 #    By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/05 18:02:14 by lbenard           #+#    #+#              #
-#    Updated: 2019/12/17 06:06:50 by ppetitea         ###   ########.fr        #
+#    Updated: 2020/01/17 23:55:51 by ppetitea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ SRCS_LIST		=	containers/list/init_list_head.c		\
 					sizes/is_contain.c						\
 					sizes/ft_isize.c						\
 					maths/maths/ft_abs.c					\
+					maths/maths/ft_absf.c					\
 					maths/maths/ft_max.c					\
 					maths/maths/ft_min.c					\
 					maths/maths/ft_atoi.c					\

@@ -6,26 +6,23 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:54:57 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 04:16:20 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/17 22:53:33 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "resources/resources.h"
 #include "utils/error.h"
-#include "game.h"
 #include "libft.h"
 
-#include <stdio.h>
-
-t_bitmap_texture *get_image_by_name(t_game *game, char *name)
+t_bitmap_texture *get_image_by_name(t_list_head *list, char *name)
 {
 	t_image_node	*image_node;
 	t_list_head		*pos;
 	t_list_head		*next;
 
-	pos = &game->resources.images;
+	pos = list;
 	next = pos->next;
-	while ((pos = next) != &game->resources.images)
+	while ((pos = next) != list)
 	{
 		next = next->next;
 		image_node = (t_image_node*)pos;

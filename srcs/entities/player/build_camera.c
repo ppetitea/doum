@@ -6,13 +6,14 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 01:11:36 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/16 06:00:25 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/17 21:23:47 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "utils/error.h"
 #include "entities/player.h"
+#include "utils/matrix.h"
 #include <math.h>
 
 t_result	build_player_camera(t_camera *self, t_camera_args args)

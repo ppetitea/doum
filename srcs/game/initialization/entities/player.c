@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 00:28:13 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/17 17:31:58 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/18 04:00:32 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ t_result	initialize_player_entity(t_game *game, t_player *player)
 	t_entity_args	args;
 
 	initialize_player_entity_texture(game->interface.screen, player);
-	build_player_listener(&player->super.status, &game->renderer.sprites,
-		&game->entities.sprites, TRUE);
-	args.dir = ft_vec2f(0, 1);
+	build_player_listener(&player->super.status, &game->renderer.ui_components,
+		&game->entities.ui_components, TRUE);
+	args.dir = ft_vec2f(0, -1);
 	args.pos = ft_vec2f(10, 20);
 	args.type = PLAYER;
 	build_player_entity(&player->super, args);
@@ -47,7 +47,7 @@ t_result	initialize_player_camera(t_game *game, t_camera *self)
 
 	args.fov = 90.0f / 180.0f * PI;
 	args.plan_width = (float)game->interface.screen.size.x;
-	args.height = (float)game->interface.screen.size.y / 2.0f;
+	args.height = (float)game->interface.screen.size.y / 4.0f;
 	build_player_camera(self, args);
 	return (OK);
 }
@@ -66,26 +66,26 @@ t_result	add_pistol_weapon(t_game *game, t_player *player)
 	if (player->weapons == NULL)
 		ft_putstr("NULL\n");
 	args = texture_args(ft_strdup("pistol_fire1"), offset, size, 50);
-	if (!add_texture(game, &weapon->fire, args))
+	if (!add_texture(&game->resources.images, &weapon->fire, args))
 		return (throw_error("add_pistol", "fail to add texture on weapon"));
 	args = texture_args(ft_strdup("pistol_fire2"), offset, size, 50);
-	if (!add_texture(game, &weapon->fire, args))
+	if (!add_texture(&game->resources.images, &weapon->fire, args))
 		return (throw_error("add_pistol", "fail to add texture on weapon"));
 	args = texture_args(ft_strdup("pistol_fire3"), offset, size, 50);
-	if (!add_texture(game, &weapon->fire, args))
+	if (!add_texture(&game->resources.images, &weapon->fire, args))
 		return (throw_error("add_pistol", "fail to add texture on weapon"));
 	offset = ft_vec2i(20, -300);
 	args = texture_args(ft_strdup("pistol_reload1"), offset, size, 100);
-	if (!add_texture(game, &weapon->reload, args))
+	if (!add_texture(&game->resources.images, &weapon->reload, args))
 		return (throw_error("add_pistol", "fail to add texture on weapon"));
 	args = texture_args(ft_strdup("pistol_reload2"), offset, size, 100);
-	if (!add_texture(game, &weapon->reload, args))
+	if (!add_texture(&game->resources.images, &weapon->reload, args))
 		return (throw_error("add_pistol", "fail to add texture on weapon"));
 	args = texture_args(ft_strdup("pistol_reload3"), offset, size, 100);
-	if (!add_texture(game, &weapon->reload, args))
+	if (!add_texture(&game->resources.images, &weapon->reload, args))
 		return (throw_error("add_pistol", "fail to add texture on weapon"));
 	args = texture_args(ft_strdup("pistol_reload4"), offset, size, 100);
-	if (!add_texture(game, &weapon->reload, args))
+	if (!add_texture(&game->resources.images, &weapon->reload, args))
 		return (throw_error("add_pistol", "fail to add texture on weapon"));
 	return (OK);
 }
@@ -102,25 +102,25 @@ t_result	add_shootgun_weapon(t_game *game, t_player *player)
 	if (!(weapon = add_weapon(&player->weapons, ft_strdup("shootgun"), GUN)))
 		return (throw_error("add_shootgun", "fail to add weapon"));
 	args = texture_args(ft_strdup("shootgun_fire1"), offset, size, 50);
-	if (!add_texture(game, &weapon->fire, args))
+	if (!add_texture(&game->resources.images, &weapon->fire, args))
 		return (throw_error("add_shootgun", "fail to add texture on weapon"));
 	args = texture_args(ft_strdup("shootgun_fire2"), offset, size, 50);
-	if (!add_texture(game, &weapon->fire, args))
+	if (!add_texture(&game->resources.images, &weapon->fire, args))
 		return (throw_error("add_shootgun", "fail to add texture on weapon"));
 	args = texture_args(ft_strdup("shootgun_fire3"), offset, size, 50);
-	if (!add_texture(game, &weapon->fire, args))
+	if (!add_texture(&game->resources.images, &weapon->fire, args))
 		return (throw_error("add_shootgun", "fail to add texture on weapon"));
 	args = texture_args(ft_strdup("shootgun_fire4"), offset, size, 50);
-	if (!add_texture(game, &weapon->fire, args))
+	if (!add_texture(&game->resources.images, &weapon->fire, args))
 		return (throw_error("add_shootgun", "fail to add texture on weapon"));
 	args = texture_args(ft_strdup("shootgun_reload1"), offset, size, 100);
-	if (!add_texture(game, &weapon->reload, args))
+	if (!add_texture(&game->resources.images, &weapon->reload, args))
 		return (throw_error("add_shootgun", "fail to add texture on weapon"));
 	args = texture_args(ft_strdup("shootgun_reload2"), offset, size, 100);
-	if (!add_texture(game, &weapon->reload, args))
+	if (!add_texture(&game->resources.images, &weapon->reload, args))
 		return (throw_error("add_shootgun", "fail to add texture on weapon"));
 	args = texture_args(ft_strdup("shootgun_reload3"), offset, size, 100);
-	if (!add_texture(game, &weapon->reload, args))
+	if (!add_texture(&game->resources.images, &weapon->reload, args))
 		return (throw_error("add_shootgun", "fail to add texture on weapon"));
 	return (OK);
 }
@@ -139,9 +139,16 @@ t_player	*initialize_player(t_game *game)
 		return (throw_null("init_player", "failed to init entity"));
 	if (!initialize_player_camera(game, &player->cam))
 		return (throw_null("init_player", "failed to init camera"));
+	game->renderer.camera = &player->cam;
 	bind_key(&game->interface.keys_bind, SDLK_TAB, &player->super, weapon_next);
 	bind_key(&game->interface.keys_bind, SDLK_SPACE, &player->super, weapon_fire);
 	bind_key(&game->interface.keys_bind, SDLK_r, &player->super, weapon_reload);
+	bind_key(&game->interface.keys_bind, SDLK_LEFT, &player->super, rotate_camera_left);
+	bind_key(&game->interface.keys_bind, SDLK_RIGHT, &player->super, rotate_camera_right);
+	bind_key(&game->interface.keys_bind, SDLK_w, &player->super, translate_camera_forward);
+	bind_key(&game->interface.keys_bind, SDLK_a, &player->super, translate_camera_left);
+	bind_key(&game->interface.keys_bind, SDLK_d, &player->super, translate_camera_right);
+	bind_key(&game->interface.keys_bind, SDLK_s, &player->super, translate_camera_backward);
 	update_weapon_ammo(player->weapons, 20);
 	return (player);
 }

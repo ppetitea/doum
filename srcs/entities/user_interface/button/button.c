@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:57:16 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/16 00:01:23 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/17 22:57:27 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "entities/ui/button.h"
 #include "entities/entities.h"
 #include "resources/textures/texture.h"
+#include "game.h"
 
 static	t_listener_args entity_button_listener_args(t_game *game,
 			t_bool display)

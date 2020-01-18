@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 01:17:28 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 05:20:56 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/17 22:48:18 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "game.h"
 #include "events/mouse.h"
 #include "entities/entities.h"
+#include "entities/update_entities.h"
 
 #include <stdio.h>
 

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 22:59:06 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/16 06:16:07 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/18 04:15:13 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "utils/error.h"
 #include "entities/player.h"
 #include "entities/entities.h"
+#include "entities/update_entities.h"
 
 t_result	build_player_listener(t_listener *self, t_list_head *render,
 				t_list_head *storage, t_bool display)
@@ -70,7 +71,7 @@ t_player	*create_player()
 	self->cam.pos = &self->super.pos;
 	self->cam.dir = &self->super.dir;
 	// self->size = ft_usize(5, 5);
-	self->velocity = 1.0f;
+	self->velocity = 2.0f;
 	self->life = 100;
 	self->armor = 42;
 	// self->catch_weapon = NULL;

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 01:17:28 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 08:11:44 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/18 04:12:04 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,24 @@
 #include "events/keyboard.h"
 #include "utils/error.h"
 
-void	trigger_key_binding_events(t_game *game, SDL_Keycode key)
+void	trigger_keys_bindings(t_game *game)
+{
+	t_list_head			*pos;
+	t_list_head			*next;
+	t_event_key_binding	*bind;
+
+	pos = &game->interface.keys_bind;
+	next = pos->next;
+	while ((pos = next) != &game->interface.keys_bind)
+	{
+		next = next->next;
+		bind = (t_event_key_binding*)pos;
+		if (bind->is_down == TRUE)
+			bind->trigger(bind->entity_ref);
+	}
+}
+
+void	active_key_binding(t_game *game, SDL_Keycode key)
 {
 	t_list_head			*pos;
 	t_list_head			*next;
@@ -27,7 +44,23 @@ void	trigger_key_binding_events(t_game *game, SDL_Keycode key)
 		next = next->next;
 		bind = (t_event_key_binding*)pos;
 		if (bind->key == key)
-			bind->trigger(bind->entity_ref);
+			bind->is_down = TRUE;
+	}
+}
+void	disable_key_binding(t_game *game, SDL_Keycode key)
+{
+	t_list_head			*pos;
+	t_list_head			*next;
+	t_event_key_binding	*bind;
+
+	pos = &game->interface.keys_bind;
+	next = pos->next;
+	while ((pos = next) != &game->interface.keys_bind)
+	{
+		next = next->next;
+		bind = (t_event_key_binding*)pos;
+		if (bind->key == key)
+			bind->is_down = FALSE;
 	}
 }
 
@@ -35,12 +68,13 @@ void	handle_keyboard_down(t_game *game, SDL_Keycode key)
 {
 	if (key == SDLK_ESCAPE)
 		game->is_running = FALSE;
-	trigger_key_binding_events(game, key);
+	active_key_binding(game, key);
 	(void)game;
 }
 
 void	handle_keyboard_up(t_game *game, SDL_Keycode key)
 {
+	disable_key_binding(game, key);
 	(void)game;
 	(void)key;
 }

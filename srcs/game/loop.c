@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:34:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/14 23:51:04 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/18 04:12:34 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "libft.h"
 #include "game.h"
 #include "events/events.h"
+#include "events/keyboard.h"
 
 #include "utils/debug.h"
 
@@ -24,6 +25,7 @@ void	loop(t_game *game)
 	{
 		reset_screen(game->interface.screen);
 		// debug(game);
+		trigger_keys_bindings(game);
 		render(game);
 		if (SDL_UpdateTexture(
 			game->interface.sdl.texture, NULL,

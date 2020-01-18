@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 23:23:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 07:54:53 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/17 22:59:50 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "resources/textures/texture.h"
 #include "resources/resources.h"
 #include "utils/error.h"
+#include "game.h"
 #include "libft.h"
 
 static t_result	add_button(t_game *game, t_texture_args args1,
@@ -26,11 +27,11 @@ static t_result	add_button(t_game *game, t_texture_args args1,
 	t_texture			*selected;
 	t_bitmap_texture	*bmp;
 
-	if (!(bmp = get_image_by_name(game, args1.name)))
+	if (!(bmp = get_image_by_name(&game->resources.images, args1.name)))
 		return (throw_error("add_button", args1.name));
 	if (!(normal = create_texture_with_bmp(args1, *bmp)))
 		return (throw_error("add_button", "texture creation failed"));
-	if (!(bmp = get_image_by_name(game, args2.name)))
+	if (!(bmp = get_image_by_name(&game->resources.images, args2.name)))
 		return (throw_error("add_button", args2.name));
 	if (!(selected = create_texture_with_bmp(args2, *bmp)))
 		return (throw_error("add_button", "texture creation failed"));

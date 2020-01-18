@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 08:35:32 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/17 17:16:51 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/18 03:26:31 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ t_result	build_ennemy_listener(t_listener *self, t_list_head *render,
 				t_list_head *storage, t_bool display);
 
 t_result	update_ennemy_texture_by_direction(t_ennemy *ennemy);
-t_result	ennemy_move(t_entity *entity);
+t_result	update_ennemy_texture(t_entity *entity);
+t_result	ennemy_move_forward(t_entity *entity);
+t_result	ennemy_move_backward(t_entity *entity);
 t_result	ennemy_turn_right(t_entity *entity);
 t_result	ennemy_turn_left(t_entity *entity);
 t_result	ennemy_attack(t_entity *entity);

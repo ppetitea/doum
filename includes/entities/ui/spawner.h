@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:12:43 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 23:34:44 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/17 22:56:28 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "entities/entities.h"
 # include "resources/textures/texture.h"
+# include "game.h"
 
 /*
 **	Entite de type spawnner

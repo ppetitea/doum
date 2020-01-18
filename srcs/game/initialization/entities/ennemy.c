@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 00:28:13 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/17 19:37:30 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/18 03:27:57 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,61 @@ t_result	add_ennemy_front_texture(t_game *game, t_ennemy *ennemy)
 	offset = ft_vec2i(-100, -130);
 	size = ft_usize(200, 130);
 	args = texture_args(ft_strdup("ennemy_front1"), offset, size, 200);
-	if (!add_texture(game, &ennemy->orientation.front, args))
+	if (!add_texture(&game->resources.images, &ennemy->orientation.front, args))
 		return (throw_error("add_ennemy", "fail to add ennemy front texture"));
 	args = texture_args(ft_strdup("ennemy_front2"), offset, size, 200);
-	if (!add_texture(game, &ennemy->orientation.front, args))
+	if (!add_texture(&game->resources.images, &ennemy->orientation.front, args))
 		return (throw_error("add_ennemy", "fail to add ennemy front texture"));
 	args = texture_args(ft_strdup("ennemy_front3"), offset, size, 200);
-	if (!add_texture(game, &ennemy->orientation.front, args))
+	if (!add_texture(&game->resources.images, &ennemy->orientation.front, args))
 		return (throw_error("add_ennemy", "fail to add ennemy front texture"));
 	args = texture_args(ft_strdup("ennemy_front4"), offset, size, 200);
-	if (!add_texture(game, &ennemy->orientation.front, args))
+	if (!add_texture(&game->resources.images, &ennemy->orientation.front, args))
+		return (throw_error("add_ennemy", "fail to add ennemy front texture"));
+	return (OK);
+}
+
+t_result	add_ennemy_front_right_texture(t_game *game, t_ennemy *ennemy)
+{
+	t_texture_args	args;
+	t_vec2i			offset;
+	t_usize			size;
+
+	offset = ft_vec2i(-100, -130);
+	size = ft_usize(200, 130);
+	args = texture_args(ft_strdup("ennemy_front_r1"), offset, size, 200);
+	if (!add_texture(&game->resources.images, &ennemy->orientation.front_r, args))
+		return (throw_error("add_ennemy", "fail to add ennemy front texture"));
+	args = texture_args(ft_strdup("ennemy_front_r2"), offset, size, 200);
+	if (!add_texture(&game->resources.images, &ennemy->orientation.front_r, args))
+		return (throw_error("add_ennemy", "fail to add ennemy front texture"));
+	args = texture_args(ft_strdup("ennemy_front_r3"), offset, size, 200);
+	if (!add_texture(&game->resources.images, &ennemy->orientation.front_r, args))
+		return (throw_error("add_ennemy", "fail to add ennemy front texture"));
+	args = texture_args(ft_strdup("ennemy_front_r4"), offset, size, 200);
+	if (!add_texture(&game->resources.images, &ennemy->orientation.front_r, args))
+		return (throw_error("add_ennemy", "fail to add ennemy front texture"));
+	return (OK);
+}
+t_result	add_ennemy_front_left_texture(t_game *game, t_ennemy *ennemy)
+{
+	t_texture_args	args;
+	t_vec2i			offset;
+	t_usize			size;
+
+	offset = ft_vec2i(-100, -130);
+	size = ft_usize(200, 130);
+	args = texture_args(ft_strdup("ennemy_front_l1"), offset, size, 200);
+	if (!add_texture(&game->resources.images, &ennemy->orientation.front_l, args))
+		return (throw_error("add_ennemy", "fail to add ennemy front texture"));
+	args = texture_args(ft_strdup("ennemy_front_l2"), offset, size, 200);
+	if (!add_texture(&game->resources.images, &ennemy->orientation.front_l, args))
+		return (throw_error("add_ennemy", "fail to add ennemy front texture"));
+	args = texture_args(ft_strdup("ennemy_front_l3"), offset, size, 200);
+	if (!add_texture(&game->resources.images, &ennemy->orientation.front_l, args))
+		return (throw_error("add_ennemy", "fail to add ennemy front texture"));
+	args = texture_args(ft_strdup("ennemy_front_l4"), offset, size, 200);
+	if (!add_texture(&game->resources.images, &ennemy->orientation.front_l, args))
 		return (throw_error("add_ennemy", "fail to add ennemy front texture"));
 	return (OK);
 }
@@ -47,13 +92,13 @@ t_result	add_ennemy_right_texture(t_game *game, t_ennemy *ennemy)
 	offset = ft_vec2i(-100, -130);
 	size = ft_usize(200, 130);
 	args = texture_args(ft_strdup("ennemy_right1"), offset, size, 200);
-	if (!add_texture(game, &ennemy->orientation.right, args))
+	if (!add_texture(&game->resources.images, &ennemy->orientation.right, args))
 		return (throw_error("add_ennemy", "fail to add ennemy right texture"));
 	args = texture_args(ft_strdup("ennemy_right2"), offset, size, 200);
-	if (!add_texture(game, &ennemy->orientation.right, args))
+	if (!add_texture(&game->resources.images, &ennemy->orientation.right, args))
 		return (throw_error("add_ennemy", "fail to add ennemy right texture"));
 	args = texture_args(ft_strdup("ennemy_right3"), offset, size, 200);
-	if (!add_texture(game, &ennemy->orientation.right, args))
+	if (!add_texture(&game->resources.images, &ennemy->orientation.right, args))
 		return (throw_error("add_ennemy", "fail to add ennemy right texture"));
 	return (OK);
 }
@@ -67,16 +112,60 @@ t_result	add_ennemy_back_texture(t_game *game, t_ennemy *ennemy)
 	offset = ft_vec2i(-100, -130);
 	size = ft_usize(200, 130);
 	args = texture_args(ft_strdup("ennemy_back1"), offset, size, 200);
-	if (!add_texture(game, &ennemy->orientation.back, args))
+	if (!add_texture(&game->resources.images, &ennemy->orientation.back, args))
 		return (throw_error("add_ennemy", "fail to add ennemy back texture"));
 	args = texture_args(ft_strdup("ennemy_back2"), offset, size, 200);
-	if (!add_texture(game, &ennemy->orientation.back, args))
+	if (!add_texture(&game->resources.images, &ennemy->orientation.back, args))
 		return (throw_error("add_ennemy", "fail to add ennemy back texture"));
 	args = texture_args(ft_strdup("ennemy_back3"), offset, size, 200);
-	if (!add_texture(game, &ennemy->orientation.back, args))
+	if (!add_texture(&game->resources.images, &ennemy->orientation.back, args))
 		return (throw_error("add_ennemy", "fail to add ennemy back texture"));
 	args = texture_args(ft_strdup("ennemy_back4"), offset, size, 200);
-	if (!add_texture(game, &ennemy->orientation.back, args))
+	if (!add_texture(&game->resources.images, &ennemy->orientation.back, args))
+		return (throw_error("add_ennemy", "fail to add ennemy back texture"));
+	return (OK);
+}
+t_result	add_ennemy_back_right_texture(t_game *game, t_ennemy *ennemy)
+{
+	t_texture_args	args;
+	t_vec2i			offset;
+	t_usize			size;
+
+	offset = ft_vec2i(-100, -130);
+	size = ft_usize(200, 130);
+	args = texture_args(ft_strdup("ennemy_back_r1"), offset, size, 200);
+	if (!add_texture(&game->resources.images, &ennemy->orientation.back_r, args))
+		return (throw_error("add_ennemy", "fail to add ennemy back texture"));
+	args = texture_args(ft_strdup("ennemy_back_r2"), offset, size, 200);
+	if (!add_texture(&game->resources.images, &ennemy->orientation.back_r, args))
+		return (throw_error("add_ennemy", "fail to add ennemy back texture"));
+	args = texture_args(ft_strdup("ennemy_back_r3"), offset, size, 200);
+	if (!add_texture(&game->resources.images, &ennemy->orientation.back_r, args))
+		return (throw_error("add_ennemy", "fail to add ennemy back texture"));
+	args = texture_args(ft_strdup("ennemy_back_r4"), offset, size, 200);
+	if (!add_texture(&game->resources.images, &ennemy->orientation.back_r, args))
+		return (throw_error("add_ennemy", "fail to add ennemy back texture"));
+	return (OK);
+}
+t_result	add_ennemy_back_left_texture(t_game *game, t_ennemy *ennemy)
+{
+	t_texture_args	args;
+	t_vec2i			offset;
+	t_usize			size;
+
+	offset = ft_vec2i(-100, -130);
+	size = ft_usize(200, 130);
+	args = texture_args(ft_strdup("ennemy_back_l1"), offset, size, 200);
+	if (!add_texture(&game->resources.images, &ennemy->orientation.back_l, args))
+		return (throw_error("add_ennemy", "fail to add ennemy back texture"));
+	args = texture_args(ft_strdup("ennemy_back_l2"), offset, size, 200);
+	if (!add_texture(&game->resources.images, &ennemy->orientation.back_l, args))
+		return (throw_error("add_ennemy", "fail to add ennemy back texture"));
+	args = texture_args(ft_strdup("ennemy_back_l3"), offset, size, 200);
+	if (!add_texture(&game->resources.images, &ennemy->orientation.back_l, args))
+		return (throw_error("add_ennemy", "fail to add ennemy back texture"));
+	args = texture_args(ft_strdup("ennemy_back_l4"), offset, size, 200);
+	if (!add_texture(&game->resources.images, &ennemy->orientation.back_l, args))
 		return (throw_error("add_ennemy", "fail to add ennemy back texture"));
 	return (OK);
 }
@@ -90,13 +179,13 @@ t_result	add_ennemy_left_texture(t_game *game, t_ennemy *ennemy)
 	offset = ft_vec2i(-100, -130);
 	size = ft_usize(200, 130);
 	args = texture_args(ft_strdup("ennemy_left1"), offset, size, 200);
-	if (!add_texture(game, &ennemy->orientation.left, args))
+	if (!add_texture(&game->resources.images, &ennemy->orientation.left, args))
 		return (throw_error("add_ennemy", "fail to add ennemy left texture"));
 	args = texture_args(ft_strdup("ennemy_left2"), offset, size, 200);
-	if (!add_texture(game, &ennemy->orientation.left, args))
+	if (!add_texture(&game->resources.images, &ennemy->orientation.left, args))
 		return (throw_error("add_ennemy", "fail to add ennemy left texture"));
 	args = texture_args(ft_strdup("ennemy_left3"), offset, size, 200);
-	if (!add_texture(game, &ennemy->orientation.left, args))
+	if (!add_texture(&game->resources.images, &ennemy->orientation.left, args))
 		return (throw_error("add_ennemy", "fail to add ennemy left texture"));
 	return (OK);
 }
@@ -110,13 +199,13 @@ t_result	add_ennemy_attack_texture(t_game *game, t_ennemy *ennemy)
 	offset = ft_vec2i(-100, -130);
 	size = ft_usize(200, 130);
 	args = texture_args(ft_strdup("ennemy_attack1"), offset, size, 200);
-	if (!add_texture(game, &ennemy->attack, args))
+	if (!add_texture(&game->resources.images, &ennemy->attack, args))
 		return (throw_error("add_ennemy", "fail to add ennemy attack texture"));
 	args = texture_args(ft_strdup("ennemy_attack2"), offset, size, 200);
-	if (!add_texture(game, &ennemy->attack, args))
+	if (!add_texture(&game->resources.images, &ennemy->attack, args))
 		return (throw_error("add_ennemy", "fail to add ennemy attack texture"));
 	args = texture_args(ft_strdup("ennemy_attack3"), offset, size, 200);
-	if (!add_texture(game, &ennemy->attack, args))
+	if (!add_texture(&game->resources.images, &ennemy->attack, args))
 		return (throw_error("add_ennemy", "fail to add ennemy attack texture"));
 	return (OK);
 }
@@ -130,34 +219,34 @@ t_result	add_ennemy_die_texture(t_game *game, t_ennemy *ennemy)
 	offset = ft_vec2i(-100, -130);
 	size = ft_usize(200, 130);
 	args = texture_args(ft_strdup("ennemy_die1"), offset, size, 200);
-	if (!add_texture(game, &ennemy->die, args))
+	if (!add_texture(&game->resources.images, &ennemy->die, args))
 		return (throw_error("add_ennemy", "fail to add ennemy die texture"));
 	args = texture_args(ft_strdup("ennemy_die2"), offset, size, 200);
-	if (!add_texture(game, &ennemy->die, args))
+	if (!add_texture(&game->resources.images, &ennemy->die, args))
 		return (throw_error("add_ennemy", "fail to add ennemy die texture"));
 	args = texture_args(ft_strdup("ennemy_die3"), offset, size, 200);
-	if (!add_texture(game, &ennemy->die, args))
+	if (!add_texture(&game->resources.images, &ennemy->die, args))
 		return (throw_error("add_ennemy", "fail to add ennemy die texture"));
 	args = texture_args(ft_strdup("ennemy_die4"), offset, size, 200);
-	if (!add_texture(game, &ennemy->die, args))
+	if (!add_texture(&game->resources.images, &ennemy->die, args))
 		return (throw_error("add_ennemy", "fail to add ennemy die texture"));
 	args = texture_args(ft_strdup("ennemy_die5"), offset, size, 200);
-	if (!add_texture(game, &ennemy->die, args))
+	if (!add_texture(&game->resources.images, &ennemy->die, args))
 		return (throw_error("add_ennemy", "fail to add ennemy die texture"));
 	args = texture_args(ft_strdup("ennemy_die6"), offset, size, 200);
-	if (!add_texture(game, &ennemy->die, args))
+	if (!add_texture(&game->resources.images, &ennemy->die, args))
 		return (throw_error("add_ennemy", "fail to add ennemy die texture"));
 	args = texture_args(ft_strdup("ennemy_die7"), offset, size, 200);
-	if (!add_texture(game, &ennemy->die, args))
+	if (!add_texture(&game->resources.images, &ennemy->die, args))
 		return (throw_error("add_ennemy", "fail to add ennemy die texture"));
 	args = texture_args(ft_strdup("ennemy_die8"), offset, size, 200);
-	if (!add_texture(game, &ennemy->die, args))
+	if (!add_texture(&game->resources.images, &ennemy->die, args))
 		return (throw_error("add_ennemy", "fail to add ennemy die texture"));
 	args = texture_args(ft_strdup("ennemy_die9"), offset, size, 200);
-	if (!add_texture(game, &ennemy->die, args))
+	if (!add_texture(&game->resources.images, &ennemy->die, args))
 		return (throw_error("add_ennemy", "fail to add ennemy die texture"));
 	args = texture_args(ft_strdup("ennemy_die10"), offset, size, 200);
-	if (!add_texture(game, &ennemy->die, args))
+	if (!add_texture(&game->resources.images, &ennemy->die, args))
 		return (throw_error("add_ennemy", "fail to add ennemy die texture"));
 	return (OK);
 }
@@ -196,9 +285,17 @@ t_result	initialize_ennemy(t_game *game, t_player *player)
 		return (throw_error("init_ennemy", "failed to create ennemy"));
 	if (!add_ennemy_front_texture(game, ennemy))
 		return (throw_error("init_ennemy", "failed to add front texture"));
+	if (!add_ennemy_front_right_texture(game, ennemy))
+		return (throw_error("init_ennemy", "failed to add front texture"));
+	if (!add_ennemy_front_left_texture(game, ennemy))
+		return (throw_error("init_ennemy", "failed to add front texture"));
 	if (!add_ennemy_right_texture(game, ennemy))
 		return (throw_error("init_ennemy", "failed to add right texture"));
 	if (!add_ennemy_back_texture(game, ennemy))
+		return (throw_error("init_ennemy", "failed to add back texture"));
+	if (!add_ennemy_back_right_texture(game, ennemy))
+		return (throw_error("init_ennemy", "failed to add back texture"));
+	if (!add_ennemy_back_left_texture(game, ennemy))
 		return (throw_error("init_ennemy", "failed to add back texture"));
 	if (!add_ennemy_left_texture(game, ennemy))
 		return (throw_error("init_ennemy", "failed to add left texture"));
@@ -209,10 +306,15 @@ t_result	initialize_ennemy(t_game *game, t_player *player)
 	if (!(initialize_ennemy_entity(game, ennemy)))
 		return (throw_error("init_ennemy", "failed to init entity"));
 	update_ennemy_texture_by_direction(ennemy);
-	bind_key(&game->interface.keys_bind, SDLK_UP, &ennemy->super, ennemy_move);
-	bind_key(&game->interface.keys_bind, SDLK_RIGHT, &ennemy->super, ennemy_turn_right);
-	bind_key(&game->interface.keys_bind, SDLK_LEFT, &ennemy->super, ennemy_turn_left);
-	bind_key(&game->interface.keys_bind, SDLK_a, &ennemy->super, ennemy_attack);
-	bind_key(&game->interface.keys_bind, SDLK_d, &ennemy->super, ennemy_die);
+	bind_key(&game->interface.keys_bind, SDLK_KP_8, &ennemy->super, ennemy_move_forward);
+	bind_key(&game->interface.keys_bind, SDLK_KP_2, &ennemy->super, ennemy_move_backward);
+	bind_key(&game->interface.keys_bind, SDLK_KP_4, &ennemy->super, ennemy_turn_right);
+	bind_key(&game->interface.keys_bind, SDLK_KP_6, &ennemy->super, ennemy_turn_left);
+	bind_key(&game->interface.keys_bind, SDLK_KP_5, &ennemy->super, ennemy_attack);
+	bind_key(&game->interface.keys_bind, SDLK_KP_0, &ennemy->super, ennemy_die);
+	bind_key(&game->interface.keys_bind, SDLK_w, &ennemy->super, update_ennemy_texture);
+	bind_key(&game->interface.keys_bind, SDLK_a, &ennemy->super, update_ennemy_texture);
+	bind_key(&game->interface.keys_bind, SDLK_s, &ennemy->super, update_ennemy_texture);
+	bind_key(&game->interface.keys_bind, SDLK_d, &ennemy->super, update_ennemy_texture);
 	return (OK);
 }

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:52:07 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/17 16:29:58 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/17 23:26:46 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "interface/screen.h"
 # include "interface/sdl_init.h"
+# include "entities/player.h"
 # include "libft.h"
 
 /*
@@ -25,6 +26,7 @@ typedef struct			s_game_renderer
 {
 	t_list_head			ui_components;
 	t_list_head			sprites;
+	t_camera			*camera;
 }						t_game_renderer;
 
 /*
