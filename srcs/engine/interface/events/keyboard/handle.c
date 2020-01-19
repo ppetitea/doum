@@ -6,23 +6,23 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 01:17:28 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 16:36:22 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 00:58:43 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
-#include "events/keyboard.h"
+#include "engine/interface/events/keyboard.h"
+#include "engine/scenes/init_scene.h"
 #include "utils/error.h"
 
-void	trigger_keys_bindings(t_game *game)
+void	trigger_keys_bindings(t_scene *scene)
 {
 	t_list_head			*pos;
 	t_list_head			*next;
 	t_event_key_binding	*bind;
 
-	pos = &game->interface.keys_bind;
+	pos = &scene->interface.keys_binds;
 	next = pos->next;
-	while ((pos = next) != &game->interface.keys_bind)
+	while ((pos = next) != &scene->interface.keys_binds)
 	{
 		next = next->next;
 		bind = (t_event_key_binding*)pos;
@@ -31,15 +31,15 @@ void	trigger_keys_bindings(t_game *game)
 	}
 }
 
-void	active_key_binding(t_game *game, SDL_Keycode key)
+void	active_key_binding(t_scene *scene, SDL_Keycode key)
 {
 	t_list_head			*pos;
 	t_list_head			*next;
 	t_event_key_binding	*bind;
 
-	pos = &game->interface.keys_bind;
+	pos = &scene->interface.keys_binds;
 	next = pos->next;
-	while ((pos = next) != &game->interface.keys_bind)
+	while ((pos = next) != &scene->interface.keys_binds)
 	{
 		next = next->next;
 		bind = (t_event_key_binding*)pos;
@@ -47,15 +47,15 @@ void	active_key_binding(t_game *game, SDL_Keycode key)
 			bind->is_down = TRUE;
 	}
 }
-void	disable_key_binding(t_game *game, SDL_Keycode key)
+void	disable_key_binding(t_scene *scene, SDL_Keycode key)
 {
 	t_list_head			*pos;
 	t_list_head			*next;
 	t_event_key_binding	*bind;
 
-	pos = &game->interface.keys_bind;
+	pos = &scene->interface.keys_binds;
 	next = pos->next;
-	while ((pos = next) != &game->interface.keys_bind)
+	while ((pos = next) != &scene->interface.keys_binds)
 	{
 		next = next->next;
 		bind = (t_event_key_binding*)pos;
@@ -64,18 +64,18 @@ void	disable_key_binding(t_game *game, SDL_Keycode key)
 	}
 }
 
-void	handle_keyboard_down(t_game *game, SDL_Keycode key)
+void	handle_keyboard_down(t_scene *scene, SDL_Keycode key)
 {
-	if (key == SDLK_ESCAPE)
-		game->is_running = FALSE;
-	active_key_binding(game, key);
-	(void)game;
+	// if (key == SDLK_ESCAPE)
+	// 	scene->is_running = FALSE;
+	active_key_binding(scene, key);
+	(void)scene;
 }
 
-void	handle_keyboard_up(t_game *game, SDL_Keycode key)
+void	handle_keyboard_up(t_scene *scene, SDL_Keycode key)
 {
-	disable_key_binding(game, key);
-	(void)game;
+	disable_key_binding(scene, key);
+	(void)scene;
 	(void)key;
 }
 

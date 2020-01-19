@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render_texture.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 01:19:09 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 03:29:42 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/19 19:41:39 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "resources/textures/texture.h"
-#include "resources/textures/bitmap.h"
-#include "interface/screen.h"
+#include "engine/resources/textures/texture.h"
+#include "engine/resources/textures/bitmap.h"
+#include "engine/interface/init_screen.h"
 #include "utils/color.h"
 
 #include <stdio.h>
 
-void	set_texture_pixel(t_texture texture, t_screen screen, t_vec2i offset,
+static void	set_screen_pixel(t_texture texture, t_screen screen, t_vec2i offset,
 	t_usize i)
 {
 	t_rgba old;
@@ -52,7 +52,7 @@ void	render_texture(t_screen screen, t_texture *texture, t_vec2i anchor)
 		while (offset.x + i.x < screen.size.x && i.x < (size_t)texture->size.x)
 		{
 			// if (((t_rgba)texture->pixels[i.x + i.y * texture->size.x]).rgba.a)
-			set_texture_pixel(*texture, screen, offset, i);
+			set_screen_pixel(*texture, screen, offset, i);
 			i.x++;
 		}
 		i.y++;

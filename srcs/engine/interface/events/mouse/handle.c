@@ -6,48 +6,51 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 01:17:28 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/17 22:48:18 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/19 22:17:55 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "SDL.h"
-#include "game.h"
-#include "events/mouse.h"
-#include "entities/entities.h"
-#include "entities/update_entities.h"
+#include "engine/interface/events/mouse.h"
+#include "engine/entities/entities.h"
+#include "engine/entities/update_entity.h"
+#include "engine/scenes/init_scene.h"
+#include "utils/error.h"
 
 #include <stdio.h>
 
-void	handle_mouse_motion(t_game *game, SDL_MouseMotionEvent event)
+void	handle_mouse_motion(t_scene *scene, SDL_MouseMotionEvent event)
 {
-	game->interface.mouse.pos = ft_vec2i(event.x, event.y);
-	if (game->interface.mouse.down == TRUE &&
-		game->interface.mouse.drag == FALSE)
+	if (scene == NULL)
+		return (throw_void("handle_mouse_motion", "NULL pointer provided"));
+	scene->interface.mouse.pos = ft_vec2i(event.x, event.y);
+	if (scene->interface.mouse.down == TRUE &&
+		scene->interface.mouse.drag == FALSE)
 	{
-		game->interface.mouse.drag = TRUE;
-		update_draggables_entities(game, &game->renderer.ui_components,
-			game->interface.mouse);
+		scene->interface.mouse.drag = TRUE;
+		update_draggables_entities(scene, &scene->renderer.ui_components,
+			scene->interface.mouse);
 	}
 	else
-		update_hoverables_entities(&game->renderer.ui_components,
-			game->interface.mouse);
+		update_hoverables_entities(&scene->renderer.ui_components,
+			scene->interface.mouse);
 }
 
-void	handle_mouse_down(t_game *game, SDL_MouseButtonEvent event)
+void	handle_mouse_down(t_scene *scene, SDL_MouseButtonEvent event)
 {
-	game->interface.mouse.down = TRUE;
-	game->interface.mouse.pos = ft_vec2i(event.x, event.y);
-	update_selectables_entities(game, &game->renderer.ui_components,
-		game->interface.mouse);
+	scene->interface.mouse.down = TRUE;
+	scene->interface.mouse.pos = ft_vec2i(event.x, event.y);
+	update_selectables_entities(scene, &scene->renderer.ui_components,
+		scene->interface.mouse);
 }
 
-void	handle_mouse_up(t_game *game, SDL_MouseButtonEvent event)
+void	handle_mouse_up(t_scene *scene, SDL_MouseButtonEvent event)
 {
-	game->interface.mouse.down = FALSE;
-	game->interface.mouse.drag = FALSE;
-	game->interface.mouse.pos = ft_vec2i(event.x, event.y);
-	update_draggables_entities(game, &game->renderer.ui_components,
-		game->interface.mouse);
-	(void)game;
+	scene->interface.mouse.down = FALSE;
+	scene->interface.mouse.drag = FALSE;
+	scene->interface.mouse.pos = ft_vec2i(event.x, event.y);
+	update_draggables_entities(scene, &scene->renderer.ui_components,
+		scene->interface.mouse);
+	(void)scene;
 	(void)event;
 }

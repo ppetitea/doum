@@ -6,15 +6,15 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 23:50:37 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 16:04:39 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/19 20:21:19 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "engine/interface/sdl.h"
+#include "engine/interface/init_sdl.h"
 #include "utils/error.h"
 #include "SDL.h"
 
-t_result	build_sdl(t_sdl *self, size_t width, size_t height)
+t_result	init_sdl(t_sdl *self, size_t width, size_t height)
 {
 	if (!self)
 		return (throw_error("build_sdl", "NULL pointer provided"));

@@ -6,13 +6,13 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 01:16:28 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 00:48:37 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 00:53:05 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "utils/error.h"
-#include "engine/entities/build_player.h"
+#include "engine/entities/init_player.h"
 
 t_result	weapon_next(t_entity *entity)
 {
@@ -23,19 +23,27 @@ t_result	weapon_next(t_entity *entity)
 	if (entity->type != PLAYER)
 		return (throw_error("weapon_next", "entity provided isn't a player"));
 	player = (t_player*)entity;
-	player->weapons = (t_weapon*)player->weapons->node.next;
+	if (player->weapon.list.next == &player->weapon.list)
+		return (throw_error("weapon_next", "weapon list is empty"));
+	if (player->weapon.curr->node.next == &player->weapon.list)
+		player->weapon.curr = (t_weapon*)player->weapon.list.next;
+	else
+		player->weapon.curr = (t_weapon*)player->weapon.curr->node.next;
 	player->super.texture.animation = STOP;
-	player->super.texture.curr = player->weapons->fire;
-	player->super.texture.curr_head = player->weapons->fire;
-	player->super.texture.prev = player->weapons->fire;
+	player->super.texture.curr = (t_texture*)player->weapon.curr->fire.next;
+	player->super.texture.curr_head = &player->weapon.curr->fire;
+	player->super.texture.prev = player->super.texture.curr;
+	player->super.texture.prev_head = player->super.texture.curr_head;
 	return (OK);
 }
+
 #include	<stdio.h>
 
 void		weapon_status(t_weapon weapon)
 {
-	printf("ammo %ld\n", weapon.ammo);
-	printf("magazine %ld\n", weapon.magazine);
+	(void)weapon;
+	// printf("ammo %ld\n", weapon.ammo);
+	// printf("magazine %ld\n", weapon.magazine);
 }
 
 t_bool		handle_weapon_magazine(t_weapon *weapon)
@@ -61,13 +69,12 @@ t_result	weapon_reload(t_entity *entity)
 	if (entity->type != PLAYER)
 		return (throw_error("weapon_next", "entity provided isn't a player"));
 	player = (t_player*)entity;
-	handle_weapon_magazine(player->weapons);
+	handle_weapon_magazine(player->weapon.curr);
 	player->super.texture.animation = EPHEMERAL;
-	player->super.texture.curr = player->weapons->reload;
+	player->super.texture.curr = (t_texture*)player->weapon.curr->reload.next;
 	timespec_get(&player->super.texture.last, TIME_UTC);
-	player->super.texture.curr_head = player->weapons->reload;
-	player->super.texture.prev = player->weapons->fire;
-	weapon_status(*player->weapons);
+	player->super.texture.curr_head = &player->weapon.curr->reload;
+	weapon_status(*player->weapon.curr);
 	return (OK);
 }
 
@@ -80,40 +87,16 @@ t_result	weapon_fire(t_entity *entity)
 	if (entity->type != PLAYER)
 		return (throw_error("weapon_next", "entity provided isn't a player"));
 	player = (t_player*)entity;
-	if (player->weapons->magazine > 0)
+	if (player->weapon.curr->magazine > 0)
 	{
-		player->weapons->magazine--;
-		player->super.texture.curr = player->weapons->fire;
-		player->super.texture.curr_head = player->weapons->fire;
+		player->weapon.curr->magazine--;
+		player->super.texture.curr = (t_texture*)player->weapon.curr->fire.next;
+		player->super.texture.curr_head = &player->weapon.curr->fire;
+		player->super.texture.prev = player->super.texture.curr;
+		player->super.texture.prev_head = player->super.texture.curr_head;
 		player->super.texture.animation = IN_PROGRESS;
 		timespec_get(&player->super.texture.last, TIME_UTC);
 	}
-	weapon_status(*player->weapons);
-	return (OK);
-}
-
-t_result	update_weapon_name(t_weapon *self, char *name)
-{
-	if (self == NULL || name == NULL)
-		return (throw_error("update_weapon_name", "NULL pointer provided"));
-	if (self->name != NULL)
-		free(self->name);
-	self->name = name;
-	return (OK);
-}
-
-t_result	update_weapon_ammo(t_weapon *self, size_t ammo)
-{
-	if (self == NULL)
-		return (throw_error("update_weapon_ammo", "NULL pointer provided"));
-	self->ammo = ammo;
-	return (OK);
-}
-
-t_result	update_weapon_damages(t_weapon *self, size_t damages)
-{
-	if (self == NULL)
-		return (throw_error("update_weapon_damages", "NULL pointer provided"));
-	self->damages = damages;
+	weapon_status(*player->weapon.curr);
 	return (OK);
 }

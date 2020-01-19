@@ -6,12 +6,12 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 07:27:39 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 08:21:28 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/19 22:07:02 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "entities/entities.h"
+#include "engine/entities/init_entity.h"
 #include "utils/error.h"
 
 t_result	toggle_display_entity(t_entity *entity)

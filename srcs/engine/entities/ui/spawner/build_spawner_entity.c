@@ -6,13 +6,13 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:57:16 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 22:55:00 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/19 18:28:49 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/entities/ui/update_spawner.h"
 #include "engine/entities/ui/build_spawner.h"
-#include "engine/entities/build_entity.h"
+#include "engine/entities/init_entity.h"
 #include "utils/error.h"
 #include "libft.h"
 

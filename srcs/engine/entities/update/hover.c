@@ -6,28 +6,28 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:56:45 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/16 05:52:58 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/19 22:10:52 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "game.h"
-#include "entities/entities.h"
+#include "engine/entities/init_entity.h"
+#include "engine/scenes/init_scene.h"
 
 static t_bool	update_entity_hover_status(t_entity *entity, t_mouse mouse)
 {
-	if (is_texture_collide(*entity->texture.t, mouse.pos,
+	if (is_texture_collide(*entity->texture.curr, mouse.pos,
 			entity->texture.anchor))
 	{
 		entity->status.is_hover = TRUE;
-		if (entity->texture.update_texture != NULL)
-			entity->texture.update_texture(entity);
+		if (entity->trigger.update_texture != NULL)
+			entity->trigger.update_texture(entity);
 	}
 	else if (entity->status.is_hover == TRUE)
 	{
 		entity->status.is_hover = FALSE;
-		if (entity->texture.update_texture != NULL)
-			entity->texture.update_texture(entity);
+		if (entity->trigger.update_texture != NULL)
+			entity->trigger.update_texture(entity);
 	}
 	return (FALSE);
 }

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:31:09 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 00:37:08 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/19 18:45:11 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define BITMAP_H
 
 # include "libft.h"
-# include "interface/screen.h"
+# include "engine/interface/init_screen.h"
 # include "utils/color.h"
 
 # define BMP_HEADER_SIZE 54

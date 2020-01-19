@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 23:57:01 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 02:34:25 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/19 19:33:53 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define TEXTURE_H
 
 # include "libft.h"
-# include "resources/textures/bitmap.h"
-# include "interface/screen.h"
+# include "engine/resources/textures/bitmap.h"
+# include "engine/interface/init_screen.h"
 
 /*
 **	Chaque texture est un noeud dans une liste
@@ -39,22 +39,23 @@ typedef struct	s_texture_args
 	uint32_t	delay_ms;
 }				t_texture_args;
 
-t_texture		*build_texture(char *name, t_usize size);
-t_texture		*build_texture_with_args(char *name, t_texture_args args);
+t_texture		*init_new_texture(char *name, t_usize size);
+t_result		overwrite_texture_params(t_texture *self, t_vec2i offset,
+					uint32_t delay_ms);
 t_result		fill_texture_with_bmp(t_texture *self, t_bitmap_texture *bmp);
 t_result		add_texture(t_list_head *textures, t_list_head *bmp_src,
 					char *name, t_texture_args args);
 
 typedef struct		s_oriented_textures
 {
-	t_texture		*front;
-	t_texture		*front_r;
-	t_texture		*front_l;
-	t_texture		*right;
-	t_texture		*back;
-	t_texture		*back_r;
-	t_texture		*back_l;
-	t_texture		*left;
+	t_list_head		front;
+	t_list_head		front_r;
+	t_list_head		front_l;
+	t_list_head		right;
+	t_list_head		left;
+	t_list_head		back;
+	t_list_head		back_r;
+	t_list_head		back_l;
 }					t_oriented_textures;
 
 void			render_texture(t_screen screen, t_texture *texture,
@@ -82,7 +83,14 @@ typedef enum			e_filter_type
 	FILTER_NONE,
 }						t_filter_type;
 
+
 t_texture		*texture_filter(t_texture old, t_filter_type filter);
-t_vec2i			get_texture_center(t_texture texture);
+void			set_texture_pixel_circular_shadow(t_texture old,
+						t_texture *new, t_usize i);
+void			set_texture_pixel(t_texture old,t_texture *new, t_usize i);
+void			set_texture_pixel_blend(t_texture old,t_texture *new,
+						t_usize i);
+
+
 
 #endif

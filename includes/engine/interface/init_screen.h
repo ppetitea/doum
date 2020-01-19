@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_screen.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/11 22:59:39 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 21:50:41 by ppetitea         ###   ########.fr       */
+/*   Created: 2020/01/11 22:55:08 by ppetitea          #+#    #+#             */
+/*   Updated: 2020/01/19 20:00:26 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "init.h"
-#include "engine/update_game.h"
+#ifndef INIT_SCREEN_H
+# define INIT_SCREEN_H
 
-int		main()
+# include "libft.h"
+# include "SDL.h"
+
+typedef struct			s_screen
 {
-	t_game *game;
+	t_usize				size;
+	uint32_t			*pixels;
+}						t_screen;
 
-	if ((game = init()) != NULL)
-		loop(game);
-	return (0);
-}
+t_result	init_screen(t_screen *self, t_usize window_size);
+void		reset_screen(t_screen screen);
+
+#endif

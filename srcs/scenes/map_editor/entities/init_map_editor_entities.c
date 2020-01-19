@@ -6,13 +6,13 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 15:18:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 23:30:08 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/19 20:02:51 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "engine/scenes/build_scene.h"
-#include "engine/game.h"
-#include "scenes/init.h"
+#include "engine/scenes/init_scene.h"
+#include "engine/init_game.h"
+#include "init.h"
 #include "utils/error.h"
 
 t_result	init_map_editor_entities(t_scene *scene)

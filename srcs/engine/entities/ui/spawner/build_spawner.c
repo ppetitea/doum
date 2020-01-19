@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "engine/entities/build_entity.h"
+#include "engine/entities/init_entity.h"
 #include "engine/entities/ui/build_spawner.h"
 #include "engine/entities/ui/update_spawner.h"
 #include "utils/error.h"

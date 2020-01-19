@@ -6,37 +6,38 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:56:45 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/16 05:53:15 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/19 22:13:54 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "game.h"
-#include "entities/entities.h"
+#include "engine/entities/init_entity.h"
+#include "engine/scenes/init_scene.h"
 
-static t_bool	update_entity_select_status(t_game *game, t_entity *entity,
+static t_bool	update_entity_select_status(t_scene *scene, t_entity *entity,
 					t_mouse mouse)
 {
-	if (is_texture_collide(*entity->texture.t, mouse.pos,
+	if (is_texture_collide(*entity->texture.curr, mouse.pos,
 			entity->texture.anchor))
 	{
 		if (entity->status.is_selected == FALSE)
 		{
 			entity->status.is_selected = TRUE;
-			if (entity->status.action_select != NULL)
-				entity->status.action_select(game, entity);
+			if (entity->trigger.action_select != NULL)
+				entity->trigger.action_select(entity);
 		}
 		else
 			entity->status.is_selected = FALSE;
 	}
 	else if (entity->status.is_selected == TRUE)
 		entity->status.is_selected = FALSE;
-	if (entity->texture.update_texture != NULL)
-		entity->texture.update_texture(entity);
+	if (entity->trigger.update_texture != NULL)
+		entity->trigger.update_texture(entity);
+	(void)scene;
 	return (FALSE);
 }
 
-t_result	update_selectables_entities(t_game *game, t_list_head *entities,
+t_result	update_selectables_entities(t_scene *scene, t_list_head *entities,
 				t_mouse mouse)
 {
 	t_list_head		*pos;
@@ -51,7 +52,7 @@ t_result	update_selectables_entities(t_game *game, t_list_head *entities,
 		entity = (t_entity*)pos;
 		if (entity->status.is_selectable)
 		{
-			if (update_entity_select_status(game, entity, mouse))
+			if (update_entity_select_status(scene, entity, mouse))
 				break ;
 		}
 	}

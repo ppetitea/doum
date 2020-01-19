@@ -6,11 +6,11 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:26:15 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 23:36:59 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/19 20:42:10 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "resources/resources.h"
+#include "engine/resources/resources.h"
 #include "utils/error.h"
 #include "libft.h"
 
@@ -55,8 +55,6 @@ static t_result	load_shootgun_reload_images(t_list_head *images)
 
 t_result	load_shootgun_images(t_list_head *images)
 {
-	t_bitmap_texture	*bmp;
-
 	if (images == NULL)
 		return (throw_error("load_shootgun_images", "NULL pointer provided"));
 	if (!load_shootgun_fire_images(images))

@@ -6,12 +6,12 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 00:37:26 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/14 23:55:38 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/19 19:13:38 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "SDL.h"
-#include "interface/sdl_init.h"
+#include "engine/interface/init_sdl.h"
 #include "utils/error.h"
 
 void	destroy_sdl(t_sdl *self)

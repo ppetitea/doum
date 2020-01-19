@@ -6,12 +6,12 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:36:31 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/14 23:56:51 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/19 19:12:49 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "resources/textures/bitmap.h"
+#include "engine/resources/textures/bitmap.h"
 #include "utils/error.h"
 #include <stdlib.h>
 #include <stdio.h>

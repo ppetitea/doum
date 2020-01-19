@@ -10,8 +10,8 @@
 // /*                                                                            */
 // /* ************************************************************************** */
 
-// #include "resources/textures/texture.h"
-// #include "resources/resources.h"
+// #include "engine/resources/textures/texture.h"
+// #include "engine/resources/resources.h"
 // #include "utils/error.h"
 // #include "libft.h"
 // #include <sys/time.h>

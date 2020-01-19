@@ -6,13 +6,13 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 23:23:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 23:19:05 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/19 16:41:59 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/entities/ui/build_button.h"
 #include "engine/resources/resources.h"
-#include "engine/scenes/build_scene.h"
+#include "engine/scenes/init_scene.h"
 #include "libft.h"
 
 static t_result	init_map_editor_button_down_entity(t_button *button, t_scene *scene)

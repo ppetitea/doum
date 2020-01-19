@@ -12,7 +12,7 @@
 
 #include "engine/entities/ui/build_button.h"
 #include "engine/resources/resources.h"
-#include "engine/scenes/build_scene.h"
+#include "engine/scenes/init_scene.h"
 #include "libft.h"
 
 static t_result	init_map_editor_button_up_entity(t_button *button, t_scene *scene)

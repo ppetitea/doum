@@ -28,17 +28,88 @@ EXEC		=	doom-nukem
 #SOURCES
 SRCS_LIST	=	main.c														\
 																			\
-				engine/entities/ennemy/build_ennemy_entity.c				\
-				engine/entities/ennemy/build_ennemy.c						\
+				utils/color/add_blend.c										\
+				utils/error/throw_null.c									\
+				utils/error/throw_void.c									\
+				utils/error/throw_error.c									\
+				utils/matrix/mult.c											\
+				utils/matrix/rotate.c										\
+				utils/matrix/scale.c										\
+				utils/matrix/to_vtx.c										\
+				utils/matrix/translate.c									\
+																			\
+				engine/init_game.c											\
+																			\
+				engine/interface/sdl/init_sdl.c								\
+				engine/interface/sdl/destroy.c								\
+				engine/interface/screen/init_screen.c						\
+				engine/interface/screen/reset.c								\
+				engine/scenes/init_scene.c									\
+																			\
+				scenes/init.c												\
+				scenes/game/init_game.c										\
+				scenes/game/interface/init_game_interface.c					\
+				scenes/game/resources/init_game_resources.c					\
+				scenes/game/resources/textures/weapons/pistol.c				\
+				scenes/game/resources/textures/weapons/shootgun.c			\
+				scenes/game/resources/textures/ennemies/ennemy.c			\
+				scenes/game/entities/init_game_entities.c					\
+				scenes/game/entities/player.c								\
+				scenes/game/entities/ennemy.c								\
+																			\
+				engine/resources/images/render.c							\
+				engine/resources/images/add_bmp.c							\
+				engine/resources/images/get_bmp.c							\
+				engine/resources/images/load_bmp.c							\
+																			\
+				engine/resources/textures/add_texture.c						\
+				engine/resources/textures/collide_texture.c					\
+				engine/resources/textures/fill_texture.c					\
+				engine/resources/textures/filter_texture.c					\
+				engine/resources/textures/init_texture.c					\
+				engine/resources/textures/render_texture.c					\
+				engine/resources/textures/set_pixel_texture.c				\
+																			\
+				engine/entities/init_entity.c								\
+				engine/entities/update_entity.c								\
+				engine/entities/update/animate.c							\
+				engine/entities/update/display.c							\
+				engine/entities/update/drag.c								\
+				engine/entities/update/hover.c								\
+				engine/entities/update/select.c								\
+																			\
+				engine/entities/player/init_player_entity.c					\
+				engine/entities/player/init_player.c						\
+				engine/entities/player/update_player.c						\
+				engine/entities/player/init_camera.c						\
+				engine/entities/player/update_camera.c						\
+				engine/entities/player/init_weapon.c						\
+				engine/entities/player/update_weapon.c						\
+																			\
+				engine/entities/ennemy/init_ennemy_entity.c					\
+				engine/entities/ennemy/init_ennemy.c						\
 				engine/entities/ennemy/update_ennemy.c						\
 																			\
-				engine/entities/player/build_player_entity.c				\
-				engine/entities/player/build_player.c						\
-				engine/entities/player/update_player.c						\
-				engine/entities/player/build_camera.c						\
-				engine/entities/player/update_camera.c						\
-				engine/entities/player/build_weapon.c						\
-				engine/entities/player/update_weapon.c						\
+																			\
+																			\
+				engine/loop.c												\
+				engine/render.c												\
+																			\
+				engine/interface/events/keyboard/handle.c					\
+				engine/interface/events/mouse/handle.c						\
+				engine/interface/events/handle.c							\
+																			\
+																			\
+																			#\
+																			\
+																			\
+																			\
+				engine/build_game.c											\
+				engine/scenes/update_scene.c								\
+																			\
+																			\
+																			\
+																			\
 																			\
 				engine/entities/ui/button/build_button_entity.c				\
 				engine/entities/ui/button/build_button.c					\
@@ -48,51 +119,9 @@ SRCS_LIST	=	main.c														\
 				engine/entities/ui/spawner/build_spawner.c					\
 				engine/entities/ui/spawner/update_spawner.c					\
 																			\
-				engine/entities/update/animate.c							\
-				engine/entities/update/display.c							\
-				engine/entities/update/drag.c								\
-				engine/entities/update/hover.c								\
-				engine/entities/update/select.c								\
 																			\
-				engine/entities/build_entity.c								\
-				engine/entities/update_entity.c								\
 																			\
-				engine/interface/events/keyboard/handle.c					\
-				engine/interface/events/mouse/handle.c						\
-				engine/interface/events/handle.c							\
 																			\
-				engine/interface/screen/build_screen.c						\
-				engine/interface/screen/reset.c								\
-																			\
-				engine/interface/sdl/build_sdl.c							\
-				engine/interface/sdl/destroy.c								\
-																			\
-				engine/resources/images/get_bmp.c							\
-				engine/resources/images/load_bmp.c							\
-				engine/resources/images/render.c							\
-																			\
-				engine/resources/textures/build_texture.c					\
-				engine/resources/textures/collide_texture.c					\
-				engine/resources/textures/fill_texture.c					\
-				engine/resources/textures/filter_texture.c					\
-				engine/resources/textures/render_texture.c					\
-																			\
-				engine/scenes/build_scene.c									\
-				engine/scenes/update_scene.c								\
-																			\
-				engine/build_game.c											\
-				engine/loop.c												\
-				engine/render.c												\
-																			\
-				scenes/game/init_game.c										\
-				scenes/game/entities/init_game_entities.c					\
-				scenes/game/entities/ennemy.c								\
-				scenes/game/entities/player.c								\
-				scenes/game/interface/init_game_interface.c					\
-				scenes/game/resources/init_game_resources.c					\
-				scenes/game/resources/ennemies/ennemy.c						\
-				scenes/game/resources/weapons/pistol.c						\
-				scenes/game/resources/weapons/shootgun.c					\
 																			\
 				scenes/map_editor/init_map_editor.c							\
 				scenes/map_editor/entities/init_map_editor_entities.c		\
@@ -115,17 +144,6 @@ SRCS_LIST	=	main.c														\
 																			\
 				scenes/menu/init_scenes.c									\
 				scenes/menu/init.c											\
-																			\
-				utils/color/add_blend.c										\
-				utils/debug/debug.c											\
-				utils/error/throw_null.c									\
-				utils/error/throw_void.c									\
-				utils/error/throw_error.c									\
-				utils/matrix/mult.c											\
-				utils/matrix/rotate.c										\
-				utils/matrix/scale.c										\
-				utils/matrix/to_vtx.c										\
-				utils/matrix/translate.c									\
 																			\
 
 

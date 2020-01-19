@@ -6,30 +6,31 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 16:27:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 23:56:44 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/19 23:32:32 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INIT_H
 # define INIT_H
 
-# include "engine/game.h"
-# include "engine/entities/build_entity.h"
-# include "engine/scenes/build_scene.h"
+# include "engine/init_game.h"
+# include "engine/entities/init_entity.h"
+# include "engine/scenes/init_scene.h"
+# include "engine/entities/init_player.h"
 
 /*
 **	game
 */
-t_game		*init_game();
+t_game		*init();
 
 
 /*
 **	scenes
 */
-t_result	*init_scenes(t_game *game);
-t_result	init_menu_scene(t_game *game);
-t_result	init_map_editor_scene(t_game *game);
-t_result	init_game_scene(t_game *game);
+t_result	init_scenes(t_game *game);
+t_scene		*init_menu_scene(t_game *game);
+t_scene		*init_map_editor_scene(t_game *game);
+t_scene		*init_game_scene(t_game *game);
 
 /*
 **		menu
@@ -79,10 +80,12 @@ t_result	init_game_entities(t_scene *scene);
 */
 t_result	load_pistol_images(t_list_head *images);
 t_result	load_shootgun_images(t_list_head *images);
-t_result	load_ennemy_images(t_game *game);
+t_result	load_ennemy_images(t_list_head *images);
 /*
 **			game entities
 */
+t_player	*build_game_player(t_scene *scene);
+t_result	build_game_ennemy(t_scene *scene, t_player *player);
 
 
 

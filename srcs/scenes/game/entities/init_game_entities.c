@@ -6,20 +6,26 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 15:18:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 23:56:46 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/19 23:33:13 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "engine/scenes/build_scene.h"
-#include "engine/game.h"
-#include "scenes/init.h"
+#include "engine/scenes/init_scene.h"
+#include "engine/entities/init_player.h"
+#include "engine/init_game.h"
 #include "utils/error.h"
+#include "init.h"
 
 t_result	init_game_entities(t_scene *scene)
 {
+	t_player *player;
+	
 	if (scene == NULL)
 		return (throw_error("init_game_entities", "NULL pointer provided"));
-	if (!init_game_button_start(scene))
+	if (!(player = build_game_player(scene)))
 		return (throw_error("init_game_entities", "init button start failed"));
+	if (!build_game_ennemy(scene, player))
+		return (throw_error("init_game_entities", "init button start failed"));
+	scene->renderer.cam_ref = &player->cam;
 	return (OK);
 }

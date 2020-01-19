@@ -12,7 +12,7 @@
 
 #include "engine/entities/ui/build_spawner.h"
 #include "engine/resources/resources.h"
-#include "engine/scenes/build_scene.h"
+#include "engine/scenes/init_scene.h"
 #include "libft.h"
 
 static t_result	init_map_editor_spawner_entity(t_spawner *spawner, t_scene *scene)

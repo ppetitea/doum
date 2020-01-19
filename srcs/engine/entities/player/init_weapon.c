@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   build_weapon.c                                     :+:      :+:    :+:   */
+/*   init_weapon.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 01:16:28 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 01:17:45 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 00:44:46 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "utils/error.h"
-#include "engine/entities/build_player.h"
+#include "engine/entities/init_player.h"
 
-t_weapon	*build_weapon(char *name, t_weapon_type type)
+t_weapon	*init_new_weapon(char *name, t_weapon_type type)
 {
 	t_weapon	*new;
 
@@ -32,4 +32,15 @@ t_weapon	*build_weapon(char *name, t_weapon_type type)
 	new->magazine = new->magazine_size;
 	new->damages = 42;
 	return (new);
+}
+
+t_result	overwrite_weapon_ammo(t_weapon *self, size_t ammo,
+				size_t magazine_size, size_t magazine)
+{
+	if (self == NULL)
+		return (throw_error("init_weapon_ammo", "NULL pointer provided"));
+	self->ammo = ammo;
+	self->magazine = magazine;
+	self->magazine_size = magazine_size;
+	return (OK);
 }

@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   build_screen.c                                     :+:      :+:    :+:   */
+/*   init_screen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 23:09:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 15:47:09 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/19 18:42:05 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "engine/interface/screen.h"
+#include "engine/interface/init_screen.h"
 #include "utils/error.h"
 #include "libft.h"
 #include "SDL.h"
 
-t_result	build_screen(t_screen *self, t_usize window_size)
+t_result	init_screen(t_screen *self, t_usize window_size)
 {
 	if (!self)
 		return (throw_error("initialize_screen", "NULL pointer provided"));

@@ -6,15 +6,17 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 00:28:13 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 02:44:55 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 00:17:22 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "engine/scenes/init_scene.h"
 #include "engine/entities/sprites/update_ennemy.h"
-#include "engine/entities/sprites/build_ennemy.h"
+#include "engine/entities/sprites/init_ennemy.h"
+#include "engine/entities/init_player.h"
+#include "engine/entities/update_player.h"
 #include "engine/resources/textures/texture.h"
-#include "engine/scenes/build_scene.h"
-#include "events/keyboard.h"
+#include "engine/interface/events/keyboard.h"
 #include "utils/error.h"
 
 t_result	add_ennemy_front_texture(t_scene *scene, t_ennemy *ennemy)
@@ -242,14 +244,8 @@ t_result	add_ennemy_die_texture(t_scene *scene, t_ennemy *ennemy)
 	return (OK);
 }
 
-t_result	init_ennemy(t_scene *scene, t_player *player)
-{ 
-	t_ennemy		*ennemy;
-	t_usize			screen;
-
-	screen = scene->interface.screen_ref->size;
-	if (!(ennemy = build_ennemy(player)))
-		return (throw_error("init_ennemy", "failed to create ennemy"));
+t_result	add_ennemy_oriented_textures(t_scene *scene, t_ennemy *ennemy)
+{
 	if (!add_ennemy_front_texture(scene, ennemy))
 		return (throw_error("init_ennemy", "failed to add front texture"));
 	if (!add_ennemy_front_right_texture(scene, ennemy))
@@ -266,17 +262,11 @@ t_result	init_ennemy(t_scene *scene, t_player *player)
 		return (throw_error("init_ennemy", "failed to add back texture"));
 	if (!add_ennemy_left_texture(scene, ennemy))
 		return (throw_error("init_ennemy", "failed to add left texture"));
-	if (!add_ennemy_attack_texture(scene, ennemy))
-		return (throw_error("init_ennemy", "failed to add attack texture"));
-	if (!add_ennemy_die_texture(scene, ennemy))
-		return (throw_error("init_ennemy", "failed to add die texture"));
-	if (!(initialize_ennemy_entity(scene, ennemy)))
-		return (throw_error("init_ennemy", "failed to init entity"));
-	if (!build_ennemy_entity_listener(&ennemy->super,
-		&scene->renderer.sprites, &scene->entities.sprites, TRUE))
-		return (throw_error("init_ennemy", "failed to build listener"));
-		
-	update_ennemy_texture_by_direction(ennemy);
+	return (OK);
+}
+
+t_result	build_ennemy_bindings(t_scene *scene, t_ennemy *ennemy)
+{
 	bind_key(&scene->interface.keys_binds, SDLK_KP_8, &ennemy->super, ennemy_move_forward);
 	bind_key(&scene->interface.keys_binds, SDLK_KP_2, &ennemy->super, ennemy_move_backward);
 	bind_key(&scene->interface.keys_binds, SDLK_KP_4, &ennemy->super, ennemy_turn_right);
@@ -287,5 +277,26 @@ t_result	init_ennemy(t_scene *scene, t_player *player)
 	bind_key(&scene->interface.keys_binds, SDLK_a, &ennemy->super, update_ennemy_texture);
 	bind_key(&scene->interface.keys_binds, SDLK_s, &ennemy->super, update_ennemy_texture);
 	bind_key(&scene->interface.keys_binds, SDLK_d, &ennemy->super, update_ennemy_texture);
+	return (OK);
+}
+
+t_result	build_game_ennemy(t_scene *scene, t_player *player)
+{ 
+	t_ennemy		*ennemy;
+
+	if (!(ennemy = init_new_ennemy(player)))
+		return (throw_error("init_ennemy", "failed to create ennemy"));
+	if (!add_ennemy_attack_texture(scene, ennemy))
+		return (throw_error("init_ennemy", "failed to add attack texture"));
+	if (!add_ennemy_die_texture(scene, ennemy))
+		return (throw_error("init_ennemy", "failed to add die texture"));
+	if (!add_ennemy_oriented_textures(scene, ennemy))
+		return (throw_error("init_ennemy", "oriented textures failed"));
+	if (!overwrite_ennemy_entity_listener(&ennemy->super,
+		&scene->renderer.sprites, &scene->entities.sprites, TRUE))
+		return (throw_error("init_ennemy", "failed to build listener"));
+	build_ennemy_bindings(scene, ennemy);
+	overwrite_ennemy_coordinates(ennemy, ft_vec2f(100, -500), ft_vec2f(0, 1));
+	update_ennemy_texture_by_direction(ennemy);
 	return (OK);
 }

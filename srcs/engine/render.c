@@ -6,23 +6,44 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 17:16:52 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 02:50:54 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 00:08:56 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "engine/entities/build_entity.h"
-#include "engine/scenes/build_scene.h"
+#include "engine/entities/init_entity.h"
+#include "engine/scenes/init_scene.h"
+#include "utils/error.h"
 #include "libft.h"
 #include <time.h>
 #include <math.h>
+
+static t_texture	*handle_animation_end(t_entity *entity)
+{
+	t_texture	*ret;
+	
+	ret = (t_texture*)entity->texture.curr_head->next;
+	if (entity->texture.animation == INFINITE)
+		return ((t_texture*)entity->texture.curr_head->next);
+	if (entity->texture.animation == IN_PROGRESS)
+		ret = ((t_texture*)entity->texture.curr_head->next);
+	else if (entity->texture.animation == EPHEMERAL)
+	{
+		entity->texture.curr_head = entity->texture.prev_head;
+		ret = ((t_texture*)entity->texture.prev_head->next);
+	}
+	else if (entity->texture.animation == FINAL)
+		ret = ((t_texture*)entity->texture.curr);
+	else
+		throw_void("handle_animation_end", "wrong animation type detected");
+	entity->texture.animation = STOP;
+	return (ret);
+}
 
 static	void	animate_texture(t_entity *entity)
 {
 	unsigned int		delta_ms;
 	struct timespec		last;
 	struct timespec		time;
-	t_texture			*next;
-	t_texture			*head;
 
 	last = entity->texture.last;
 	timespec_get(&time, TIME_UTC);
@@ -31,17 +52,10 @@ static	void	animate_texture(t_entity *entity)
 	if (delta_ms > entity->texture.curr->delay_ms)
 	{
 		entity->texture.last = time;
-		head = entity->texture.curr_head;
-		next = (t_texture*)entity->texture.curr->node.next;
-		if (entity->texture.animation == IN_PROGRESS && next == head)
-			entity->texture.animation = STOP;
-		entity->texture.curr = (t_texture*)entity->texture.curr->node.next;
-		if (entity->texture.animation == EPHEMERAL && next == head)
-		{
-			entity->texture.animation = STOP;
-			entity->texture.curr = (t_texture*)entity->texture.prev;
-			entity->texture.curr_head = (t_texture*)entity->texture.prev;
-		}
+		if (entity->texture.curr->node.next == entity->texture.curr_head)
+			entity->texture.curr = handle_animation_end(entity);
+		else
+			entity->texture.curr = (t_texture*)entity->texture.curr->node.next;
 	}
 }
 
@@ -134,9 +148,6 @@ static t_result	render_sprites(t_scene *scene)
 			if (t->curr != NULL)
 				render_texture_with_scale(*scene->interface.screen_ref,
 					t->curr, t->anchor, t->scale);
-			// if (entity->texture.t != NULL)
-			// 	render_texture(scene->interface.screen, entity->texture.t,
-			// 		entity->texture.anchor);
 		}
 	}
 	return (OK);

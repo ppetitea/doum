@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 03:29:06 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/17 22:56:02 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/19 19:49:46 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define SPRITES_H
 
 # include "libft.h"
-# include "resources/textures/texture.h"
-# include "entities/entities.h"
-# include "game.h"
+# include "engine/resources/textures/texture.h"
+# include "engine/entities/init_entity.h"
+# include "engine/scenes/init_scene.h"
 
 /*
 **	Entite de type sprite

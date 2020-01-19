@@ -6,14 +6,14 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 23:03:16 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 01:18:14 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/19 20:39:33 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RESOURCES_H
 # define RESOURCES_H
 
-# include "resources/textures/texture.h"
+# include "engine/resources/textures/texture.h"
 # include "libft.h"
 
 typedef struct			s_image_node

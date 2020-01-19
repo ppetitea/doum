@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "engine/interface/events/keyboard.h"
-#include "engine/scenes/build_scene.h"
-#include "scenes/init.h"
+#include "engine/scenes/init_scene.h"
+#include "init.h"
 #include "utils/error.h"
 
 t_result	init_game_resources(t_scene *scene)

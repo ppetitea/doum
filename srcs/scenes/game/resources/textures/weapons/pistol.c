@@ -6,11 +6,11 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 05:49:09 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 23:36:36 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/19 21:23:09 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "resources/resources.h"
+#include "engine/resources/resources.h"
 #include "utils/error.h"
 #include "libft.h"
 

@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   build_entity.h                                     :+:      :+:    :+:   */
+/*   init_entity.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:13:23 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 22:49:39 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/19 23:50:27 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILD_ENTITY_H
-# define BUILD_ENTITY_H
+#ifndef INIT_ENTITY_H
+# define INIT_ENTITY_H
 
 # include "libft.h"
-# include "resources/textures/texture.h"
+# include "engine/resources/textures/texture.h"
 # include <time.h>
 
 /*
@@ -56,6 +56,7 @@ typedef enum	e_animation_status
 	IN_PROGRESS,
 	EPHEMERAL,
 	STOP,
+	FINAL,
 	NONE
 }				t_animation_status;
 
@@ -65,8 +66,9 @@ typedef struct			s_entity_texture
 	float				scale;
 	t_vec2i				anchor;
 	t_texture			*curr;
-	t_texture			*curr_head;
+	t_list_head			*curr_head;
 	t_texture			*prev;
+	t_list_head			*prev_head;
 	t_animation_status	animation;
 }						t_entity_texture;
 
@@ -105,9 +107,9 @@ typedef struct	s_entity
 	t_vec2f					dir;
 }				t_entity;
 
-t_result	build_entity(t_entity *self, t_entity_type type);
-t_result	build_entity_actions(t_entity_actions *self);
-t_result	build_entity_texture(t_entity_texture *self);
-t_result	build_entity_listener(t_listener *self);
+t_result	init_entity(t_entity *self, t_entity_type type);
+t_result	init_entity_actions(t_entity_actions *self);
+t_result	init_entity_texture(t_entity_texture *self);
+t_result	init_entity_listener(t_listener *self);
 
 #endif

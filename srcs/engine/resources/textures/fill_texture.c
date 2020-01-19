@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 23:55:41 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 18:49:39 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/19 19:39:03 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "utils/error.h"
 #include "libft.h"
 
-static void		set_texture_pixel(t_texture *self, t_bitmap_texture *bmp,
+static void		fill_texture_pixel(t_texture *self, t_bitmap_texture *bmp,
 					t_usize i, t_usize j)
 {
 	t_bgra	color;
@@ -47,7 +47,7 @@ t_result	fill_texture_with_bmp(t_texture *self, t_bitmap_texture *bmp)
 		while (i.x < self->size.x)
 		{
 			j = ft_usize(i.x * scale.x, i.y * scale.y);
-			set_texture_pixel(self, bmp, i, j);
+			fill_texture_pixel(self, bmp, i, j);
 			i.x++;
 		}
 		i.y++;

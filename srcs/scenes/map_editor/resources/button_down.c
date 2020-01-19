@@ -6,13 +6,13 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 16:39:07 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 21:09:33 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/19 15:14:59 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/resources/textures/texture.h"
 #include "engine/resources/resources.h"
-#include "scenes/init.h"
+#include "init.h"
 #include "utils/error.h"
 #include "libft.h"
 

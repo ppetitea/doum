@@ -6,13 +6,13 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 01:11:36 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 00:49:36 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/19 17:28:51 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "utils/error.h"
-#include "engine/entities/build_player.h"
+#include "engine/entities/init_player.h"
 #include <math.h>
 
 t_result	rotate_camera_left(t_entity *entity)

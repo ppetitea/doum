@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   update_game.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/11 22:59:39 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 21:50:41 by ppetitea         ###   ########.fr       */
+/*   Created: 2020/01/11 22:52:07 by ppetitea          #+#    #+#             */
+/*   Updated: 2020/01/19 22:22:24 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "init.h"
-#include "engine/update_game.h"
+#ifndef UPDATE_GAME_H
+# define UPDATE_GAME_H
 
-int		main()
-{
-	t_game *game;
+# include "engine/init_game.h"
+# include "libft.h"
 
-	if ((game = init()) != NULL)
-		loop(game);
-	return (0);
-}
+void		loop(t_game *game);
+
+#endif

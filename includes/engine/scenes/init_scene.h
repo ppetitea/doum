@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   build_scene.h                                      :+:      :+:    :+:   */
+/*   init_scene.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 16:27:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 00:51:35 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 00:31:19 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENES_H
-# define SCENES_H
+#ifndef INIT_SCENE_H
+# define INIT_SCENE_H
 
 # include "libft.h"
-# include "interface/screen.h"
-# include "engine/entities/build_player.h"
+# include "engine/interface/init_screen.h"
+# include "engine/interface/init_camera.h"
+
+typedef struct			s_mouse
+{
+	t_vec2i				pos;
+	t_bool				down;
+	t_bool				drag;
+}						t_mouse;
 
 typedef struct			s_scene_interface
 {
 	t_screen			*screen_ref;
 	t_list_head			mouse_binds;
 	t_list_head			keys_binds;
+	t_mouse				mouse;
 }						t_scene_interface;
 
 typedef struct			s_scene_resources
@@ -53,7 +61,7 @@ typedef struct			s_scene
 	t_scene_renderer	renderer;
 }						t_scene;
 
-t_scene				*build_scene(char *name, t_screen *screen_ref);
+t_scene				*init_new_scene(char *name, t_screen *screen_ref);
 t_result			build_scene_interface(t_scene_interface *interface,
 						t_screen *screen_ref);
 t_result			build_scene_resources(t_scene_resources *resources);
