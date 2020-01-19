@@ -6,39 +6,84 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 16:27:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 06:08:10 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/18 23:56:44 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INIT_H
 # define INIT_H
 
-# include "game.h"
-# include "resources/textures/texture.h"
-# include "resources/resources.h"
-# include "resources/resources.h"
-# include "entities/entities.h"
-# include "entities/player.h"
-# include "entities/sprites/ennemies.h"
-# include "entities/sprites/sprites.h"
-# include "entities/ui/button.h"
-# include "entities/ui/spawner.h"
+# include "engine/game.h"
+# include "engine/entities/build_entity.h"
+# include "engine/scenes/build_scene.h"
 
-t_result	initialize_images_list(t_game *game);
-t_result	initialize_entities(t_game *game);
-t_result	initialize_buttons_entities(t_game *game);
-t_result	initialize_spawners_entities(t_game *game);
-t_player	*initialize_player(t_game *game);
-t_result	initialize_sprites_entities(t_game *game);
-t_result	initialize_ennemy(t_game *game, t_player *player);
+/*
+**	game
+*/
+t_game		*init_game();
 
 
 /*
-**	GAME SCENE
+**	scenes
+*/
+t_result	*init_scenes(t_game *game);
+t_result	init_menu_scene(t_game *game);
+t_result	init_map_editor_scene(t_game *game);
+t_result	init_game_scene(t_game *game);
+
+/*
+**		menu
+*/
+t_result	init_menu_interface(t_scene *scene);
+t_result	init_menu_resources(t_scene *scene);
+t_result	init_menu_entities(t_scene *scene);
+/*
+**			menu resources
+*/
+t_result	load_menu_button_down_images(t_list_head *images);
+/*
+**			menu entities
+*/
+t_result	init_menu_button_start(t_scene *scene);
+
+
+/*
+**		map editor
+*/
+t_result	init_map_editor_interface(t_scene *scene);
+t_result	init_map_editor_resources(t_scene *scene);
+t_result	init_map_editor_entities(t_scene *scene);
+/*
+**			map editor resources
+*/
+t_result	load_editor_button_down_images(t_list_head *images);
+t_result	load_editor_button_up_images(t_list_head *images);
+t_result	load_editor_button_plus_images(t_list_head *images);
+t_result	load_editor_button_x_images(t_list_head *images);
+/*
+**			map editor entities
+*/
+t_result	init_map_editor_button_down(t_scene *scene);
+t_result	init_map_editor_button_up(t_scene *scene);
+t_result	init_map_editor_spawner_exemple(t_scene *scene);
+
+
+/*
+**	game
+*/
+t_result	init_game_interface(t_scene *scene);
+t_result	init_game_resources(t_scene *scene);
+t_result	init_game_entities(t_scene *scene);
+/*
+**			game resources
+*/
+t_result	load_pistol_images(t_list_head *images);
+t_result	load_shootgun_images(t_list_head *images);
+t_result	load_ennemy_images(t_game *game);
+/*
+**			game entities
 */
 
-t_result	load_pistol_textures(t_list_head *images);
-t_result	load_shootgun_textures(t_list_head *images);
 
 
 #endif

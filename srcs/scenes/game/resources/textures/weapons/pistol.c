@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 05:49:09 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 06:01:42 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/18 23:36:36 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "utils/error.h"
 #include "libft.h"
 
-static t_result	load_pistol_fire_textures(t_list_head *images)
+static t_result	load_pistol_fire_images(t_list_head *images)
 {
 	t_bitmap_texture	*bmp;
 	
@@ -32,7 +32,7 @@ static t_result	load_pistol_fire_textures(t_list_head *images)
 	return (OK);
 }
 
-static t_result	load_pistol_reload_textures(t_list_head *images)
+static t_result	load_pistol_reload_images(t_list_head *images)
 {
 	t_bitmap_texture	*bmp;
 	
@@ -53,13 +53,13 @@ static t_result	load_pistol_reload_textures(t_list_head *images)
 	return (OK);
 }
 
-t_result	load_pistol_textures(t_list_head *images)
+t_result	load_pistol_images(t_list_head *images)
 {
 	if (images == NULL)
 		return (throw_error("load_pistol_textures", "NULL pointer provided"));
-	if (!load_pistol_fire_textures(images))
-		return (throw_error("load_pistol_textures", "fire textures failed"));
-	if (!load_pistol_reload_textures(images))
-		return (throw_error("load_pistol_textures", "reload textures failed"));
+	if (!load_pistol_fire_images(images))
+		return (throw_error("load_pistol_images", "fire images failed"));
+	if (!load_pistol_reload_images(images))
+		return (throw_error("load_pistol_images", "reload images failed"));
 	return (OK);
 }

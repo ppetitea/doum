@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   sdl.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/11 22:59:39 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 20:55:51 by ppetitea         ###   ########.fr       */
+/*   Created: 2020/01/11 23:51:42 by ppetitea          #+#    #+#             */
+/*   Updated: 2020/01/18 15:36:39 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scenes/init.h"
+#ifndef SDL_H
+# define SDL_H
 
-int		main()
+# include "SDL.h"
+# include "libft.h"
+
+# define SDL_OK 0
+# define SDL_ERROR -1
+
+typedef struct			s_sdl
+
 {
-	t_game *game;
+	SDL_Window			*window;
+	SDL_Renderer		*renderer;
+	SDL_Texture			*texture;
+	SDL_Event			event;
+}						t_sdl;
 
-	if ((game = init_game()) != NULL)
-		loop(game);
-	return (0);
-}
+t_result				build_sdl(t_sdl *self, size_t width, size_t height);
+
+#endif

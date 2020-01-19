@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   update_button.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/11 22:59:39 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 20:55:51 by ppetitea         ###   ########.fr       */
+/*   Created: 2020/01/13 04:12:43 by ppetitea          #+#    #+#             */
+/*   Updated: 2020/01/18 22:01:01 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scenes/init.h"
+#ifndef UPDATE_BUTTON_H
+# define UPDATE_BUTTON_H
 
-int		main()
-{
-	t_game *game;
+# include "engine/entities/ui/build_button.h"
+# include "engine/entities/build_entity.h"
 
-	if ((game = init_game()) != NULL)
-		loop(game);
-	return (0);
-}
+t_result	update_button_texture(t_entity *entity);
+
+
+#endif

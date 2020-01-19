@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   update_scene.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/11 22:59:39 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 20:55:51 by ppetitea         ###   ########.fr       */
+/*   Created: 2020/01/17 16:27:20 by ppetitea          #+#    #+#             */
+/*   Updated: 2020/01/18 16:33:11 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scenes/init.h"
+#ifndef UPDATE_SCENES_H
+# define UPDATE_SCENES_H
 
-int		main()
-{
-	t_game *game;
+# include "engine/scenes/scene.h"
+# include "engine/game.h"
 
-	if ((game = init_game()) != NULL)
-		loop(game);
-	return (0);
-}
+t_result			swap_scene(t_game *game, char *name);
+
+#endif

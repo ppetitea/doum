@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   update_spawner.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/11 22:59:39 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 20:55:51 by ppetitea         ###   ########.fr       */
+/*   Created: 2020/01/13 04:12:43 by ppetitea          #+#    #+#             */
+/*   Updated: 2020/01/18 18:33:39 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scenes/init.h"
+#ifndef UPDATE_SPAWNER_H
+# define UPDATE_SPAWNER_H
 
-int		main()
-{
-	t_game *game;
+# include "engine/entities/build_entity.h"
 
-	if ((game = init_game()) != NULL)
-		loop(game);
-	return (0);
-}
+t_result	update_spawner_texture(t_entity *entity);
+
+#endif

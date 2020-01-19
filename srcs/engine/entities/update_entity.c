@@ -1,22 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   update_entity.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/11 22:59:39 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 20:55:51 by ppetitea         ###   ########.fr       */
+/*   Created: 2020/01/13 04:44:34 by ppetitea          #+#    #+#             */
+/*   Updated: 2020/01/18 17:20:19 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scenes/init.h"
-
-int		main()
-{
-	t_game *game;
-
-	if ((game = init_game()) != NULL)
-		loop(game);
-	return (0);
-}
+#include "engine/entities/build_entity.h"
+#include "engine/entities/update_entity.h"
+#include "utils/error.h"
+#include "libft.h"

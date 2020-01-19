@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_menu_resources.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/11 22:59:39 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 20:55:51 by ppetitea         ###   ########.fr       */
+/*   Created: 2020/01/18 15:18:54 by ppetitea          #+#    #+#             */
+/*   Updated: 2020/01/18 21:05:34 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "engine/interface/events/keyboard.h"
+#include "engine/scenes/build_scene.h"
 #include "scenes/init.h"
+#include "utils/error.h"
 
-int		main()
+t_result	init_menu_resources(t_scene *scene)
 {
-	t_game *game;
-
-	if ((game = init_game()) != NULL)
-		loop(game);
-	return (0);
+	if (scene == NULL)
+		return (throw_error("init_menu_resources", "NULL pointer provided"));
+	if (!load_menu_button_down_images(&scene->resources.images))
+		return (throw_error("init_menu_resources", "load_button_down failed"));
+	return (OK);
 }

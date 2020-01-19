@@ -28,58 +28,93 @@ EXEC		=	doom-nukem
 #SOURCES
 SRCS_LIST	=	main.c														\
 																			\
-				entities/ennemies/ennemy.c									\
-				entities/ennemies/update.c									\
-				entities/player/build_camera.c								\
-				entities/player/build_player.c								\
-				entities/player/build_weapon.c								\
-				entities/player/update_camera.c								\
-				entities/player/update_player.c								\
-				entities/player/update_weapon.c								\
-				entities/sprites/sprites.c									\
-				entities/sprites/update.c									\
-				entities/update/animate.c									\
-				entities/update/display.c									\
-				entities/update/drag.c										\
-				entities/update/hover.c										\
-				entities/update/select.c									\
-				entities/user_interface/button/button.c						\
-				entities/user_interface/button/update.c						\
-				entities/user_interface/spawner/spawner.c					\
-				entities/user_interface/spawner/update.c					\
-				entities/entity.c											\
+				engine/entities/ennemy/build_ennemy_entity.c				\
+				engine/entities/ennemy/build_ennemy.c						\
+				engine/entities/ennemy/update_ennemy.c						\
 																			\
-				events/handle.c												\
-				events/keyboard/handle.c									\
-				events/mouse/handle.c										\
+				engine/entities/player/build_player_entity.c				\
+				engine/entities/player/build_player.c						\
+				engine/entities/player/update_player.c						\
+				engine/entities/player/build_camera.c						\
+				engine/entities/player/update_camera.c						\
+				engine/entities/player/build_weapon.c						\
+				engine/entities/player/update_weapon.c						\
 																			\
-				game/initialization/entities/buttons.c						\
-				game/initialization/entities/ennemy.c						\
-				game/initialization/entities/init.c							\
-				game/initialization/entities/player.c						\
-				game/initialization/entities/spawners.c						\
-				game/initialization/entities/sprites.c						\
-				game/initialization/interface/screen/init.c					\
-				game/initialization/interface/screen/reset.c				\
-				game/initialization/interface/sdl/init.c					\
-				game/initialization/interface/sdl/destroy.c					\
-				game/initialization/resources/buttons.c						\
-				game/initialization/resources/ennemy.c						\
-				game/initialization/resources/init.c						\
-				game/initialization/resources/pistol.c						\
-				game/initialization/resources/shootgun.c					\
-				game/init.c													\
-				game/loop.c													\
-				game/render.c												\
+				engine/entities/ui/button/build_button_entity.c				\
+				engine/entities/ui/button/build_button.c					\
+				engine/entities/ui/button/update_button.c					\
 																			\
+				engine/entities/ui/spawner/build_spawner_entity.c			\
+				engine/entities/ui/spawner/build_spawner.c					\
+				engine/entities/ui/spawner/update_spawner.c					\
 																			\
-				resources/textures/bitmap/load_bmp.c						\
-				resources/textures/bitmap/render.c							\
-				resources/textures/collide.c								\
-				resources/textures/filter.c									\
-				resources/textures/get.c									\
-				resources/textures/render.c									\
-				resources/textures/texture.c								\
+				engine/entities/update/animate.c							\
+				engine/entities/update/display.c							\
+				engine/entities/update/drag.c								\
+				engine/entities/update/hover.c								\
+				engine/entities/update/select.c								\
+																			\
+				engine/entities/build_entity.c								\
+				engine/entities/update_entity.c								\
+																			\
+				engine/interface/events/keyboard/handle.c					\
+				engine/interface/events/mouse/handle.c						\
+				engine/interface/events/handle.c							\
+																			\
+				engine/interface/screen/build_screen.c						\
+				engine/interface/screen/reset.c								\
+																			\
+				engine/interface/sdl/build_sdl.c							\
+				engine/interface/sdl/destroy.c								\
+																			\
+				engine/resources/images/get_bmp.c							\
+				engine/resources/images/load_bmp.c							\
+				engine/resources/images/render.c							\
+																			\
+				engine/resources/textures/build_texture.c					\
+				engine/resources/textures/collide_texture.c					\
+				engine/resources/textures/fill_texture.c					\
+				engine/resources/textures/filter_texture.c					\
+				engine/resources/textures/render_texture.c					\
+																			\
+				engine/scenes/build_scene.c									\
+				engine/scenes/update_scene.c								\
+																			\
+				engine/build_game.c											\
+				engine/loop.c												\
+				engine/render.c												\
+																			\
+				scenes/game/init_game.c										\
+				scenes/game/entities/init_game_entities.c					\
+				scenes/game/entities/ennemy.c								\
+				scenes/game/entities/player.c								\
+				scenes/game/interface/init_game_interface.c					\
+				scenes/game/resources/init_game_resources.c					\
+				scenes/game/resources/ennemies/ennemy.c						\
+				scenes/game/resources/weapons/pistol.c						\
+				scenes/game/resources/weapons/shootgun.c					\
+																			\
+				scenes/map_editor/init_map_editor.c							\
+				scenes/map_editor/entities/init_map_editor_entities.c		\
+				scenes/map_editor/entities/button_down.c					\
+				scenes/map_editor/entities/button_up.c						\
+				scenes/map_editor/entities/spawner_sprite.c					\
+				scenes/map_editor/interface/init_map_editor_interface.c		\
+				scenes/map_editor/resources/init_map_editor_resources.c		\
+				scenes/map_editor/resources/button_down.c					\
+				scenes/map_editor/resources/button_plus.c					\
+				scenes/map_editor/resources/button_up.c						\
+				scenes/map_editor/resources/button_x.c						\
+																			\
+				scenes/menu/init_menu.c										\
+				scenes/menu/entities/init_menu_entities.c					\
+				scenes/menu/entities/button_start.c							\
+				scenes/menu/interface/init_menu_interface.c					\
+				scenes/menu/resources/init_menu_resources.c					\
+				scenes/menu/resources/button_down.c							\
+																			\
+				scenes/menu/init_scenes.c									\
+				scenes/menu/init.c											\
 																			\
 				utils/color/add_blend.c										\
 				utils/debug/debug.c											\
