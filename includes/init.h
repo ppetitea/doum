@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 16:27:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 23:32:32 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 04:43:26 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_result	load_menu_button_down_images(t_list_head *images);
 /*
 **			menu entities
 */
-t_result	init_menu_button_start(t_scene *scene);
+t_result	init_menu_button_down(t_scene *scene);
 
 
 /*
@@ -66,7 +66,7 @@ t_result	load_editor_button_x_images(t_list_head *images);
 */
 t_result	init_map_editor_button_down(t_scene *scene);
 t_result	init_map_editor_button_up(t_scene *scene);
-t_result	init_map_editor_spawner_exemple(t_scene *scene);
+t_result	init_map_editor_spawner_sprite(t_scene *scene);
 
 
 /*

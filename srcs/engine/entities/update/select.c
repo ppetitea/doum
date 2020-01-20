@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:56:45 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 22:13:54 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 05:32:26 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ t_result	update_selectables_entities(t_scene *scene, t_list_head *entities,
 				t_mouse mouse)
 {
 	t_list_head		*pos;
-	t_list_head		*next;
+	t_list_head		*prev;
 	t_entity		*entity;
 
 	pos = entities;
-	next = pos->next;
-	while ((pos = next) != entities)
+	prev = pos->prev;
+	while ((pos = prev) != entities)
 	{
-		next = next->next;
+		prev = prev->prev;
 		entity = (t_entity*)pos;
 		if (entity->status.is_selectable)
 		{

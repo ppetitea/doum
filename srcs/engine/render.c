@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 17:16:52 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 00:08:56 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 02:33:58 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "libft.h"
 #include <time.h>
 #include <math.h>
+
+# include <stdio.h>
 
 static t_texture	*handle_animation_end(t_entity *entity)
 {
@@ -48,7 +50,7 @@ static	void	animate_texture(t_entity *entity)
 	last = entity->texture.last;
 	timespec_get(&time, TIME_UTC);
 	delta_ms = (time.tv_sec - last.tv_sec) * 1000;
-	delta_ms += ((time.tv_nsec / 10e5) - (last.tv_nsec / 10e5));
+	delta_ms += (time.tv_nsec - last.tv_nsec) / 1.0e6;
 	if (delta_ms > entity->texture.curr->delay_ms)
 	{
 		entity->texture.last = time;

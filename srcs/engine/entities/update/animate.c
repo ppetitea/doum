@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 07:02:47 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 23:31:11 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 02:40:18 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_result	update_entity_texture(t_entity *entity, t_list_head *texture_head)
 		entity->texture.curr_head = texture_head;
 		entity->texture.prev = (t_texture*)texture_head->next;
 		entity->texture.prev_head = texture_head;
-		timespec_get(&entity->texture.last, TIME_UTC);
+		// timespec_get(&entity->texture.last, TIME_UTC);
 	}
 	return (OK);
 }

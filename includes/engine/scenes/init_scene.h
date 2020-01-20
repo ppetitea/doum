@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 16:27:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 00:31:19 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 01:19:54 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ typedef struct			s_scene_interface
 {
 	t_screen			*screen_ref;
 	t_list_head			mouse_binds;
-	t_list_head			keys_binds;
+	t_list_head			key_binds;
+	t_list_head			key_hold_binds;
 	t_mouse				mouse;
 }						t_scene_interface;
 

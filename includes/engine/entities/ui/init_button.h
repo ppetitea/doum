@@ -1,48 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   build_spawner.h                                    :+:      :+:    :+:   */
+/*   init_button.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:12:43 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 22:48:18 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 03:35:30 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILD_SPAWNER_H
-# define BUILD_SPAWNER_H
+#ifndef BUILD_BUTTON_H
+# define BUILD_BUTTON_H
 
 # include "engine/resources/textures/texture.h"
-# include "engine/entities/build_entity.h"
+# include "engine/entities/init_entity.h"
 
 /*
-**	Entite de type spawnner
-**	Se duplique lorsqu'il est drag depuis sa position initiale
+**	Entite de type button
+**	Effectue une action lorsqu'on clique dessus
+**	Change de texture lorsqu'on le survole ou le selectionne
 */
 
-typedef struct		s_spawner
+typedef struct		s_button
 {
-	t_entity			super;
-	t_texture			*normal;
-	t_texture			*hover;
-	t_texture			*dragged;
-	t_texture			*initial_texture;
-	struct s_spawner*	(*create_spawner_with_another)(struct s_spawner*);
-}					t_spawner;
+	t_entity		super;
+	t_texture		normal;
+	t_texture		hover;
+	t_texture		selected;
+}					t_button;
 
-t_spawner			*build_spawner();
-t_result			build_spawner_textures(
-						t_spawner *self,
-						t_bitmap_texture bmp,
+t_button			*init_new_button();
+t_result			init_button_textures(
+						t_button *self,
+						t_bitmap_texture hover,
+						t_bitmap_texture select,
 						t_usize size);
-t_result			build_spawner_entity_texture(t_entity_texture *self,
+t_result			overwrite_button_entity_texture(t_entity_texture *self,
 						t_texture *texture, t_vec2i	anchor);
-t_result			build_spawner_entity_listener(
+t_result			overwrite_button_entity_listener(
 						t_entity *self,
 						t_list_head *render,
 						t_list_head *storage,
 						t_bool display);
-t_result			duplicate_spawner(t_entity *entity);
+t_result			overwrite_button_entity_actions(t_entity_actions *self);
 
 #endif

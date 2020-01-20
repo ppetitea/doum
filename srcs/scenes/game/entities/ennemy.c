@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 00:28:13 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 00:17:22 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 02:58:53 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,16 +267,16 @@ t_result	add_ennemy_oriented_textures(t_scene *scene, t_ennemy *ennemy)
 
 t_result	build_ennemy_bindings(t_scene *scene, t_ennemy *ennemy)
 {
-	bind_key(&scene->interface.keys_binds, SDLK_KP_8, &ennemy->super, ennemy_move_forward);
-	bind_key(&scene->interface.keys_binds, SDLK_KP_2, &ennemy->super, ennemy_move_backward);
-	bind_key(&scene->interface.keys_binds, SDLK_KP_4, &ennemy->super, ennemy_turn_right);
-	bind_key(&scene->interface.keys_binds, SDLK_KP_6, &ennemy->super, ennemy_turn_left);
-	bind_key(&scene->interface.keys_binds, SDLK_KP_5, &ennemy->super, ennemy_attack);
-	bind_key(&scene->interface.keys_binds, SDLK_KP_0, &ennemy->super, ennemy_die);
-	bind_key(&scene->interface.keys_binds, SDLK_w, &ennemy->super, update_ennemy_texture);
-	bind_key(&scene->interface.keys_binds, SDLK_a, &ennemy->super, update_ennemy_texture);
-	bind_key(&scene->interface.keys_binds, SDLK_s, &ennemy->super, update_ennemy_texture);
-	bind_key(&scene->interface.keys_binds, SDLK_d, &ennemy->super, update_ennemy_texture);
+	bind_key(&scene->interface.key_hold_binds, SDLK_KP_8, &ennemy->super, ennemy_move_forward);
+	bind_key(&scene->interface.key_hold_binds, SDLK_KP_2, &ennemy->super, ennemy_move_backward);
+	bind_key(&scene->interface.key_hold_binds, SDLK_KP_4, &ennemy->super, ennemy_turn_right);
+	bind_key(&scene->interface.key_hold_binds, SDLK_KP_6, &ennemy->super, ennemy_turn_left);
+	bind_key(&scene->interface.key_binds, SDLK_KP_5, &ennemy->super, ennemy_attack);
+	bind_key(&scene->interface.key_binds, SDLK_KP_0, &ennemy->super, ennemy_die);
+	bind_key(&scene->interface.key_hold_binds, SDLK_w, &ennemy->super, update_ennemy_texture);
+	bind_key(&scene->interface.key_hold_binds, SDLK_a, &ennemy->super, update_ennemy_texture);
+	bind_key(&scene->interface.key_hold_binds, SDLK_s, &ennemy->super, update_ennemy_texture);
+	bind_key(&scene->interface.key_hold_binds, SDLK_d, &ennemy->super, update_ennemy_texture);
 	return (OK);
 }
 

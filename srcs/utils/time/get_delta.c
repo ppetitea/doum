@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update_spawner.h                                    :+:      :+:    :+:   */
+/*   get_delta.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/13 04:12:43 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 18:33:39 by ppetitea         ###   ########.fr       */
+/*   Created: 2020/01/20 01:39:07 by ppetitea          #+#    #+#             */
+/*   Updated: 2020/01/20 02:00:45 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UPDATE_SPAWNER_H
-# define UPDATE_SPAWNER_H
+#include <time.h>
 
-# include "engine/entities/init_entity.h"
+unsigned int	get_delta(struct timespec last)
+{
+	unsigned int delta_ms;
+	struct timespec	time;
 
-t_result	update_spawner_texture(t_entity *entity);
-
-#endif
+	timespec_get(&time, TIME_UTC);
+	delta_ms = (time.tv_sec - last.tv_sec) * 1000;
+	delta_ms += ((time.tv_nsec / 10e5) - (last.tv_nsec / 10e5));
+	return (delta_ms);
+}

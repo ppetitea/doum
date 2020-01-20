@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:24:43 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 19:34:15 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 03:56:01 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 #include "utils/color.h"
 #include "utils/error.h"
 
-t_texture	*texture_filter(t_texture old, t_filter_type filter)
+t_result	texture_filter(t_texture *new, t_texture old, t_filter_type filter)
 {
-	t_texture 		*new;
 	t_usize			i;
 
-	if (!(new = init_new_texture(old.name, old.size)))
-		return (throw_null("hover_filter", "new_texture failed"));
+	if (new == NULL)
+		return (throw_error("texture_filter", "NULL pointer provided"));
+	if (!(init_texture(new, old.name, old.size)))
+		return (throw_error("hover_filter", "init_texture failed"));
 	overwrite_texture_params(new, old.offset, old.delay_ms);
 	i.y = 0;
 	while (i.y < new->size.y)
@@ -38,5 +39,16 @@ t_texture	*texture_filter(t_texture old, t_filter_type filter)
 		}
 		i.y++;
 	}
+	return (OK);
+}
+
+t_texture	*new_texture_filter(t_texture old, t_filter_type filter)
+{
+	t_texture 		*new;
+
+	if (!(new = init_new_texture(old.name, old.size)))
+		return (throw_null("hover_filter", "new_texture failed"));
+	if (!texture_filter(new, old, filter))
+		return (throw_null("hover_filter", "filter failed"));
 	return (new);
 }

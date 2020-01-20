@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 15:18:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 20:02:51 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 04:07:35 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_result	init_menu_entities(t_scene *scene)
 {
 	if (scene == NULL)
 		return (throw_error("init_menu_entities", "NULL pointer provided"));
-	if (!init_menu_button_start(scene))
-		return (throw_error("init_menu_entities", "init button start failed"));
+	if (!init_menu_button_down(scene))
+		return (throw_error("init_menu_entities", "init button down failed"));
 	return (OK);
 }

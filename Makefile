@@ -37,6 +37,7 @@ SRCS_LIST	=	main.c														\
 				utils/matrix/scale.c										\
 				utils/matrix/to_vtx.c										\
 				utils/matrix/translate.c									\
+				utils/time/get_delta.c										\
 																			\
 				engine/init_game.c											\
 																			\
@@ -45,17 +46,6 @@ SRCS_LIST	=	main.c														\
 				engine/interface/screen/init_screen.c						\
 				engine/interface/screen/reset.c								\
 				engine/scenes/init_scene.c									\
-																			\
-				scenes/init.c												\
-				scenes/game/init_game.c										\
-				scenes/game/interface/init_game_interface.c					\
-				scenes/game/resources/init_game_resources.c					\
-				scenes/game/resources/textures/weapons/pistol.c				\
-				scenes/game/resources/textures/weapons/shootgun.c			\
-				scenes/game/resources/textures/ennemies/ennemy.c			\
-				scenes/game/entities/init_game_entities.c					\
-				scenes/game/entities/player.c								\
-				scenes/game/entities/ennemy.c								\
 																			\
 				engine/resources/images/render.c							\
 				engine/resources/images/add_bmp.c							\
@@ -90,8 +80,6 @@ SRCS_LIST	=	main.c														\
 				engine/entities/ennemy/init_ennemy.c						\
 				engine/entities/ennemy/update_ennemy.c						\
 																			\
-																			\
-																			\
 				engine/loop.c												\
 				engine/render.c												\
 																			\
@@ -100,28 +88,31 @@ SRCS_LIST	=	main.c														\
 				engine/interface/events/handle.c							\
 																			\
 																			\
-																			#\
-																			\
-																			\
-																			\
-				engine/build_game.c											\
-				engine/scenes/update_scene.c								\
-																			\
-																			\
-																			\
-																			\
-																			\
-				engine/entities/ui/button/build_button_entity.c				\
-				engine/entities/ui/button/build_button.c					\
+				engine/entities/ui/button/init_button_entity.c				\
+				engine/entities/ui/button/init_button.c						\
 				engine/entities/ui/button/update_button.c					\
 																			\
-				engine/entities/ui/spawner/build_spawner_entity.c			\
-				engine/entities/ui/spawner/build_spawner.c					\
+				engine/entities/ui/spawner/init_spawner_entity.c			\
+				engine/entities/ui/spawner/init_spawner.c					\
 				engine/entities/ui/spawner/update_spawner.c					\
 																			\
+				scenes/init.c												\
+				scenes/game/init_game.c										\
+				scenes/game/interface/init_game_interface.c					\
+				scenes/game/resources/init_game_resources.c					\
+				scenes/game/resources/textures/weapons/pistol.c				\
+				scenes/game/resources/textures/weapons/shootgun.c			\
+				scenes/game/resources/textures/ennemies/ennemy.c			\
+				scenes/game/entities/init_game_entities.c					\
+				scenes/game/entities/player.c								\
+				scenes/game/entities/ennemy.c								\
 																			\
-																			\
-																			\
+				scenes/menu/init_menu.c										\
+				scenes/menu/entities/init_menu_entities.c					\
+				scenes/menu/entities/button_down.c							\
+				scenes/menu/interface/init_menu_interface.c					\
+				scenes/menu/resources/init_menu_resources.c					\
+				scenes/menu/resources/button_down.c							\
 																			\
 				scenes/map_editor/init_map_editor.c							\
 				scenes/map_editor/entities/init_map_editor_entities.c		\
@@ -134,17 +125,6 @@ SRCS_LIST	=	main.c														\
 				scenes/map_editor/resources/button_plus.c					\
 				scenes/map_editor/resources/button_up.c						\
 				scenes/map_editor/resources/button_x.c						\
-																			\
-				scenes/menu/init_menu.c										\
-				scenes/menu/entities/init_menu_entities.c					\
-				scenes/menu/entities/button_start.c							\
-				scenes/menu/interface/init_menu_interface.c					\
-				scenes/menu/resources/init_menu_resources.c					\
-				scenes/menu/resources/button_down.c							\
-																			\
-				scenes/menu/init_scenes.c									\
-				scenes/menu/init.c											\
-																			\
 
 
 SRCS_FOLDER	=	./srcs/
@@ -161,8 +141,8 @@ INCLUDES	:=	-I includes
 
 #COMPILATION
 CC			=	gcc
-CFLAGS		:=	-Wall -Werror -Wextra
-LDFLAGS		:=	-Wall -Werror -Wextra -lm
+CFLAGS		:=	-Wall -Werror -Wextra -O3 -Ofast -flto -g
+LDFLAGS		:=	-Wall -Werror -Wextra  -O3 -Ofast -flto -g -lm 
 
 #LIBRARIES
 #	libft

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 22:59:06 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 00:58:04 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 02:31:20 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_player	*init_new_player()
 	if (!init_entity(&self->super, PLAYER))
 		return (throw_null("init_player", "init entity failed"));
 	init_player_weapon(&self->weapon);
-	self->velocity = 10.0f;
+	self->velocity = 2.0f;
 	self->life = 100;
 	self->armor = 42;
 	return (self);

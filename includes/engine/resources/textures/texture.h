@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 23:57:01 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 19:33:53 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 03:54:35 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct	s_texture_args
 }				t_texture_args;
 
 t_texture		*init_new_texture(char *name, t_usize size);
+t_result		init_texture(t_texture *self, char *name, t_usize size);
 t_result		overwrite_texture_params(t_texture *self, t_vec2i offset,
 					uint32_t delay_ms);
 t_result		fill_texture_with_bmp(t_texture *self, t_bitmap_texture *bmp);
@@ -83,8 +84,9 @@ typedef enum			e_filter_type
 	FILTER_NONE,
 }						t_filter_type;
 
-
-t_texture		*texture_filter(t_texture old, t_filter_type filter);
+t_result		texture_filter(t_texture *new, t_texture old,
+					t_filter_type filter);
+t_texture		*new_texture_filter(t_texture old, t_filter_type filter);
 void			set_texture_pixel_circular_shadow(t_texture old,
 						t_texture *new, t_usize i);
 void			set_texture_pixel(t_texture old,t_texture *new, t_usize i);

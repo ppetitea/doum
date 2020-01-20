@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 01:17:28 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 22:17:55 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 05:36:37 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ void	handle_mouse_down(t_scene *scene, SDL_MouseButtonEvent event)
 {
 	scene->interface.mouse.down = TRUE;
 	scene->interface.mouse.pos = ft_vec2i(event.x, event.y);
-	update_selectables_entities(scene, &scene->renderer.ui_components,
-		scene->interface.mouse);
+	if (!scene->interface.mouse.drag)
+		update_selectables_entities(scene, &scene->renderer.ui_components,
+			scene->interface.mouse);
 }
 
 void	handle_mouse_up(t_scene *scene, SDL_MouseButtonEvent event)

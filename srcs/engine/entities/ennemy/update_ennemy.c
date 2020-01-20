@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 12:03:19 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 00:59:26 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 05:42:40 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "engine/entities/entities.h"
 #include "engine/entities/init_player.h"
 #include "utils/error.h"
+#include "utils/time.h"
 #include "utils/matrix.h"
 #include "libft.h"
 #include <math.h>
@@ -50,18 +51,20 @@ t_result	update_ennemy_texture_by_direction(t_ennemy *ennemy)
 {
 	t_oriented_textures		*sides;
 	float					angle;
+	float					angle_abs;
 
 	if (ennemy == NULL)
 		return (throw_error("update_ennemy_texture", "NULL pointer provided"));
 	sides = &ennemy->orientation;
-	angle = compute_angle_to_player(ennemy);					
-	if (ft_absf(angle) <= PI / 8.0f)
+	angle = compute_angle_to_player(ennemy);
+	angle_abs = ft_absf(angle);
+	if (angle_abs <= PI / 8.0f)
 		update_entity_texture(&ennemy->super, &sides->front);
-	else if (ft_absf(angle) >= PI * (7.0f / 8.0f))
+	else if (angle_abs >= PI * (7.0f / 8.0f))
 		update_entity_texture(&ennemy->super, &sides->back);
-	else if (ft_absf(angle) <= PI * (3.0f / 8.0f))
+	else if (angle_abs <= PI * (3.0f / 8.0f))
 		texture_by_side(ennemy, &sides->front_r, &sides->front_l, angle);
-	else if (ft_absf(angle) <= PI * (5.0f / 8.0f))
+	else if (angle_abs <= PI * (5.0f / 8.0f))
 		texture_by_side(ennemy, &sides->right, &sides->left, angle);
 	else if (angle > 0)
 		update_entity_texture(&ennemy->super, &sides->back_r);
@@ -72,7 +75,7 @@ t_result	update_ennemy_texture_by_direction(t_ennemy *ennemy)
 
 t_result	update_ennemy_texture(t_entity *entity)
 {
-	t_ennemy	*ennemy;
+	t_ennemy		*ennemy;
 	
 	if (entity == NULL)
 		return (throw_error("entity_turn_right", "NULL pointer provided"));
@@ -173,7 +176,7 @@ t_result	ennemy_die(t_entity *entity)
 		return (throw_error("entity_turn_right", "entity isn't ennemy"));
 	ennemy = (t_ennemy*)entity;
 	update_ennemy_texture_by_direction((t_ennemy*)entity);
-	ennemy->super.texture.animation = EPHEMERAL;
+	ennemy->super.texture.animation = FINAL;
 	ennemy->super.texture.curr = (t_texture*)ennemy->die.next;
 	ennemy->super.texture.curr_head = &ennemy->die;
 	return (OK);

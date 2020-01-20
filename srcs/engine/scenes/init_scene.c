@@ -46,7 +46,8 @@ t_result	init_scene_interface(t_scene_interface *interface,
 {
 	if (interface == NULL || screen_ref == NULL)
 		return (throw_error("init_scene_interface", "NULL pointer provided"));
-	init_list_head(&interface->keys_binds);
+	init_list_head(&interface->key_binds);
+	init_list_head(&interface->key_hold_binds);
 	init_list_head(&interface->mouse_binds);
 	interface->screen_ref = screen_ref;
 	interface->mouse.pos = ft_vec2i(0, 0);

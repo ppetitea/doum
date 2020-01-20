@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 23:23:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 04:40:16 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 04:23:36 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 #include "utils/error.h"
 #include "libft.h"
 
-static t_result	init_map_editor_button_down_entity(t_button *button,
-					t_scene *scene)
+static t_result	init_menu_button_down_entity(t_button *button, t_scene *scene)
 {
 	if (!overwrite_button_entity_listener(&button->super,
 		&scene->renderer.ui_components, &scene->entities.ui_components, TRUE))
@@ -30,7 +29,7 @@ static t_result	init_map_editor_button_down_entity(t_button *button,
 	return (OK);
 }
 
-t_result	init_map_editor_button_down(t_scene *scene)
+t_result	init_menu_button_down(t_scene *scene)
 {
 	t_list_head			*images;
 	t_bitmap_texture	*bmp_hover;
@@ -48,7 +47,7 @@ t_result	init_map_editor_button_down(t_scene *scene)
 	size = ft_usize(100, 100);
 	if (!(button = init_new_button()))
 		return (throw_error("init_button_down", "build button failed"));
-	if (!init_map_editor_button_down_entity(button, scene))
+	if (!init_menu_button_down_entity(button, scene))
 		return (throw_error("init_button_down", "build button entity failed"));
 	if (!init_button_textures(button, *bmp_hover, *bmp_selected, size))
 		return (throw_error("init_button_down", "build b_textures failed"));

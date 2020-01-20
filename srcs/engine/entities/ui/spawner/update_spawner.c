@@ -12,7 +12,7 @@
 
 #include "libft.h"
 #include "utils/error.h"
-#include "engine/entities/ui/build_spawner.h"
+#include "engine/entities/ui/init_spawner.h"
 
 t_result	update_spawner_texture(t_entity *entity)
 {
@@ -25,11 +25,11 @@ t_result	update_spawner_texture(t_entity *entity)
 	curr_offset = entity->texture.curr->offset;
 	spawner = (t_spawner*)entity;
 	if (spawner->super.status.is_dragged)
-		spawner->super.texture.curr = spawner->dragged;
+		spawner->super.texture.curr = &spawner->dragged;
 	else if (spawner->super.status.is_hover)
-		spawner->super.texture.curr = spawner->hover;
+		spawner->super.texture.curr = &spawner->hover;
 	else
-		spawner->super.texture.curr = spawner->normal;
+		spawner->super.texture.curr = &spawner->normal;
 	entity->texture.curr->offset = curr_offset;
 	return (OK);
 }

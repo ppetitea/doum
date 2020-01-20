@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 15:18:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 00:56:38 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 05:36:57 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ t_result	init_scenes(t_game *game)
 	
 	if (game == NULL)
 		return (throw_error("int_scenes", "NULL pointer provided"));
-	// if (!init_menu_scene(game))
-	// 	return (throw_error("init_game", "init_menu_scene failed"));
-	// if (!init_map_editor_scene(game))
-	// 	return (throw_error("init_game", "init_map_editor_scene failed"));
+	if (!(scene = init_menu_scene(game)))
+		return (throw_error("init_game", "init_menu_scene failed"));
+	if (!(scene = init_map_editor_scene(game)))
+		return (throw_error("init_game", "init_map_editor_scene failed"));
 	if (!(scene = init_game_scene(game)))
 		return (throw_error("init_game", "init_game_scene failed"));
 	game->curr_scene = scene;

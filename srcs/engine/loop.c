@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:34:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 00:37:29 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 01:29:17 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	loop(t_game *game)
 	while (game->is_running)
 	{
 		reset_screen(game->screen);
-		trigger_keys_bindings(game->curr_scene);
+		trigger_key_hold_bindings(&game->curr_scene->interface.key_hold_binds);
 		render(game->curr_scene);
 		if (SDL_UpdateTexture(game->sdl.texture, NULL, game->screen.pixels,
 			game->screen.size.x * sizeof(uint32_t)) == SDL_ERROR)

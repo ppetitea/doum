@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 15:18:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 20:02:51 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 04:55:07 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_result	init_map_editor_entities(t_scene *scene)
 		return (throw_error("init_editor_entities", "init button down fail"));
 	if (!init_map_editor_button_up(scene))
 		return (throw_error("init_editor_entities", "init button up fail"));
-	if (!init_map_editor_spawner_exemple(scene))
+	if (!init_map_editor_spawner_sprite(scene))
 		return (throw_error("init_editor_entities", "init spawner fail"));
 	return (OK);
 }
