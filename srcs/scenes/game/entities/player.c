@@ -6,13 +6,14 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 00:28:13 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 05:41:57 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 18:51:48 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/scenes/init_scene.h"
 #include "engine/entities/init_player.h"
 #include "engine/entities/update_player.h"
+#include "engine/interface/update_camera.h"
 #include "engine/resources/textures/texture.h"
 #include "engine/interface/events/keyboard.h"
 #include "utils/error.h"
@@ -106,15 +107,28 @@ t_result	build_player_weapons(t_scene *scene, t_player *player)
 
 t_result	build_player_bindings(t_scene *scene, t_player *player)
 {
-	bind_key(&scene->interface.key_binds, SDLK_TAB, &player->super, weapon_next);
-	bind_key(&scene->interface.key_binds, SDLK_SPACE, &player->super, weapon_fire);
-	bind_key(&scene->interface.key_binds, SDLK_r, &player->super, weapon_reload);
-	bind_key(&scene->interface.key_hold_binds, SDLK_LEFT, &player->super, rotate_camera_left);
-	bind_key(&scene->interface.key_hold_binds, SDLK_RIGHT, &player->super, rotate_camera_right);
-	bind_key(&scene->interface.key_hold_binds, SDLK_w, &player->super, translate_camera_forward);
-	bind_key(&scene->interface.key_hold_binds, SDLK_a, &player->super, translate_camera_left);
-	bind_key(&scene->interface.key_hold_binds, SDLK_d, &player->super, translate_camera_right);
-	bind_key(&scene->interface.key_hold_binds, SDLK_s, &player->super, translate_camera_backward);
+	new_entity_bind_key(&scene->interface.key_binds, SDLK_TAB,
+		&player->super, weapon_next);
+	new_entity_bind_key(&scene->interface.key_binds, SDLK_SPACE,
+		&player->super, weapon_fire);
+	new_entity_bind_key(&scene->interface.key_binds, SDLK_r,
+		&player->super, weapon_reload);
+	new_entity_bind_key(&scene->interface.key_hold_binds, SDLK_UP,
+		&player->super, elevate_camera);
+	new_entity_bind_key(&scene->interface.key_hold_binds, SDLK_DOWN,
+		&player->super, lower_camera);
+	new_entity_bind_key(&scene->interface.key_hold_binds, SDLK_LEFT,
+		&player->super, rotate_camera_left);
+	new_entity_bind_key(&scene->interface.key_hold_binds, SDLK_RIGHT,
+		&player->super, rotate_camera_right);
+	new_entity_bind_key(&scene->interface.key_hold_binds, SDLK_w,
+		&player->super, translate_camera_forward);
+	new_entity_bind_key(&scene->interface.key_hold_binds, SDLK_a,
+		&player->super, translate_camera_left);
+	new_entity_bind_key(&scene->interface.key_hold_binds, SDLK_d,
+		&player->super, translate_camera_right);
+	new_entity_bind_key(&scene->interface.key_hold_binds, SDLK_s,
+		&player->super, translate_camera_backward);
 	return (OK);
 }
 

@@ -38,14 +38,37 @@ SRCS_LIST	=	main.c														\
 				utils/matrix/to_vtx.c										\
 				utils/matrix/translate.c									\
 				utils/time/get_delta.c										\
+				utils/parser/check/close_curly_braces.c						\
+				utils/parser/check/curly_braces.c							\
+				utils/parser/check/open_curly_braces.c						\
+				utils/parser/check/utility.c								\
+				utils/parser/debug/debug.c									\
+				utils/parser/get_data_in_string/get_index.c					\
+				utils/parser/get_data_in_string/get_key.c					\
+				utils/parser/get_data_in_string/get_value_type.c			\
+				utils/parser/get_data_in_string/get_value.c					\
+				utils/parser/object/getter/get_child_object.c				\
+				utils/parser/object/getter/get_float_value.c				\
+				utils/parser/object/getter/get_int_value.c					\
+				utils/parser/object/getter/get_string_value.c				\
+				utils/parser/object/create.c								\
+				utils/parser/object/free.c									\
+				utils/parser/read_file/get_file_datas.c						\
+				utils/parser/split_data/free_string_array.c					\
+				utils/parser/split_data/new_string_array.c					\
+				utils/parser/split_data/split_data.c						\
+				utils/parser/parser.c										\
+				utils/parser/to_object.c									\
 																			\
 				engine/init_game.c											\
+				engine/destroy_game.c											\
 																			\
 				engine/interface/sdl/init_sdl.c								\
 				engine/interface/sdl/destroy.c								\
 				engine/interface/screen/init_screen.c						\
 				engine/interface/screen/reset.c								\
 				engine/scenes/init_scene.c									\
+				engine/scenes/update_scene.c									\
 																			\
 				engine/resources/images/render.c							\
 				engine/resources/images/add_bmp.c							\
@@ -68,6 +91,23 @@ SRCS_LIST	=	main.c														\
 				engine/entities/update/hover.c								\
 				engine/entities/update/select.c								\
 																			\
+				engine/entities/ui/button/init_button_entity.c				\
+				engine/entities/ui/button/init_button.c						\
+				engine/entities/ui/button/update_button.c					\
+																			\
+				engine/entities/ui/checkbox/init_checkbox_entity.c				\
+				engine/entities/ui/checkbox/init_checkbox.c						\
+				engine/entities/ui/checkbox/update_checkbox.c					\
+																			\
+				engine/entities/ui/image/init_image_entity.c				\
+				engine/entities/ui/image/init_image.c						\
+				engine/entities/ui/image/update_image.c						\
+																			\
+				engine/entities/ui/spawner/init_spawner_entity.c			\
+				engine/entities/ui/spawner/init_spawner.c					\
+				engine/entities/ui/spawner/update_spawner.c					\
+																			\
+																			\
 				engine/entities/player/init_player_entity.c					\
 				engine/entities/player/init_player.c						\
 				engine/entities/player/update_player.c						\
@@ -88,13 +128,6 @@ SRCS_LIST	=	main.c														\
 				engine/interface/events/handle.c							\
 																			\
 																			\
-				engine/entities/ui/button/init_button_entity.c				\
-				engine/entities/ui/button/init_button.c						\
-				engine/entities/ui/button/update_button.c					\
-																			\
-				engine/entities/ui/spawner/init_spawner_entity.c			\
-				engine/entities/ui/spawner/init_spawner.c					\
-				engine/entities/ui/spawner/update_spawner.c					\
 																			\
 				scenes/init.c												\
 				scenes/game/init_game.c										\
@@ -110,9 +143,11 @@ SRCS_LIST	=	main.c														\
 				scenes/menu/init_menu.c										\
 				scenes/menu/entities/init_menu_entities.c					\
 				scenes/menu/entities/button_down.c							\
+				scenes/menu/entities/image_background.c							\
 				scenes/menu/interface/init_menu_interface.c					\
 				scenes/menu/resources/init_menu_resources.c					\
 				scenes/menu/resources/button_down.c							\
+				scenes/menu/resources/image_background.c							\
 																			\
 				scenes/map_editor/init_map_editor.c							\
 				scenes/map_editor/entities/init_map_editor_entities.c		\

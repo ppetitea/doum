@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:52:07 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 22:22:24 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 19:01:16 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@
 # include "libft.h"
 
 void		loop(t_game *game);
+t_result	destroy_game();
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 18:29:38 by lbenard           #+#    #+#             */
-/*   Updated: 2020/01/17 13:04:01 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 20:47:28 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ t_bool			list_is_empty(const t_list_head *head);
 void			list_add(t_list_head *new, t_list_head *prev,
 	t_list_head *next);
 void			list_add_entry(t_list_head *new, t_list_head *head);
+void			list_add_first(t_list_head *new, t_list_head *head);
 void			list_add_tail(t_list_head *new, t_list_head *head);
 void			list_del(t_list_head *prev, t_list_head *next);
 void			list_del_entry(t_list_head *entry);

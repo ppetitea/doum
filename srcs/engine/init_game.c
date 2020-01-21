@@ -6,14 +6,26 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:36:09 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 20:25:11 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 18:03:38 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/interface/init_screen.h"
+#include "engine/init_game.h"
 #include "utils/error.h"
 #include "libft.h"
 #include "init.h"
+
+t_game	*game_singleton(t_game *init)
+{
+	static t_game *game = NULL;
+
+	if (game == NULL && init == NULL)
+		return (throw_null("game_singleton", "NULL pointer provided at init"));
+	if (game == NULL)
+		game = init;
+	return (game);
+}
 
 t_game	*init_new_game(t_usize window_size)
 {
@@ -28,5 +40,6 @@ t_game	*init_new_game(t_usize window_size)
 	init_list_head(&self->scenes);
 	self->is_running = FALSE;
 	self->curr_scene = NULL;
+	game_singleton(self);
 	return (self);
 }

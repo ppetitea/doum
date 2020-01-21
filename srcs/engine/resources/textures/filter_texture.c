@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:24:43 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 03:56:01 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/21 06:19:40 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_result	texture_filter(t_texture *new, t_texture old, t_filter_type filter)
 
 	if (new == NULL)
 		return (throw_error("texture_filter", "NULL pointer provided"));
-	if (!(init_texture(new, old.name, old.size)))
+	if (!(init_texture(new, old.size)))
 		return (throw_error("hover_filter", "init_texture failed"));
 	overwrite_texture_params(new, old.offset, old.delay_ms);
 	i.y = 0;
@@ -46,7 +46,7 @@ t_texture	*new_texture_filter(t_texture old, t_filter_type filter)
 {
 	t_texture 		*new;
 
-	if (!(new = init_new_texture(old.name, old.size)))
+	if (!(new = init_new_texture(old.size)))
 		return (throw_null("hover_filter", "new_texture failed"));
 	if (!texture_filter(new, old, filter))
 		return (throw_null("hover_filter", "filter failed"));

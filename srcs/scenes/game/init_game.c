@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 16:00:09 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 23:32:43 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/21 03:15:08 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,17 @@
 #include "init.h"
 #include "utils/error.h"
 
-t_scene		*init_game_scene(t_game *game)
+t_scene		*init_game_scene(t_game *game, t_dnon_object *scene_obj)
 {
-	char	*name;
-	t_scene	*scene;
+	char			*name;
+	t_scene			*scene;
+	t_dnon_object	*resources_obj;
 
 	name = NULL;
-	if (game == NULL)
+	if (game == NULL || scene_obj == NULL)
 		return (throw_null("init_game", "NULL pointer provided"));
+	if (!(resources_obj = get_child_list_object_by_key(scene_obj, "resources")))
+		return (throw_null("init", "fail to find game resources in file"));
 	if (!(name = ft_strdup("game")))
 		return (throw_null("init_game", "strdup failed"));
 	if (!(scene = init_new_scene(name, &game->screen)))

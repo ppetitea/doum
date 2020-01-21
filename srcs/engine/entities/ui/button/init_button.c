@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:57:16 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 04:00:32 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/21 06:20:08 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ t_result	init_button_textures(t_button *self, t_bitmap_texture hover,
 {
 	if (self == NULL)
 		return (throw_error("init_button_textures", "NULL pointer provided"));
-	if (!init_texture(&self->hover, "osef", size))
+	if (!init_texture(&self->hover, size))
 		return (throw_error("init_button_textures", "normal texture failed"));
-	if (!init_texture(&self->selected, "osef", size))
+	if (!init_texture(&self->selected, size))
 		return (throw_error("init_button_textures", "normal texture failed"));
 	if (!fill_texture_with_bmp(&self->hover, &hover))
 		return (throw_error("init_button_textures", "fill texture failed"));

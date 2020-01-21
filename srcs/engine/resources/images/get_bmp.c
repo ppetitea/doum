@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:54:57 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/18 18:52:12 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/21 04:50:24 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ t_bitmap_texture *get_image_by_name(t_list_head *images, char *name)
 		image_node = (t_image_node*)pos;
 		if (!strcmp(image_node->name, name))
 			return (image_node->image);
-		(void)name;
 	}
 	return (throw_null("get_image_by_name", "Error 404 not found"));
 }

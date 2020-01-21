@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 23:55:41 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 21:33:57 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/21 06:09:38 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_result	add_texture(t_list_head *textures, t_list_head *bmp_src,
 		// printf("diff '%d'\n", ft_strcmp(img->name, name));
 		if (!ft_strcmp(img->name, name))
 		{
-			if (!(texture = init_new_texture(name, args.size)))
+			if (!(texture = init_new_texture(args.size)))
 				return (throw_error("add_texture", "build_texture failed"));
 			overwrite_texture_params(texture, args.offset, args.delay_ms);
 			if (!fill_texture_with_bmp(texture, img->image))

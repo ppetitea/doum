@@ -6,7 +6,7 @@
 #    By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/05 18:02:14 by lbenard           #+#    #+#              #
-#    Updated: 2020/01/17 23:55:51 by ppetitea         ###   ########.fr        #
+#    Updated: 2020/01/20 20:47:26 by ppetitea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRCS_LIST		=	containers/list/init_list_head.c		\
 					containers/list/list_is_empty.c			\
 					containers/list/list_add.c				\
 					containers/list/list_add_entry.c		\
+					containers/list/list_add_first.c		\
 					containers/list/list_add_tail.c			\
 					containers/list/list_del.c				\
 					containers/list/list_del_entry.c		\

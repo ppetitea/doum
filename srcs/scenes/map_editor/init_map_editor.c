@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 15:57:14 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 05:09:07 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/21 03:15:15 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,17 @@
 #include "utils/error.h"
 #include "init.h"
 
-t_scene		*init_map_editor_scene(t_game *game)
+t_scene		*init_map_editor_scene(t_game *game, t_dnon_object *scene_obj)
 {
-	char	*name;
-	t_scene	*scene;
+	char			*name;
+	t_scene			*scene;
+	t_dnon_object	*resources_obj;
 
 	name = NULL;
-	if (game == NULL)
+	if (game == NULL || scene_obj == NULL)
 		return (throw_null("init_map_editor", "NULL pointer provided"));
+	if (!(resources_obj = get_child_list_object_by_key(scene_obj, "resources")))
+		return (throw_null("init", "fail to find editor resources in file"));
 	if (!(name = ft_strdup("map_editor")))
 		return (throw_null("init_map_editor", "strdup failed"));
 	if (!(scene = init_new_scene(name, &game->screen)))

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 01:11:36 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 02:54:52 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 17:58:55 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,35 @@ t_result	rotate_camera_right(t_entity *entity)
 	*player->cam.dir = to_vtx(rotate(1.0f / 180.0f * PI), *player->cam.dir);
 	player->cam.to_plan = vec2f_scalar(*player->cam.dir, player->cam.dist_to_plan);
 	player->cam.plan = ft_vec2f(-player->cam.dir->y, player->cam.dir->x);
+	return (OK);
+}
+
+t_result	elevate_camera(t_entity *entity)
+{
+	t_player	*player;
+
+	if (entity == NULL)
+		return (throw_error("translate_cam forward", "NULL pointer provided"));
+	if (entity->type != PLAYER)
+		return (throw_error("translate_cam forward", "entity isn't player"));
+	player = (t_player*)entity;
+	player->cam.height += 10.0f * player->velocity;
+	printf("height %.2f\n", player->cam.height);
+	return (OK);
+}
+
+t_result	lower_camera(t_entity *entity)
+{
+	t_player	*player;
+
+	if (entity == NULL)
+		return (throw_error("translate_cam forward", "NULL pointer provided"));
+	if (entity->type != PLAYER)
+		return (throw_error("translate_cam forward", "entity isn't player"));
+	player = (t_player*)entity;
+	if (player->cam.height - 10.0f * player->velocity > 0)
+		player->cam.height -= 10.0f * player->velocity;
+	printf("height %.2f\n", player->cam.height);
 	return (OK);
 }
 

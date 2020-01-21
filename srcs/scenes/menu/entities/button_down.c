@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 23:23:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 04:23:36 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 22:35:53 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_result	init_menu_button_down_entity(t_button *button, t_scene *scene)
 	return (OK);
 }
 
-t_result	init_menu_button_down(t_scene *scene)
+t_button	*init_menu_button_down(t_scene *scene)
 {
 	t_list_head			*images;
 	t_bitmap_texture	*bmp_hover;
@@ -38,18 +38,18 @@ t_result	init_menu_button_down(t_scene *scene)
 	t_usize				size;
 
 	if (scene == NULL)
-		return (throw_error("init_button_down", "NULL pointer provided"));
+		return (throw_null("init_button_down", "NULL pointer provided"));
 	images = &scene->resources.images;
 	if (!(bmp_hover = get_image_by_name(images, "button_down_white")))
-		return (throw_error("init_button_down", "button_down_white failed"));
+		return (throw_null("init_button_down", "button_down_white failed"));
 	if (!(bmp_selected = get_image_by_name(images, "button_down_orange")))
-		return (throw_error("init_button_down", "button_down_orange failed"));
+		return (throw_null("init_button_down", "button_down_orange failed"));
 	size = ft_usize(100, 100);
 	if (!(button = init_new_button()))
-		return (throw_error("init_button_down", "build button failed"));
+		return (throw_null("init_button_down", "build button failed"));
 	if (!init_menu_button_down_entity(button, scene))
-		return (throw_error("init_button_down", "build button entity failed"));
+		return (throw_null("init_button_down", "build button entity failed"));
 	if (!init_button_textures(button, *bmp_hover, *bmp_selected, size))
-		return (throw_error("init_button_down", "build b_textures failed"));
-	return (OK);
+		return (throw_null("init_button_down", "build b_textures failed"));
+	return (button);
 }

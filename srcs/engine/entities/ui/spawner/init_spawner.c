@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:57:16 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 05:29:12 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/21 09:33:24 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_result	init_spawner_textures(t_spawner *self, t_bitmap_texture bmp,
 {
 	if (self == NULL)
 		return (throw_error("init_spawner_textures", "NULL pointer provided"));
-	if (!(init_texture(&self->save, "spawner_init", size)))
+	if (!(init_texture(&self->save, size)))
 		return (throw_error("init_spawner_textures", "init texture failed"));
 	if (!fill_texture_with_bmp(&self->save, &bmp))
 		return (throw_error("init_spawner_textures", "fill texture failed"));

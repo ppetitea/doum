@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:44:34 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 01:30:46 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 23:08:59 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,10 @@ t_result	init_entity(t_entity *self, t_entity_type type)
 	if (!init_entity_actions(&self->trigger))
 		return (throw_error("init_entity", "failed to init actions"));
 	init_list_head(&self->node);
+	init_list_head(&self->childs);
+	self->parent = NULL;
 	self->type = type;
 	self->pos = ft_vec2f(0, 0);
-	self->dir = ft_vec2f(0, 0);
+	self->dir = ft_vec2f(0, 1);
 	return (OK);
 }

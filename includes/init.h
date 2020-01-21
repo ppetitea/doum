@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 16:27:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 04:43:26 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/21 03:44:08 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 # include "engine/entities/init_entity.h"
 # include "engine/scenes/init_scene.h"
 # include "engine/entities/init_player.h"
+# include "engine/entities/ui/init_image.h"
+# include "engine/entities/ui/init_button.h"
+# include "engine/entities/ui/init_checkbox.h"
+# include "utils/parser.h"
 
 /*
 **	game
@@ -27,25 +31,29 @@ t_game		*init();
 /*
 **	scenes
 */
-t_result	init_scenes(t_game *game);
-t_scene		*init_menu_scene(t_game *game);
-t_scene		*init_map_editor_scene(t_game *game);
-t_scene		*init_game_scene(t_game *game);
+t_result	init_scenes(t_game *game, t_dnon_object *obj);
+t_scene		*init_menu_scene(t_game *game, t_dnon_object *scene_obj);
+t_scene		*init_map_editor_scene(t_game *game, t_dnon_object *scene_obj);
+t_scene		*init_game_scene(t_game *game, t_dnon_object *scene_obj);
 
 /*
 **		menu
 */
 t_result	init_menu_interface(t_scene *scene);
-t_result	init_menu_resources(t_scene *scene);
-t_result	init_menu_entities(t_scene *scene);
+t_result	init_menu_resources(t_scene *scene, t_dnon_object *resources_obj);
+t_result	init_menu_entities(t_scene *scene, t_dnon_object *entities_obj);
 /*
 **			menu resources
 */
 t_result	load_menu_button_down_images(t_list_head *images);
+t_result	load_menu_image_background(t_list_head *images);
+t_result	load_menu_checkbox_test_images(t_list_head *images);
 /*
 **			menu entities
 */
-t_result	init_menu_button_down(t_scene *scene);
+t_button	*init_menu_button_down(t_scene *scene);
+t_image		*init_menu_image_background(t_scene *scene);
+t_checkbox	*init_menu_checkbox_test(t_scene *scene);
 
 
 /*

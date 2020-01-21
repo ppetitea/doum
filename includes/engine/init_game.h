@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:52:07 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 21:49:48 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/20 18:03:16 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ typedef struct			s_game
 }						t_game;
 
 t_game					*init_new_game();
+t_game					*game_singleton(t_game *init);
+
 
 #endif

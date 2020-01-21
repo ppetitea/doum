@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:13:23 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 04:20:21 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/21 02:10:09 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct			s_entity_texture
 {
 	struct timespec		last;
 	float				scale;
+	// t_vec2i				offset;
 	t_vec2i				anchor;
 	t_texture			*curr;
 	t_list_head			*curr_head;
@@ -89,7 +90,9 @@ typedef struct			s_entity_actions
 
 typedef enum	e_entity_type
 {
+	IMAGE,
 	BUTTON,
+	CHECKBOX,
 	SPAWNER,
 	SPRITE,
 	PLAYER,
@@ -98,13 +101,16 @@ typedef enum	e_entity_type
 
 typedef struct	s_entity
 {
-	t_list_head				node;
-	t_entity_texture		texture;
-	t_listener				status;
-	t_entity_actions		trigger;
-	t_entity_type			type;
-	t_vec2f					pos;
-	t_vec2f					dir;
+	t_list_head			node;
+	t_entity_texture	texture;
+	t_listener			status;
+	t_entity_actions	trigger;
+	t_entity_type		type;
+	t_vec2f				pos;
+	t_vec2f				dir;
+	size_t				id;
+	struct s_entity		*parent;
+	t_list_head			childs;
 }				t_entity;
 
 t_result	init_entity(t_entity *self, t_entity_type type);
