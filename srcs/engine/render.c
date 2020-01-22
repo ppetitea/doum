@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 17:16:52 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/22 08:52:10 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/22 15:47:56 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "engine/scenes/init_scene.h"
 #include "utils/error.h"
 #include "libft.h"
-#include <time.h>
+#include <sys/time.h>
 #include <math.h>
 
 # include <stdio.h>
@@ -45,13 +45,17 @@ static t_texture	*handle_animation_end(t_entity *entity)
 static	void	animate_texture(t_entity *entity)
 {
 	unsigned int		delta_ms;
-	struct timespec		last;
-	struct timespec		time;
+	// struct timespec		last;
+	// struct timespec		time;
+	struct timeval		last;
+	struct timeval		time;
 
 	last = entity->texture.last;
-	timespec_get(&time, TIME_UTC);
+	gettimeofday(&time, NULL);
+	// timespec_get(&time, TIME_UTC);
 	delta_ms = (time.tv_sec - last.tv_sec) * 1000;
-	delta_ms += (time.tv_nsec - last.tv_nsec) / 1.0e6;
+	delta_ms += (time.tv_usec - last.tv_usec) / 1.0e3;
+	// delta_ms += (time.tv_nsec - last.tv_nsec) / 1.0e6;
 	if (delta_ms > entity->texture.curr->delay_ms)
 	{
 		entity->texture.last = time;

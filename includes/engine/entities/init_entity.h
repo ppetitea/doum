@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:13:23 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/21 23:45:14 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/22 15:47:56 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "libft.h"
 # include "engine/resources/textures/texture.h"
 # include "utils/parser.h"
-# include <time.h>
+# include <sys/time.h>
 
 /*
 **	Fabrique d'entites :
@@ -63,7 +63,7 @@ typedef enum	e_animation_status
 
 typedef struct			s_entity_texture
 {
-	struct timespec		last;
+	struct timeval		last;
 	float				scale;
 	// t_vec2i				offset;
 	t_vec2i				anchor;

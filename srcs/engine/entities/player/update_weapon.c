@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 01:16:28 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 01:01:10 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/22 15:29:11 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ t_result	weapon_reload(t_entity *entity)
 	handle_weapon_magazine(player->weapon.curr);
 	player->super.texture.animation = EPHEMERAL;
 	player->super.texture.curr = (t_texture*)player->weapon.curr->reload.next;
-	timespec_get(&player->super.texture.last, TIME_UTC);
+	gettimeofday(&player->super.texture.last, NULL);
+	// timespec_get(&player->super.texture.last, TIME_UTC);
 	player->super.texture.curr_head = &player->weapon.curr->reload;
 	weapon_status(*player->weapon.curr);
 	return (OK);
@@ -95,7 +96,8 @@ t_result	weapon_fire(t_entity *entity)
 		player->super.texture.prev = player->super.texture.curr;
 		player->super.texture.prev_head = player->super.texture.curr_head;
 		player->super.texture.animation = IN_PROGRESS;
-		timespec_get(&player->super.texture.last, TIME_UTC);
+		gettimeofday(&player->super.texture.last, NULL);
+		// timespec_get(&player->super.texture.last, TIME_UTC);
 	}
 	weapon_status(*player->weapon.curr);
 	return (OK);

@@ -6,23 +6,25 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 01:17:28 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 19:14:52 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/22 15:47:56 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/interface/events/keyboard.h"
 #include "engine/scenes/init_scene.h"
 #include "utils/error.h"
-#include <time.h>
+#include <sys/time.h>
 
 #include <stdio.h>
 
-unsigned int compute_delta_ms(struct timespec last, struct timespec time)
+// unsigned int compute_delta_ms(struct timespec last, struct timespec time)
+unsigned int compute_delta_ms(struct timeval last, struct timeval time)
 {
 	unsigned int	delta_ms;
 
 	delta_ms = (time.tv_sec - last.tv_sec) * 1000;
-	delta_ms += (time.tv_nsec - last.tv_nsec) / 1.0e6;
+	delta_ms += (time.tv_usec - last.tv_usec) / 1.0e3;
+	// delta_ms += (time.tv_nsec - last.tv_nsec) / 1.0e6;
 	// printf ("binding delta_ms %d\n", delta_ms);
 	return (delta_ms);
 }
@@ -138,7 +140,8 @@ t_result	init_bind_key(t_event_key_binding *bind, SDL_Keycode key,
 	bind->key = key;
 	bind->trigger = trigger;
 	bind->delay = 20;
-	timespec_get(&bind->last, TIME_UTC);
+	gettimeofday(&bind->last, NULL);
+	// timespec_get(&bind->last, TIME_UTC);
 	return (OK);
 }
 

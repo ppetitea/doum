@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 01:15:15 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 18:50:37 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/22 15:31:24 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "engine/init_game.h"
 # include "engine/scenes/init_scene.h"
 # include "engine/entities/init_entity.h"
-# include <time.h>
+# include <sys/time.h>
 
 typedef	enum		s_key_bind_type
 {
@@ -31,7 +31,8 @@ typedef struct		s_event_key_binding
 	t_key_bind_type	type;
 	SDL_Keycode		key;
 	t_bool			is_down;
-	struct timespec	last;
+	// struct timespec	last;
+	struct timeval	last;
 	unsigned int	delay;
 	t_result		(*trigger)();
 }					t_event_key_binding;

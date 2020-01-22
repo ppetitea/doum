@@ -1,7 +1,7 @@
 #include "SDL.h"
 #include <stdio.h>
 #include "libft.h"
-#include <time.h>
+#include <sys/time.h>
 #include <stdio.h>
 #include <stdlib.h>
 #define RATIO 16 / 9

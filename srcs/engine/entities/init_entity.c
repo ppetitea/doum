@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:44:34 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 23:08:59 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/22 15:47:58 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "engine/entities/update_entity.h"
 #include "utils/error.h"
 #include "libft.h"
-#include <time.h>
+#include <sys/time.h>
 
 t_result	init_entity_listener(t_listener *self)
 {
@@ -36,7 +36,8 @@ t_result	init_entity_texture(t_entity_texture *self)
 {
 	if (self == NULL)
 		return (throw_error("init_entity_texture", "NULL pointer provided"));
-	timespec_get(&self->last, TIME_UTC);
+	gettimeofday(&self->last, NULL);
+	// timespec_get(&self->last, TIME_UTC);
 	self->scale = 1.0f;
 	self->anchor = ft_vec2i(0, 0);
 	self->curr = NULL;
