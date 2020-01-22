@@ -65,8 +65,8 @@ INCLUDES	:=	-I includes
 
 #COMPILATION
 CC			=	gcc
-CFLAGS		:=	-Wall -Werror -Wextra
-LDFLAGS		:=	-Wall -Werror -Wextra
+CFLAGS		:=#	-Wall -Werror -Wextra
+LDFLAGS		:=#	-Wall -Werror -Wextra
 
 #LIBRARIES
 #	libft
