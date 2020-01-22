@@ -115,20 +115,12 @@ void	draw_column(uint32_t *pixels, int x, int height, uint32_t color)
 
 void	draw_vertical_line(uint32_t *pixels, int x, int ytop, int ybot, uint32_t color)
 {
-	t_point a;
-	t_point b;
-
-
 	if (ytop > ybot)
 		return ;
 	if (ytop < 0)
 		ytop = 0;
-	a.x = x;
-	b.x = x;
-	a.y = ytop;
-	b.y = ybot;
-
-	pp_liner(pixels, &a, &b, color);
+	while (ytop < ybot)
+		pixels[(ytop++) * WIDTH + x] = color;
 }
 
 uint32_t nocturne(uint32_t c)
@@ -159,14 +151,14 @@ void	draw_bg(uint32_t *pixels, uint32_t *texture)
 			pixels[i] = texture[i];
 }
 
-void	render2(uint32_t *pixels, int *hm, uint32_t *colormap, t_point player, float phi, int height, int horizon, int scale_height, int distance, uint32_t *bg)
+void	render2(uint32_t *pixels, int *hm, uint32_t *colormap, t_point player, float phi, int height, int horizon, int scale_height, int distance)
 {
-	memset(pixels, 0xFFFFFFFF, sizeof(uint32_t) * WIDTH * HEIGHT);
-	draw_bg(pixels, bg);
 	int mapwidthperiod = WIDTH - 1;
 	int mapheightperiod = HEIGHT - 1;
 
 	(void)scale_height;
+	if(scale_height <= 0)
+		scale_height = 1;
 
 	float sinang = sin(phi);
 	float cosang = cos(phi);
@@ -192,7 +184,7 @@ void	render2(uint32_t *pixels, int *hm, uint32_t *colormap, t_point player, floa
 		float dy = (pry - ply) / WIDTH;
 		plx += player.x;
 		ply += player.y;
-		float invz = 1 / z * 240;
+		float invz = 1 / z * 240 * scale_height;
 		for(int i=0; i< WIDTH; i++)
 		{
 			int mapoffset = (((int)floorf(ply) & (int)mapwidthperiod) << 10) + (((int)floorf(plx)) & ((int)mapheightperiod));
@@ -283,6 +275,20 @@ static SDL_Cursor *init_system_cursor(const char *image[])
   return SDL_CreateCursor(data, mask, 32, 32, hot_x, hot_y);
 }
 
+void	collision_ground(int *hm, t_point *p, int *height)
+{
+	int posx;
+	int posy;
+	posx = p->x % WIDTH;
+	posy = p->y % HEIGHT;
+	if (posx < 0)
+		posx *= -1;
+	if (posy < 0)
+		posy *= -1;
+	if (*height < hm[posy * WIDTH + posx] + 20)
+	*height = ((int)hm[posy * WIDTH + posx] + 20);
+}
+
 int main(int argc, char **argv)
 {
 	SDL_Event e;
@@ -291,6 +297,8 @@ int main(int argc, char **argv)
 	SDL_Renderer *renderer = NULL;
 	int statut = EXIT_FAILURE;
 	SDL_Texture *texture = NULL;
+
+	
 
 	if (argc != 4)
 		return (0);
@@ -336,12 +344,19 @@ int main(int argc, char **argv)
 
 	for(int i = 0; i < WIDTH * HEIGHT - 1; i++)
 		hm[i] = get_blue(map[i]);	
+	for(int i = 0; i < WIDTH * HEIGHT - 1; i++)
+		bg->pixels[i] = (bg->pixels[i] & 0xfffefefe) >> 1;	
 	float ag = 0;
 	int height = 50;
 	int horizon = 120;
 	
 	float incx = 0;
 	int incy = 0;
+	int scale_height = 2;
+
+	double	ms_per_tick = 1000 / 60;
+	int	simtime = 0;;
+	clock_t start, end;
 
 	while(!quit)
 	{
@@ -356,6 +371,10 @@ int main(int argc, char **argv)
 					height += 5;
 				if (e.key.keysym.sym == SDLK_x)
 					height -= 5;
+				if (e.key.keysym.sym == SDLK_c)
+					scale_height++;
+				if (e.key.keysym.sym == SDLK_v)
+					scale_height--;
 				if (e.key.keysym.sym == SDLK_r)
 					horizon += 5;
 				if (e.key.keysym.sym == SDLK_f)
@@ -390,13 +409,15 @@ int main(int argc, char **argv)
 					horizon += 10;
 			}
 		}
+		collision_ground(hm, &player, &height);
+		memset(screen, 0xFFFFFFFF, sizeof(uint32_t) * WIDTH * HEIGHT);
+		draw_bg(screen, bg->pixels);
 		//render(screen, hm,colormap, player, ag, 300);
-		render2(screen, hm, colormap, player, ag, height, horizon, 120, 3000, bg->pixels);
+		render2(screen, hm, colormap, player, ag, height, horizon, scale_height, 3000);
 		SDL_RenderClear(renderer);
 		SDL_RenderCopy(renderer, texture, NULL, NULL);
 		SDL_RenderPresent(renderer);
 	}
-
 	statut = EXIT_SUCCESS;
 
 Quit:
