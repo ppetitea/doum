@@ -89,6 +89,7 @@ SRCS_LIST	=	main.c														\
 				engine/entities/get_entity.c								\
 				engine/entities/init_entity_with_obj.c						\
 				engine/entities/init_entity.c								\
+				engine/entities/sort_rules.c								\
 				engine/entities/update_entity.c								\
 				engine/entities/update/animate.c							\
 				engine/entities/update/display.c							\

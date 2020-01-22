@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 12:03:19 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/22 04:51:23 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/22 07:35:32 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,43 @@
 
 #include <stdio.h>
 
+static float	angle_gap(float f1, float f2)
+{
+	float	result;
+	
+	f1 += PI;
+	f2 += PI;
+	result =  ((f1 > f2) ? f1 - f2 : -(f2 - f1));
+	if (result > PI)
+		result = -(2 * PI - result);
+	if (result < -PI)
+		result = (result + 2 * PI);
+	return (result);
+}
+
 static float	compute_angle_to_player(t_ennemy *ennemy)
 {
-	float	angle_to_player;
 	t_vec2f	dir_to_player;
 	t_pos2f	player_pos;
+	float	player_angle;
+	float	ennemy_angle;
 
 	if (ennemy == NULL)
 		return (throw_error("update_ennemy_texture", "NULL pointer provided"));
 	player_pos = ennemy->player_ref->super.pos;
 	dir_to_player = ft_vec2f(player_pos.x - ennemy->super.pos.x,
 						player_pos.y - ennemy->super.pos.y);
-	angle_to_player = atan2f(ennemy->super.dir.x, ennemy->super.dir.y)
-					 - atan2f(dir_to_player.x, dir_to_player.y);
-	return (angle_to_player);
+	ennemy_angle = atan2f(ennemy->super.dir.x, ennemy->super.dir.y);
+	player_angle = atan2f(dir_to_player.x, dir_to_player.y);
+	// printf("e %.2f p %.2f\n", ennemy_angle / PI * 180, player_angle / PI * 180);
+	return (angle_gap(ennemy_angle, player_angle));
 }
 
 static void	texture_by_side(t_ennemy *ennemy, t_list_head *right,
 				t_list_head *left, float angle)
 {
 	t_list_head	*texture_head;
-	
+
 	texture_head = (angle > 0) ? right : left;
 	update_entity_texture(&ennemy->super, texture_head);
 }
@@ -58,6 +74,7 @@ t_result	update_ennemy_texture_by_direction(t_ennemy *ennemy)
 	sides = &ennemy->orientation;
 	angle = compute_angle_to_player(ennemy);
 	angle_abs = ft_absf(angle);
+	// printf("angle %f\n", angle / PI * 180.0f);
 	if (angle_abs <= PI / 8.0f)
 		update_entity_texture(&ennemy->super, &sides->front);
 	else if (angle_abs >= PI * (7.0f / 8.0f))

@@ -6,11 +6,12 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 17:16:52 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/22 05:13:58 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/22 08:52:10 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/entities/init_entity.h"
+#include "engine/entities/update_entity.h"
 #include "engine/scenes/init_scene.h"
 #include "utils/error.h"
 #include "libft.h"
@@ -136,6 +137,7 @@ static t_result	render_sprites(t_scene *scene)
 	t_entity			*entity;
 	t_entity_texture	*t;
 
+	bubble_sort_linked_list(&scene->renderer.sprites, sprite_distance_rule);
 	pos = &scene->renderer.sprites;
 	next = pos->next;
 	while ((pos = next) != &scene->renderer.sprites)

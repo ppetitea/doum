@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:13:23 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/21 23:52:01 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/22 08:50:12 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,7 @@ t_result	trigger_animation(t_entity *entity);
 t_result	toggle_display_entity(t_entity *entity);
 t_result	display_entity(t_entity *entity);
 t_result	hide_entity(t_entity *entity);
+
+t_bool		sprite_distance_rule(t_list_head *pos, t_list_head *next);
 
 #endif
