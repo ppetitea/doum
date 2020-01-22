@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:52:07 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 18:03:16 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/22 17:25:26 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "engine/interface/init_screen.h"
 # include "engine/interface/init_sdl.h"
+# include "engine/map/init_map.h"
 # include "scenes/init_scene.h"
 # include "libft.h"
 
@@ -24,6 +25,8 @@ typedef struct			s_game
 	t_screen			screen;
 	t_list_head			scenes;
 	t_scene				*curr_scene;
+	t_list_head			maps;
+	t_map				*curr_map;
 	t_bool				is_running;
 }						t_game;
 

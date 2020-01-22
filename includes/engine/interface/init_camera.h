@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 17:04:35 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/22 01:13:30 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/22 17:02:30 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef	struct	s_camera
 	float	plan_half;
 	float	dist_to_plan;
 	float	height;
+	size_t	horizon;
 	t_vec2f	*pos;
 	t_vec2f	*dir;
 	t_vec2f	to_plan;

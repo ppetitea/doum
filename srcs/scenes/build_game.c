@@ -73,8 +73,6 @@ t_scene	*build_game_scene(t_game *game, t_dnon_object *scene_obj)
 		return (throw_null("build_game", "build_game_interface failed"));
 	if (!build_game_resources(scene, resources_obj))
 		return (throw_null("build_game", "build_game_resources failed"));
-	if (!build_game_entities(scene, entities_obj))
-		return (throw_null("build_game", "build_game_entities failed"));
 	list_add_entry(&scene->node, &game->scenes);
 	return (scene);
 }

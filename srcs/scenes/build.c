@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 15:18:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/22 03:18:01 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/22 17:32:29 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,14 @@ t_result	build_scenes(t_game *game, t_dnon_object *obj)
 	return (OK);
 }
 
+t_result	build_maps(t_game *game, t_dnon_object *maps_obj)
+{
+	if (game == NULL || maps_obj == NULL)
+		return (throw_error("build_maps", "NULL pointer provided"));
+
+	return (OK);
+}
+
 t_game	*build()
 {
 	t_dnon_object	*obj;
@@ -53,7 +61,9 @@ t_game	*build()
 	window = ft_usize(640, 480);
 	if (!(game = init_new_game(window)))
 		return (throw_null("build_game", "build_game failed"));
+	if (!build_maps(game, get_child_list_object_by_key(obj, "maps")))
+		return (throw_null("build_game", "build_maps failed"));
 	if (!build_scenes(game, obj))
-		return (throw_null("build_game", "init_scenes failed"));
+		return (throw_null("build_game", "build_scenes failed"));
 	return (game);
 }

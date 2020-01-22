@@ -1,3 +1,17 @@
+"maps":{
+	"resources":{
+		"map_canion":"resources/maps/canions.bmp"
+	},
+	"list":{
+		"canion":{
+			"name":"map_canion",
+			"size":{"x":1024,"y"1024"},
+			"sprites":{
+				
+			}
+		}
+	}
+},
 "scenes":{
 	"menu":{
 		"resources":{
@@ -60,7 +74,7 @@
 				}
 			},
 			"button_left":{
-				"type":"button",
+				"type":"button-display",
 				"action":"toogle_display",
 				"textures":{
 					"hover":{
@@ -92,7 +106,7 @@
 				}
 			},
 			"button_right":{
-				"type":"button",
+				"type":"button-display",
 				"action":"toogle_display",
 				"textures":{
 					"hover":{

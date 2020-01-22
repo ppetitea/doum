@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:12:43 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/21 23:36:57 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/22 16:04:09 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "engine/scenes/init_scene.h"
 # include "utils/parser.h"
 
-t_result	build_button(t_scene *scene, t_dnon_object *button_obj);
+t_result	build_button_display(t_scene *scene, t_dnon_object *button_obj);
 t_result	init_button_action_with_obj(t_button *button, 
 			char *action);
 t_result	build_button_textures(t_scene *scene, t_button *self,

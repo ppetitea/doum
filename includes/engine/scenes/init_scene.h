@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 16:27:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/21 23:43:58 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/22 17:23:01 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct			s_scene
 	t_scene_resources	resources;
 	t_scene_entities	entities;
 	t_scene_renderer	renderer;
+	t_scene_maps		maps;
 }						t_scene;
 
 t_scene				*init_new_scene(char *name, t_screen *screen_ref);

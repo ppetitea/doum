@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 22:56:53 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/22 03:04:07 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/22 16:11:29 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ t_result	init_button_action_with_obj(t_button *button,
 	return (OK);
 }
 
-t_result	build_button(t_scene *scene, t_dnon_object *button_obj)
+t_result	build_button_display(t_scene *scene, t_dnon_object *button_obj)
 {
 	t_button		*button;
 

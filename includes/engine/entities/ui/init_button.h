@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:12:43 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/21 23:35:12 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/22 16:52:55 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,32 @@ typedef struct		s_button
 	t_texture		selected;
 	t_result		(*action)(t_entity*);
 }					t_button;
+
+typedef struct		s_button_display
+{
+	t_entity		super;
+	t_texture		normal;
+	t_texture		hover;
+	t_texture		selected;
+	t_result		(*action)(t_entity*);
+}					t_button_display;
+
+typedef struct		s_button_list_next
+{
+	t_entity		super;
+	t_list_head		texture;
+	size_t			offset;
+	size_t			amount;
+	t_bool			to_next;
+	t_result		(*action)(t_entity*);
+}					t_button_list_next;
+
+typedef struct		s_button_specific
+{
+	t_entity		super;
+	t_list_head		texture;
+	t_result		(*action)();
+}					t_button_specific;
 
 t_button			*init_new_button();
 t_result			init_button_textures(

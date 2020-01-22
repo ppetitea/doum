@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 22:52:40 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/22 04:50:31 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/22 16:04:06 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 t_result	build_entity_by_type(t_scene *scene, t_dnon_object *entity_obj,
 				char *entity_type)
 {
-	if (!ft_strcmp(entity_type, "button"))
-		return (build_button(scene, entity_obj));
+	if (!ft_strcmp(entity_type, "button-display"))
+		return (build_button_display(scene, entity_obj));
 	if (!ft_strcmp(entity_type, "image"))
 		return (build_image(scene, entity_obj));
 	if (!ft_strcmp(entity_type, "player"))
