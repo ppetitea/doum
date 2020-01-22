@@ -6,14 +6,14 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 15:57:14 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/21 03:15:15 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/21 23:22:41 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/scenes/init_scene.h"
 #include "engine/init_game.h"
 #include "utils/error.h"
-#include "init.h"
+#include "build.h"
 
 t_scene		*init_map_editor_scene(t_game *game, t_dnon_object *scene_obj)
 {

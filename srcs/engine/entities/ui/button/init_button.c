@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:57:16 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/21 06:20:08 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/21 22:39:02 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_button	*init_new_button()
 	self->normal.pixels = NULL;
 	self->hover.pixels = NULL;
 	self->selected.pixels = NULL;
+	self->action = NULL;
 	return (self);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 17:04:35 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 23:35:49 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/22 03:49:09 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 typedef enum	e_weapon_type
 {
-	HANDS,
+	SWORD,
 	GUN,
 }				t_weapon_type;
 
@@ -37,7 +37,7 @@ typedef struct	s_weapon
 	t_list_head		reload;
 }				t_weapon;
 
-t_weapon			*init_new_weapon(char *name, t_weapon_type type);
+t_weapon			*init_new_weapon();
 t_result			overwrite_weapon_ammo(t_weapon *self, size_t ammo,
 						size_t magazine_size, size_t magazine);
 

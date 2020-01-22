@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   build_image.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/11 22:59:39 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/21 23:43:15 by ppetitea         ###   ########.fr       */
+/*   Created: 2020/01/13 04:12:43 by ppetitea          #+#    #+#             */
+/*   Updated: 2020/01/21 23:36:57 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "build.h"
-#include "engine/update_game.h"
+#ifndef BUILD_IMAGE_H
+# define BUILD_IMAGE_H
 
-int		main()
-{
-	t_game *game;
+# include "engine/entities/ui/init_image.h"
+# include "engine/scenes/init_scene.h"
+# include "utils/parser.h"
 
-	if ((game = build()) != NULL)
-		loop(game);
-	return (0);
-}
+t_result	build_image(t_scene *scene, t_dnon_object *image_obj);
+t_result	build_image_texture(t_list_head *images, t_image *self,
+				t_dnon_object *texture_obj);
+#endif

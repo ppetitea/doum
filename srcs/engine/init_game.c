@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:36:09 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 18:03:38 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/21 23:22:41 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "engine/init_game.h"
 #include "utils/error.h"
 #include "libft.h"
-#include "init.h"
+#include "build.h"
 
 t_game	*game_singleton(t_game *init)
 {

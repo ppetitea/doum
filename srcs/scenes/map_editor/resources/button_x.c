@@ -12,7 +12,7 @@
 
 #include "engine/resources/textures/texture.h"
 #include "engine/resources/resources.h"
-#include "init.h"
+#include "build.h"
 #include "utils/error.h"
 #include "libft.h"
 

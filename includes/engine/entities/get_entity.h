@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_entity.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/11 22:59:39 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/21 23:43:15 by ppetitea         ###   ########.fr       */
+/*   Created: 2020/01/13 04:13:23 by ppetitea          #+#    #+#             */
+/*   Updated: 2020/01/21 23:28:19 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "build.h"
-#include "engine/update_game.h"
+#ifndef GET_ENTITY_H
+# define GET_ENTITY_H
 
-int		main()
-{
-	t_game *game;
+# include "libft.h"
+# include "engine/resources/textures/texture.h"
+# include "engine/entities/init_entity.h"
+# include "engine/entities/update_entity.h"
+# include "engine/scenes/init_scene.h"
 
-	if ((game = build()) != NULL)
-		loop(game);
-	return (0);
-}
+t_entity	*get_entity(t_list_head *list, char *name);
+t_entity	*get_entity_by_name(t_scene *scene, char *name);
+
+#endif

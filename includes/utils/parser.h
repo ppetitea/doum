@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 12:00:05 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/21 03:21:40 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/21 23:03:41 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ char			*get_object_key(char *data);
 char			*get_value_offset(char *data);
 void			*get_object_value(char *data, t_dnon_value_type type);
 int				get_object_value_type(char *data);
+t_result		init_usize_with_obj(t_usize *self, t_dnon_object *size_obj);
+t_result		init_vec2i_with_obj(t_vec2i *self, t_dnon_object *vec2i_obj);
+t_result		init_vec2f_with_obj(t_vec2f *self, t_dnon_object *vec2f_obj);
 
 /*
 **	object creation

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:57:16 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 04:17:46 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/22 00:16:35 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ t_result	overwrite_button_entity_actions(t_entity_actions *self)
 {
 	if (self == NULL)
 		return (throw_error("init_entity_actions", "NULL pointer provided"));
-	self->action_drag = NULL;
-	self->action_select = NULL;
 	self->update_texture = (t_result (*)(void*))update_button_texture;
+	self->action_select = (t_result (*)(void*))trigger_button_action;
+	self->action_drag = NULL;
 	return (OK);
 }

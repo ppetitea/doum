@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 15:18:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 23:33:13 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/21 23:55:34 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "engine/entities/init_player.h"
 #include "engine/init_game.h"
 #include "utils/error.h"
-#include "init.h"
+#include "build.h"
 
 t_result	init_game_entities(t_scene *scene)
 {

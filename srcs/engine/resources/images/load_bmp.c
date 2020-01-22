@@ -6,12 +6,14 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:36:31 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 19:12:49 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/22 03:11:12 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "engine/resources/textures/bitmap.h"
+#include "engine/resources/resources.h"
+#include "utils/parser.h"
 #include "utils/error.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -67,4 +69,30 @@ t_bitmap_texture	*load_bmp(char *path)
 	if (!(fill_pixels(file, bmp->pixels, bmp->head.width, bmp->head.height)))
 		return (throw_null("load_bmp", "bmp_to_pixel_array failed"));
 	return (bmp);
+}
+
+t_result	resources_load_images(t_list_head *images, t_dnon_object *images_obj)
+{
+	t_list_head			*pos;
+	t_list_head			*next;
+	t_dnon_object		*child;
+	t_bitmap_texture	*bmp;
+
+	if (images == NULL || images_obj == NULL)
+		return (throw_error("resources_load_images", "NULL pointer provided"));
+	if (images_obj->type != LIST)
+		return (throw_error("resources_load_images", "obj isn't list"));
+	pos = (t_list_head*)images_obj->value;
+	next = pos->next;
+	while ((pos = next) != (t_list_head*)images_obj->value)
+	{
+		next = next->next;
+		child = (t_dnon_object*)pos;
+		if (child->type != STRING)
+			return (throw_error("resources_load_images", "isn't string"));
+		if (!(bmp = load_bmp(child->value)))
+			return (throw_error("load_img", child->key));
+		list_add_image(images, bmp, child->key);
+	}
+	return (OK);
 }

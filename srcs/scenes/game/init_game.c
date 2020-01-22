@@ -6,13 +6,13 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 16:00:09 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/21 03:15:08 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/21 23:22:41 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/scenes/init_scene.h"
 #include "engine/init_game.h"
-#include "init.h"
+#include "build.h"
 #include "utils/error.h"
 
 t_scene		*init_game_scene(t_game *game, t_dnon_object *scene_obj)

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:13:23 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/21 02:10:09 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/21 23:45:14 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "engine/resources/textures/texture.h"
+# include "utils/parser.h"
 # include <time.h>
 
 /*
@@ -108,14 +109,22 @@ typedef struct	s_entity
 	t_entity_type		type;
 	t_vec2f				pos;
 	t_vec2f				dir;
-	size_t				id;
+	char				*name;
 	struct s_entity		*parent;
 	t_list_head			childs;
 }				t_entity;
 
 t_result	init_entity(t_entity *self, t_entity_type type);
+t_result	init_entity_with_obj(t_entity *self, t_list_head *render,
+				t_list_head *storage, t_dnon_object *entity_obj);
 t_result	init_entity_actions(t_entity_actions *self);
 t_result	init_entity_texture(t_entity_texture *self);
+t_result	init_entity_texture_with_obj(t_entity_texture *self,
+				t_dnon_object *e_texture_obj);
 t_result	init_entity_listener(t_listener *self);
+t_result	init_entity_listener_with_obj(t_entity *self, t_list_head *render,
+				t_list_head *storage, t_dnon_object *status_obj);
+t_result	init_entity_childs_with_obj(t_entity *parent, t_list_head *render,
+				t_list_head *storage, t_dnon_object *childs_obj);
 
 #endif

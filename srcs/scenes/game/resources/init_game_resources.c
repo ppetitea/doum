@@ -12,7 +12,7 @@
 
 #include "engine/interface/events/keyboard.h"
 #include "engine/scenes/init_scene.h"
-#include "init.h"
+#include "build.h"
 #include "utils/error.h"
 
 t_result	init_game_resources(t_scene *scene)

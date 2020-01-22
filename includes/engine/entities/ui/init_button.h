@@ -6,12 +6,12 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:12:43 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 03:35:30 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/21 23:35:12 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILD_BUTTON_H
-# define BUILD_BUTTON_H
+#ifndef INIT_BUTTON_H
+# define INIT_BUTTON_H
 
 # include "engine/resources/textures/texture.h"
 # include "engine/entities/init_entity.h"
@@ -28,6 +28,7 @@ typedef struct		s_button
 	t_texture		normal;
 	t_texture		hover;
 	t_texture		selected;
+	t_result		(*action)(t_entity*);
 }					t_button;
 
 t_button			*init_new_button();

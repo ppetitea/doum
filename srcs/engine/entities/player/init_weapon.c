@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 01:16:28 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 00:44:46 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/22 01:34:54 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,17 @@
 #include "utils/error.h"
 #include "engine/entities/init_player.h"
 
-t_weapon	*init_new_weapon(char *name, t_weapon_type type)
+t_weapon	*init_new_weapon()
 {
 	t_weapon	*new;
 
-	if (name == NULL)
-		return (throw_null("build_weapon", "NULL pointer provided"));
 	if (!(new = (t_weapon*)malloc(sizeof(t_weapon))))
 		return (throw_null("build weapon", "malloc failed"));
 	init_list_head(&new->node);
 	init_list_head(&new->fire);
 	init_list_head(&new->reload);
-	new->type = type;
-	new->name = ft_strdup(name);
+	new->type = GUN;
+	new->name = NULL;
 	new->ammo = 100;
 	new->magazine_size = 10;
 	new->magazine = new->magazine_size;

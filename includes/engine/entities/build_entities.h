@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   build_entities.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/11 22:59:39 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/21 23:43:15 by ppetitea         ###   ########.fr       */
+/*   Created: 2020/01/13 04:13:23 by ppetitea          #+#    #+#             */
+/*   Updated: 2020/01/21 23:51:53 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "build.h"
-#include "engine/update_game.h"
+#ifndef BUILD_ENTITIES_H
+# define BUILD_ENTITIES_H
 
-int		main()
-{
-	t_game *game;
+# include "libft.h"
+# include "engine/entities/init_entity.h"
+# include "engine/scenes/init_scene.h"
+# include "utils/parser.h"
 
-	if ((game = build()) != NULL)
-		loop(game);
-	return (0);
-}
+t_result	build_entities(t_scene *scene, t_list_head *entities);
+t_result	build_entity_by_type(t_scene *scene, t_dnon_object *entity_obj,
+				char *entity_type);
+
+#endif
