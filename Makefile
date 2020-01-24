@@ -73,7 +73,7 @@ LDFLAGS		:=#	-Wall -Werror -Wextra
 LIBFT_FOLDER=	./libft
 LIBFT		=	$(LIBFT_FOLDER)/libft.a
 INCLUDES	:=	$(INCLUDES) -I $(LIBFT_FOLDER)/includes
-LDFLAGS		:=	$(LDFLAGS) -L $(LIBFT_FOLDER) -lft
+LDFLAGS		:=	$(LDFLAGS) -L $(LIBFT_FOLDER) -lft                  -lm
 #	SDL
 SDL_FOLDER	=	./SDL
 SDL			=	$(SDL_FOLDER)/build
