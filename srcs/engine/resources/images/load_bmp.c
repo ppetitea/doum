@@ -6,19 +6,20 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:36:31 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/22 03:11:12 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/25 01:54:21 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "engine/resources/textures/bitmap.h"
-#include "engine/resources/resources.h"
+#include "engine/resource/image/bitmap_parser.h"
+#include "engine/resource/image/texture_init.h"
 #include "utils/parser.h"
 #include "utils/error.h"
+#include "libft.h"
 #include <stdlib.h>
+
 #include <stdio.h>
 
-static t_result			fill_pixels(FILE *file, uint32_t *pixels,
+static t_result		fill_pixels(FILE *file, uint32_t *pixels,
 						int32_t width, int32_t height)
 {
 	t_rgba			color;

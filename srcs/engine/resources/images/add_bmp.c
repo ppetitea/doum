@@ -6,13 +6,12 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 20:54:28 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/21 03:35:56 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/25 01:47:47 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "engine/resources/textures/bitmap.h"
-#include "engine/resources/resources.h"
+#include "engine/resource/image/bitmap_list.h"
 #include "utils/error.h"
 
 t_result	list_add_image(t_list_head *list, t_bitmap_texture *image,

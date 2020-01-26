@@ -6,13 +6,14 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 20:45:31 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/22 03:07:41 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/24 22:38:16 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "utils/error.h"
 #include "utils/parser.h"
+
 t_dnon_object	*get_child_list_object_by_key(t_dnon_object *tree, char *key)
 {
 	t_list_head		*pos;
@@ -33,7 +34,8 @@ t_dnon_object	*get_child_list_object_by_key(t_dnon_object *tree, char *key)
 		if (!ft_strcmp(child->key, key) && child->type == LIST)
 			return (child);
 	}
-	return (throw_null("get_child_lis_obj", key));
+	// return (throw_warning_null("list_object doesn't exist", key, 3));
+	return (NULL);
 }
 
 t_dnon_object	*get_child_object_by_key(t_dnon_object *tree, char *key)

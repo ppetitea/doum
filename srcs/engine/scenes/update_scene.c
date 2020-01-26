@@ -6,13 +6,12 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 16:21:00 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/20 18:56:46 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/26 14:37:40 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "engine/scenes/init_scene.h"
-#include "engine/scenes/update_scene.h"
-#include "engine/init_game.h"
+#include "engine/scene/scene_init.h"
+#include "engine/game/game_init.h"
 #include "utils/error.h"
 
 t_result	swap_scene(char *name)

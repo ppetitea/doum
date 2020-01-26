@@ -6,13 +6,13 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 01:21:49 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 19:13:20 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/25 01:49:19 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "engine/interface/init_screen.h"
-#include "engine/resources/textures/bitmap.h"
+#include "engine/interface/screen_init.h"
+#include "engine/resource/image/bitmap_list.h"
 
 void	render_bmp(t_vec2i offset, t_screen screen, t_bitmap_texture bmp)
 {

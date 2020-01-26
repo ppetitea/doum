@@ -6,11 +6,12 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 01:39:07 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/22 15:37:33 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/24 00:26:27 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/time.h>
+#include <stdlib.h>
 
 // unsigned int	get_delta(struct timespec last)
 unsigned int	get_delta(struct timeval last)

@@ -6,10 +6,11 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 23:15:40 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/12 00:39:23 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/23 22:36:53 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "utils/error.h"
 #include "libft.h"
 
 void	throw_void(char *location, char *message)

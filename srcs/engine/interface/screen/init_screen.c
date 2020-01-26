@@ -6,11 +6,11 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 23:09:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 18:42:05 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/25 01:31:22 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "engine/interface/init_screen.h"
+#include "engine/interface/screen_init.h"
 #include "utils/error.h"
 #include "libft.h"
 #include "SDL.h"

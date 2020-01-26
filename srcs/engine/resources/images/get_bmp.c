@@ -6,13 +6,13 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:54:57 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/21 04:50:24 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/25 01:55:20 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "engine/resources/textures/bitmap.h"
-#include "engine/resources/textures/texture.h"
-#include "engine/resources/resources.h"
+#include "engine/resource/image/bitmap_list.h"
+#include "engine/resource/image/texture_init.h"
+
 #include "utils/error.h"
 #include "libft.h"
 

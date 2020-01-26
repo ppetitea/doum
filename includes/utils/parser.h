@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 12:00:05 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/21 23:03:41 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/25 02:09:09 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int				get_object_value_type(char *data);
 t_result		init_usize_with_obj(t_usize *self, t_dnon_object *size_obj);
 t_result		init_vec2i_with_obj(t_vec2i *self, t_dnon_object *vec2i_obj);
 t_result		init_vec2f_with_obj(t_vec2f *self, t_dnon_object *vec2f_obj);
+t_bool			strcmp_obj(char *key, char *value, t_dnon_object *obj);
 
 /*
 **	object creation

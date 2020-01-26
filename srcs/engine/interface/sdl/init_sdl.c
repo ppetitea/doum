@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   build_sdl.c                                        :+:      :+:    :+:   */
+/*   init_sdl.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 23:50:37 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 20:21:19 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/25 01:32:01 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "engine/interface/init_sdl.h"
+#include "engine/interface/sdl_init.h"
 #include "utils/error.h"
 #include "SDL.h"
 
