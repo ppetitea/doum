@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 15:18:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/26 20:38:13 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/27 14:04:07 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,27 @@
 #include "build.h"
 
 
-t_result	build_game_resources(t_game_resources *resources,
+t_result	build_game_resources(t_game *game,
 				t_dnon_object *game_obj)
 {
 	t_dnon_object *resources_obj;
 
-	if (resources == NULL || game_obj == NULL)
+	if (game == NULL || game_obj == NULL)
 		return (throw_error("build_resources", "NULL pointer provided"));
 	if (!(resources_obj = get_child_list_object_by_key(game_obj, "resources")))
 		return (throw_error("build_resources", "fail to find resources obj"));
-	if (!resources_load_images(&resources->images,
+	if (!resources_load_images(&game->resources.images,
 		get_child_list_object_by_key(resources_obj, "images")))
 		return (throw_error("build_game", "load_images failed"));
-	if (!build_game_entities(resources,
+	if (!build_game_entities(&game->resources,
 		get_child_list_object_by_key(game_obj, "entities")))
 		return (throw_error("build_game_resources", "build entities failed"));
-	if (!build_game_resources_maps(resources,
+	if (!build_game_resources_maps(game,
 		get_child_list_object_by_key(game_obj, "maps")))
 		return (throw_error("build_game_resources", "build maps failed"));
-	if (!build_game_resources_scenes(resources,
-		get_child_list_object_by_key(game_obj, "scenes")))
-		return (throw_error("build_game_resources", "build scenes failed"));
+	// if (!build_game_resources_scenes(resources,
+	// 	get_child_list_object_by_key(game_obj, "scenes")))
+	// 	return (throw_error("build_game_resources", "build scenes failed"));
 	return (OK);
 }
 
@@ -51,9 +51,10 @@ t_game	*build()
 	window = ft_usize(640, 480);
 	if (!(game = init_new_game(window)))
 		return (throw_null("build_game", "build_game failed"));
-	if (!build_game_resources(&game->resources, obj))
+	if (!build_game_resources(game, obj))
 		return (throw_null("build_game", "build_resources failed"));
-	
+	if (game->resources.voxel_maps.next != &game->resources.voxel_maps)
+		game->curr_map = (t_map*)game->resources.voxel_maps.next;
 	// if (!build_maps(game, get_child_list_object_by_key(obj, "maps")))
 	// 	return (throw_null("build_game", "build_maps failed"));
 	// if (!build_scenes(game, obj))
@@ -61,6 +62,6 @@ t_game	*build()
 	(void)obj;
 	(void)window;
 	(void)game;
-	return (NULL);
-	// return (game);
+	// return (NULL);
+	return (game);
 }

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 21:37:42 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/26 21:02:09 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/27 14:08:45 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,23 +190,25 @@ t_result	build_map_by_type_with_obj(t_game_resources *resources,
 	return (OK);
 }
 
-t_result	build_new_map_with_obj(t_game_resources *resources,
+t_result	build_new_map_with_obj(t_game *game,
 				t_dnon_object *map_obj)
 {
 	t_map *map;
 
 
-	if (resources == NULL || map_obj == NULL)
+	if (game == NULL || map_obj == NULL)
 		return (throw_error("build_new_map_with_obj", "NULL pointer"));
 	if (!(map = init_new_map()))
 		return (throw_error("build_new_map_with_obj", "malloc failed"));
-	if (!build_map_by_type_with_obj(resources, map, map_obj))
+	if (!build_map_by_type_with_obj(&game->resources, map, map_obj))
 		return (throw_error("build_new_map_with_obj", "build_map failed"));
-	list_add_entry(&map->node, &resources->voxel_maps);
+	map->screen_ref = &game->interface.screen;
+	list_add_entry(&map->node, &game->resources.voxel_maps);
+
 	return (OK);
 }
 
-t_result	build_game_resources_maps(t_game_resources *resources,
+t_result	build_game_resources_maps(t_game *game,
 				t_dnon_object *maps_obj)
 {
 	t_list_head		*pos;
@@ -215,7 +217,7 @@ t_result	build_game_resources_maps(t_game_resources *resources,
 
 	debug_mode(D_START);
 
-	if (resources == NULL || maps_obj == NULL)
+	if (game == NULL || maps_obj == NULL)
 		return (throw_error("build_game_maps", "NULL pointer provided"));
 	pos = (t_list_head*)maps_obj->value;
 	next = pos->next;
@@ -225,7 +227,7 @@ t_result	build_game_resources_maps(t_game_resources *resources,
 		map_obj = (t_dnon_object*)pos;
 		if (maps_obj->type == LIST)
 		{
-			if (!build_new_map_with_obj(resources, map_obj))
+			if (!build_new_map_with_obj(game, map_obj))
 				throw_warning("build_maps", "build_map fail", 3);
 		}
 	}

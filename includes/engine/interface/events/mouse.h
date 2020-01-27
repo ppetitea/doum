@@ -6,14 +6,14 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 01:15:15 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/19 22:01:56 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/27 14:00:12 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MOUSE_H
 # define MOUSE_H
 
-# include "engine/scenes/init_scene.h"
+# include "engine/scene/scene_init.h"
 # include "SDL.h"
 # include "libft.h"
 

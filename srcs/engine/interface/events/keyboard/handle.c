@@ -6,12 +6,12 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 01:17:28 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/22 15:47:56 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/27 14:01:30 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/interface/events/keyboard.h"
-#include "engine/scenes/init_scene.h"
+#include "engine/scene/scene_init.h"
 #include "utils/error.h"
 #include <sys/time.h>
 

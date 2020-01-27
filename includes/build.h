@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 16:27:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/26 07:18:01 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/27 14:09:23 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ void		build_character_camera_with_obj(t_camera *self,
 **	maps
 */
 
-t_result	build_game_resources_maps(t_game_resources *resources,
+t_result	build_game_resources_maps(t_game *game,
 				t_dnon_object *maps_obj);
-t_result	build_new_map_with_obj(t_game_resources *resources,
+t_result	build_new_map_with_obj(t_game *game,
 				t_dnon_object *map_obj);
 
 

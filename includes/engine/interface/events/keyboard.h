@@ -6,16 +6,16 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 01:15:15 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/22 15:31:24 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/27 13:59:52 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEYBOARD_H
 # define KEYBOARD_H
 
-# include "engine/init_game.h"
-# include "engine/scenes/init_scene.h"
-# include "engine/entities/init_entity.h"
+# include "engine/game/game_init.h"
+# include "engine/scene/scene_init.h"
+# include "engine/entity/entity_init.h"
 # include <sys/time.h>
 
 typedef	enum		s_key_bind_type

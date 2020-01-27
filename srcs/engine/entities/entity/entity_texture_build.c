@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:30:43 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/26 07:19:01 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/27 14:10:53 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,20 @@ t_result	memalloc_entity_textures(t_entity_texture *self)
 	return (OK);
 }
 
+t_result	init_entity_current_texture(t_entity_texture *self,
+				t_list_head *texture)
+{
+	if (self == NULL || texture == NULL)
+		return (throw_error("build_entity_current_texture", "NULL pointer"));
+	if (texture == texture->next)
+		return (throw_error("build_entity_current_texture", "no texture"));
+	self->curr = (t_texture*)texture->next;
+	self->curr_head = texture;
+	self->prev = (t_texture*)texture->next;
+	self->prev_head = texture;
+	return (OK);
+}
+
 t_result	build_entity_textures_with_obj(t_list_head *images,
 				t_entity_texture *e_texture, t_dnon_object *e_texture_obj)
 {
@@ -75,5 +89,6 @@ t_result	build_entity_textures_with_obj(t_list_head *images,
 	result = build_textures_with_obj(images, e_texture->dragged,
 		get_child_list_object_by_key(e_texture_obj, "dragged"));
 	throw_warning("dragged texture:", result ? "OK" : "FAIL", 3);
+	init_entity_current_texture(e_texture, e_texture->normal);
 	return (OK);
 }

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 02:49:02 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/26 17:43:21 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/27 14:02:44 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	map_render2d_character(t_map *map, t_map_render2d *render,
 	t_pos2i		anchor;
 	float		scale;
 
+	if (character->super.texture.curr == NULL)
+		return ;
 	curr = character->super.texture.curr;
 	if (render->scale.x < render->scale.y)
 		scale = render->scale.x;
@@ -38,6 +40,12 @@ void	map_render2d_character(t_map *map, t_map_render2d *render,
 	anchor.x = character->camera.pos.x * scale + render->offset.x;
 	anchor.y = character->camera.pos.y * scale + render->offset.y;
 	render_texture_with_scale(map->screen_ref, curr, anchor, scale);
+	(void)curr;
+	(void)anchor;
+	(void)scale;
+	(void)render;
+	(void)character;
+	(void)map;
 }
 
 void	map_render2d_oriented_entities(t_map *map, t_map_render2d *render,
@@ -47,6 +55,8 @@ void	map_render2d_oriented_entities(t_map *map, t_map_render2d *render,
 	t_list_head	*pos;
 	t_list_head	*next;
 
+	if (map == NULL || render == NULL || entities == NULL)
+		return (throw_void("map_render2d", "NULL pointer provided"));
 	pos = entities;
 	next = pos->next;
 	while ((pos = next) != entities)
@@ -59,17 +69,17 @@ void	map_render2d_oriented_entities(t_map *map, t_map_render2d *render,
 
 void	map_render2d(t_map *map, t_map_render2d *render)
 {
-	if (render->display == FALSE)
-		return ;
+	// if (render->display == FALSE)
+	// 	return ;
 	render_texture_with_scale_2d(map->screen_ref, render->texture->curr,
 		vec2i_add(render->anchor, render->offset), render->scale);
-	if (render->display_e_oriented)
-	{
-		map_render2d_oriented_entities(map, render, render->e_oriented);
-		map_render2d_character(map, render, map->character_ref);
-	}
-	if (render->display_e_oriented_storage)
-		map_render2d_oriented_entities(map, render, render->e_oriented_storage);
+	// if (render->display_e_oriented)
+	// {
+		map_render2d_oriented_entities(map, &map->drop_map, &map->e_oriented);
+		// map_render2d_character(map, render, map->character_ref);
+	// }
+	// if (render->display_e_oriented_storage)
+		// map_render2d_oriented_entities(map, render, render->e_oriented_storage);
 	// map_render2d_static_entities(&map->renderer2d,
 	// 	&map->renderer2d.e_static);
 }
