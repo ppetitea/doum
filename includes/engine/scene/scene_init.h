@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 16:27:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/26 20:21:28 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/27 16:56:57 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "engine/interface/screen_init.h"
+# include "engine/resource/image/texture_filter.h"
 # include "engine/map/map_init.h"
 # include "utils/parser.h"
 
@@ -33,6 +34,45 @@ typedef struct			s_scene_interface
 	t_list_head			key_hold_binds;
 }						t_scene_interface;
 
+typedef struct			s_voxel_map_2d_config
+{
+	t_bool				display;
+	t_vec2i				anchor;
+	t_vec2i				offset;
+	t_usize				size;
+	t_vec2f				scale;
+	t_bool				display_e_static;
+	t_bool				display_e_static_storage;
+	t_bool				display_e_oriented;
+	t_bool				display_e_oriented_storage;
+	t_usize				character_size;
+	t_filter_type		character_filter;
+}						t_voxel_map_2d_config;
+
+typedef struct			s_voxel_map_3d_config
+{
+	t_bool				display;
+	t_bool				is_running;
+	t_vec2i				anchor;
+	t_vec2i				offset;
+	t_usize				size;
+	t_vec2f				scale;
+	t_bool				display_e_static;
+	t_bool				display_e_static_storage;
+	t_bool				display_e_oriented;
+	t_bool				display_e_oriented_storage;
+	t_filter_type		character_filter;
+}						t_voxel_map_3d_config;
+
+typedef struct			s_voxel_map_config
+{
+	t_voxel_map_2d_config	color_map;
+	t_voxel_map_2d_config	height_map;
+	t_voxel_map_2d_config	drop_map;
+	t_voxel_map_3d_config	map_3d;
+	t_map					*map_ref;
+}						t_voxel_map_config;
+
 typedef struct			s_scene
 {
 	t_list_head			node;
@@ -41,11 +81,10 @@ typedef struct			s_scene
 	t_list_head			background;
 	t_list_head			entities_storage;
 	t_list_head			entities;
-	t_list_head			*maps;
-	t_dnon_object		*map_config;
-	t_map				*curr_map;
+	t_voxel_map_config	map_render_config;
 }						t_scene;
 
-t_scene				*init_new_scene(char *name, t_screen *screen_ref);
+t_scene				*init_new_scene();
+t_result			init_voxel_map_config(t_voxel_map_config *config);
 
 #endif

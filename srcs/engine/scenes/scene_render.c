@@ -1,20 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_update.h                                       :+:      :+:    :+:   */
+/*   scene_render.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/26 16:44:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/27 16:56:48 by ppetitea         ###   ########.fr       */
+/*   Created: 2020/01/27 15:41:38 by ppetitea          #+#    #+#             */
+/*   Updated: 2020/01/27 15:41:40 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_UPDATE_H
-# define MAP_UPDATE_H
-
-# include "engine/map/map_init.h"
-
-// void	map_render2d(t_map *map, t_map_render2d *render);
-
-#endif

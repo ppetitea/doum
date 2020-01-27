@@ -13,12 +13,11 @@
 #include "engine/scene/scene_init.h"
 #include "utils/error.h"
 
-t_result	init_scene_interface(t_scene_interface *interface,
-				t_screen *screen_ref)
+t_result	init_scene_interface(t_scene_interface *interface)
 {
-	if (interface == NULL || screen_ref == NULL)
+	if (interface == NULL)
 		return (throw_error("init_scene_interface", "NULL pointer provided"));
-	interface->screen_ref = screen_ref;
+	interface->screen_ref = NULL;
 	interface->mouse.pos = ft_vec2i(0, 0);
 	interface->mouse.down = FALSE;
 	interface->mouse.drag = FALSE;
@@ -27,22 +26,18 @@ t_result	init_scene_interface(t_scene_interface *interface,
 	return (OK);
 }
 
-t_scene		*init_new_scene(char *name, t_screen *screen_ref)
+t_scene		*init_new_scene()
 {
 	t_scene	*scene;
 
-	if (name == NULL || screen_ref == NULL)
-		return (throw_null("init_scene", "NULL pointer provided"));
 	if (!(scene = (t_scene*)malloc(sizeof(t_scene))))
 		return (throw_null("init_scene", "malloc failed"));
 	init_list_head(&scene->node);
-	scene->name = name;
-	init_scene_interface(&scene->interface, screen_ref);
+	scene->name = NULL;
+	init_scene_interface(&scene->interface);
 	init_list_head(&scene->background);
 	init_list_head(&scene->entities_storage);
 	init_list_head(&scene->entities);
-	scene->maps = NULL;
-	scene->map_config = NULL;
-	scene->curr_map = NULL;
+	init_voxel_map_config(&scene->map_render_config);
 	return (scene);
 }

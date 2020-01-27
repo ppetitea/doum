@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 20:36:14 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/26 21:27:03 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/27 17:03:39 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,23 +84,30 @@ t_result	build_scene_entities_with_obj(t_game_resources *resources,
 	return (OK);
 }
 
-t_result	build_menu_scene_with_obj(t_game *game, t_dnon_object *scene_obj)
+t_result	build_scene_with_obj(t_game *game, t_dnon_object *scene_obj)
 {
-	t_scene	*scene;
+	t_scene			*scene;
+	t_result		result;
+	t_dnon_object	*map_renderer;
 
 	if (game == NULL || scene_obj == NULL)
 		return (throw_error("build_menu_scene", "NULL pointer provided"));
-	if (!(scene = init_new_scene(ft_strdup("menu"), &game->interface.screen)))
+	if (!(scene = init_new_scene()))
 		return (throw_error("build_menu_scene", "init_new_scene failed"));
-	throw_debug("new scene:\t\t", "menu", 1);
-	if (!build_textures_with_obj(&game->resources.images, &scene->background,
-		get_child_list_object_by_key(scene_obj, "background")))
-		return (throw_error("build_menu_scene", "background failed"));
-	if (!(scene->map_config = get_child_list_object_by_key(scene_obj, "map")))
-		return (throw_error("build_menu_scene", "map_config failed"));
-	if (!build_scene_entities_with_obj(&game->resources, scene,
-			get_child_list_object_by_key(scene_obj, "entities")))
-		return (throw_error("build_menu_scene", "entities failed"));
+	if (!(scene->name = get_string_value_by_key(scene_obj, "name", NULL)))
+		return (throw_error("build_menu_scene", "scene name not found"));
+	scene->interface.screen_ref = &game->interface.screen;
+	throw_debug("new scene:\t\t", scene->name, 1);
+	result = build_textures_with_obj(&game->resources.images,
+		&scene->background,
+		get_child_list_object_by_key(scene_obj, "background"));
+	throw_debug("scene_background:", result ? "OK" : "FAIL", 0);
+	result = build_voxel_map_config_with_obj(&scene->map_render_config,
+			get_child_list_object_by_key(scene_obj, "map_config"));
+	throw_debug("scene_map_config:", result ? "OK" : "FAIL", 0);
+	result = build_scene_entities_with_obj(&game->resources, scene,
+			get_child_list_object_by_key(scene_obj, "entities"));
+	throw_debug("scene entities:", result ? "OK" : "FAIL", 0);
 	return (OK);
 }
 

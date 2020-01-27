@@ -320,47 +320,47 @@
 	}
 },
 "scenes":{
-	"menu":{
+	"1":{
+		"name":"menu,
+		"current":1,
 		"background":{
 			"1":{"key":"menu_background","size":{"x":640,"y":480}}
 		},
-		"map":{
-			"render2d":{
-				"color_map":{
-					"display":0,
-					"size":{"x":480,"y":360},
-					"anchor":{"x":320,"y":240},
-					"offset":{"x":-240,"y":-180},
-					"display_oriented_entities":0,
-					"display_storage_entities":0,
-					"characters":{
-						"size":{"x":50,"y":40}
-					}
-				},
-				"height_map":{
-					"display":0,
-					"size":{"x":480,"y":360},
-					"anchor":{"x":320,"y":240},
-					"offset":{"x":-240,"y":-180},
-					"display_oriented_entities":0,
-					"display_storage_entities":0,
-					"characters":{
-						"size":{"x":50,"y":40}
-					}
-				},
-				"drop_map":{
-					"display":1,
-					"size":{"x":480,"y":360},
-					"anchor":{"x":320,"y":240},
-					"offset":{"x":-240,"y":-180},
-					"display_oriented_entities":1,
-					"display_storage_entities":0,
-					"characters":{
-						"size":{"x":50,"y":40}
-					}
+		"map_config":{
+			"color_map":{
+				"display":0,
+				"size":{"x":480,"y":360},
+				"anchor":{"x":320,"y":240},
+				"offset":{"x":-240,"y":-180},
+				"display_oriented_entities":0,
+				"display_storage_entities":0,
+				"characters":{
+					"size":{"x":50,"y":40}
 				}
 			},
-			"render3d":{
+			"height_map":{
+				"display":0,
+				"size":{"x":480,"y":360},
+				"anchor":{"x":320,"y":240},
+				"offset":{"x":-240,"y":-180},
+				"display_oriented_entities":0,
+				"display_storage_entities":0,
+				"characters":{
+					"size":{"x":50,"y":40}
+				}
+			},
+			"drop_map":{
+				"display":1,
+				"size":{"x":480,"y":360},
+				"anchor":{"x":320,"y":240},
+				"offset":{"x":-240,"y":-180},
+				"display_oriented_entities":1,
+				"display_storage_entities":0,
+				"characters":{
+					"size":{"x":50,"y":40}
+				}
+			},
+			"map3d":{
 				"display":0,
 				"size":{"x":480,"y":360},
 				"anchor":{"x":320,"y":240},

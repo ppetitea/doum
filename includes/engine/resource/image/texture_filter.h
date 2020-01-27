@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 23:41:55 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/24 23:45:28 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/27 16:20:48 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 typedef enum			e_filter_type
 {
-	FILTER_HOVER,
+	FILTER_CIRCULAR_SHADOW,
 	FILTER_BLEND,
 	FILTER_ROTATE_RIGHT,
 	FILTER_ROTATE_LEFT,
