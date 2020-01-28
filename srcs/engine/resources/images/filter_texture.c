@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:24:43 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/25 01:17:46 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/28 03:52:45 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_result	texture_filter(t_texture *new, t_texture old, t_filter_type filter)
 		i.x = 0;
 		while (i.x < new->size.x)
 		{
-			if (filter == FILTER_HOVER)
+			if (filter == FILTER_CIRCULAR_SHADOW)
 				set_texture_pixel_circular_shadow(old, new, i);
 			if (filter == FILTER_BLEND)
 				set_texture_pixel_blend(old, new, i);

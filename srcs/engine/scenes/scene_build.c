@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 20:36:14 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/27 17:03:39 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/28 06:58:22 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,6 @@
 #include "utils/parser.h"
 #include "utils/error.h"
 #include "build.h"
-
-t_result	set_entity_action_with_obj(t_entity *self, t_list_head *render,
-				t_list_head *storage, t_dnon_object *entity_obj)
-{
-	if (self == NULL || render == NULL || storage == NULL || entity_obj == NULL)
-		return (throw_error("set_entity_action_with_obj", "NULL pointer"));
-	// YOU ARE HERE <3
-
-	return (OK);
-}
 
 t_result	build_scene_entity_with_obj(t_game_resources *resources, 
 				t_list_head *render, t_list_head *storage,
@@ -46,8 +36,6 @@ t_result	build_scene_entity_with_obj(t_game_resources *resources,
 	if (!(entity = duplicate_entity_by_type(src)))
 		return (throw_error("build_map_entity_with_obj", "entity_dup failed"));
 	if (!overwrite_entity_by_type_with_obj(entity, entity_obj))
-		return (throw_error("build_map_entity_with_obj", "entity_over failed"));
-	if (!set_entity_action_with_obj(entity, render, storage, entity_obj))
 		return (throw_error("build_map_entity_with_obj", "entity_over failed"));
 	if (entity->status.display)
 		list_add_entry(&entity->node, render);
@@ -88,7 +76,6 @@ t_result	build_scene_with_obj(t_game *game, t_dnon_object *scene_obj)
 {
 	t_scene			*scene;
 	t_result		result;
-	t_dnon_object	*map_renderer;
 
 	if (game == NULL || scene_obj == NULL)
 		return (throw_error("build_menu_scene", "NULL pointer provided"));
@@ -97,29 +84,38 @@ t_result	build_scene_with_obj(t_game *game, t_dnon_object *scene_obj)
 	if (!(scene->name = get_string_value_by_key(scene_obj, "name", NULL)))
 		return (throw_error("build_menu_scene", "scene name not found"));
 	scene->interface.screen_ref = &game->interface.screen;
-	throw_debug("new scene:\t\t", scene->name, 1);
+	throw_debug("new scene:", scene->name, 1);
 	result = build_textures_with_obj(&game->resources.images,
 		&scene->background,
 		get_child_list_object_by_key(scene_obj, "background"));
-	throw_debug("scene_background:", result ? "OK" : "FAIL", 0);
+	throw_debug("scene_background:\t\t\t", result ? "OK" : "FAIL", 0);
 	result = build_voxel_map_config_with_obj(&scene->map_render_config,
 			get_child_list_object_by_key(scene_obj, "map_config"));
-	throw_debug("scene_map_config:", result ? "OK" : "FAIL", 0);
+	throw_debug("scene_map_config:\t\t\t", result ? "OK" : "FAIL", 0);
 	result = build_scene_entities_with_obj(&game->resources, scene,
 			get_child_list_object_by_key(scene_obj, "entities"));
-	throw_debug("scene entities:", result ? "OK" : "FAIL", 0);
+	throw_debug("scene entities:\t\t\t\t", result ? "OK" : "FAIL", 0);
 	return (OK);
 }
 
 t_result	build_game_resources_scenes(t_game *game,
 				t_dnon_object *scenes_obj)
 {
+	t_dnon_object	*scene_obj;
+	t_list_head		*pos;
+	t_result		result;
+
 	if (game == NULL || scenes_obj == NULL)
 		return (throw_error("build_game_scenes", "NULL pointer provided"));
-	if (!build_menu_scene_with_obj(game,
-		get_child_list_object_by_key(scenes_obj, "menu")))
-		return (throw_error("build_game_scenes", "build_menu failed"));
-	//build editor scene
-	//build game scene
+	pos = (t_list_head*)scenes_obj->value;
+	while ((pos = pos->next) != (t_list_head*)scenes_obj->value)
+	{
+		scene_obj = (t_dnon_object*)pos;
+		if (scene_obj->type == LIST)
+		{
+			result = build_scene_with_obj(game, scene_obj);
+			throw_debug("scene added:\t\t\t\t", result ? "OK" : "FAIL", 1);
+		}
+	}
 	return (OK);
 }

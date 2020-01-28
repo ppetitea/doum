@@ -65,7 +65,6 @@ SRCS_LIST	=	main.c														\
 				utils/parser/to_object.c									\
 																			\
 				engine/game/game_init.c										\
-				engine/game/loop.c											\
 																			\
 				engine/interface/sdl/init_sdl.c								\
 				engine/interface/sdl/destroy.c								\
@@ -73,6 +72,7 @@ SRCS_LIST	=	main.c														\
 				engine/interface/screen/reset.c								\
 																			\
 				engine/build.c												\
+				engine/loop.c												\
 																			\
 				engine/resources/images/add_bmp.c							\
 				engine/resources/images/collide_texture.c					\
@@ -123,7 +123,13 @@ SRCS_LIST	=	main.c														\
 																			\
 				engine/maps/map_build.c										\
 				engine/maps/map_init.c										\
-				engine/maps/map_render2d.c									\
+																			\
+				engine/scenes/map_render_build.c							\
+				engine/scenes/map_render_init.c								\
+				engine/scenes/map_render.c									\
+				engine/scenes/scene_build.c									\
+				engine/scenes/scene_init.c									\
+				engine/scenes/scene_render.c								\
 																			\
 																			\
 				#															\

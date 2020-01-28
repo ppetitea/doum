@@ -36,6 +36,7 @@ t_scene		*init_new_scene()
 	scene->name = NULL;
 	init_scene_interface(&scene->interface);
 	init_list_head(&scene->background);
+	scene->bg = NULL;
 	init_list_head(&scene->entities_storage);
 	init_list_head(&scene->entities);
 	init_voxel_map_config(&scene->map_render_config);

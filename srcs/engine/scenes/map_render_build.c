@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:59:00 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/27 16:41:44 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/28 04:56:01 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ static t_result	init_filter_with_obj(t_filter_type *type,
 	if (filter_type == NULL)
 		return (ERROR);
 	if (!ft_strcmp(filter_type, "none"))
-		type = FILTER_NONE;
+		*type = FILTER_NONE;
 	else if (!ft_strcmp(filter_type, "circular_shadow"))
-		type = FILTER_CIRCULAR_SHADOW;
+		*type = FILTER_CIRCULAR_SHADOW;
 	else if (!ft_strcmp(filter_type, "blend"))
-		type = FILTER_BLEND;
+		*type = FILTER_BLEND;
 	else
 		throw_warning("init_filter_with_obj", "unkow type detected", 2);
 	return (OK);
@@ -93,15 +93,15 @@ t_result	build_voxel_map_config_with_obj(t_voxel_map_config *config,
 		return (ERROR);
 	result = build_voxel_map_2d_config_with_obj(&config->color_map,
 		get_child_list_object_by_key(map_config_obj, "color_map"));
-	throw_debug("color_map_config:", result ? "OK" : "FAIL", 0);
+	throw_debug("color_map_config:\t\t\t", result ? "OK" : "FAIL", 0);
 	result = build_voxel_map_2d_config_with_obj(&config->height_map,
 		get_child_list_object_by_key(map_config_obj, "height_map"));
-	throw_debug("height_map_config:", result ? "OK" : "FAIL", 0);
+	throw_debug("height_map_config:\t\t\t", result ? "OK" : "FAIL", 0);
 	result = build_voxel_map_2d_config_with_obj(&config->drop_map,
 		get_child_list_object_by_key(map_config_obj, "drop_map"));
-	throw_debug("drop_map_config:", result ? "OK" : "FAIL", 0);
+	throw_debug("drop_map_config:\t\t\t", result ? "OK" : "FAIL", 0);
 	result = build_voxel_map_3d_config_with_obj(&config->map_3d,
-		get_child_list_object_by_key(map_config_obj, "map_3d"));
-	throw_debug("map_3d_config:", result ? "OK" : "FAIL", 0);
+		get_child_list_object_by_key(map_config_obj, "map3d"));
+	throw_debug("map_3d_config:\t\t\t\t", result ? "OK" : "FAIL", 0);
 	return (OK);
 }

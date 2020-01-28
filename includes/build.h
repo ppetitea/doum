@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 16:27:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/27 16:52:18 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/28 04:13:02 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ t_result	build_new_map_with_obj(t_game *game,
 /*
 **	scenes
 */
+t_result	build_game_resources_scenes(t_game *game,
+				t_dnon_object *scenes_obj);
 t_result	build_voxel_map_config_with_obj(t_voxel_map_config *config,
 				t_dnon_object *map_config_obj);
 

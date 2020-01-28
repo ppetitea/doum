@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 15:18:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/27 14:04:07 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/28 04:13:32 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ t_result	build_game_resources(t_game *game,
 	if (!build_game_resources_maps(game,
 		get_child_list_object_by_key(game_obj, "maps")))
 		return (throw_error("build_game_resources", "build maps failed"));
-	// if (!build_game_resources_scenes(resources,
-	// 	get_child_list_object_by_key(game_obj, "scenes")))
-	// 	return (throw_error("build_game_resources", "build scenes failed"));
+	if (!build_game_resources_scenes(game,
+		get_child_list_object_by_key(game_obj, "scenes")))
+		return (throw_error("build_game_resources", "build scenes failed"));
 	return (OK);
 }
 

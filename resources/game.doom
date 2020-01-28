@@ -57,9 +57,16 @@
 		"monster_back_r2":"resources/textures/sprites/ennemies/test/back/back_r2.bmp",
 		"monster_back_r3":"resources/textures/sprites/ennemies/test/back/back_r3.bmp",
 		"monster_back_r4":"resources/textures/sprites/ennemies/test/back/back_r4.bmp",
-		"image_map3":"resources/maps/map3.bmp",
-		"image_map4":"resources/maps/map4.bmp",
-		"map_canion":"resources/maps/canions.bmp"
+		"map_canion":"resources/maps/canions.bmp",
+		"menu_background":"resources/textures/background/dark_background.bmp",
+		"button_left_white":"resources/textures/ui/buttons/left_white.bmp",
+		"button_left_orange":"resources/textures/ui/buttons/left_orange.bmp",
+		"button_right_white":"resources/textures/ui/buttons/right_white.bmp",
+		"button_right_orange":"resources/textures/ui/buttons/right_orange.bmp",
+		"button_up_white":"resources/textures/ui/buttons/up_white.bmp",
+		"button_up_orange":"resources/textures/ui/buttons/up_orange.bmp",
+		"button_down_white":"resources/textures/ui/buttons/down_white.bmp",
+		"button_down_orange":"resources/textures/ui/buttons/down_orange.bmp"
 	}
 },
 "entities":{
@@ -264,6 +271,108 @@
 				"4":{"key":"monster_back_r4","size":{"x":200,"y":130},"delay_ms":200}							
 			}
 		}
+	},
+	"3":{
+		"type":"ui",
+		"name":"button_left",
+		"status":{"display":0,"hoverable":0,"selectable":0,"draggable":0},
+		"textures":{
+			"anchor":{"x":400,"y":480},
+			"offset":{"x":-100,"y":-130},
+			"animation":"stop",
+			"normal":{
+				"1":{"filter":"circular_shadow","key":"button_left_white","size":{"x":50,"y":50}},
+				"2":{"filter":"circular_shadow","key":"button_left_orange","size":{"x":50,"y":50},"delay_ms":100}
+			},
+			"hover":{
+				"1":{"key":"button_left_white","size":{"x":50,"y":50}}
+			}
+		}
+	},
+	"4":{
+		"type":"ui",
+		"name":"button_right",
+		"status":{"display":0,"hoverable":0,"selectable":0,"draggable":0},
+		"textures":{
+			"anchor":{"x":400,"y":480},
+			"offset":{"x":-100,"y":-130},
+			"animation":"stop",
+			"normal":{
+				"1":{"filter":"circular_shadow","key":"button_right_white","size":{"x":50,"y":50}},
+				"2":{"filter":"circular_shadow","key":"button_right_orange","size":{"x":50,"y":50},"delay_ms":100}
+			},
+			"hover":{
+				"1":{"key":"button_right_white","size":{"x":50,"y":50}}
+			}
+		}
+	},
+	"5":{
+		"type":"ui",
+		"name":"button_up",
+		"status":{"display":0,"hoverable":0,"selectable":0,"draggable":0},
+		"textures":{
+			"anchor":{"x":400,"y":480},
+			"offset":{"x":-100,"y":-130},
+			"animation":"stop",
+			"normal":{
+				"1":{"filter":"circular_shadow","key":"button_upd_white","size":{"x":50,"y":50}},
+				"2":{"filter":"circular_shadow","key":"button_upd_orange","size":{"x":50,"y":50},"delay_ms":100}
+			},
+			"hover":{
+				"1":{"key":"button_upd_white","size":{"x":50,"y":50}}
+			}
+		}
+	},
+	"6":{
+		"type":"ui",
+		"name":"button_down",
+		"status":{"display":0,"hoverable":0,"selectable":0,"draggable":0},
+		"textures":{
+			"anchor":{"x":400,"y":480},
+			"offset":{"x":-100,"y":-130},
+			"animation":"stop",
+			"normal":{
+				"1":{"filter":"circular_shadow","key":"button_down_white","size":{"x":50,"y":50}},
+				"2":{"filter":"circular_shadow","key":"button_down_orange","size":{"x":50,"y":50},"delay_ms":100}
+			},
+			"hover":{
+				"1":{"key":"button_down_white","size":{"x":50,"y":50}}
+			}
+		}
+	},
+	"7":{
+		"type":"ui",
+		"name":"button_play",
+		"status":{"display":0,"hoverable":0,"selectable":0,"draggable":0},
+		"textures":{
+			"anchor":{"x":400,"y":480},
+			"offset":{"x":-100,"y":-130},
+			"animation":"stop",
+			"normal":{
+				"1":{"filter":"circular_shadow","key":"button_down_white","size":{"x":50,"y":50}},
+				"2":{"filter":"circular_shadow","key":"button_down_orange","size":{"x":50,"y":50},"delay_ms":100}
+			},
+			"hover":{
+				"1":{"key":"button_down_white","size":{"x":50,"y":50}}
+			}
+		}
+	},
+	"8":{
+		"type":"ui",
+		"name":"button_edit_map",
+		"status":{"display":0,"hoverable":0,"selectable":0,"draggable":0},
+		"textures":{
+			"anchor":{"x":400,"y":480},
+			"offset":{"x":-100,"y":-130},
+			"animation":"stop",
+			"normal":{
+				"1":{"filter":"circular_shadow","key":"button_down_white","size":{"x":50,"y":50}},
+				"2":{"filter":"circular_shadow","key":"button_down_orange","size":{"x":50,"y":50},"delay_ms":100}
+			},
+			"hover":{
+				"1":{"key":"button_down_white","size":{"x":50,"y":50}}
+			}
+		}
 	}
 },
 "maps":{
@@ -321,35 +430,13 @@
 },
 "scenes":{
 	"1":{
-		"name":"menu,
+		"name":"menu",
 		"current":1,
 		"background":{
 			"1":{"key":"menu_background","size":{"x":640,"y":480}}
 		},
 		"map_config":{
 			"color_map":{
-				"display":0,
-				"size":{"x":480,"y":360},
-				"anchor":{"x":320,"y":240},
-				"offset":{"x":-240,"y":-180},
-				"display_oriented_entities":0,
-				"display_storage_entities":0,
-				"characters":{
-					"size":{"x":50,"y":40}
-				}
-			},
-			"height_map":{
-				"display":0,
-				"size":{"x":480,"y":360},
-				"anchor":{"x":320,"y":240},
-				"offset":{"x":-240,"y":-180},
-				"display_oriented_entities":0,
-				"display_storage_entities":0,
-				"characters":{
-					"size":{"x":50,"y":40}
-				}
-			},
-			"drop_map":{
 				"display":1,
 				"size":{"x":480,"y":360},
 				"anchor":{"x":320,"y":240},
@@ -359,111 +446,171 @@
 				"characters":{
 					"size":{"x":50,"y":40}
 				}
-			},
-			"map3d":{
-				"display":0,
-				"size":{"x":480,"y":360},
-				"anchor":{"x":320,"y":240},
-				"offset":{"x":-240,"y":-180},
-				"display_static_entities":0,
-				"display_oriented_entities":1
 			}
 		},
 		"entities":{
+			"1":{
+				"key":"button_edit_map",
+				"entity":{
+					"status":{
+						"display":1,
+						"selectable":1,
+						"select":{
+							"1":{
+								"action":"swap_scene",
+								"resource":"game",
+								"args":{
+									"scene_name":"map_editor"
+								}
+							}
+						}
+					}
+				}
+			},
 			"2":{
-				"key":"button_start",
+				"key":"button_play",
 				"entity":{
 					"listener":{
 						"display":1,
+						"selectable":1,
 						"select":{
 							"1":{
-								"childs":{"1":"map1","2":"map2"},
-								"actions":{"1":"display"}
-							}
-						},
-						"drag":{
-							"1":{
-								"childs":{"1":"map1","2":"map2"},
-								"actions":{"1":"display"}
+								"action":"swap_scene",
+								"resource":"game",
+								"args":{
+									"scene_name":"render3d"
+								}
 							}
 						}
 					}
 				}
 			},
 			"3":{
-				"key":"button_edit_map",
-				"display":1,
-				"actions":{
-					"1":"swap_to_editor"
+				"key":"button_right",
+				"entity":{
+					"status":{
+						"display":1,
+						"selectable":1,
+						"select":{
+							"1":{
+								"action":"swap_map",
+								"resource":"game",
+								"args":{
+									"side":"next"
+								}
+							}
+						}
+					}
 				}
 			},
 			"4":{
-				"key":"button_right",
+				"key":"button_left",
+				"entity":{
+					"status":{
+						"display":1,
+						"selectable":1,
+						"select":{
+							"1":{
+								"action":"swap_map",
+								"resource":"game",
+								"args":{
+									"side":"prev"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"2":{
+		"name":"map_editor",
+		"map_config":{
+			"color_map":{
 				"display":1,
-				"actions":{
-					"1":"swap_to_next_map"
+				"size":{"x":480,"y":360},
+				"anchor":{"x":0,"y":0},
+				"offset":{"x":0,"y":0},
+				"display_oriented_entities":0,
+				"display_storage_entities":0,
+				"characters":{
+					"size":{"x":50,"y":40}
 				}
 			},
-			"5":{
-				"key":"button_left",
+			"height_map":{
 				"display":1,
-				"actions":{
-					"1":"swap_to_prev_map"
-				}
-			}
-		}
-	},
-	"editor":{
-		"render_params":{
-			"map":{
-				"mode":"2d",
 				"size":{"x":480,"y":360},
-				"offset":{"x":0,"y":80},
+				"anchor":{"x":0,"y":360},
+				"offset":{"x":0,"y":0},
+				"display_oriented_entities":0,
+				"display_storage_entities":0,
 				"characters":{
-					"size":{"x":50,"y":50},
-					"draggable":1,
-					"hoverable":1,
-					"selectable":1,
-					"actions":{
-						"1":"display_character_form"
+					"size":{"x":50,"y":40}
+				}
+			},
+			"drop_map":{
+				"display":1,
+				"size":{"x":480,"y":360},
+				"anchor":{"x":480,"y":0},
+				"offset":{"x":0,"y":0},
+				"display_oriented_entities":1,
+				"display_storage_entities":0,
+				"characters":{
+					"size":{"x":50,"y":40}
+				}
+			},
+			"map3d":{
+				"display":1,
+				"size":{"x":480,"y":360},
+				"anchor":{"x":480,"y":360},
+				"offset":{"x":0,"y":0},
+				"display_static_entities":0,
+				"display_oriented_entities":1
+			}
+		},
+		"entities":{
+			"1":{
+				"key":"spawner_monster",
+				"entity":{
+					"status":{
+						"display":1,
+						"selectable":1,
+						"select":{
+							"1":{
+								"action":"spawn_character",
+								"resource":"game",
+								"args":{
+									"character_name":"boss level 1",
+									"position":{"x":50,"y":50}
+								}
+							}
+						}
 					}
 				}
 			}
 		}
 	},
-	"game":{
-		"render_params":{
-			"map":{
-				"mode":"3d",
-				"size":{"x":640,"y":480},
+	"3":{
+		"name":"render3d",
+		"map_config":{
+			"color_map":{
+				"display":1,
+				"size":{"x":480,"y":360},
+				"anchor":{"x":0,"y":0},
 				"offset":{"x":0,"y":0},
+				"display_oriented_entities":1,
+				"display_storage_entities":0,
 				"characters":{
-					"size":{"x":50,"y":50},
-					"draggable":0,
-					"hoverable":0,
-					"selectable":0,
-					"actions":{
-						"1":"display_character_form"
-					}
+					"size":{"x":50,"y":40}
 				}
-			}
-		}
-	},
-	"donjon":{
-		"render_params":{
-			"map":{
-				"mode":"3d",
+			},
+			"map3d":{
+				"display":1,
 				"size":{"x":640,"y":480},
+				"anchor":{"x":0,"y":0},
 				"offset":{"x":0,"y":0},
-				"characters":{
-					"size":{"x":50,"y":50},
-					"draggable":0,
-					"hoverable":0,
-					"selectable":0,
-					"actions":{
-						"1":"display_character_form"
-					}
-				}
+				"display_static_entities":1,
+				"display_oriented_entities":1
 			}
 		}
 	}

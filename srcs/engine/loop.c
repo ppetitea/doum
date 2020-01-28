@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:34:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/27 14:03:40 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/28 05:08:56 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ void	loop(t_game *game)
 	{
 		reset_screen(game->interface.screen);
 		// render(game->curr_scene);
-		ft_putstr("TEST\n");
-		if (game->curr_map != NULL)
-			map_render2d(game->curr_map, &game->curr_map->drop_map);
+		// if (game->curr_map != NULL)
+		// 	map_render2d(game->curr_map, &game->curr_map->drop_map);
 		if (SDL_UpdateTexture(game->interface.sdl.texture, NULL,
 			game->interface.screen.pixels,
 			game->interface.screen.size.x * sizeof(uint32_t)) == SDL_ERROR)

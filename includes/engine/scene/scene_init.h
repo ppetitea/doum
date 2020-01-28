@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 16:27:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/27 16:56:57 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/28 05:12:36 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct			s_scene
 	char				*name;
 	t_scene_interface	interface;
 	t_list_head			background;
+	t_texture			*bg;
 	t_list_head			entities_storage;
 	t_list_head			entities;
 	t_voxel_map_config	map_render_config;
