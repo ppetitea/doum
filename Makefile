@@ -65,6 +65,7 @@ SRCS_LIST	=	main.c														\
 				utils/parser/to_object.c									\
 																			\
 				engine/game/game_init.c										\
+				engine/game/game_actions.c									\
 																			\
 				engine/interface/sdl/init_sdl.c								\
 				engine/interface/sdl/destroy.c								\

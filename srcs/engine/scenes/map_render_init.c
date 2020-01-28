@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:59:00 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/27 16:39:52 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/28 16:32:16 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_result	init_voxel_map_2d_config(t_voxel_map_2d_config *config)
 	config->display_e_oriented_storage = FALSE;
 	config->display_e_static = FALSE;
 	config->display_e_static_storage = FALSE;
-	config->character_filter = NONE;
+	config->character_filter = FILTER_NONE;
 	config->character_size = ft_usize(50, 50);
 	return (OK);
 }
@@ -46,7 +46,7 @@ t_result	init_voxel_map_3d_config(t_voxel_map_3d_config *config)
 	config->display_e_oriented_storage = FALSE;
 	config->display_e_static = FALSE;
 	config->display_e_static_storage = FALSE;
-	config->character_filter = NONE;
+	config->character_filter = FILTER_NONE;
 	return (OK);
 }
 

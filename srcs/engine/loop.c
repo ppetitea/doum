@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:34:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/28 05:08:56 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/28 18:20:16 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "engine/interface/events/events.h"
 #include "engine/interface/events/keyboard.h"
 #include "engine/scene/scene_init.h"
+#include "engine/scene/scene_render.h"
 #include "engine/map/map_update.h"
 #include "utils/error.h"
 
@@ -25,9 +26,7 @@ void	loop(t_game *game)
 	while (game->is_running)
 	{
 		reset_screen(game->interface.screen);
-		// render(game->curr_scene);
-		// if (game->curr_map != NULL)
-		// 	map_render2d(game->curr_map, &game->curr_map->drop_map);
+		render_scene(game);
 		if (SDL_UpdateTexture(game->interface.sdl.texture, NULL,
 			game->interface.screen.pixels,
 			game->interface.screen.size.x * sizeof(uint32_t)) == SDL_ERROR)

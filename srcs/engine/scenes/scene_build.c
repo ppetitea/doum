@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 20:36:14 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/28 06:58:22 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/28 18:13:21 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,20 @@ t_result	build_scene_entities_with_obj(t_game_resources *resources,
 	return (OK);
 }
 
+t_result	build_scene_background_texture_with_obj(t_game *game,
+				t_scene *scene, t_dnon_object *scene_obj)
+{
+	if (game == NULL || scene == NULL || scene_obj == NULL)
+		return (throw_error("build_scene_background", "NULL pointer provided"));
+	if (!build_textures_with_obj(&game->resources.images,
+		&scene->background,
+		get_child_list_object_by_key(scene_obj, "background")))
+		return (ERROR);
+	if (&scene->background != scene->background.next)
+		scene->bg = (t_texture*)scene->background.next;
+	return (OK);
+}
+
 t_result	build_scene_with_obj(t_game *game, t_dnon_object *scene_obj)
 {
 	t_scene			*scene;
@@ -85,9 +99,7 @@ t_result	build_scene_with_obj(t_game *game, t_dnon_object *scene_obj)
 		return (throw_error("build_menu_scene", "scene name not found"));
 	scene->interface.screen_ref = &game->interface.screen;
 	throw_debug("new scene:", scene->name, 1);
-	result = build_textures_with_obj(&game->resources.images,
-		&scene->background,
-		get_child_list_object_by_key(scene_obj, "background"));
+	result = build_scene_background_texture_with_obj(game, scene, scene_obj);
 	throw_debug("scene_background:\t\t\t", result ? "OK" : "FAIL", 0);
 	result = build_voxel_map_config_with_obj(&scene->map_render_config,
 			get_child_list_object_by_key(scene_obj, "map_config"));
@@ -95,6 +107,9 @@ t_result	build_scene_with_obj(t_game *game, t_dnon_object *scene_obj)
 	result = build_scene_entities_with_obj(&game->resources, scene,
 			get_child_list_object_by_key(scene_obj, "entities"));
 	throw_debug("scene entities:\t\t\t\t", result ? "OK" : "FAIL", 0);
+	if (get_int_value_by_key(scene_obj, "current", 0))
+		game->curr_scene = scene;
+	list_add_entry(&scene->node, &game->resources.scenes);
 	return (OK);
 }
 
@@ -117,5 +132,6 @@ t_result	build_game_resources_scenes(t_game *game,
 			throw_debug("scene added:\t\t\t\t", result ? "OK" : "FAIL", 1);
 		}
 	}
+	ft_putstr("scenes_added\n");
 	return (OK);
 }

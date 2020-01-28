@@ -58,7 +58,7 @@
 		"monster_back_r3":"resources/textures/sprites/ennemies/test/back/back_r3.bmp",
 		"monster_back_r4":"resources/textures/sprites/ennemies/test/back/back_r4.bmp",
 		"map_canion":"resources/maps/canions.bmp",
-		"menu_background":"resources/textures/background/dark_background.bmp",
+		"menu_background":"resources/textures/background/dark_bg.bmp",
 		"button_left_white":"resources/textures/ui/buttons/left_white.bmp",
 		"button_left_orange":"resources/textures/ui/buttons/left_orange.bmp",
 		"button_right_white":"resources/textures/ui/buttons/right_white.bmp",
@@ -315,11 +315,11 @@
 			"offset":{"x":-100,"y":-130},
 			"animation":"stop",
 			"normal":{
-				"1":{"filter":"circular_shadow","key":"button_upd_white","size":{"x":50,"y":50}},
-				"2":{"filter":"circular_shadow","key":"button_upd_orange","size":{"x":50,"y":50},"delay_ms":100}
+				"1":{"filter":"circular_shadow","key":"button_up_white","size":{"x":50,"y":50}},
+				"2":{"filter":"circular_shadow","key":"button_up_orange","size":{"x":50,"y":50},"delay_ms":100}
 			},
 			"hover":{
-				"1":{"key":"button_upd_white","size":{"x":50,"y":50}}
+				"1":{"key":"button_up_white","size":{"x":50,"y":50}}
 			}
 		}
 	},
@@ -409,7 +409,7 @@
 				"1":{
 					"key":"boss level 1",
 					"character":{
-						"camera":{"position":{"x":400,"y":400},"direction":{"x":0,"y":1}}
+						"camera":{"position":{"x":0,"y":0},"direction":{"x":0,"y":1}}
 					}
 				},
 				"2":{
@@ -433,26 +433,30 @@
 		"name":"menu",
 		"current":1,
 		"background":{
-			"1":{"key":"menu_background","size":{"x":640,"y":480}}
+			"1":{"key":"menu_background","size":{"x":1080,"y":720}}
 		},
 		"map_config":{
 			"color_map":{
 				"display":1,
-				"size":{"x":480,"y":360},
-				"anchor":{"x":320,"y":240},
-				"offset":{"x":-240,"y":-180},
-				"display_oriented_entities":1,
-				"display_storage_entities":0,
-				"characters":{
-					"size":{"x":50,"y":40}
-				}
+				"size":{"x":640,"y":480},
+				"anchor":{"x":220,"y":100},
+				"offset":{"x":0,"y":0},
+				"display_e_oriented":1,
+				"display_e_oriented_storage":0,
+				"display_e_static":1,
+				"display_e_static_storage":0,
+				"character_size":{"x":50,"y":40}
 			}
 		},
 		"entities":{
 			"1":{
 				"key":"button_edit_map",
 				"entity":{
-					"status":{
+					"texture":{
+						"anchor":{"x":400,"y":600},
+						"offset":{"x":0,"y":0}
+					},
+					"listener":{
 						"display":1,
 						"selectable":1,
 						"select":{
@@ -470,6 +474,10 @@
 			"2":{
 				"key":"button_play",
 				"entity":{
+					"texture":{
+						"anchor":{"x":600,"y":600},
+						"offset":{"x":0,"y":0}
+					},
 					"listener":{
 						"display":1,
 						"selectable":1,
@@ -488,7 +496,11 @@
 			"3":{
 				"key":"button_right",
 				"entity":{
-					"status":{
+					"texture":{
+						"anchor":{"x":1000,"y":300},
+						"offset":{"x":0,"y":0}
+					},
+					"listener":{
 						"display":1,
 						"selectable":1,
 						"select":{
@@ -506,7 +518,11 @@
 			"4":{
 				"key":"button_left",
 				"entity":{
-					"status":{
+					"texture":{
+						"anchor":{"x":80,"y":300},
+						"offset":{"x":0,"y":0}
+					},
+					"listener":{
 						"display":1,
 						"selectable":1,
 						"select":{
@@ -531,8 +547,8 @@
 				"size":{"x":480,"y":360},
 				"anchor":{"x":0,"y":0},
 				"offset":{"x":0,"y":0},
-				"display_oriented_entities":0,
-				"display_storage_entities":0,
+				"display_e_oriented":0,
+				"display_e_oriented_storage":0,
 				"characters":{
 					"size":{"x":50,"y":40}
 				}
@@ -542,8 +558,8 @@
 				"size":{"x":480,"y":360},
 				"anchor":{"x":0,"y":360},
 				"offset":{"x":0,"y":0},
-				"display_oriented_entities":0,
-				"display_storage_entities":0,
+				"display_e_oriented":0,
+				"display_e_oriented_storage":0,
 				"characters":{
 					"size":{"x":50,"y":40}
 				}
@@ -553,8 +569,10 @@
 				"size":{"x":480,"y":360},
 				"anchor":{"x":480,"y":0},
 				"offset":{"x":0,"y":0},
-				"display_oriented_entities":1,
-				"display_storage_entities":0,
+				"display_e_oriented":1,
+				"display_e_oriented_storage":0,
+				"display_e_static":1,
+				"display_e_static_storage":0,
 				"characters":{
 					"size":{"x":50,"y":40}
 				}
@@ -565,7 +583,7 @@
 				"anchor":{"x":480,"y":360},
 				"offset":{"x":0,"y":0},
 				"display_static_entities":0,
-				"display_oriented_entities":1
+				"display_e_oriented":1
 			}
 		},
 		"entities":{
@@ -598,8 +616,10 @@
 				"size":{"x":480,"y":360},
 				"anchor":{"x":0,"y":0},
 				"offset":{"x":0,"y":0},
-				"display_oriented_entities":1,
-				"display_storage_entities":0,
+				"display_e_oriented":1,
+				"display_e_oriented_storage":0,
+				"display_e_static":1,
+				"display_e_static_storage":0,
 				"characters":{
 					"size":{"x":50,"y":40}
 				}
@@ -610,7 +630,7 @@
 				"anchor":{"x":0,"y":0},
 				"offset":{"x":0,"y":0},
 				"display_static_entities":1,
-				"display_oriented_entities":1
+				"display_e_oriented":1
 			}
 		}
 	}

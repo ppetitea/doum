@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 21:37:42 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/28 03:55:12 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/28 15:48:14 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,8 +203,9 @@ t_result	build_new_map_with_obj(t_game *game,
 	if (!build_map_by_type_with_obj(&game->resources, map, map_obj))
 		return (throw_error("build_new_map_with_obj", "build_map failed"));
 	map->screen_ref = &game->interface.screen;
+	if (get_int_value_by_key(map_obj, "current", 0))
+		game->curr_map = map;
 	list_add_entry(&map->node, &game->resources.voxel_maps);
-
 	return (OK);
 }
 

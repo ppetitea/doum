@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 06:49:05 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/28 04:12:28 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/28 19:32:46 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "engine/component/action.h"
 #include "utils/error.h"
 #include "build.h"
+
+# include <stdio.h>
 
 t_action_node	*init_new_action()
 {
@@ -35,7 +37,7 @@ t_result	build_action_by_key(t_action_node *action,
 	if (action == NULL || action_obj == NULL)
 		return (throw_error("build_action_by_key", "NULL pointer provided"));
 	if (strcmp_obj("action", "swap_scene", action_obj))
-		action->action = NULL;
+		action->action = swap_scene;
 	else if (strcmp_obj("action", "swap_map", action_obj))
 		action->action = NULL;
 	else
@@ -159,7 +161,7 @@ t_result	overwrite_entity_with_obj(t_entity *self, t_dnon_object *entity_obj)
 {
 	t_dnon_object	*listener_obj;
 	t_dnon_object	*e_texture_obj;
-	
+
 	if (self == NULL || entity_obj == NULL)
 		return (throw_error("overwrite_entity", "NULL pointer provided"));
 	if ((listener_obj = get_child_list_object_by_key(entity_obj, "listener")))

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:59:39 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/28 04:07:09 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/28 15:39:51 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 int		main()
 {
-	// t_game *game;
+	t_game *game;
 
-	build();
-	// if ((game = build()) != NULL)
-	// 	loop(game);
+	// build();
+	if ((game = build()) != NULL)
+		loop(game);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 23:06:52 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/28 03:53:43 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/28 19:31:18 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ typedef struct	s_action_node
 	t_resource_type	resource_type;
 	void			*resource;
 	t_dnon_object	*args;
-	t_result		(*action)(void*, t_dnon_object*);
+	t_result		(*action)(void*, t_resource_type, t_dnon_object*);
 }				t_action_node;
+
+t_result		swap_scene(void *game, t_resource_type resource_type,
+					t_dnon_object *args);
 
 #endif

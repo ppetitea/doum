@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 15:18:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/28 04:13:32 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/28 18:46:29 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,10 @@ t_game	*build()
 
 	if (!(obj = parse_dnon_file("resources/game.doom")))
 		return (throw_null("build", "fail to parse file"));
-	window = ft_usize(640, 480);
+	window = ft_usize(1080, 720);
 	if (!(game = init_new_game(window)))
 		return (throw_null("build_game", "build_game failed"));
 	if (!build_game_resources(game, obj))
 		return (throw_null("build_game", "build_resources failed"));
-	if (game->resources.voxel_maps.next != &game->resources.voxel_maps)
-		game->curr_map = (t_map*)game->resources.voxel_maps.next;
-	// if (!build_maps(game, get_child_list_object_by_key(obj, "maps")))
-	// 	return (throw_null("build_game", "build_maps failed"));
-	// if (!build_scenes(game, obj))
-	// 	return (throw_null("build_game", "build_scenes failed"));
-	(void)obj;
-	(void)window;
-	(void)game;
-	// return (NULL);
 	return (game);
 }

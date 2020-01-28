@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 17:16:02 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/27 15:38:38 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/28 18:12:17 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,5 @@ typedef struct	s_map
 t_map		*init_new_map();
 t_result	set_character_as_player(t_map *map,
 				t_character *character);
-
 
 #endif
