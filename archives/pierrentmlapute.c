@@ -20,20 +20,6 @@ typedef struct s_point
 	int y;
 } t_point;
 
-uint32_t	pp_get_SDLcolor(SDL_Color color)
-{
-	uint32_t c;
-	c = 0xFFFFFFFF;
-	c = c | color.a;
-	c = c << 8;
-	c = c | color.r;
-	c = c << 8;
-	c = c | color.g;
-	c = c << 8;
-	c = c | color.b;
-	return (c);
-}
-
 int pp_putpixel(uint32_t *pixel, int x, int y, uint32_t color)
 {
 	if(y < 0 || y > HEIGHT)
@@ -68,61 +54,6 @@ void	pp_liner(uint32_t *pixel, t_point *a, t_point *b, uint32_t color)
 	}
 }
 
-int cast_ray(char *pixels, t_point *a, float angle)
-{
-	int x0 = a->x;
-	int x1 = a->x + 5000 * cos(angle);
-	int y0 = a->y;
-	int y1 = a->y - 5000 * sin(angle);
-
-	int dx = abs(x1-x0), sx = x0<x1 ? 1 : -1;
-	int dy = abs(y1-y0), sy = y0<y1 ? 1 : -1;
-	int err = (dx>dy ? dx : -dy)/2, e2;
-
-	while(!(x0==x1 && y0==y1))
-	{
-		if (pixels[y0 * WIDTH + x0] == 1)
-		{
-			int adj = x0 - a->x;
-			int opp = y0 - a->y;
-			return(sqrt((adj * adj) + (opp * opp)));
-			//            int dist = (sqrt((adj * adj) + (opp * opp)));
-			//          return(dist * cos(angle));
-		}
-		e2 = err;
-		if (e2 >-dx) { err -= dy; x0 += sx; }
-		if (e2 < dy) { err += dx; y0 += sy; }
-	}
-	return(0);
-}
-
-
-int cast_ray2(uint32_t *pixels, t_point *a, float angle)
-{
-	int x0 = a->x;
-	int x1 = a->x + 5000 * cos(angle);
-	int y0 = a->y;
-	int y1 = a->y - 5000 * sin(angle);
-
-	int dx = abs(x1-x0), sx = x0<x1 ? 1 : -1;
-	int dy = abs(y1-y0), sy = y0<y1 ? 1 : -1;
-	int err = (dx>dy ? dx : -dy)/2, e2;
-
-	while(!(x0==x1 && y0==y1))
-	{
-		if (pixels[y0 * WIDTH + x0] == 1)
-		{
-			int adj = x0 - a->x;
-			int opp = y0 - a->y;
-			return(sqrt((adj * adj) + (opp * opp)));
-		}
-		e2 = err;
-		if (e2 >-dx) { err -= dy; x0 += sx; }
-		if (e2 < dy) { err += dx; y0 += sy; }
-	}
-	return(0);
-}
-
 int	get_blue(uint32_t color)
 {
 	int c;
@@ -130,16 +61,6 @@ int	get_blue(uint32_t color)
 	color = color >> 24;
 	c = (int) color;
 	return (c);
-}
-
-void	draw_column(uint32_t *pixels, int x, int height, uint32_t color)
-{
-	if (height > HEIGHT)
-		height = HEIGHT;
-	if (height < 0)
-		height = 0;
-	while(height--)
-		pixels[(HEIGHT - height - 1) * WIDTH + x] = color;
 }
 
 void	draw_vertical_line(uint32_t *pixels, int x, int ytop, int ybot, uint32_t color)
@@ -228,64 +149,6 @@ void	render2(uint32_t *pixels, int *hm, uint32_t *colormap, t_point player, floa
 			ply += dy;
 		}
 		deltaz += 0.005;
-	}
-}
-
-void    fill_map(char *map)
-{
-	for(int a = 0; a < HEIGHT * WIDTH; a++)
-		map[a] = 0;
-	for(int i = 0; i < HEIGHT; i++)
-	{
-		for(int j = 0; j < WIDTH; j++)
-		{
-			if (i == HEIGHT / 4 && j == WIDTH / 4)
-				for (int k = 0; k <= WIDTH / 2; k++)
-					map[j + WIDTH *i + k] = 1;
-
-			if (i == HEIGHT / 4 && j == WIDTH / 4)
-				for (int k = 0; k <= WIDTH / 2; k++)
-					map[j + WIDTH *i + k * WIDTH] = 1;
-
-			if (i == HEIGHT / 4 * 3 && j == WIDTH / 4)
-				for (int k = 0; k <= WIDTH / 2; k++)
-					map[j + WIDTH *i + k] = 1;
-
-			if (i == HEIGHT / 4 && j == WIDTH / 4 * 3)
-				for (int k = 0; k <= WIDTH / 2; k++)
-					map[j + WIDTH *i + k * WIDTH] = 1;
-		}
-	}
-}
-
-
-void    render_inside_raycast(uint32_t *pixels, char *map, t_point *player, float view_angle, int y)
-{
-	for(int i = 0; i < WIDTH * HEIGHT; i++)
-		pixels[i] = 0xFF000000;
-	float fov = 60;
-	float cosphi = 0;
-
-	float fovrad = fov * M_PI / 180;
-
-	float wallsize = 100;
-	float wp = wallsize / 100;
-
-	float height;
-	float dist;
-	float dx = fovrad / WIDTH;
-	float tmp = dx;
-	int screenDist = 50;
-	float ag = view_angle - fovrad/2;
-	//ag -= view_angle/2;
-	for(int i = 0; i < WIDTH; i++)
-	{
-		dist = (float)cast_ray(map, player, ag);
-		if (dist == 0)
-			dist = 1;
-		height = (HEIGHT / wp) / (dist / 100);
-		draw_vertical_line(pixels, i, -height / 2 + y, height / 2 + y, 0xFF0000A0 - (int)dist);
-		ag += dx;
 	}
 }
 
@@ -562,7 +425,6 @@ int main(int argc, char **argv)
 		}
 		collision_height(hm, &player, &height, 10);
 		render2(screen, hm, colormap, player, ag, height, horizon, 2, 3000, bg->pixels);
-		//render_inside_raycast(screen, mapinside, &player, ag, angley);
 		SDL_RenderClear(renderer);
 		SDL_RenderCopy(renderer, texture, NULL, NULL);
 		SDL_RenderPresent(renderer);
