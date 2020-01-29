@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:59:00 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/28 16:32:16 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 18:42:11 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ t_result	init_voxel_map_3d_config(t_voxel_map_3d_config *config)
 	config->offset = ft_vec2i(0, 0);
 	config->size = ft_usize(640, 480);
 	config->scale = ft_vec2f(1.0f, 1.0f);
+	config->height_scale = 2;
+	config->render_dist = 300;
 	config->display_e_oriented = FALSE;
 	config->display_e_oriented_storage = FALSE;
 	config->display_e_static = FALSE;

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:41:38 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 03:40:01 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 18:14:44 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,8 @@ void	render_scene(t_game *game)
 			render_current_map(&game->interface.screen,
 				&game->curr_scene->map_render_config, game->curr_map);
 		}
+		render_voxel_map3d(&game->interface.screen,
+			&game->curr_scene->map_render_config.map_3d, game->curr_map);
 		render_scene_entities(&game->interface.screen,
 			&game->curr_scene->entities);
 	}

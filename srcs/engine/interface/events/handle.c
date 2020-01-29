@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 01:13:53 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 02:27:49 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 16:17:03 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	handle_events(t_game *game)
 		handle_mouse_down(game, sdl->event.button);
 	if (sdl->event.type == SDL_MOUSEBUTTONUP)
 		handle_mouse_up(game, sdl->event.button);
-	// if (sdl->event.type == SDL_KEYDOWN)
-	// 	handle_keyboard_down(game->curr_scene, sdl->event.key.keysym.sym);
-	// if (sdl->event.type == SDL_KEYUP)
-	// 	handle_keyboard_up(game->curr_scene, sdl->event.key.keysym.sym);
+	if (sdl->event.type == SDL_KEYDOWN)
+		handle_keyboard_down(game->curr_scene, sdl->event.key.keysym.sym);
+	if (sdl->event.type == SDL_KEYUP)
+		handle_keyboard_up(game->curr_scene, sdl->event.key.keysym.sym);
 	if (sdl->event.type == SDL_QUIT)
 		game->is_running = FALSE;
 }

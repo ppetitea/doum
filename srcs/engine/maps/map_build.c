@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 21:37:42 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 02:26:46 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 18:07:46 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,38 @@ t_result	build_voxel_map_textures_with_obj(t_list_head *images,
 	return (OK);
 }
 
-t_result	build_map_entity_with_obj(t_game_resources *resources,
-				t_list_head *render, t_list_head *storage,
+t_result	add_entity_to_map(t_map *map, t_entity *entity,
 				t_dnon_object *map_entity_obj)
+{
+	if (map == NULL || entity == NULL || map_entity_obj == NULL)
+		return (throw_error("add_entity_to_map", "NULL pointer"));
+	if (get_int_value_by_key(map_entity_obj, "oriented", 0))
+	{
+		if (entity->status.display)
+			list_add_entry(&entity->node, &map->e_oriented);
+		else
+			list_add_entry(&entity->node, &map->e_oriented_storage);
+	}
+	else
+	{
+		if (entity->status.display)
+			list_add_entry(&entity->node, &map->e_static);
+		else
+			list_add_entry(&entity->node, &map->e_static_storage);
+	}
+	if (get_int_value_by_key(map_entity_obj, "current_player", 0))
+		map->character_ref = (t_character*)entity;
+	return (OK);
+}
+
+t_result	build_map_entity_with_obj(t_game_resources *resources,
+				t_map *map, t_dnon_object *map_entity_obj)
 {
 	t_entity	*src;
 	t_entity	*entity;
 	char		*name;
 
-	if (resources == NULL || render == NULL || storage == NULL
-		|| map_entity_obj == NULL)
+	if (resources == NULL || map == NULL || map_entity_obj == NULL)
 		return (throw_error("build_map_entity_with_obj", "NULL pointer"));
 	if (!(name = get_string_value_by_key(map_entity_obj, "key", NULL)))
 		return (throw_error("build_map_entity_with_obj", "name not found"));
@@ -97,23 +119,19 @@ t_result	build_map_entity_with_obj(t_game_resources *resources,
 		return (throw_error("build_map_entity_with_obj", "entity_dup failed"));
 	if (!overwrite_entity_by_type_with_obj(entity, map_entity_obj))
 		return (throw_error("build_map_entity_with_obj", "entity_over failed"));
-	if (entity->status.display)
-		list_add_entry(&entity->node, render);
-	else
-		list_add_entry(&entity->node, storage);
+	add_entity_to_map(map, entity, map_entity_obj);
 	return (OK);
 }
 
 t_result	build_map_entities_with_obj(t_game_resources *resources,
-				t_list_head *render, t_list_head *storage,
-				t_dnon_object *map_entities_obj)
+				t_map *map, t_dnon_object *map_entities_obj)
 {
 	t_dnon_object	*map_entity_obj;
 	t_list_head		*pos;
 	t_list_head		*next;
 	t_result		result;
 	
-	if (resources == NULL || render == NULL || storage == NULL)
+	if (resources == NULL || map == NULL)
 		return (throw_error("build_map_entities_with_obj", "NULL pointer"));
 	if (map_entities_obj == NULL)
 		return (ERROR);
@@ -125,8 +143,7 @@ t_result	build_map_entities_with_obj(t_game_resources *resources,
 		map_entity_obj = (t_dnon_object*)pos;
 		if (map_entity_obj->type == LIST)
 		{
-			result = build_map_entity_with_obj(resources, render, storage,
-					map_entity_obj);
+			result = build_map_entity_with_obj(resources, map, map_entity_obj);
 			throw_warning("entity added:\t\t\t\t", result ? "OK" : "FAIL", 0);
 		}
 	}
@@ -148,12 +165,10 @@ t_result	build_voxel_map_with_obj(t_game_resources *resources,
 	if (!build_voxel_map_textures_with_obj(&resources->images, map, map_obj))
 		return (throw_error("build_voxel_map_with_obj", "textures failed"));
 	map_entities_obj = get_child_list_object_by_key(map_obj, "entities");
-	result = build_map_entities_with_obj(resources, &map->e_oriented,
-		&map->e_oriented_storage,
+	result = build_map_entities_with_obj(resources, map,
 		get_child_list_object_by_key(map_entities_obj, "oriented"));
 	throw_debug("oriented entity list:\t\t\t", result ? "OK" : "FAIL", 0);
-	result = build_map_entities_with_obj(resources, &map->e_static,
-		&map->e_static_storage,
+	result = build_map_entities_with_obj(resources, map,
 		get_child_list_object_by_key(map_entities_obj, "static"));
 	throw_debug("static entity list:\t\t\t", result ? "OK" : "FAIL", 0);
 	return (OK);
@@ -195,14 +210,12 @@ t_result	build_new_map_with_obj(t_game *game,
 {
 	t_map *map;
 
-
 	if (game == NULL || map_obj == NULL)
 		return (throw_error("build_new_map_with_obj", "NULL pointer"));
 	if (!(map = init_new_map()))
 		return (throw_error("build_new_map_with_obj", "malloc failed"));
 	if (!build_map_by_type_with_obj(&game->resources, map, map_obj))
 		return (throw_error("build_new_map_with_obj", "build_map failed"));
-	map->screen_ref = &game->interface.screen;
 	if (get_int_value_by_key(map_obj, "current", 0))
 		game->curr_map = map;
 	list_add_entry(&map->node, &game->resources.voxel_maps);

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 15:18:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/28 18:46:29 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 18:26:27 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_game	*build()
 
 	if (!(obj = parse_dnon_file("resources/game.doom")))
 		return (throw_null("build", "fail to parse file"));
-	window = ft_usize(1080, 720);
+	window = ft_usize(1024, 1024);
 	if (!(game = init_new_game(window)))
 		return (throw_null("build_game", "build_game failed"));
 	if (!build_game_resources(game, obj))

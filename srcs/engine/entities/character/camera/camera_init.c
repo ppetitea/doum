@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 01:11:36 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/25 02:13:40 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 17:29:18 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_result	init_camera(t_camera *self)
 		return (throw_error("init_camera", "NULL pointer provided"));
 	fov = 90.0f / 180.0f * PI;
 	plan_width = 640.0f;
+	self->horizon = 120;
 	self->dir = ft_vec2f(0, 1);
 	self->fov = fov;
 	self->fov_half = self->fov / 2.0f;

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 19:22:44 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 06:47:32 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 16:15:28 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@ t_result		stop_game(void *game_resource, t_resource_type resource_type,
 		return (throw_error("stop_game", "resource must be game instance"));
 	game = (t_game*)game_resource;
 	game->is_running = FALSE;
+	(void)args;
 	return (OK);
 }

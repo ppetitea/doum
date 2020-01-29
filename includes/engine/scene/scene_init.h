@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 16:27:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/28 05:12:36 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 17:20:01 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ typedef struct			s_voxel_map_3d_config
 	t_vec2i				offset;
 	t_usize				size;
 	t_vec2f				scale;
+	int					height_scale;
+	size_t				render_dist;
 	t_bool				display_e_static;
 	t_bool				display_e_static_storage;
 	t_bool				display_e_oriented;

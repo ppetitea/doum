@@ -74,7 +74,10 @@ SRCS_LIST	=	main.c														\
 				engine/interface/events/handle.c							\
 				engine/interface/events/mouse/handle.c						\
 				engine/interface/events/mouse/trigger.c						\
+				engine/interface/events/keyboard/handle.c					\
 				engine/interface/events/actions/action_trigger.c			\
+				engine/interface/events/actions/action_init.c				\
+				engine/interface/events/actions/action_build.c				\
 																			\
 				engine/build.c												\
 				engine/loop.c												\
@@ -132,7 +135,8 @@ SRCS_LIST	=	main.c														\
 																			\
 				engine/scenes/map_render_build.c							\
 				engine/scenes/map_render_init.c								\
-				engine/scenes/map_render.c									\
+				engine/scenes/map_render2d.c								\
+				engine/scenes/map_render3d.c								\
 				engine/scenes/scene_build.c									\
 				engine/scenes/scene_init.c									\
 				engine/scenes/scene_render.c								\
@@ -228,7 +232,7 @@ INCLUDES_FOLDER	=	./includes/
 INCLUDES	:=	-I includes
 
 #COMPILATION
-CC			=	gcc
+CC			=	gcc -g
 CFLAGS		:=	-Wall -Werror -Wextra -O3 -Ofast -flto -g
 LDFLAGS		:=	-Wall -Werror -Wextra  -O3 -Ofast -flto -g -lm 
 

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 16:27:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/28 15:31:36 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 17:32:35 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ void	map_render2d_oriented_entities(t_screen *screen,
 			t_voxel_map_2d_config *config, t_list_head *entities);
 void	voxel_map_render2d_character(t_screen *screen, t_voxel_map_2d_config *config,
 			t_character *character);
+void	render_voxel_map3d(t_screen *screen, t_voxel_map_3d_config *config,
+			t_map *map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 20:36:14 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 06:45:31 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 16:23:25 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,34 +87,17 @@ t_result	build_scene_background_texture_with_obj(t_game *game,
 	return (OK);
 }
 
-t_result	build_scene_key_binding(t_game *game, t_scene *scene,
-				t_dnon_object *key_binding_obj)
-{
-	t_action_node	*action;
-	
-	if (game == NULL || scene == NULL || key_binding_obj)
-		return (throw_error("build_scene_key_binding", "NULL pointer"));
-	if (!(action = init_new_action()))
-		return (throw_error("build_scene_key_binding", "new_action failed"));
-	action->args = get_child_list_object_by_key(key_binding_obj, "args");
-	init_action_resource_type_by_key(action, key_binding_obj);
-	build_action_by_key(action, key_binding_obj);
-	if (action->resource_type ==  R_GAME)
-		action->resource = game;
-	list_add_entry(&action->node, &scene->interface.key_binds);
-	return (OK);
-}
-
 t_result	build_scene_key_binding_with_obj(t_game *game, t_scene *scene,
 				t_dnon_object *key_binding_obj)
 {
 	t_key_binding	*bind;
 
-	if (game == NULL || scene == NULL || key_binding_obj)
+	if (game == NULL || scene == NULL || key_binding_obj == NULL)
 		return (throw_error("build_scene_key_binding", "NULL pointer"));
 	if (!(bind = init_new_key_binding()))
 		return (throw_error("build_scene_key_binding", "new_key_binding fail"));
-	if ((bind->key = get_int_value_by_key(key_binding_obj, "key", -1)) == -1)
+	bind->key = get_int_value_by_key(key_binding_obj, "SDL_Keycode", -1);
+	if (bind->key == -1)
 		return (throw_error("build_scene_key_binding", "key code not found"));
 	bind->action.args = get_child_list_object_by_key(key_binding_obj, "args");
 	init_action_resource_type_by_key(&bind->action, key_binding_obj);
@@ -143,7 +126,7 @@ t_result	build_scene_key_bindings(t_game *game, t_scene *scene,
 	{
 		key_binding_obj = (t_dnon_object*)pos;
 		if (key_binding_obj->type == LIST)
-			build_scene_key_binding(game, scene, key_binding_obj);
+			build_scene_key_binding_with_obj(game, scene, key_binding_obj);
 	}
 	return (OK);
 }

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 23:06:52 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 06:48:30 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 16:14:45 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "utils/parser.h"
+# include "SDL.h"
 
 typedef enum	e_resource_type
 {
@@ -51,6 +52,13 @@ typedef struct	s_key_binding
 }				t_key_binding;
 
 t_result		trigger_actions(t_list_head *actions);
+void			trigger_key_hold_bindings(t_list_head *bind_list);
+void			trigger_key_bindings(t_list_head *bind_list, SDL_Keycode key);
+void			active_key_hold_binding(t_list_head *bind_list,
+					SDL_Keycode key);
+void			disable_key_hold_binding(t_list_head *bind_list,
+					SDL_Keycode key);
+
 t_result		swap_scene(void *game, t_resource_type resource_type,
 					t_dnon_object *args);
 t_result		swap_map(void *game_resource, t_resource_type resource_type,

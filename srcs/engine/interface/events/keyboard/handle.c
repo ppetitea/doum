@@ -6,12 +6,13 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 01:17:28 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 06:50:26 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 16:18:09 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/interface/events/keyboard.h"
 #include "engine/scene/scene_init.h"
+#include "engine/component/action.h"
 #include "utils/error.h"
 #include <sys/time.h>
 
@@ -32,25 +33,19 @@ unsigned int compute_delta_ms(struct timeval last, struct timeval time)
 void	trigger_key_hold_bindings(t_list_head *bind_list)
 {
 	t_list_head				*pos;
-	t_list_head				*next;
-	t_event_key_binding		*bind;
-	t_entity_key_binding	*e_bind;
+	t_key_binding			*bind;
 	
 	pos = bind_list;
-	next = pos->next;
-	while ((pos = next) != bind_list)
+	while ((pos = pos->next) != bind_list)
 	{
-		next = next->next;
-		bind = (t_event_key_binding*)pos;
+		bind = (t_key_binding*)pos;
 		if (bind->is_down == TRUE)
 		{
-			if (bind->type == ENTITY)
-			{
-				e_bind = (t_entity_key_binding*)bind;
-				e_bind->trigger(e_bind->entity_ref);
-			}
-			else if (bind->type == BASIC)
-				bind->trigger();
+			if (bind->action.action == NULL)
+				throw_void("trigger_key_hold", "fn pointer is NULL");
+			else
+				bind->action.action(bind->action.resource,
+					bind->action.resource_type, bind->action.args);
 		}
 	}
 }
@@ -58,25 +53,19 @@ void	trigger_key_hold_bindings(t_list_head *bind_list)
 void	trigger_key_bindings(t_list_head *bind_list, SDL_Keycode key)
 {
 	t_list_head				*pos;
-	t_list_head				*next;
-	t_event_key_binding		*bind;
-	t_entity_key_binding	*e_bind;
-
+	t_key_binding			*bind;
+	
 	pos = bind_list;
-	next = pos->next;
-	while ((pos = next) != bind_list)
+	while ((pos = pos->next) != bind_list)
 	{
-		next = next->next;
-		bind = (t_event_key_binding*)pos;
+		bind = (t_key_binding*)pos;
 		if (bind->key == key)
 		{
-			if (bind->type == ENTITY)
-			{
-				e_bind = (t_entity_key_binding*)bind;
-				e_bind->trigger(e_bind->entity_ref);
-			}
-			else if (bind->type == BASIC)
-				bind->trigger();
+			if (bind->action.action == NULL)
+				throw_void("trigger_key_hold", "fn pointer is NULL");
+			else
+				bind->action.action(bind->action.resource,
+					bind->action.resource_type, bind->action.args);
 		}
 	}
 }
@@ -84,31 +73,25 @@ void	trigger_key_bindings(t_list_head *bind_list, SDL_Keycode key)
 void	active_key_hold_binding(t_list_head *bind_list, SDL_Keycode key)
 {
 	t_list_head				*pos;
-	t_list_head				*next;
-	t_event_key_binding		*bind;
+	t_key_binding			*bind;
 
 	pos = bind_list;
-	next = pos->next;
-	while ((pos = next) != bind_list)
+	while ((pos = pos->next) != bind_list)
 	{
-		next = next->next;
-		bind = (t_event_key_binding*)pos;
+		bind = (t_key_binding*)pos;
 		if (bind->key == key)
 			bind->is_down = TRUE;
 	}
 }
 void	disable_key_hold_bindings(t_list_head *bind_list, SDL_Keycode key)
 {
-	t_list_head			*pos;
-	t_list_head			*next;
-	t_event_key_binding	*bind;
+	t_list_head				*pos;
+	t_key_binding			*bind;
 
 	pos = bind_list;
-	next = pos->next;
-	while ((pos = next) != bind_list)
+	while ((pos = pos->next) != bind_list)
 	{
-		next = next->next;
-		bind = (t_event_key_binding*)pos;
+		bind = (t_key_binding*)pos;
 		if (bind->key == key)
 			bind->is_down = FALSE;
 	}
@@ -116,11 +99,8 @@ void	disable_key_hold_bindings(t_list_head *bind_list, SDL_Keycode key)
 
 void	handle_keyboard_down(t_scene *scene, SDL_Keycode key)
 {
-
-//YOU ARE HERE -> maj trigger keybinding and active_key_hold
-
-	// if (key == SDLK_ESCAPE)
-	// 	scene->is_running = FALSE;
+	if (scene == NULL)
+		return (throw_void)("handle_keyboard_down", "NULL pointer provided");
 	trigger_key_bindings(&scene->interface.key_binds, key);
 	active_key_hold_binding(&scene->interface.key_hold_binds, key);
 	(void)scene;
@@ -131,66 +111,4 @@ void	handle_keyboard_up(t_scene *scene, SDL_Keycode key)
 	disable_key_hold_bindings(&scene->interface.key_hold_binds, key);
 	(void)scene;
 	(void)key;
-}
-
-t_result	init_bind_key(t_event_key_binding *bind, SDL_Keycode key,
-				t_result (*trigger)(), t_key_bind_type type)
-{
-	if (bind == NULL || (type == BASIC && trigger == NULL))
-		return (throw_error("bind_key", "NULL pointer provided"));
-	init_list_head(&bind->node);
-	bind->type = type;
-	bind->key = key;
-	bind->trigger = trigger;
-	bind->delay = 20;
-	gettimeofday(&bind->last, NULL);
-	// timespec_get(&bind->last, TIME_UTC);
-	return (OK);
-}
-
-t_result	new_bind_key(t_list_head *bind_list, SDL_Keycode key,
-				t_result (*trigger)())
-{
-	t_event_key_binding	*bind;
-
-	if (bind_list == NULL || trigger == NULL)
-		return (throw_error("bind_key", "NULL pointer provided"));
-	if (!(bind = (t_event_key_binding*)malloc(sizeof(t_event_key_binding))))
-		return (throw_error("bind_key", "malloc failed"));
-	init_bind_key(bind, key, trigger, BASIC);
-	list_add_entry(&bind->node, bind_list);
-	return (OK);
-}
-t_result	new_entity_bind_key(t_list_head *bind_list, SDL_Keycode key,
-				t_entity *entity_ref, t_result (*trigger)(t_entity*))
-{
-	t_entity_key_binding	*bind;
-
-	if (bind_list == NULL || trigger == NULL)
-		return (throw_error("bind_key", "NULL pointer provided"));
-	if (!(bind = (t_entity_key_binding*)malloc(sizeof(t_entity_key_binding))))
-		return (throw_error("bind_key", "malloc failed"));
-	init_bind_key(&bind->bind, key, NULL, ENTITY);
-	bind->entity_ref = entity_ref;
-	bind->trigger = trigger;
-	list_add_entry(&bind->bind.node, bind_list);
-	return (OK);
-}
-
-t_result	unbind_key(t_event_key_binding *bind)
-{
-	if (bind == NULL)
-		return (throw_error("bind_key", "NULL pointer provided"));
-	list_del_entry(&bind->node);
-	free(bind);
-	return (OK);
-}
-
-t_result	unbind_entity_key(t_entity_key_binding *bind)
-{
-	if (bind == NULL)
-		return (throw_error("bind_key", "NULL pointer provided"));
-	list_del_entry(&bind->bind.node);
-	free(bind);
-	return (OK);
 }

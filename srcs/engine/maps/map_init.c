@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 02:49:02 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/27 15:58:40 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 17:29:49 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ t_map	*init_new_map()
 	init_list_head(&self->node);
 	self->type = VOXEL_MAP;
 	self->name = NULL;
-	self->screen_ref = NULL;
 	self->character_ref = NULL;
 	init_list_head(&self->e_static);
 	init_list_head(&self->e_oriented);
