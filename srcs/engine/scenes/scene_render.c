@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:41:38 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/28 23:14:04 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 03:40:01 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,29 +74,17 @@ void	render_current_map(t_screen *screen, t_voxel_map_config *config,
 {
 	if (screen == NULL || config == NULL || map == NULL)
 		throw_error("render_current_map", "NULL pointer provided");
-	// if (config->map_ref != map)
-	// {
+	if (config->map_ref != map)
 		update_map_render_config(config, map);
-	// }
 	if (config->color_map.display)
-	{
-		// printf("display_color_map\n");
-		// printf("3scale x %.2f y %.2f\n", config->color_map.scale.x, config->color_map.scale.y);
 		render_voxel_map2d(screen, map->color_map_textures.curr,
 			&config->color_map, map);
-	}
 	if (config->height_map.display)
-	{
-		printf("display_height_map\n");
 		render_voxel_map2d(screen, map->height_map_textures.curr,
 			&config->height_map, map);
-	}
 	if (config->drop_map.display)
-	{
-		printf("display_drop_map\n");
 		render_voxel_map2d(screen, map->color_map_textures.curr,
 			&config->drop_map, map);
-	}
 }
 
 void	render_scene_background(t_screen *screen, t_texture* background)
@@ -133,8 +121,6 @@ void	render_scene(t_game *game)
 {
 	if (game->curr_scene != NULL)
 	{
-		// ft_putstr("scene\n");
-		// printf("scene: %s\n", game->curr_scene->name);
 		if (game->curr_scene->bg != NULL)
 			render_scene_background(&game->interface.screen,
 				game->curr_scene->bg);

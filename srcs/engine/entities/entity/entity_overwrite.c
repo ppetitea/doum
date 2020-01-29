@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 06:49:05 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/28 19:32:46 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 05:46:29 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,62 +17,13 @@
 
 # include <stdio.h>
 
-t_action_node	*init_new_action()
-{
-	t_action_node *action;
-
-	if (!(action = (t_action_node*)malloc(sizeof(t_action_node))))
-		return (throw_null("init_new_action", "malloc failed"));
-	init_list_head(&action->node);
-	action->args = NULL;
-	action->resource = NULL;
-	action->resource_type = R_UNKNOW;
-	action->action = NULL;
-	return (action);
-}
-
-t_result	build_action_by_key(t_action_node *action,
-				t_dnon_object *action_obj)
-{
-	if (action == NULL || action_obj == NULL)
-		return (throw_error("build_action_by_key", "NULL pointer provided"));
-	if (strcmp_obj("action", "swap_scene", action_obj))
-		action->action = swap_scene;
-	else if (strcmp_obj("action", "swap_map", action_obj))
-		action->action = NULL;
-	else
-		return (throw_error("build_action_by_key", "unknow action detected"));
-	return (OK);
-}
-
-t_result	init_action_resource_type_by_key(t_action_node *action,
-				t_dnon_object *action_obj)
-{
-	if (action == NULL || action_obj == NULL)
-		return (throw_error("build_action_resource_by_key", "NULL pointer"));
-	if (strcmp_obj("resource", "game", action_obj))
-		action->resource_type = R_GAME;
-	else if (strcmp_obj("resource", "scene", action_obj))
-		action->resource_type = R_SCENE;
-	else if (strcmp_obj("resource", "map", action_obj))
-		action->resource_type = R_MAP;
-	else if (strcmp_obj("resource", "character", action_obj))
-		action->resource_type = R_CHARACTER;
-	else if (strcmp_obj("resource", "entity", action_obj))
-		action->resource_type = R_ENTITY;
-	else if (strcmp_obj("resource", "entity_list", action_obj))
-		action->resource_type = R_ENTITY_LIST;
-	else
-		return (throw_error("build_action_resource_by_key", "unknow resource"));
-	return (OK);
-}
 
 t_result	build_entity_action_with_obj(t_entity *entity, t_list_head *actions,
 				t_dnon_object *action_obj)
 {
 	t_action_node	*action;
 
-	if (actions == NULL || action_obj == NULL)
+	if (entity == NULL || actions == NULL || action_obj == NULL)
 		return (throw_error("build_action_with_obj", "NULL pointer provided"));
 	if (!(action = init_new_action()))
 		return (throw_error("build_action_with_obj", "init_new_action failed"));
@@ -85,6 +36,7 @@ t_result	build_entity_action_with_obj(t_entity *entity, t_list_head *actions,
 		action->resource = entity;
 	else if (action->resource_type == R_GAME)
 		action->resource = game_singleton(NULL);
+	list_add_entry(&action->node, actions);
 	return (OK);
 }
 
@@ -94,7 +46,7 @@ t_result	build_entity_actions_with_obj(t_entity *entity,
 	t_list_head		*pos;
 	t_list_head		*next;
 	t_dnon_object	*action_obj;
-	
+
 	if (entity == NULL || actions == NULL)
 		return (throw_error("build_action_with_obj", "NULL pointer provided"));
 	if (actions_obj == NULL)
@@ -128,6 +80,8 @@ t_result	overwrite_listener_with_obj(t_entity *entity,
 		listener->is_selectable = (result_i == 1) ? TRUE : FALSE;
 	if ((result_i = get_int_value_by_key(listener_obj, "draggable", -1)) != -1)
 		listener->is_draggable = (result_i == 1) ? TRUE : FALSE;
+	if ((obj = get_child_list_object_by_key(listener_obj, "hover")))
+		build_entity_actions_with_obj(entity, &listener->hover_actions, obj);
 	if ((obj = get_child_list_object_by_key(listener_obj, "select")))
 		build_entity_actions_with_obj(entity, &listener->select_actions, obj);
 	if ((obj = get_child_list_object_by_key(listener_obj, "drag")))

@@ -71,6 +71,10 @@ SRCS_LIST	=	main.c														\
 				engine/interface/sdl/destroy.c								\
 				engine/interface/screen/init_screen.c						\
 				engine/interface/screen/reset.c								\
+				engine/interface/events/handle.c							\
+				engine/interface/events/mouse/handle.c						\
+				engine/interface/events/mouse/trigger.c						\
+				engine/interface/events/actions/action_trigger.c			\
 																			\
 				engine/build.c												\
 				engine/loop.c												\
@@ -100,6 +104,7 @@ SRCS_LIST	=	main.c														\
 				engine/entities/entity/entity_overwrite.c					\
 				engine/entities/entity/entity_status_build.c				\
 				engine/entities/entity/entity_texture_build.c				\
+				engine/entities/entity/entity_trigger.c						\
 				engine/entities/character/character_actions.c				\
 				engine/entities/character/character_build.c					\
 				engine/entities/character/character_die_build.c				\

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:36:09 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/25 01:29:46 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 02:29:43 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ t_game	*init_new_game(t_usize window_size)
 		return(throw_null("build_game", "build_sdl failed"));
 	if (!init_screen(&self->interface.screen, window_size))
 		return(throw_null("build_game", "screen initialization failed"));
+	self->interface.mouse.down = FALSE;
+	self->interface.mouse.drag = FALSE;
 	init_list_head(&self->resources.images);
 	init_list_head(&self->resources.songs);
 	init_list_head(&self->resources.entities);

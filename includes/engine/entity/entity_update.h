@@ -6,13 +6,14 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 23:21:04 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/26 08:19:33 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 01:37:42 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENTITY_UPDATE_H
 # define ENTITY_UPDATE_H
 
+# include "engine/game/game_init.h"
 # include "engine/entity/entity_init.h"
 
 /*
@@ -35,10 +36,23 @@ t_result	overwrite_entity_by_type_with_obj(t_entity *entity,
 t_result	overwrite_entity_with_obj(t_entity *self,
 				t_dnon_object *entity_obj);
 
+/*
+** TRIGGER
+*/
+t_result	trigger_entity_action_by_hover(t_list_head *entities,
+				t_mouse *mouse);
+t_result	trigger_entity_action_by_select(t_list_head *entities,
+				t_mouse *mouse);
+t_result	trigger_entity_action_by_drag(t_list_head *entities,
+				t_mouse *mouse);
+t_result	trigger_entity_action_by_drop(t_list_head *entities,
+				t_mouse *mouse);
+
 
 /*
 **	UPDATE
 */
 void		animate_texture(t_entity *entity);
+
 
 #endif

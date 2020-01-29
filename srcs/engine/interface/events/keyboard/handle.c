@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 01:17:28 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/27 14:01:30 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 06:50:26 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,9 @@ void	disable_key_hold_bindings(t_list_head *bind_list, SDL_Keycode key)
 
 void	handle_keyboard_down(t_scene *scene, SDL_Keycode key)
 {
+
+//YOU ARE HERE -> maj trigger keybinding and active_key_hold
+
 	// if (key == SDLK_ESCAPE)
 	// 	scene->is_running = FALSE;
 	trigger_key_bindings(&scene->interface.key_binds, key);

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:52:07 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/27 13:58:33 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 01:02:27 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct			s_game_interface
 {
 	t_sdl				sdl;
 	t_screen			screen;
+	t_mouse				mouse;
 }						t_game_interface;
 
 typedef struct			s_game

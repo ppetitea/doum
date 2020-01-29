@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 01:13:53 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/27 14:01:46 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 02:27:49 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ void	handle_events(t_game *game)
 
 	sdl = &game->interface.sdl;
 	if (sdl->event.type == SDL_MOUSEMOTION)
-		handle_mouse_motion(game->curr_scene, sdl->event.motion);
+		handle_mouse_motion(game, sdl->event.motion);
 	if (sdl->event.type == SDL_MOUSEBUTTONDOWN)
-		handle_mouse_down(game->curr_scene, sdl->event.button);
+		handle_mouse_down(game, sdl->event.button);
 	if (sdl->event.type == SDL_MOUSEBUTTONUP)
-		handle_mouse_up(game->curr_scene, sdl->event.button);
-	if (sdl->event.type == SDL_KEYDOWN)
-		handle_keyboard_down(game->curr_scene, sdl->event.key.keysym.sym);
-	if (sdl->event.type == SDL_KEYUP)
-		handle_keyboard_up(game->curr_scene, sdl->event.key.keysym.sym);
+		handle_mouse_up(game, sdl->event.button);
+	// if (sdl->event.type == SDL_KEYDOWN)
+	// 	handle_keyboard_down(game->curr_scene, sdl->event.key.keysym.sym);
+	// if (sdl->event.type == SDL_KEYUP)
+	// 	handle_keyboard_up(game->curr_scene, sdl->event.key.keysym.sym);
 	if (sdl->event.type == SDL_QUIT)
 		game->is_running = FALSE;
 }

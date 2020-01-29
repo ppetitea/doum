@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 21:37:42 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/28 15:48:14 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 02:26:46 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,8 +215,6 @@ t_result	build_game_resources_maps(t_game *game,
 	t_list_head		*pos;
 	t_list_head		*next;
 	t_dnon_object	*map_obj;
-
-	debug_mode(D_START);
 
 	if (game == NULL || maps_obj == NULL)
 		return (throw_error("build_game_maps", "NULL pointer provided"));

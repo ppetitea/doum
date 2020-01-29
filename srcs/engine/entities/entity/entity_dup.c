@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 00:52:05 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/26 03:38:59 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 03:20:48 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ t_result	copy_entity_status(t_listener *src, t_listener *dest)
 		return (throw_error("copy_entity_status", "NULL pointer provided"));
 	dest->display = src->display;
 	dest->is_draggable = src->is_draggable;
-	dest->is_dragged = src->is_dragged;
-	dest->drag_actions = src->drag_actions;
-	dest->is_hover = src->is_hover;
+	dest->is_dragged = FALSE;
 	dest->is_hoverable = src->is_hoverable;
+	dest->is_hover = FALSE;
 	dest->is_selectable = src->is_selectable;
-	dest->is_selected = src->is_selected;
-	dest->select_actions = src->select_actions;
+	dest->is_selected = FALSE;
+	init_list_head(&dest->hover_actions);
+	init_list_head(&dest->select_actions);
+	init_list_head(&dest->drag_actions);
+	init_list_head(&dest->drop_actions);
 	dest->render_list = src->render_list;
 	dest->storage_list =src->storage_list;
 	return (OK);
@@ -41,7 +43,6 @@ t_result	copy_entity_texture(t_entity_texture *src, t_entity_texture *dest)
 	dest->curr = src->curr;
 	dest->curr_head = src->curr_head;
 	dest->dragged = src->dragged;
-	// duplicate texture_list;
 	dest->hover = src->hover;
 	dest->last = src->last;
 	dest->normal = src->normal;

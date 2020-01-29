@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 23:57:01 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/26 04:23:46 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 04:16:23 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ t_result		init_texture(t_texture *self, t_usize size);
 
 t_result		overwrite_texture_params(t_texture *self, t_vec2i offset,
 					uint32_t delay_ms);
-t_result		fill_texture_with_bmp(t_texture *self, t_bitmap_texture *bmp);
 t_result		add_texture(t_list_head *textures, t_list_head *bmp_src,
 					char *name, t_texture_args args);
 

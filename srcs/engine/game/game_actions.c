@@ -6,13 +6,15 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 19:22:44 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/28 19:34:03 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 06:47:32 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/component/action.h"
 #include "engine/game/game_init.h"
 #include "utils/error.h"
+
+#include <stdio.h>
 
 t_result		swap_scene_by_name(t_game *game, char *name)
 {
@@ -25,7 +27,7 @@ t_result		swap_scene_by_name(t_game *game, char *name)
 	while ((pos = pos->next) != &game->resources.scenes)
 	{
 		scene = (t_scene*)pos;
-		if (ft_strcmp(scene->name, name))
+		if (!ft_strcmp(scene->name, name))
 		{
 			game->curr_scene = scene;
 			return (OK);
@@ -42,5 +44,45 @@ t_result		swap_scene(void *game, t_resource_type resource_type,
 	if (resource_type != R_GAME)
 		return (throw_error("swap_scene", "resource must be game instance"));
 	swap_scene_by_name(game, get_string_value_by_key(args, "scene_name", NULL));
+	return (OK);
+}
+
+t_result		swap_map(void *game_resource, t_resource_type resource_type,
+					t_dnon_object *args)
+{
+	t_game	*game;
+	
+	if (game_resource == NULL || args == NULL)
+		return (throw_error("swap_map", "NULL pointer provided"));
+	if (resource_type != R_GAME)
+		return (throw_error("swap_map", "resource must be game instance"));
+	game = (t_game*)game_resource;
+	if (game->curr_map == NULL)
+		return (throw_error("swap_map", "current_map is NULL"));
+	if (strcmp_obj("side", "next", args))
+	{
+		if (game->curr_map->node.next == &game->resources.voxel_maps)
+			game->curr_map = (t_map*)game->resources.voxel_maps.next;
+		else
+			game->curr_map = (t_map*)game->curr_map->node.next;
+	}
+	else if (game->curr_map->node.prev == &game->resources.voxel_maps)
+		game->curr_map = (t_map*)game->resources.voxel_maps.prev;
+	else
+		game->curr_map = (t_map*)game->curr_map->node.prev;
+	return (OK);
+}
+
+t_result		stop_game(void *game_resource, t_resource_type resource_type,
+					t_dnon_object *args)
+{
+	t_game	*game;
+	
+	if (game_resource == NULL)
+		return (throw_error("stop_game", "NULL pointer provided"));
+	if (resource_type != R_GAME)
+		return (throw_error("stop_game", "resource must be game instance"));
+	game = (t_game*)game_resource;
+	game->is_running = FALSE;
 	return (OK);
 }

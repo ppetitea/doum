@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 23:41:55 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/28 03:55:46 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/29 04:26:17 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 typedef enum			e_filter_type
 {
 	FILTER_CIRCULAR_SHADOW,
+	FILTER_CIRCULAR_BLEND,
 	FILTER_BLEND,
 	FILTER_ROTATE_RIGHT,
 	FILTER_ROTATE_LEFT,
@@ -43,5 +44,7 @@ void			set_texture_pixel_circular_shadow(t_texture old,
 void			set_texture_pixel(t_texture old,t_texture *new, t_usize i);
 void			set_texture_pixel_blend(t_texture old,t_texture *new,
 						t_usize i);
+t_result		fill_texture_with_bmp(t_texture *self, t_bitmap_texture *bmp,
+					t_filter_type filter);
 
 #endif

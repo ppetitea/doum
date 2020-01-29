@@ -58,6 +58,7 @@
 		"monster_back_r3":"resources/textures/sprites/ennemies/test/back/back_r3.bmp",
 		"monster_back_r4":"resources/textures/sprites/ennemies/test/back/back_r4.bmp",
 		"map_canion":"resources/maps/canions.bmp",
+		"button_test":"resources/textures/ui/buttons/button_test.bmp",
 		"menu_background":"resources/textures/background/dark_bg.bmp",
 		"button_left_white":"resources/textures/ui/buttons/left_white.bmp",
 		"button_left_orange":"resources/textures/ui/buttons/left_orange.bmp",
@@ -349,7 +350,7 @@
 			"offset":{"x":-100,"y":-130},
 			"animation":"stop",
 			"normal":{
-				"1":{"filter":"circular_shadow","key":"button_down_white","size":{"x":50,"y":50}},
+				"1":{"filter":"circular_shadow","key":"button_test","size":{"x":200,"y":200}},
 				"2":{"filter":"circular_shadow","key":"button_down_orange","size":{"x":50,"y":50},"delay_ms":100}
 			},
 			"hover":{
@@ -363,10 +364,10 @@
 		"status":{"display":0,"hoverable":0,"selectable":0,"draggable":0},
 		"textures":{
 			"anchor":{"x":400,"y":480},
-			"offset":{"x":-100,"y":-130},
+			"offset":{"x":-200,"y":-200},
 			"animation":"stop",
 			"normal":{
-				"1":{"filter":"circular_shadow","key":"button_down_white","size":{"x":50,"y":50}},
+				"1":{"filter":"circular_shadow","key":"button_test","size":{"x":200,"y":200}},
 				"2":{"filter":"circular_shadow","key":"button_down_orange","size":{"x":50,"y":50},"delay_ms":100}
 			},
 			"hover":{
@@ -383,13 +384,13 @@
 		"color_map":{
 			"animation":"none",
 			"textures":{
-				"1":{"key":"map_canion","size":{"x":1024,"y":1024}}
+				"1":{"key":"map_canion","filter":"circular_blend","size":{"x":1024,"y":1024}}
 			}
 		},
 		"height_map":{
 			"animation":"none",
 			"textures":{
-				"1":{"key":"map_canion","size":{"x":1024,"y":1024}}
+				"1":{"key":"map_canion","filter":"circular_blend","size":{"x":1024,"y":1024}}
 			}
 		},
 		"entities":{
@@ -435,6 +436,14 @@
 		"background":{
 			"1":{"key":"menu_background","size":{"x":1080,"y":720}}
 		},
+		"key_bindings":{
+			"1":{
+				"define":"ESCAPE",
+				"SDL_Keycode":27,
+				"action":"stop_game",
+				"resource":"game"
+			}
+		},
 		"map_config":{
 			"color_map":{
 				"display":1,
@@ -453,7 +462,7 @@
 				"key":"button_edit_map",
 				"entity":{
 					"texture":{
-						"anchor":{"x":400,"y":600},
+						"anchor":{"x":300,"y":550},
 						"offset":{"x":0,"y":0}
 					},
 					"listener":{
@@ -475,7 +484,7 @@
 				"key":"button_play",
 				"entity":{
 					"texture":{
-						"anchor":{"x":600,"y":600},
+						"anchor":{"x":600,"y":550},
 						"offset":{"x":0,"y":0}
 					},
 					"listener":{
@@ -541,6 +550,21 @@
 	},
 	"2":{
 		"name":"map_editor",
+		"background":{
+			"1":{"key":"menu_background","size":{"x":1080,"y":720}}
+		},
+		"key_bindings":{
+			"1":{
+				"define":"ESCAPE",
+				"SDL_Keycode":27,
+				"hold":0,
+				"action":"swap_scene",
+				"resource":"game",
+				"args":{
+					"scene_name":"menu"
+				}
+			}
+		},
 		"map_config":{
 			"color_map":{
 				"display":1,
@@ -549,9 +573,7 @@
 				"offset":{"x":0,"y":0},
 				"display_e_oriented":0,
 				"display_e_oriented_storage":0,
-				"characters":{
-					"size":{"x":50,"y":40}
-				}
+				"character_size":{"x":50,"y":40}
 			},
 			"height_map":{
 				"display":1,
@@ -560,9 +582,7 @@
 				"offset":{"x":0,"y":0},
 				"display_e_oriented":0,
 				"display_e_oriented_storage":0,
-				"characters":{
-					"size":{"x":50,"y":40}
-				}
+				"character_size":{"x":50,"y":40}
 			},
 			"drop_map":{
 				"display":1,
@@ -573,9 +593,7 @@
 				"display_e_oriented_storage":0,
 				"display_e_static":1,
 				"display_e_static_storage":0,
-				"characters":{
-					"size":{"x":50,"y":40}
-				}
+				"character_size":{"x":50,"y":40}
 			},
 			"map3d":{
 				"display":1,
@@ -610,19 +628,29 @@
 	},
 	"3":{
 		"name":"render3d",
+		"key_bindings":{
+			"1":{
+				"define":"ESCAPE",
+				"SDL_Keycode":27,
+				"hold":0,
+				"action":"swap_scene",
+				"resource":"game",
+				"args":{
+					"scene_name":"menu"
+				}
+			}
+		},
 		"map_config":{
 			"color_map":{
 				"display":1,
-				"size":{"x":480,"y":360},
-				"anchor":{"x":0,"y":0},
+				"size":{"x":200,"y":150},
+				"anchor":{"x":10,"y":10},
 				"offset":{"x":0,"y":0},
 				"display_e_oriented":1,
 				"display_e_oriented_storage":0,
 				"display_e_static":1,
 				"display_e_static_storage":0,
-				"characters":{
-					"size":{"x":50,"y":40}
-				}
+				"character_size":{"x":20,"y":16}
 			},
 			"map3d":{
 				"display":1,
