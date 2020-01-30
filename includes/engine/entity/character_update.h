@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:46:49 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/26 08:25:27 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/30 11:11:24 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,14 @@ t_result	overwrite_camera_with_obj(t_camera *camera,
 */
 t_result	update_weapon_activation(t_character *character, t_weapon *weapon,
 				t_bool is_active);
+t_result	rotate_camera_left(t_entity *entity);
+t_result	rotate_camera_right(t_entity *entity);
+t_result	elevate_camera(t_entity *entity);
+t_result	lower_camera(t_entity *entity);
+t_result	translate_camera_forward(t_entity *entity);
+t_result	translate_camera_right(t_entity *entity);
+t_result	translate_camera_left(t_entity *entity);
+t_result	translate_camera_backward(t_entity *entity);
 
 
 #endif

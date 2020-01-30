@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 01:17:28 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 16:18:09 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/30 12:33:07 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	active_key_hold_binding(t_list_head *bind_list, SDL_Keycode key)
 	while ((pos = pos->next) != bind_list)
 	{
 		bind = (t_key_binding*)pos;
+		// printf("bind key %d search key %d\n", bind->key, key);
 		if (bind->key == key)
 			bind->is_down = TRUE;
 	}

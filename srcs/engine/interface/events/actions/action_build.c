@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 05:42:05 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 06:49:16 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/30 12:18:52 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ t_result	build_action_by_key(t_action_node *action,
 		action->action = swap_scene;
 	else if (strcmp_obj("action", "swap_map", action_obj))
 		action->action = swap_map;
+	else if (strcmp_obj("action", "rotate_camera", action_obj))
+		action->action = rotate_camera;
+	else if (strcmp_obj("action", "translate_camera", action_obj))
+		action->action = translate_camera;
 	else
 		return (throw_error("build_action_by_key", "unknow action detected"));
 	return (OK);

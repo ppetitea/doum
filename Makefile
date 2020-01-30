@@ -129,6 +129,7 @@ SRCS_LIST	=	main.c														\
 				engine/entities/character/camera/camera_build.c				\
 				engine/entities/character/camera/camera_init.c				\
 				engine/entities/character/camera/camera_overwrite.c			\
+				engine/entities/character/camera/camera_update.c			\
 																			\
 				engine/maps/map_build.c										\
 				engine/maps/map_init.c										\

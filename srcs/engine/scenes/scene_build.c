@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 20:36:14 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 16:23:25 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/30 13:24:11 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,20 @@ t_result	build_scene_background_texture_with_obj(t_game *game,
 	return (OK);
 }
 
+t_result	overwrite_bind_key_by_define(t_key_binding *bind,
+				t_dnon_object *key_binding_obj)
+{
+	if (bind == NULL || key_binding_obj == NULL)
+		return (throw_error("overwrite_bind_key_by_define", "NULL pointer"));
+	if (strcmp_obj("define", "SDLK_LEFT", key_binding_obj))
+		bind->key = SDLK_LEFT;
+	else if (strcmp_obj("define", "SDLK_RIGHT", key_binding_obj))
+		bind->key = SDLK_RIGHT;
+	else 
+		return (throw_error("overwrite_bind_key_by_define", "unknow define"));
+	return (OK);
+}
+
 t_result	build_scene_key_binding_with_obj(t_game *game, t_scene *scene,
 				t_dnon_object *key_binding_obj)
 {
@@ -97,6 +111,8 @@ t_result	build_scene_key_binding_with_obj(t_game *game, t_scene *scene,
 	if (!(bind = init_new_key_binding()))
 		return (throw_error("build_scene_key_binding", "new_key_binding fail"));
 	bind->key = get_int_value_by_key(key_binding_obj, "SDL_Keycode", -1);
+	if (bind->key > 1000)
+		overwrite_bind_key_by_define(bind, key_binding_obj);
 	if (bind->key == -1)
 		return (throw_error("build_scene_key_binding", "key code not found"));
 	bind->action.args = get_child_list_object_by_key(key_binding_obj, "args");

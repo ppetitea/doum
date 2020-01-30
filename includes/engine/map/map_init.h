@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 17:16:02 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/28 18:12:17 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/30 09:19:23 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct	s_map
 	t_list_head		node;
 	t_map_type		type;
 	char			*name;
-	t_screen		*screen_ref;
 	t_character		*character_ref;
 	t_list_head		e_static;
 	t_list_head		e_oriented;
