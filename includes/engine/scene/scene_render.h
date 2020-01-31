@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 16:27:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 17:32:35 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/31 00:25:07 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 # include "engine/game/game_init.h"
 # include "engine/map/map_init.h"
 # include "utils/parser.h"
+
+typedef struct		s_column
+{
+	int		x;
+	int		y_top;
+	int		y_bot;
+}					t_column;
 
 void	render_scene(t_game *game);
 t_vec2f	compute_render_scale(t_usize *by_default, t_usize *wish);

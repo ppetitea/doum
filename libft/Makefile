@@ -6,7 +6,7 @@
 #    By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/05 18:02:14 by lbenard           #+#    #+#              #
-#    Updated: 2020/01/26 17:10:17 by ppetitea         ###   ########.fr        #
+#    Updated: 2020/01/30 23:44:54 by ppetitea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,6 +79,9 @@ SRCS_LIST		=	containers/list/init_list_head.c		\
 					maths/vec2f/vec2f_opposite.c			\
 					maths/vec3f/ft_vec3f.c					\
 					maths/vec3f/vec3f_dot.c					\
+					maths/vec3f/vec3f_add.c					\
+					maths/vec3f/vec3f_sub.c					\
+					maths/vec3f/vec3f_mult.c				\
 					maths/vec3f/vec3f_scalar.c				\
 					maths/vec3f/vec3f_to_vec2f.c			\
 					maths/vec3f/vec3f_to_vec4f.c			\

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 01:11:36 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/30 13:25:26 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/31 00:59:52 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ t_result	rotate_camera_left(t_entity *entity)
 		return (throw_error("entity_turn_right", "entity isn't character"));
 	character = (t_character*)entity;
 	cam = &character->camera;
-	cam->dir = to_vtx(rotate(-1.0f / 180.0f * PI), cam->dir);
+	cam->dir = to_vtx(rotate(-2.0f / 180.0f * PI), cam->dir);
+	cam->start = to_vtx(rotate(-cam->fov_half), cam->dir);
+	cam->end = to_vtx(rotate(cam->fov_half), cam->dir);
 	cam->to_plan = vec2f_scalar(cam->dir, cam->dist_to_plan);
 	cam->plan = ft_vec2f(-cam->dir.y, cam->dir.x);
 	return (OK);
@@ -49,7 +51,9 @@ t_result	rotate_camera_right(t_entity *entity)
 		return (throw_error("entity_turn_right", "entity isn't character"));
 	character = (t_character*)entity;
 	cam = &character->camera;
-	cam->dir = to_vtx(rotate(1.0f / 180.0f * PI), cam->dir);
+	cam->dir = to_vtx(rotate(2.0f / 180.0f * PI), cam->dir);
+	cam->start = to_vtx(rotate(-cam->fov_half), cam->dir);
+	cam->end = to_vtx(rotate(cam->fov_half), cam->dir);
 	cam->to_plan = vec2f_scalar(cam->dir, cam->dist_to_plan);
 	cam->plan = ft_vec2f(-cam->dir.y, cam->dir.x);
 	return (OK);
@@ -88,7 +92,6 @@ t_result	elevate_camera(t_entity *entity)
 		return (throw_error("translate_cam forward", "entity isn't character"));
 	character = (t_character*)entity;
 	character->camera.height += 10.0f * character->velocity;
-	printf("height %.2f\n", character->camera.height);
 	return (OK);
 }
 
@@ -103,7 +106,6 @@ t_result	lower_camera(t_entity *entity)
 	character = (t_character*)entity;
 	if (character->camera.height - 10.0f * character->velocity > 0)
 		character->camera.height -= 10.0f * character->velocity;
-	printf("height %.2f\n", character->camera.height);
 	return (OK);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 21:37:42 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 18:07:46 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/31 00:59:23 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,20 +60,20 @@ t_result	build_voxel_map_textures_with_obj(t_list_head *images,
 
 	if (images == NULL || map == NULL || map_obj == NULL)
 		return (throw_error("build_voxel_map_with_obj", "NULL pointer"));
-	result = build_voxel_map_texture_with_obj(images, &map->sky_textures,
+	result = build_voxel_map_texture_with_obj(images, &map->sky,
 				get_child_list_object_by_key(map_obj, "sky"));
 	throw_warning("sky textures:\t", result ? "OK" : "FAIL", 3);
-	result = build_voxel_map_texture_with_obj(images, &map->color_map_textures,
+	result = build_voxel_map_texture_with_obj(images, &map->color_map,
 				get_child_list_object_by_key(map_obj, "color_map"));
 	throw_warning("map textures:\t", result ? "OK" : "FAIL", 3);
-	result = build_voxel_map_texture_with_obj(images, &map->height_map_textures,
+	result = build_voxel_map_texture_with_obj(images, &map->height_map,
 				get_child_list_object_by_key(map_obj, "height_map"));
 	throw_warning("height_map textures:", result ? "OK" : "FAIL", 3);
-	map->sky_textures.curr = (t_texture*)map->sky_textures.textures.next;
-	map->color_map_textures.curr =
-		(t_texture*)map->color_map_textures.textures.next;
-	map->height_map_textures.curr =
-		(t_texture*)map->height_map_textures.textures.next;
+	map->sky.curr = (t_texture*)map->sky.textures.next;
+	map->color_map.curr =
+		(t_texture*)map->color_map.textures.next;
+	map->height_map.curr =
+		(t_texture*)map->height_map.textures.next;
 	return (OK);
 }
 

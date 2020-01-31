@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 02:49:02 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 17:29:49 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/30 18:19:45 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ t_map	*init_new_map()
 	init_list_head(&self->e_oriented);
 	init_list_head(&self->e_static_storage);
 	init_list_head(&self->e_oriented_storage);
-	init_map_texture(&self->sky_textures);
-	init_map_texture(&self->color_map_textures);
-	init_map_texture(&self->height_map_textures);
+	init_map_texture(&self->sky);
+	init_map_texture(&self->color_map);
+	init_map_texture(&self->height_map);
 	return (self);
 }

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 17:16:02 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/30 09:19:23 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/30 18:19:29 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ typedef struct	s_map
 	t_list_head		e_oriented;
 	t_list_head		e_static_storage;
 	t_list_head		e_oriented_storage;
-	t_map_texture	sky_textures;
-	t_map_texture	color_map_textures;
-	t_map_texture	height_map_textures;
+	t_map_texture	sky;
+	t_map_texture	color_map;
+	t_map_texture	height_map;
 }				t_map;
 
 t_map		*init_new_map();

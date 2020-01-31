@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:41:38 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 18:14:44 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/31 00:18:34 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,15 @@ void	update_map_render_config(t_voxel_map_config *config, t_map *map)
 		throw_error("update_map_render_config", "NULL pointer provided");
 	// printf("update_map_config\n");
 	config->color_map.scale = compute_render_scale(
-		&map->color_map_textures.curr->size, &config->color_map.size);
+		&map->color_map.curr->size, &config->color_map.size);
 	config->height_map.scale = compute_render_scale(
-		&map->height_map_textures.curr->size, &config->height_map.size);
+		&map->height_map.curr->size, &config->height_map.size);
 	config->drop_map.scale = compute_render_scale(
-		&map->color_map_textures.curr->size, &config->drop_map.size);
+		&map->color_map.curr->size, &config->drop_map.size);
+	config->map_3d.scale = compute_render_scale(&map->color_map.curr->size,
+		&config->map_3d.size);
 	config->map_ref = map;
+
 	// printf("2scale x %.2f y %.2f\n", config->color_map.scale.x, config->color_map.scale.y);
 }
 
@@ -76,14 +79,16 @@ void	render_current_map(t_screen *screen, t_voxel_map_config *config,
 		throw_error("render_current_map", "NULL pointer provided");
 	if (config->map_ref != map)
 		update_map_render_config(config, map);
+	if (config->map_3d.display && map->character_ref != NULL)
+		render_voxel_map3d(screen, &config->map_3d, map);
 	if (config->color_map.display)
-		render_voxel_map2d(screen, map->color_map_textures.curr,
+		render_voxel_map2d(screen, map->color_map.curr,
 			&config->color_map, map);
 	if (config->height_map.display)
-		render_voxel_map2d(screen, map->height_map_textures.curr,
+		render_voxel_map2d(screen, map->height_map.curr,
 			&config->height_map, map);
 	if (config->drop_map.display)
-		render_voxel_map2d(screen, map->color_map_textures.curr,
+		render_voxel_map2d(screen, map->color_map.curr,
 			&config->drop_map, map);
 }
 
@@ -130,8 +135,6 @@ void	render_scene(t_game *game)
 			render_current_map(&game->interface.screen,
 				&game->curr_scene->map_render_config, game->curr_map);
 		}
-		render_voxel_map3d(&game->interface.screen,
-			&game->curr_scene->map_render_config.map_3d, game->curr_map);
 		render_scene_entities(&game->interface.screen,
 			&game->curr_scene->entities);
 	}

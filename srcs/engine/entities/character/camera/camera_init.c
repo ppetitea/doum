@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 01:11:36 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 17:29:18 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/30 17:35:36 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,12 @@ t_result	init_camera(t_camera *self)
 	fov = 90.0f / 180.0f * PI;
 	plan_width = 640.0f;
 	self->horizon = 120;
-	self->dir = ft_vec2f(0, 1);
 	self->fov = fov;
 	self->fov_half = self->fov / 2.0f;
+	self->dir = ft_vec2f(0, 1);
+	self->dir = ft_vec2f(0, 1);
+	self->start = to_vtx(rotate(-self->fov_half), self->dir);
+	self->end = to_vtx(rotate(self->fov_half), self->dir);
 	self->plan_width = plan_width;
 	self->height = self->plan_width / 4.0f;
 	self->plan_half = self->plan_width / 2.0f;
@@ -46,6 +49,8 @@ t_result	overwrite_camera_plan(t_camera *self, float fov,
 		return (throw_error("init_camera", "NULL pointer provided"));
 	self->fov = fov;
 	self->fov_half = self->fov / 2.0f;
+	self->start = to_vtx(rotate(-self->fov_half), self->dir);
+	self->end = to_vtx(rotate(self->fov_half), self->dir);
 	self->plan_width = plan_width;
 	self->plan_half = self->plan_width / 2.0f;
 	self->dist_to_plan = self->plan_half / (float)tan(self->fov / 2.0f);

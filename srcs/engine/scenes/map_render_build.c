@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:59:00 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/28 17:09:17 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/30 22:40:16 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,14 @@ static t_result	build_voxel_map_3d_config_with_obj(t_voxel_map_3d_config *config
 	if (map3d_config_obj == NULL)
 		return (ERROR);
 	config->display = get_int_value_by_key(map3d_config_obj, "display", 0);
-	init_vec2i_with_obj(&config->anchor, map3d_config_obj);
-	init_vec2i_with_obj(&config->offset, map3d_config_obj);
-	init_usize_with_obj(&config->size, map3d_config_obj);
+	init_vec2i_with_obj(&config->anchor,
+		get_child_list_object_by_key(map3d_config_obj, "anchor"));
+	init_vec2i_with_obj(&config->offset,
+		get_child_list_object_by_key(map3d_config_obj, "offset"));
+	init_usize_with_obj(&config->size,
+		get_child_list_object_by_key(map3d_config_obj, "size"));
+	config->render_dist = get_int_value_by_key(map3d_config_obj,
+		"render_distance", 300);
 	config->display_e_oriented =
 		get_int_value_by_key(map3d_config_obj, "display_e_oriented", 0);
 	config->display_e_oriented_storage =

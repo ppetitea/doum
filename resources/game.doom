@@ -385,13 +385,13 @@
 		"color_map":{
 			"animation":"none",
 			"textures":{
-				"1":{"key":"menu_background","filter":"circular_blend","size":{"x":1024,"y":1024}}
+				"1":{"key":"menu_background","filter":"circular_blend","size":{"x":1080,"y":1080}}
 			}
 		},
 		"height_map":{
 			"animation":"none",
 			"textures":{
-				"1":{"key":"menu_background","filter":"circular_blend","size":{"x":1024,"y":1024}}
+				"1":{"key":"menu_background","filter":"circular_blend","size":{"x":1080,"y":1080}}
 			}
 		},
 		"entities":{
@@ -440,13 +440,13 @@
 		"color_map":{
 			"animation":"none",
 			"textures":{
-				"1":{"key":"map_pyramid","filter":"circular_blend","size":{"x":1024,"y":1024}}
+				"1":{"key":"map_pyramid","filter":"blend","size":{"x":1080,"y":1080}}
 			}
 		},
 		"height_map":{
 			"animation":"none",
 			"textures":{
-				"1":{"key":"height_map_pyramid","filter":"circular_blend","size":{"x":1024,"y":1024}}
+				"1":{"key":"height_map_pyramid","filter":"blend","size":{"x":1080,"y":1080}}
 			}
 		},
 		"entities":{
@@ -456,7 +456,7 @@
 					"oriented":1,
 					"current_player":1,
 					"character":{
-						"camera":{"position":{"x":400,"y":400},"direction":{"x":0,"y":1},"height":150,"horizon":120},
+						"camera":{"position":{"x":400,"y":400},"direction":{"x":0,"y":1},"height":100,"horizon":120},
 						"weapons":{
 							"pistol":{
 								"damages":2048
@@ -775,9 +775,10 @@
 			},
 			"map3d":{
 				"display":1,
-				"size":{"x":640,"y":480},
+				"size":{"x":1080,"y":720},
 				"anchor":{"x":0,"y":0},
 				"offset":{"x":0,"y":0},
+				"render_distance":1000,
 				"display_static_entities":1,
 				"display_e_oriented":1
 			}
