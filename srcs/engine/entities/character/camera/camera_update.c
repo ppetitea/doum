@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 01:11:36 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/31 00:59:52 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/31 01:55:51 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,30 +82,30 @@ t_result	rotate_camera(void *game_resource, t_resource_type resource_type,
 	return (OK);
 }
 
-t_result	elevate_camera(t_entity *entity)
+t_result	translate_camera_up(t_entity *entity)
 {
 	t_character	*character;
 
 	if (entity == NULL)
-		return (throw_error("translate_cam forward", "NULL pointer provided"));
+		return (throw_error("translate_cam up", "NULL pointer provided"));
 	if (entity->type != CHARACTER)
-		return (throw_error("translate_cam forward", "entity isn't character"));
+		return (throw_error("translate_cam up", "entity isn't character"));
 	character = (t_character*)entity;
-	character->camera.height += 10.0f * character->velocity;
+	character->camera.height += 5.0f * character->velocity;
 	return (OK);
 }
 
-t_result	lower_camera(t_entity *entity)
+t_result	translate_camera_down(t_entity *entity)
 {
 	t_character	*character;
 
 	if (entity == NULL)
-		return (throw_error("translate_cam forward", "NULL pointer provided"));
+		return (throw_error("translate_cam down", "NULL pointer provided"));
 	if (entity->type != CHARACTER)
-		return (throw_error("translate_cam forward", "entity isn't character"));
+		return (throw_error("translate_cam down", "entity isn't character"));
 	character = (t_character*)entity;
-	if (character->camera.height - 10.0f * character->velocity > 0)
-		character->camera.height -= 10.0f * character->velocity;
+	if (character->camera.height - 5.0f * character->velocity > 0)
+		character->camera.height -= 5.0f * character->velocity;
 	return (OK);
 }
 
@@ -199,7 +199,61 @@ t_result	translate_camera(void *game_resource, t_resource_type resource_type,
 		translate_camera_backward(&game->curr_map->character_ref->super);
 	else if (get_int_value_by_key(args, "right", 0))
 		translate_camera_right(&game->curr_map->character_ref->super);
+	else if (get_int_value_by_key(args, "up", 0))
+		translate_camera_up(&game->curr_map->character_ref->super);
+	else if (get_int_value_by_key(args, "down", 0))
+		translate_camera_down(&game->curr_map->character_ref->super);
 	else
 		return (throw_error("translate_camera", "wrong args detected"));
+	return (OK);
+}
+
+t_result	translate_camera_horizon_up(t_entity *entity)
+{
+	t_character	*character;
+
+	if (entity == NULL)
+		return (throw_error("translate_cam up", "NULL pointer provided"));
+	if (entity->type != CHARACTER)
+		return (throw_error("translate_cam up", "entity isn't character"));
+	character = (t_character*)entity;
+	character->camera.horizon += 5.0f * character->velocity;
+	return (OK);
+}
+
+t_result	translate_camera_horizon_down(t_entity *entity)
+{
+	t_character	*character;
+
+	if (entity == NULL)
+		return (throw_error("translate_cam down", "NULL pointer provided"));
+	if (entity->type != CHARACTER)
+		return (throw_error("translate_cam down", "entity isn't character"));
+	character = (t_character*)entity;
+	if (character->camera.horizon - 5.0f * character->velocity > 0)
+		character->camera.horizon -= 5.0f * character->velocity;
+	return (OK);
+}
+
+t_result	translate_camera_horizon(void *game_resource,
+				t_resource_type resource_type, t_dnon_object *args)
+{
+	t_game	*game;
+	
+	if (game_resource == NULL || args == NULL)
+		return (throw_error("translate_camera_h", "NULL pointer provided"));
+	if (resource_type != R_GAME)
+		return (throw_error("translate_camera_h", "resource must be game"));
+	game = (t_game*)game_resource;
+	if (game->curr_map == NULL)
+		return (throw_error("translate_camera_h", "curr_map is NULL"));
+	if (game->curr_map->character_ref == NULL)
+		return (throw_error("translate_camera_h", "curr_character is NULL"));
+	if (get_int_value_by_key(args, "up", 0))
+		translate_camera_horizon_up(&game->curr_map->character_ref->super);
+	else if (get_int_value_by_key(args, "down", 0))
+		translate_camera_horizon_down(&game->curr_map->character_ref->super);
+	else
+		return (throw_error("translate_camera_horizon", "wrong args detected"));
 	return (OK);
 }

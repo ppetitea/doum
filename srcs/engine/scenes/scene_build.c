@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 20:36:14 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/30 13:24:11 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/31 01:30:05 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,10 @@ t_result	overwrite_bind_key_by_define(t_key_binding *bind,
 		bind->key = SDLK_LEFT;
 	else if (strcmp_obj("define", "SDLK_RIGHT", key_binding_obj))
 		bind->key = SDLK_RIGHT;
+	else if (strcmp_obj("define", "SDLK_UP", key_binding_obj))
+		bind->key = SDLK_UP;
+	else if (strcmp_obj("define", "SDLK_DOWN", key_binding_obj))
+		bind->key = SDLK_DOWN;
 	else 
 		return (throw_error("overwrite_bind_key_by_define", "unknow define"));
 	return (OK);

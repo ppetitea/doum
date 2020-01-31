@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 23:06:52 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/30 12:00:07 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/31 01:44:22 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ t_result		swap_map(void *game_resource, t_resource_type resource_type,
 t_result		stop_game(void *game_resource, t_resource_type resource_type,
 					t_dnon_object *args);
 t_result		translate_camera(void *game_resource,
+					t_resource_type resource_type, t_dnon_object *args);
+t_result		translate_camera_horizon(void *game_resource,
 					t_resource_type resource_type, t_dnon_object *args);
 t_result		rotate_camera(void *game_resource,
 					t_resource_type resource_type, t_dnon_object *args);
