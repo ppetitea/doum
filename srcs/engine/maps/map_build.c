@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 21:37:42 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/31 00:59:23 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/01 11:52:46 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,12 @@ t_result	add_entity_to_map(t_map *map, t_entity *entity,
 		return (throw_error("add_entity_to_map", "NULL pointer"));
 	if (get_int_value_by_key(map_entity_obj, "oriented", 0))
 	{
-		if (entity->status.display)
+		if (get_int_value_by_key(map_entity_obj, "current_player", 0))
+		{
+			map->character_ref = (t_character*)entity;
+			list_add_entry(&entity->node, &map->e_oriented_storage);
+		}
+		else if (entity->status.display)
 			list_add_entry(&entity->node, &map->e_oriented);
 		else
 			list_add_entry(&entity->node, &map->e_oriented_storage);
@@ -96,8 +101,6 @@ t_result	add_entity_to_map(t_map *map, t_entity *entity,
 		else
 			list_add_entry(&entity->node, &map->e_static_storage);
 	}
-	if (get_int_value_by_key(map_entity_obj, "current_player", 0))
-		map->character_ref = (t_character*)entity;
 	return (OK);
 }
 

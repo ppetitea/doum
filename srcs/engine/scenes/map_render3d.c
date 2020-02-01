@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 16:52:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/31 03:31:12 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/01 12:57:09 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,11 +256,28 @@ void	render_map3d_oriented_entities(t_screen *screen,
 	(void)config;
 }
 
+void	render_map3d_player(t_screen *screen,
+			t_voxel_map_3d_config *config, t_map *map)
+{
+	t_entity_texture	*texture;
+
+	if (screen == NULL || config == NULL || map == NULL)
+		return (throw_void("render_map3d_player", "NULL pointer"));
+	if (map->character_ref == NULL)
+		return (throw_void("render_map3d_player", "player not found"));
+	texture = &map->character_ref->super.texture;
+	if (texture->animation != NONE && texture->animation != STOP)
+		animate_texture(&map->character_ref->super);
+	render_texture_with_scale(screen, texture->curr, texture->anchor,
+		texture->scale);
+}
+
 void	render_voxel_map3d(t_screen *screen, t_voxel_map_3d_config *config,
 			t_map *map)
 {
 	render_voxel_map3d_floor(screen, config, map);
 	render_map3d_oriented_entities(screen, config, map);
+	render_map3d_player(screen, config, map);
 }
 
 

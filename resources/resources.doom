@@ -1,12 +1,37 @@
 "resources":{
 	"images":{
-		"pistol_fire1":"resources/textures/sprites/guns/pistol/fire1.bmp",
-		"pistol_fire2":"resources/textures/sprites/guns/pistol/fire2.bmp",
-		"pistol_fire3":"resources/textures/sprites/guns/pistol/fire3.bmp",
-		"pistol_reload1":"resources/textures/sprites/guns/pistol/reload1.bmp",
-		"pistol_reload2":"resources/textures/sprites/guns/pistol/reload2.bmp",
-		"pistol_reload3":"resources/textures/sprites/guns/pistol/reload3.bmp",
-		"pistol_reload4":"resources/textures/sprites/guns/pistol/reload4.bmp",
+		"pistol_fire1":"resources/textures/sprites/guns/pistol/pistol_shoot1.bmp",
+		"pistol_fire2":"resources/textures/sprites/guns/pistol/pistol_shoot2.bmp",
+		"pistol_fire3":"resources/textures/sprites/guns/pistol/pistol_shoot3.bmp",
+		"pistol_reload1":"resources/textures/sprites/guns/pistol/pistol_reload1.bmp",
+		"pistol_reload2":"resources/textures/sprites/guns/pistol/pistol_reload2.bmp",
+		"pistol_reload3":"resources/textures/sprites/guns/pistol/pistol_reload3.bmp",
+		"pistol_reload4":"resources/textures/sprites/guns/pistol/pistol_reload4.bmp",
+		"pistol_reload5":"resources/textures/sprites/guns/pistol/pistol_reload5.bmp",
+		"pistol_reload6":"resources/textures/sprites/guns/pistol/pistol_reload6.bmp",
+		"blacktail_fire1":"resources/textures/sprites/guns/blacktail/blacktail_fire1.bmp",
+		"blacktail_fire2":"resources/textures/sprites/guns/blacktail/blacktail_fire2.bmp",
+		"blacktail_fire3":"resources/textures/sprites/guns/blacktail/blacktail_fire3.bmp",
+		"blacktail_fire4":"resources/textures/sprites/guns/blacktail/blacktail_fire4.bmp",
+		"blacktail_reload1":"resources/textures/sprites/guns/blacktail/blacktail_reload1.bmp",
+		"blacktail_reload2":"resources/textures/sprites/guns/blacktail/blacktail_reload2.bmp",
+		"blacktail_reload3":"resources/textures/sprites/guns/blacktail/blacktail_reload3.bmp",
+		"blacktail_reload4":"resources/textures/sprites/guns/blacktail/blacktail_reload4.bmp",
+		"blacktail_reload5":"resources/textures/sprites/guns/blacktail/blacktail_reload5.bmp",
+		"blacktail_reload6":"resources/textures/sprites/guns/blacktail/blacktail_reload6.bmp",
+		"blacktail_reload7":"resources/textures/sprites/guns/blacktail/blacktail_reload7.bmp",
+		"desert_eagle_fire1":"resources/textures/sprites/guns/desert_eagle/desert_eagle_fire1.bmp",
+		"desert_eagle_fire2":"resources/textures/sprites/guns/desert_eagle/desert_eagle_fire2.bmp",
+		"desert_eagle_fire3":"resources/textures/sprites/guns/desert_eagle/desert_eagle_fire3.bmp",
+		"desert_eagle_fire4":"resources/textures/sprites/guns/desert_eagle/desert_eagle_fire4.bmp",
+		"desert_eagle_fire5":"resources/textures/sprites/guns/desert_eagle/desert_eagle_fire5.bmp",
+		"desert_eagle_reload1":"resources/textures/sprites/guns/desert_eagle/desert_eagle_reload1.bmp",
+		"desert_eagle_reload2":"resources/textures/sprites/guns/desert_eagle/desert_eagle_reload2.bmp",
+		"desert_eagle_reload3":"resources/textures/sprites/guns/desert_eagle/desert_eagle_reload3.bmp",
+		"desert_eagle_reload4":"resources/textures/sprites/guns/desert_eagle/desert_eagle_reload4.bmp",
+		"desert_eagle_reload5":"resources/textures/sprites/guns/desert_eagle/desert_eagle_reload5.bmp",
+		"desert_eagle_reload6":"resources/textures/sprites/guns/desert_eagle/desert_eagle_reload6.bmp",
+		"desert_eagle_reload7":"resources/textures/sprites/guns/desert_eagle/desert_eagle_reload7.bmp",
 		"shootgun_fire1":"resources/textures/sprites/guns/shotgun/aim1.bmp",
 		"shootgun_fire2":"resources/textures/sprites/guns/shotgun/aim1fire.bmp",
 		"shootgun_fire3":"resources/textures/sprites/guns/shotgun/aim2fire.bmp",
@@ -114,11 +139,11 @@
 			"name":"mercenary",
 			"status":{"first":1,"display":1,"hoverable":0,"selectable":0,"draggable":0},
 			"textures":{
-				"anchor":{"x":400,"y":480},
+				"anchor":{"x":540,"y":420},
 				"offset":{"x":-150,"y":-300},
 				"animation":"stop",
 				"normal":{
-					"1":{"filter":"circular_shadow","key":"pistol_fire1","size":{"x":300,"y":300}}
+					"1":{"filter":"circular_shadow","key":"blacktail_reload3","size":{"x":300,"y":300}}
 				},
 				"hover":{
 					"1":{"key":"pistol_fire1","size":{"x":300,"y":300}}
@@ -152,6 +177,67 @@
 							"2":{"key":"pistol_reload2","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
 							"3":{"key":"pistol_reload3","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
 							"4":{"key":"pistol_reload4","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50}
+						}
+					}
+				}
+			},
+			"2":{
+				"active":1,
+				"type":"gun",
+				"name":"blacktail",
+				"ammo":100,
+				"magazine_size":10,
+				"magazine":10,
+				"damages":21,
+				"textures":{
+					"fire":{
+						"first_person":{
+							"1":{"key":"blacktail_fire1","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
+							"2":{"key":"blacktail_fire2","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
+							"3":{"key":"blacktail_fire3","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
+							"4":{"key":"blacktail_fire4","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50}
+						}
+					},
+					"reload":{
+						"first_person":{
+							"1":{"key":"blacktail_reload1","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
+							"2":{"key":"blacktail_reload2","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
+							"3":{"key":"blacktail_reload3","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
+							"4":{"key":"blacktail_reload4","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
+							"5":{"key":"blacktail_reload5","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
+							"6":{"key":"blacktail_reload6","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
+							"7":{"key":"blacktail_reload7","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50}
+						}
+					}
+				}
+			},
+			"3":{
+				"active":1,
+				"type":"gun",
+				"name":"desert_eagle",
+				"ammo":100,
+				"magazine_size":10,
+				"magazine":10,
+				"damages":21,
+				"textures":{
+					"fire":{
+						"first_person":{
+							"1":{"key":"desert_eagle_fire1","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
+							"2":{"key":"desert_eagle_fire2","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
+							"3":{"key":"desert_eagle_fire3","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
+							"4":{"key":"desert_eagle_fire4","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
+							"5":{"key":"desert_eagle_fire5","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50}
+						}
+					},
+					"reload":{
+						"first_person":{
+							"1":{"key":"desert_eagle_reload1","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
+							"2":{"key":"desert_eagle_reload2","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
+							"3":{"key":"desert_eagle_reload3","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
+							"4":{"key":"desert_eagle_reload4","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
+							"5":{"key":"desert_eagle_reload5","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
+							"6":{"key":"desert_eagle_reload6","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
+							"7":{"key":"desert_eagle_reload7","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50}
 						}
 					}
 				}
@@ -429,7 +515,7 @@
 		"color_map":{
 			"animation":"none",
 			"textures":{
-				"1":{"key":"map_pyramid_color","size":{"x":1080,"y":1080}}
+				"1":{"key":"map_hell","size":{"x":1080,"y":1080}}
 			}
 		},
 		"height_map":{
@@ -501,10 +587,7 @@
 						"anchor":{"x":100,"y":50},
 						"offset":{"x":0,"y":0}
 					},
-					"listener":{
-						"display":1,
-						"selectable":0
-					}
+					"listener":{"display":1}
 				}
 			},
 			"1":{

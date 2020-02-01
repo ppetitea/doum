@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:36:31 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 04:08:10 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/01 14:24:46 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static t_result		fill_pixels(FILE *file, uint32_t *pixels,
 			color.rgba.a = (bpp == 3) ? 255 : color.rgba.a;
 			x++;
 		}
-		fseek(file, (x * 3) % 4, SEEK_CUR);
+		fseek(file, (x * bpp) % 4, SEEK_CUR);
 		y++;
 	}
 	return (OK);
