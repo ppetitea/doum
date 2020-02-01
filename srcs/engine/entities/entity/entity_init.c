@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:44:34 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 03:06:42 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/01 00:27:51 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ t_result	init_entity_listener(t_listener *self)
 	self->is_selected = FALSE;
 	self->is_draggable = FALSE;
 	self->is_dragged = FALSE;
-	init_list_head(&self->hover_actions);
+	init_list_head(&self->hover_start_actions);
+	init_list_head(&self->hover_end_actions);
 	init_list_head(&self->select_actions);
 	init_list_head(&self->drag_actions);
 	init_list_head(&self->drop_actions);

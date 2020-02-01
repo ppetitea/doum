@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 00:10:40 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 03:26:51 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/01 00:52:26 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,18 @@ t_result	trigger_entity_action_by_hover(t_list_head *entities, t_mouse *mouse)
 	while ((pos = pos->next) != entities)
 	{
 		entity = (t_entity*)pos;
-		if (entity->status.is_hoverable)
+		if (entity->status.is_hoverable &&
+			is_entity_texture_collide(&entity->texture, mouse->pos))
 		{
-			if (is_entity_texture_collide(&entity->texture, mouse->pos))
-			{
-				trigger_actions(&entity->status.hover_actions);
-				return (OK);
-			}
+			if (entity->status.is_hover == FALSE)
+				trigger_actions(&entity->status.hover_start_actions);
+			entity->status.is_hover = TRUE;
+		}
+		else
+		{
+			if (entity->status.is_hover)
+				trigger_actions(&entity->status.hover_end_actions);
+			entity->status.is_hover = FALSE;
 		}
 	}
 	return (OK);

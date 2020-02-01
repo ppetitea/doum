@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 01:08:30 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 02:42:45 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/01 00:53:37 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,12 @@ t_result	trigger_entities_by_hover(t_game *game)
 	mouse = &game->interface.mouse;
 	if (game->curr_map != NULL)
 	{
-		if (trigger_entity_action_by_hover(&game->curr_map->e_static, mouse))
-			return (OK);
-		if (trigger_entity_action_by_hover(&game->curr_map->e_oriented, mouse))
-			return (OK);
+		trigger_entity_action_by_hover(&game->curr_map->e_static, mouse);
+		trigger_entity_action_by_hover(&game->curr_map->e_oriented, mouse);
 	}
 	if (game->curr_scene != NULL)
-		if (trigger_entity_action_by_hover(&game->curr_scene->entities, mouse))
-			return (OK);
-	return (ERROR);
+		trigger_entity_action_by_hover(&game->curr_scene->entities, mouse);
+	return (OK);
 }
 
 t_result	trigger_entities_by_select(t_game *game)

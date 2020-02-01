@@ -108,6 +108,7 @@ SRCS_LIST	=	main.c														\
 				engine/entities/entity/entity_status_build.c				\
 				engine/entities/entity/entity_texture_build.c				\
 				engine/entities/entity/entity_trigger.c						\
+				engine/entities/entity/entity_update.c						\
 				engine/entities/character/character_actions.c				\
 				engine/entities/character/character_build.c					\
 				engine/entities/character/character_die_build.c				\
