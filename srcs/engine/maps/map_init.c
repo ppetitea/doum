@@ -6,10 +6,11 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 02:49:02 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/30 18:19:45 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/02 04:55:51 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "engine/game/game_init.h"
 #include "engine/map/map_init.h"
 #include "engine/map/map_update.h"
 #include "utils/error.h"
@@ -43,4 +44,13 @@ t_map	*init_new_map()
 	init_map_texture(&self->color_map);
 	init_map_texture(&self->height_map);
 	return (self);
+}
+
+t_map	*game_map()
+{
+	t_game *game;
+
+	if (!(game = game_singleton(NULL)))
+		return (throw_null("game_map", "current map not found"));
+	return (game->curr_map);
 }

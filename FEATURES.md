@@ -2,49 +2,120 @@
 
 **Liste des features necessaires pour valider le projet**
 
-**Camera**
+****** Wolf ******
 
--> rotations horizontale + verticale
+** done **
+->	Move with keys (forward, back)
+->	Rotate 360 degres
+->	Close window with ESCAPE or clicking on cross
 
--> translations (SAUTER, COURIR, RAMPER)
+** todo **
+->	Textures on walls
 
-**Textures**
+****** Visual Elements ******
 
--> Sur les murs, le sol, le ciel, le plafond
+** done **
+->	Look in all directions
+->	The floor and ceiling must be able to be inclined.
 
--> murs transparents
+** todo **
+->	The spaces must have any shape, rooms with a different number of
+		walls, with several orientations.
+->	The floor and the ceiling have an adjustable height with unevenness
+		between the different spaces
+->	Textures are present on the floor and ceiling.
 
--> animations
+****** Visual Elements ******
 
-**Gameplay**
+** done **
+->	The floor and ceiling must be able to be inclined.
 
--> Ramasser/Deposer des armes
+** todo **
+->	 A sky must be present
+->	 There must be partially transparent walls to see the space at the 			back
+->	There should be decorative elements on the walls, above the main 			texture.
+->	There are sprites that always face the player as well as
+	multi-sprites displayed according to the player's orientation, such as seeing a front, side or back character.
+->	Ambient light must be present, affecting the walls and objects 	
+		present
 
--> Ramasser des munitions
+****** HUD - Head-Up Display ******
 
--> ouvrir/fermer des portes
+** done **
 
--> detruire la map / le decor
+** todo **
+->	Check that there are at least 3 elements on the HUD
 
-**Liste des features parce que ce serait style**
+****** Movements ******
 
--> map anime (qui retrecit au fil du temps comme dans fortnite)
+** done **
+->	I's possible to strafe in a fluid way.
+->	The movements are fluid, we can turn on oneself and from top to 
+		bottom.
 
--> mode survival (map qui retrecit et nombre d'ennemies qui augmente)
+** todo **
+->	Interactions with walls and steps are correct
+		managed according to their size and in a fluid movement.
 
--> pouvoir mettre en transparence le rendu 3d (mur semi-transparent)
+****** Advanced Movements ******
 
--> faire une minimap
+** done **
 
--> utiliser une manette
+** todo **
+->	 It's possible to run, jump, fall, bend down and get up in a fluid 	
+		way
+->	 It's possible to fly and/or swim in a fluid way
 
--> incarner n'importe quel personnage (ennemy ou meme un objet)
+****** Interaction with the decor ******
 
--> ennemis invisibles (on voit seulement l'attaque, les degats, la mort)
+** done **
 
--> Mettre le jeu sur pause
+** todo **
+->	The objects present react well in proportion to their visual
+		representation
+->	The items present may or may not be picked up and added to an 
+		inventory.
+->	Interactions are possible with the elements of the decor
 
--> Parser bmp avec le canal alpha
+****** Advanced interactions ******
 
--> sauvegarder les maps automatiquement
+** done **
 
+** todo **
+->	There are actions that are executed following a/few action(s),
+		be open-minded.
+->	Actions can modify all the elements of the game, the forms,
+		their properties.
+->	There are animations present following an interaction
+
+
+****** Overall atmosphere of the game ******
+
+** done **
+
+** todo **
+->	Characters and objects can have their own actions.
+->	Projectiles can be fired with interaction on the environment.
+->	The game contains a story, with a mission and a goal to achieve
+->	There is a beginning and an end of level
+->	Music and sound effects are present
+
+****** Level Editor ******
+
+** done **
+
+** todo **
+->	Editing spaces
+->	Texture editing
+->	Edit actions.
+->	Objects editing.
+->	Edition of general elements (beginning and end of level, 
+	terrestrial or lunar gravity, type of weapons available and damage, standard of living at the start, background music, solo/team, etc)
+
+
+****** Packaging ******
+
+** done **
+
+** todo **
+->	One for all

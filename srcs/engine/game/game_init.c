@@ -6,12 +6,14 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:36:09 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 02:29:43 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/02 04:55:33 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/interface/screen_init.h"
+#include "engine/entity/character_init.h"
 #include "engine/game/game_init.h"
+#include "engine/map/map_init.h"
 #include "utils/error.h"
 #include "libft.h"
 #include "build.h"

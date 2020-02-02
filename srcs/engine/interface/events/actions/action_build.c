@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 05:42:05 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/01 00:42:42 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/02 00:01:54 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ t_result	build_action_by_key(t_action_node *action,
 		action->action = translate_camera_horizon;
 	else if (strcmp_obj("action", "update_entity_texture", action_obj))
 		action->action = update_entity_texture;
+	else if (strcmp_obj("action", "spawn_character", action_obj))
+		action->action = spawn_character;
 	else
 		return (throw_error("build_action_by_key", "unknow action detected"));
 	return (OK);

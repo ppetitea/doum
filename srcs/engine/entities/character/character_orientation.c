@@ -6,11 +6,12 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:13:37 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/26 04:09:11 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/02 05:01:16 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/entity/character_init.h"
+#include "engine/game/game_init.h"
 #include "utils/error.h"
 #include <math.h>
 
@@ -30,14 +31,17 @@ static float	angle_gap(float f1, float f2)
 
 static float	compute_angle_to_target(t_character *curr)
 {
-	t_vec2f	dir_to_target;
-	t_pos2f	target_pos;
-	float	target_angle;
-	float	character_angle;
+	t_character	*player;
+	t_vec2f		dir_to_target;
+	t_pos2f		target_pos;
+	float		target_angle;
+	float		character_angle;
 
 	if (curr == NULL)
 		return (throw_error("update_oriented_texture", "NULL pointer"));
-	target_pos = curr->target->camera.pos;
+	if (!(player = game_player()))
+		return (throw_error("update_oriented_texture", "no player"));
+	target_pos = player->camera.pos;
 	dir_to_target = ft_vec2f(target_pos.x - curr->camera.pos.x,
 						target_pos.y - curr->camera.pos.y);
 	character_angle = atan2f(curr->camera.dir.x, curr->camera.dir.y);
@@ -52,7 +56,7 @@ void	orientate_texture(t_character *c)
 	float		angle;
 	float		angle_abs;
 
-	if (c == NULL || c->target == NULL)
+	if (c == NULL)
 		return (throw_warning("orientate_texture", "NULL pointer", 3));
 	angle = compute_angle_to_target(c);
 	angle_abs = ft_absf(angle);

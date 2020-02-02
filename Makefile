@@ -134,6 +134,7 @@ SRCS_LIST	=	main.c														\
 																			\
 				engine/maps/map_build.c										\
 				engine/maps/map_init.c										\
+				engine/maps/map_update.c									\
 																			\
 				engine/scenes/map_render_build.c							\
 				engine/scenes/map_render_init.c								\

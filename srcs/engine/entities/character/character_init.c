@@ -6,13 +6,14 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:05:38 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/26 03:34:14 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/02 15:43:57 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/entity/character_init.h"
 #include "engine/entity/character_action.h"
 #include "engine/entity/entity_init.h"
+#include "engine/map/map_init.h"
 #include "utils/error.h"
 
 t_character	*init_new_character()
@@ -30,6 +31,7 @@ t_character	*init_new_character()
 	self->size = 10;
 	self->velocity = 1.0f;
 	self->target = NULL;
+	self->target_dist = -1.0f;
 	self->hurt_texture = NULL;
 	self->die_texture = NULL;
 	self->oriented = NULL;
@@ -45,4 +47,13 @@ t_character	*init_new_character()
 	self->die = character_die;
 	self->run = character_run;
 	return (self);
+}
+
+t_character	*game_player()
+{
+	t_map *map;
+
+	if (!(map = game_map()))
+		return (throw_null("game_player", "current player not found"));
+	return (map->character_ref);
 }

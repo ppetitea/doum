@@ -1,123 +1,166 @@
 "resources":{
 	"images":{
-		"pistol_fire1":"resources/textures/sprites/guns/pistol/pistol_shoot1.bmp",
-		"pistol_fire2":"resources/textures/sprites/guns/pistol/pistol_shoot2.bmp",
-		"pistol_fire3":"resources/textures/sprites/guns/pistol/pistol_shoot3.bmp",
-		"pistol_reload1":"resources/textures/sprites/guns/pistol/pistol_reload1.bmp",
-		"pistol_reload2":"resources/textures/sprites/guns/pistol/pistol_reload2.bmp",
-		"pistol_reload3":"resources/textures/sprites/guns/pistol/pistol_reload3.bmp",
-		"pistol_reload4":"resources/textures/sprites/guns/pistol/pistol_reload4.bmp",
-		"pistol_reload5":"resources/textures/sprites/guns/pistol/pistol_reload5.bmp",
-		"pistol_reload6":"resources/textures/sprites/guns/pistol/pistol_reload6.bmp",
-		"blacktail_fire1":"resources/textures/sprites/guns/blacktail/blacktail_fire1.bmp",
-		"blacktail_fire2":"resources/textures/sprites/guns/blacktail/blacktail_fire2.bmp",
-		"blacktail_fire3":"resources/textures/sprites/guns/blacktail/blacktail_fire3.bmp",
-		"blacktail_fire4":"resources/textures/sprites/guns/blacktail/blacktail_fire4.bmp",
-		"blacktail_reload1":"resources/textures/sprites/guns/blacktail/blacktail_reload1.bmp",
-		"blacktail_reload2":"resources/textures/sprites/guns/blacktail/blacktail_reload2.bmp",
-		"blacktail_reload3":"resources/textures/sprites/guns/blacktail/blacktail_reload3.bmp",
-		"blacktail_reload4":"resources/textures/sprites/guns/blacktail/blacktail_reload4.bmp",
-		"blacktail_reload5":"resources/textures/sprites/guns/blacktail/blacktail_reload5.bmp",
-		"blacktail_reload6":"resources/textures/sprites/guns/blacktail/blacktail_reload6.bmp",
-		"blacktail_reload7":"resources/textures/sprites/guns/blacktail/blacktail_reload7.bmp",
-		"desert_eagle_fire1":"resources/textures/sprites/guns/desert_eagle/desert_eagle_fire1.bmp",
-		"desert_eagle_fire2":"resources/textures/sprites/guns/desert_eagle/desert_eagle_fire2.bmp",
-		"desert_eagle_fire3":"resources/textures/sprites/guns/desert_eagle/desert_eagle_fire3.bmp",
-		"desert_eagle_fire4":"resources/textures/sprites/guns/desert_eagle/desert_eagle_fire4.bmp",
-		"desert_eagle_fire5":"resources/textures/sprites/guns/desert_eagle/desert_eagle_fire5.bmp",
-		"desert_eagle_reload1":"resources/textures/sprites/guns/desert_eagle/desert_eagle_reload1.bmp",
-		"desert_eagle_reload2":"resources/textures/sprites/guns/desert_eagle/desert_eagle_reload2.bmp",
-		"desert_eagle_reload3":"resources/textures/sprites/guns/desert_eagle/desert_eagle_reload3.bmp",
-		"desert_eagle_reload4":"resources/textures/sprites/guns/desert_eagle/desert_eagle_reload4.bmp",
-		"desert_eagle_reload5":"resources/textures/sprites/guns/desert_eagle/desert_eagle_reload5.bmp",
-		"desert_eagle_reload6":"resources/textures/sprites/guns/desert_eagle/desert_eagle_reload6.bmp",
-		"desert_eagle_reload7":"resources/textures/sprites/guns/desert_eagle/desert_eagle_reload7.bmp",
-		"shootgun_fire1":"resources/textures/sprites/guns/shotgun/aim1.bmp",
-		"shootgun_fire2":"resources/textures/sprites/guns/shotgun/aim1fire.bmp",
-		"shootgun_fire3":"resources/textures/sprites/guns/shotgun/aim2fire.bmp",
-		"shootgun_fire4":"resources/textures/sprites/guns/shotgun/aim2.bmp",
-		"shootgun_reload1":"resources/textures/sprites/guns/shotgun/reload1.bmp",
-		"shootgun_reload2":"resources/textures/sprites/guns/shotgun/reload2.bmp",
-		"shootgun_reload3":"resources/textures/sprites/guns/shotgun/reload3.bmp",
-		"monster_attack1":"resources/textures/sprites/ennemies/test/attack/attack1.bmp",
-		"monster_attack2":"resources/textures/sprites/ennemies/test/attack/attack2.bmp",
-		"monster_attack3":"resources/textures/sprites/ennemies/test/attack/attack3.bmp",
-		"monster_die1":"resources/textures/sprites/ennemies/test/die/die1.bmp",
-		"monster_die2":"resources/textures/sprites/ennemies/test/die/die2.bmp",
-		"monster_die3":"resources/textures/sprites/ennemies/test/die/die3.bmp",
-		"monster_die4":"resources/textures/sprites/ennemies/test/die/die4.bmp",
-		"monster_die5":"resources/textures/sprites/ennemies/test/die/die5.bmp",
-		"monster_die6":"resources/textures/sprites/ennemies/test/die/die6.bmp",
-		"monster_die7":"resources/textures/sprites/ennemies/test/die/die7.bmp",
-		"monster_die8":"resources/textures/sprites/ennemies/test/die/die8.bmp",
-		"monster_die9":"resources/textures/sprites/ennemies/test/die/die9.bmp",
-		"monster_die10":"resources/textures/sprites/ennemies/test/die/die10.bmp",
-		"monster_front1":"resources/textures/sprites/ennemies/test/front/front1.bmp",
-		"monster_front2":"resources/textures/sprites/ennemies/test/front/front2.bmp",
-		"monster_front3":"resources/textures/sprites/ennemies/test/front/front3.bmp",
-		"monster_front4":"resources/textures/sprites/ennemies/test/front/front4.bmp",
-		"monster_front_l1":"resources/textures/sprites/ennemies/test/front/front_l1.bmp",
-		"monster_front_l2":"resources/textures/sprites/ennemies/test/front/front_l2.bmp",
-		"monster_front_l3":"resources/textures/sprites/ennemies/test/front/front_l3.bmp",
-		"monster_front_l4":"resources/textures/sprites/ennemies/test/front/front_l4.bmp",
-		"monster_front_r1":"resources/textures/sprites/ennemies/test/front/front_r1.bmp",
-		"monster_front_r2":"resources/textures/sprites/ennemies/test/front/front_r2.bmp",
-		"monster_front_r3":"resources/textures/sprites/ennemies/test/front/front_r3.bmp",
-		"monster_front_r4":"resources/textures/sprites/ennemies/test/front/front_r4.bmp",
-		"monster_left1":"resources/textures/sprites/ennemies/test/left/left1.bmp",
-		"monster_left2":"resources/textures/sprites/ennemies/test/left/left2.bmp",
-		"monster_left3":"resources/textures/sprites/ennemies/test/left/left3.bmp",
-		"monster_right1":"resources/textures/sprites/ennemies/test/right/right1.bmp",
-		"monster_right2":"resources/textures/sprites/ennemies/test/right/right2.bmp",
-		"monster_right3":"resources/textures/sprites/ennemies/test/right/right3.bmp",
-		"monster_back1":"resources/textures/sprites/ennemies/test/back/back1.bmp",
-		"monster_back2":"resources/textures/sprites/ennemies/test/back/back2.bmp",
-		"monster_back3":"resources/textures/sprites/ennemies/test/back/back3.bmp",
-		"monster_back4":"resources/textures/sprites/ennemies/test/back/back4.bmp",
-		"monster_back_l1":"resources/textures/sprites/ennemies/test/back/back_l1.bmp",
-		"monster_back_l2":"resources/textures/sprites/ennemies/test/back/back_l2.bmp",
-		"monster_back_l3":"resources/textures/sprites/ennemies/test/back/back_l3.bmp",
-		"monster_back_l4":"resources/textures/sprites/ennemies/test/back/back_l4.bmp",
-		"monster_back_r1":"resources/textures/sprites/ennemies/test/back/back_r1.bmp",
-		"monster_back_r2":"resources/textures/sprites/ennemies/test/back/back_r2.bmp",
-		"monster_back_r3":"resources/textures/sprites/ennemies/test/back/back_r3.bmp",
-		"monster_back_r4":"resources/textures/sprites/ennemies/test/back/back_r4.bmp",
-		"map_canion":"resources/maps/canions.bmp",
-		"button_test":"resources/textures/ui/buttons/button_test.bmp",
-		"menu_background":"resources/textures/background/dark_bg.bmp",
-		"background_sinister":"resources/textures/background/background_sinister.bmp",
-		"background_grid":"resources/textures/background/background_grid.bmp",
+		"pistol":"resources/weapons/pistol/pistol.bmp",
+		"pistol_fire1":"resources/weapons/pistol/pistol_shoot1.bmp",
+		"pistol_fire2":"resources/weapons/pistol/pistol_shoot2.bmp",
+		"pistol_fire3":"resources/weapons/pistol/pistol_shoot3.bmp",
+		"pistol_reload1":"resources/weapons/pistol/pistol_reload1.bmp",
+		"pistol_reload2":"resources/weapons/pistol/pistol_reload2.bmp",
+		"pistol_reload3":"resources/weapons/pistol/pistol_reload3.bmp",
+		"pistol_reload4":"resources/weapons/pistol/pistol_reload4.bmp",
+		"pistol_reload5":"resources/weapons/pistol/pistol_reload5.bmp",
+		"pistol_reload6":"resources/weapons/pistol/pistol_reload6.bmp",
+		"blacktail":"resources/weapons/blacktail/blacktail.bmp",
+		"blacktail_fire1":"resources/weapons/blacktail/blacktail_fire1.bmp",
+		"blacktail_fire2":"resources/weapons/blacktail/blacktail_fire2.bmp",
+		"blacktail_fire3":"resources/weapons/blacktail/blacktail_fire3.bmp",
+		"blacktail_fire4":"resources/weapons/blacktail/blacktail_fire4.bmp",
+		"blacktail_reload1":"resources/weapons/blacktail/blacktail_reload1.bmp",
+		"blacktail_reload2":"resources/weapons/blacktail/blacktail_reload2.bmp",
+		"blacktail_reload3":"resources/weapons/blacktail/blacktail_reload3.bmp",
+		"blacktail_reload4":"resources/weapons/blacktail/blacktail_reload4.bmp",
+		"blacktail_reload5":"resources/weapons/blacktail/blacktail_reload5.bmp",
+		"blacktail_reload6":"resources/weapons/blacktail/blacktail_reload6.bmp",
+		"blacktail_reload7":"resources/weapons/blacktail/blacktail_reload7.bmp",
+		"desert_eagle":"resources/weapons/desert_eagle/desert_eagle.bmp",
+		"desert_eagle_fire1":"resources/weapons/desert_eagle/desert_eagle_fire1.bmp",
+		"desert_eagle_fire2":"resources/weapons/desert_eagle/desert_eagle_fire2.bmp",
+		"desert_eagle_fire3":"resources/weapons/desert_eagle/desert_eagle_fire3.bmp",
+		"desert_eagle_fire4":"resources/weapons/desert_eagle/desert_eagle_fire4.bmp",
+		"desert_eagle_fire5":"resources/weapons/desert_eagle/desert_eagle_fire5.bmp",
+		"desert_eagle_reload1":"resources/weapons/desert_eagle/desert_eagle_reload1.bmp",
+		"desert_eagle_reload2":"resources/weapons/desert_eagle/desert_eagle_reload2.bmp",
+		"desert_eagle_reload3":"resources/weapons/desert_eagle/desert_eagle_reload3.bmp",
+		"desert_eagle_reload4":"resources/weapons/desert_eagle/desert_eagle_reload4.bmp",
+		"desert_eagle_reload5":"resources/weapons/desert_eagle/desert_eagle_reload5.bmp",
+		"desert_eagle_reload6":"resources/weapons/desert_eagle/desert_eagle_reload6.bmp",
+		"desert_eagle_reload7":"resources/weapons/desert_eagle/desert_eagle_reload7.bmp",
+		"overlord_attack1":"resources/characters/overlord/attack/overlord_attack_front1.bmp",
+		"overlord_attack2":"resources/characters/overlord/attack/overlord_attack_front2.bmp",
+		"overlord_attack3":"resources/characters/overlord/attack/overlord_attack_front3.bmp",
+		"overlord_attack4":"resources/characters/overlord/attack/overlord_attack_front4.bmp",
+		"overlord_die1":"resources/characters/overlord/die/overlord_die1.bmp",
+		"overlord_die2":"resources/characters/overlord/die/overlord_die2.bmp",
+		"overlord_die3":"resources/characters/overlord/die/overlord_die3.bmp",
+		"overlord_die4":"resources/characters/overlord/die/overlord_die4.bmp",
+		"overlord_die5":"resources/characters/overlord/die/overlord_die5.bmp",
+		"overlord_die6":"resources/characters/overlord/die/overlord_die6.bmp",
+		"overlord_die7":"resources/characters/overlord/die/overlord_die7.bmp",
+		"overlord_die8":"resources/characters/overlord/die/overlord_die8.bmp",
+		"overlord_die9":"resources/characters/overlord/die/overlord_die9.bmp",
+		"overlord_die10":"resources/characters/overlord/die/overlord_die10.bmp",
+		"overlord_front1":"resources/characters/overlord/front/overlord_front1.bmp",
+		"overlord_front2":"resources/characters/overlord/front/overlord_front2.bmp",
+		"overlord_front3":"resources/characters/overlord/front/overlord_front3.bmp",
+		"overlord_front4":"resources/characters/overlord/front/overlord_front4.bmp",
+		"overlord_front_l1":"resources/characters/overlord/front_left/overlord_front_left1.bmp",
+		"overlord_front_l2":"resources/characters/overlord/front_left/overlord_front_left2.bmp",
+		"overlord_front_l3":"resources/characters/overlord/front_left/overlord_front_left3.bmp",
+		"overlord_front_l4":"resources/characters/overlord/front_left/overlord_front_left4.bmp",
+		"overlord_front_r1":"resources/characters/overlord/front_right/overlord_front_right1.bmp",
+		"overlord_front_r2":"resources/characters/overlord/front_right/overlord_front_right2.bmp",
+		"overlord_front_r3":"resources/characters/overlord/front_right/overlord_front_right3.bmp",
+		"overlord_front_r4":"resources/characters/overlord/front_right/overlord_front_right4.bmp",
+		"overlord_left1":"resources/characters/overlord/left/overlord_left1.bmp",
+		"overlord_left2":"resources/characters/overlord/left/overlord_left2.bmp",
+		"overlord_left3":"resources/characters/overlord/left/overlord_left3.bmp",
+		"overlord_left4":"resources/characters/overlord/left/overlord_left4.bmp",
+		"overlord_right1":"resources/characters/overlord/right/overlord_right1.bmp",
+		"overlord_right2":"resources/characters/overlord/right/overlord_right2.bmp",
+		"overlord_right3":"resources/characters/overlord/right/overlord_right3.bmp",
+		"overlord_right4":"resources/characters/overlord/right/overlord_right4.bmp",
+		"overlord_back1":"resources/characters/overlord/back/overlord_back1.bmp",
+		"overlord_back2":"resources/characters/overlord/back/overlord_back2.bmp",
+		"overlord_back3":"resources/characters/overlord/back/overlord_back3.bmp",
+		"overlord_back4":"resources/characters/overlord/back/overlord_back4.bmp",
+		"overlord_back_l1":"resources/characters/overlord/back_left/overlord_back_left1.bmp",
+		"overlord_back_l2":"resources/characters/overlord/back_left/overlord_back_left2.bmp",
+		"overlord_back_l3":"resources/characters/overlord/back_left/overlord_back_left3.bmp",
+		"overlord_back_l4":"resources/characters/overlord/back_left/overlord_back_left4.bmp",
+		"overlord_back_r1":"resources/characters/overlord/back_right/overlord_back_right1.bmp",
+		"overlord_back_r2":"resources/characters/overlord/back_right/overlord_back_right2.bmp",
+		"overlord_back_r3":"resources/characters/overlord/back_right/overlord_back_right3.bmp",
+		"overlord_back_r4":"resources/characters/overlord/back_right/overlord_back_right4.bmp",
+		"cycloid_attack1":"resources/characters/cycloid/attack/cycloid_attack_front1.bmp",
+		"cycloid_attack2":"resources/characters/cycloid/attack/cycloid_attack_front2.bmp",
+		"cycloid_attack3":"resources/characters/cycloid/attack/cycloid_attack_front3.bmp",
+		"cycloid_attack4":"resources/characters/cycloid/attack/cycloid_attack_front4.bmp",
+		"cycloid_die1":"resources/characters/cycloid/die/cycloid_die1.bmp",
+		"cycloid_die2":"resources/characters/cycloid/die/cycloid_die2.bmp",
+		"cycloid_die3":"resources/characters/cycloid/die/cycloid_die3.bmp",
+		"cycloid_die4":"resources/characters/cycloid/die/cycloid_die4.bmp",
+		"cycloid_die5":"resources/characters/cycloid/die/cycloid_die5.bmp",
+		"cycloid_die6":"resources/characters/cycloid/die/cycloid_die6.bmp",
+		"cycloid_die7":"resources/characters/cycloid/die/cycloid_die7.bmp",
+		"cycloid_die8":"resources/characters/cycloid/die/cycloid_die8.bmp",
+		"cycloid_die9":"resources/characters/cycloid/die/cycloid_die9.bmp",
+		"cycloid_front1":"resources/characters/cycloid/front/cycloid_front1.bmp",
+		"cycloid_front2":"resources/characters/cycloid/front/cycloid_front2.bmp",
+		"cycloid_front3":"resources/characters/cycloid/front/cycloid_front3.bmp",
+		"cycloid_front4":"resources/characters/cycloid/front/cycloid_front4.bmp",
+		"cycloid_front_l1":"resources/characters/cycloid/front_left/cycloid_front_left1.bmp",
+		"cycloid_front_l2":"resources/characters/cycloid/front_left/cycloid_front_left2.bmp",
+		"cycloid_front_l3":"resources/characters/cycloid/front_left/cycloid_front_left3.bmp",
+		"cycloid_front_l4":"resources/characters/cycloid/front_left/cycloid_front_left4.bmp",
+		"cycloid_front_r1":"resources/characters/cycloid/front_right/cycloid_front_right1.bmp",
+		"cycloid_front_r2":"resources/characters/cycloid/front_right/cycloid_front_right2.bmp",
+		"cycloid_front_r3":"resources/characters/cycloid/front_right/cycloid_front_right3.bmp",
+		"cycloid_front_r4":"resources/characters/cycloid/front_right/cycloid_front_right4.bmp",
+		"cycloid_left1":"resources/characters/cycloid/left/cycloid_left1.bmp",
+		"cycloid_left2":"resources/characters/cycloid/left/cycloid_left2.bmp",
+		"cycloid_left3":"resources/characters/cycloid/left/cycloid_left3.bmp",
+		"cycloid_left4":"resources/characters/cycloid/left/cycloid_left4.bmp",
+		"cycloid_right1":"resources/characters/cycloid/right/cycloid_right1.bmp",
+		"cycloid_right2":"resources/characters/cycloid/right/cycloid_right2.bmp",
+		"cycloid_right3":"resources/characters/cycloid/right/cycloid_right3.bmp",
+		"cycloid_right4":"resources/characters/cycloid/right/cycloid_right4.bmp",
+		"cycloid_back1":"resources/characters/cycloid/back/cycloid_back1.bmp",
+		"cycloid_back2":"resources/characters/cycloid/back/cycloid_back2.bmp",
+		"cycloid_back3":"resources/characters/cycloid/back/cycloid_back3.bmp",
+		"cycloid_back4":"resources/characters/cycloid/back/cycloid_back4.bmp",
+		"cycloid_back_l1":"resources/characters/cycloid/back_left/cycloid_back_left1.bmp",
+		"cycloid_back_l2":"resources/characters/cycloid/back_left/cycloid_back_left2.bmp",
+		"cycloid_back_l3":"resources/characters/cycloid/back_left/cycloid_back_left3.bmp",
+		"cycloid_back_l4":"resources/characters/cycloid/back_left/cycloid_back_left4.bmp",
+		"cycloid_back_r1":"resources/characters/cycloid/back_right/cycloid_back_right1.bmp",
+		"cycloid_back_r2":"resources/characters/cycloid/back_right/cycloid_back_right2.bmp",
+		"cycloid_back_r3":"resources/characters/cycloid/back_right/cycloid_back_right3.bmp",
+		"cycloid_back_r4":"resources/characters/cycloid/back_right/cycloid_back_right4.bmp",
+		"menu_background":"resources/background/dark_background.bmp",
+		"background_sinister":"resources/background/background_sinister.bmp",
+		"background_blood":"resources/background/bloody_background.bmp",
+		"wall_blood":"resources/background/wall_blood.bmp",
 		"height_map_pyramid":"resources/maps/heightmap.bmp",
-		"map_pyramid":"resources/maps/texture.bmp",
-		"map_pyramid_red":"resources/maps/pyramid_red.bmp",
-		"map_pyramid_neon":"resources/maps/pyramid_neon.bmp",
-		"map_hell":"resources/maps/hell.bmp",
 		"map_pyramid_color":"resources/maps/pyramid_color.bmp",
-		"background_blood":"resources/textures/background/bloody_background.bmp",
-		"wall_blood":"resources/textures/background/wall_blood.bmp",
-		"button_left_white":"resources/textures/ui/buttons/left_white.bmp",
-		"button_left_orange":"resources/textures/ui/buttons/left_orange.bmp",
-		"button_right_white":"resources/textures/ui/buttons/right_white.bmp",
-		"button_right_orange":"resources/textures/ui/buttons/right_orange.bmp",
-		"button_up_white":"resources/textures/ui/buttons/up_white.bmp",
-		"button_up_orange":"resources/textures/ui/buttons/up_orange.bmp",
-		"button_down_white":"resources/textures/ui/buttons/down_white.bmp",
-		"button_down_orange":"resources/textures/ui/buttons/down_orange.bmp",
-		"hand_blood":"resources/textures/ui/buttons/hand_blood.bmp",
-		"arrow_white":"resources/textures/ui/buttons/arrow_white.bmp",
-		"arrow_dark":"resources/textures/ui/buttons/arrow_dark.bmp",
-		"arrow_blood":"resources/textures/ui/buttons/arrow_blood.bmp",
-		"arrow_next_dark":"resources/textures/ui/buttons/arrow_next_dark.bmp",
-		"arrow_next_light":"resources/textures/ui/buttons/arrow_next_light.bmp",
-		"hand_edit_dark":"resources/textures/ui/buttons/hand_edit_dark.bmp",
-		"hand_edit_light":"resources/textures/ui/buttons/hand_edit_light.bmp",
-		"skull_play_dark":"resources/textures/ui/buttons/skull_play_dark.bmp",
-		"skull_play_light":"resources/textures/ui/buttons/skull_play_light.bmp",
-		"doum_doum_doum":"resources/textures/title/doum_doum_doum.bmp",
-		"title_edit":"resources/textures/title/edit.bmp",
-		"title_next":"resources/textures/title/next.bmp",
-		"title_play":"resources/textures/title/play.bmp",
-		"skull_blood":"resources/textures/ui/buttons/skull_blood.bmp"
+		"map_pyramid_neon":"resources/maps/pyramid_neon.bmp",
+		"map_pyramid_red":"resources/maps/pyramid_red.bmp",
+		"map_pyramid":"resources/maps/texture.bmp",
+		"map_canion":"resources/maps/canions.bmp",
+		"map_hell":"resources/maps/hell.bmp",
+		"button_right_orange":"resources/buttons/right_orange.bmp",
+		"button_right_white":"resources/buttons/right_white.bmp",
+		"button_left_orange":"resources/buttons/left_orange.bmp",
+		"button_down_orange":"resources/buttons/down_orange.bmp",
+		"button_left_white":"resources/buttons/left_white.bmp",
+		"button_down_white":"resources/buttons/down_white.bmp",
+		"button_up_orange":"resources/buttons/up_orange.bmp",
+		"button_up_white":"resources/buttons/up_white.bmp",
+		"button_test":"resources/buttons/button_test.bmp",
+		"hand_blood":"resources/buttons/hand_blood.bmp",
+		"arrow_white":"resources/buttons/arrow_white.bmp",
+		"arrow_dark":"resources/buttons/arrow_dark.bmp",
+		"arrow_blood":"resources/buttons/arrow_blood.bmp",
+		"arrow_next_dark":"resources/buttons/arrow_next_dark.bmp",
+		"arrow_next_light":"resources/buttons/arrow_next_light.bmp",
+		"hand_edit_dark":"resources/buttons/hand_edit_dark.bmp",
+		"hand_edit_light":"resources/buttons/hand_edit_light.bmp",
+		"skull_play_dark":"resources/buttons/skull_play_dark.bmp",
+		"skull_play_light":"resources/buttons/skull_play_light.bmp",
+		"skull_blood":"resources/buttons/skull_blood.bmp",
+		"doum_doum_doum":"resources/title/doum_doum_doum.bmp",
+		"title_edit":"resources/title/edit.bmp",
+		"title_next":"resources/title/next.bmp",
+		"title_play":"resources/title/play.bmp"
 	}
 },
 "entities":{
@@ -139,11 +182,11 @@
 			"name":"mercenary",
 			"status":{"first":1,"display":1,"hoverable":0,"selectable":0,"draggable":0},
 			"textures":{
-				"anchor":{"x":540,"y":420},
-				"offset":{"x":-150,"y":-300},
+				"anchor":{"x":640,"y":520},
+				"offset":{"x":-150,"y":-200},
 				"animation":"stop",
 				"normal":{
-					"1":{"filter":"circular_shadow","key":"blacktail_reload3","size":{"x":300,"y":300}}
+					"1":{"filter":"circular_shadow","key":"pistol_fire1","size":{"x":200,"y":200}}
 				},
 				"hover":{
 					"1":{"key":"pistol_fire1","size":{"x":300,"y":300}}
@@ -176,7 +219,9 @@
 							"1":{"key":"pistol_reload1","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
 							"2":{"key":"pistol_reload2","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
 							"3":{"key":"pistol_reload3","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
-							"4":{"key":"pistol_reload4","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50}
+							"4":{"key":"pistol_reload4","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
+							"5":{"key":"pistol_reload5","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
+							"6":{"key":"pistol_reload6","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50}
 						}
 					}
 				}
@@ -241,53 +286,27 @@
 						}
 					}
 				}
-			},
-			"2":{
-				"active":1,
-				"type":"gun",
-				"name":"shootgun",
-				"ammo":100,
-				"magazine_size":10,
-				"magazine":10,
-				"damages":21,
-				"textures":{
-					"fire":{
-						"first_person":{
-							"1":{"key":"shootgun_fire1","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
-							"2":{"key":"shootgun_fire2","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
-							"3":{"key":"shootgun_fire3","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
-							"4":{"key":"shootgun_fire4","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50}
-						}
-					},
-					"reload":{
-						"first_person":{
-							"1":{"key":"shootgun_reload1","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
-							"2":{"key":"shootgun_reload2","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50},
-							"3":{"key":"shootgun_reload3","offset":{"x":-150,"y":-300},"size":{"x":300,"y":300},"delay_ms":50}
-						}
-					}
-				}
 			}
 		}
 	},
 	"2":{
 		"entity":{
-			"name":"boss level 1",
+			"name":"overlord",
 			"status":{"display":1,"hoverable":0,"selectable":0,"draggable":0},
 			"textures":{
 				"anchor":{"x":400,"y":480},
 				"offset":{"x":-100,"y":-130},
 				"animation":"stop",
 				"normal":{
-					"1":{"filter":"circular_shadow","key":"monster_front1","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130}}
+					"1":{"filter":"circular_shadow","key":"overlord_front1","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130}}
 				},
 				"hover":{
-					"1":{"key":"monster_front1","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130}}
+					"1":{"key":"overlord_front1","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130}}
 				}
 			}
 		},
 		"type":"character",
-		"character_type":"monster",
+		"character_type":"overlord",
 		"camera":{
 			"fov":90,
 			"plan_width":640,
@@ -308,9 +327,10 @@
 				"textures":{
 					"fire":{
 						"third_person":{
-							"1":{"key":"monster_attack1","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-							"2":{"key":"monster_attack2","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-							"3":{"key":"monster_attack3","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200}
+							"1":{"key":"overlord_attack1","size":{"x":151,"y":132},"offset":{"x":-75,"y":-132},"delay_ms":200},
+							"2":{"key":"overlord_attack2","size":{"x":152,"y":113},"offset":{"x":-76,"y":-113},"delay_ms":200},
+							"3":{"key":"overlord_attack3","size":{"x":165,"y":105},"offset":{"x":-82,"y":-105},"delay_ms":200},
+							"3":{"key":"overlord_attack4","size":{"x":139,"y":108},"offset":{"x":-70,"y":-108},"delay_ms":200}
 						}
 					}
 				}
@@ -319,16 +339,16 @@
 		"die":{
 			"textures":{
 				"third_person":{
-					"1":{"key":"monster_die1","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-					"2":{"key":"monster_die2","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-					"3":{"key":"monster_die3","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-					"4":{"key":"monster_die4","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-					"5":{"key":"monster_die5","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-					"6":{"key":"monster_die6","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-					"7":{"key":"monster_die7","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-					"8":{"key":"monster_die8","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-					"9":{"key":"monster_die9","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-					"10":{"key":"monster_die10","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200}
+					"1":{"key":"overlord_die1","size":{"x":124,"y":107},"offset":{"x":-62,"y":-107},"delay_ms":200},
+					"2":{"key":"overlord_die2","size":{"x":152,"y":110},"offset":{"x":-76,"y":-110},"delay_ms":200},
+					"3":{"key":"overlord_die3","size":{"x":164,"y":113},"offset":{"x":-82,"y":-113},"delay_ms":200},
+					"4":{"key":"overlord_die4","size":{"x":159,"y":120},"offset":{"x":-80,"y":-120},"delay_ms":200},
+					"5":{"key":"overlord_die5","size":{"x":152,"y":118},"offset":{"x":-72,"y":-118},"delay_ms":200},
+					"6":{"key":"overlord_die6","size":{"x":153,"y":106},"offset":{"x":-76,"y":-106},"delay_ms":200},
+					"7":{"key":"overlord_die7","size":{"x":150,"y":100},"offset":{"x":-75,"y":-100},"delay_ms":200},
+					"8":{"key":"overlord_die8","size":{"x":148,"y":77},"offset":{"x":-74,"y":-77},"delay_ms":200},
+					"9":{"key":"overlord_die9","size":{"x":144,"y":64},"offset":{"x":-72,"y":-64},"delay_ms":200},
+					"10":{"key":"overlord_die10","size":{"x":147,"y":64},"offset":{"x":-74,"y":-64},"delay_ms":200}
 				}
 			},
 			"songs":{
@@ -337,50 +357,168 @@
 		},
 		"oriented":{
 			"front":{
-				"1":{"key":"monster_front1","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-				"2":{"key":"monster_front2","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-				"3":{"key":"monster_front3","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-				"4":{"key":"monster_front4","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200}							
+				"1":{"key":"overlord_front1","size":{"x":135,"y":110},"offset":{"x":-67,"y":-110},"delay_ms":200},
+				"2":{"key":"overlord_front2","size":{"x":141,"y":115},"offset":{"x":-70,"y":-115},"delay_ms":200},
+				"3":{"key":"overlord_front3","size":{"x":135,"y":109},"offset":{"x":-67,"y":-109},"delay_ms":200},
+				"4":{"key":"overlord_front4","size":{"x":142,"y":116},"offset":{"x":-71,"y":-116},"delay_ms":200}
 			},
 			"front_l":{
-				"1":{"key":"monster_front_l1","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-				"2":{"key":"monster_front_l2","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-				"3":{"key":"monster_front_l3","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-				"4":{"key":"monster_front_l4","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200}							
+				"1":{"key":"overlord_front_l1","size":{"x":161,"y":109},"offset":{"x":-80,"y":-109},"delay_ms":200},
+				"2":{"key":"overlord_front_l2","size":{"x":137,"y":116},"offset":{"x":-69,"y":-116},"delay_ms":200},
+				"3":{"key":"overlord_front_l3","size":{"x":117,"y":108},"offset":{"x":-58,"y":-108},"delay_ms":200},
+				"4":{"key":"overlord_front_l4","size":{"x":137,"y":115},"offset":{"x":-68,"y":-115},"delay_ms":200}
 			},
 			"front_r":{
-				"1":{"key":"monster_front_r1","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-				"2":{"key":"monster_front_r2","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-				"3":{"key":"monster_front_r3","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-				"4":{"key":"monster_front_r4","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200}							
+				"1":{"key":"overlord_front_r1","size":{"x":161,"y":109},"offset":{"x":-80,"y":-109},"delay_ms":200},
+				"2":{"key":"overlord_front_r2","size":{"x":137,"y":116},"offset":{"x":-69,"y":-116},"delay_ms":200},
+				"3":{"key":"overlord_front_r3","size":{"x":117,"y":108},"offset":{"x":-58,"y":-108},"delay_ms":200},
+				"4":{"key":"overlord_front_r4","size":{"x":137,"y":115},"offset":{"x":-68,"y":-115},"delay_ms":200}
 			},
 			"left":{
-				"1":{"key":"monster_left1","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-				"2":{"key":"monster_left2","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-				"3":{"key":"monster_left3","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200}						
+				"1":{"key":"overlord_left1","size":{"x":180,"y":109},"offset":{"x":-90,"y":-109},"delay_ms":200},
+				"2":{"key":"overlord_left2","size":{"x":180,"y":114},"offset":{"x":-90,"y":-114},"delay_ms":200},
+				"3":{"key":"overlord_left3","size":{"x":198,"y":105},"offset":{"x":-99,"y":-105},"delay_ms":200},
+				"3":{"key":"overlord_left4","size":{"x":179,"y":113},"offset":{"x":-90,"y":-113},"delay_ms":200}
 			},
 			"right":{
-				"1":{"key":"monster_right1","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-				"2":{"key":"monster_right2","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-				"3":{"key":"monster_right3","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200}
+				"1":{"key":"overlord_right1","size":{"x":180,"y":109},"offset":{"x":-90,"y":-109},"delay_ms":200},
+				"2":{"key":"overlord_right2","size":{"x":180,"y":114},"offset":{"x":-90,"y":-114},"delay_ms":200},
+				"3":{"key":"overlord_right3","size":{"x":198,"y":105},"offset":{"x":-99,"y":-105},"delay_ms":200},
+				"3":{"key":"overlord_right4","size":{"x":179,"y":113},"offset":{"x":-90,"y":-113},"delay_ms":200}
 			},
 			"back":{
-				"1":{"key":"monster_back1","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-				"2":{"key":"monster_back2","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-				"3":{"key":"monster_back3","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-				"4":{"key":"monster_back4","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200}							
+				"1":{"key":"overlord_back1","size":{"x":134,"y":104},"offset":{"x":-67,"y":-104},"delay_ms":200},
+				"2":{"key":"overlord_back2","size":{"x":131,"y":108},"offset":{"x":-65,"y":-108},"delay_ms":200},
+				"3":{"key":"overlord_back3","size":{"x":135,"y":104},"offset":{"x":-67,"y":-104},"delay_ms":200},
+				"4":{"key":"overlord_back4","size":{"x":134,"y":108},"offset":{"x":-67,"y":-108},"delay_ms":200}	
 			},
 			"back_l":{
-				"1":{"key":"monster_back_l1","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-				"2":{"key":"monster_back_l2","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-				"3":{"key":"monster_back_l3","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-				"4":{"key":"monster_back_l4","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200}							
+				"1":{"key":"overlord_back_l1","size":{"x":131,"y":105},"offset":{"x":-65,"y":-105},"delay_ms":200},
+				"2":{"key":"overlord_back_l2","size":{"x":140,"y":110},"offset":{"x":-70,"y":-110},"delay_ms":200},
+				"3":{"key":"overlord_back_l3","size":{"x":156,"y":104},"offset":{"x":-78,"y":-104},"delay_ms":200},
+				"4":{"key":"overlord_back_l4","size":{"x":137,"y":111},"offset":{"x":-68,"y":-111},"delay_ms":200}	
 			},
 			"back_r":{
-				"1":{"key":"monster_back_r1","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-				"2":{"key":"monster_back_r2","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-				"3":{"key":"monster_back_r3","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200},
-				"4":{"key":"monster_back_r4","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130},"delay_ms":200}							
+				"1":{"key":"overlord_back_r1","size":{"x":131,"y":105},"offset":{"x":-65,"y":-105},"delay_ms":200},
+				"2":{"key":"overlord_back_r2","size":{"x":140,"y":110},"offset":{"x":-70,"y":-110},"delay_ms":200},
+				"3":{"key":"overlord_back_r3","size":{"x":156,"y":104},"offset":{"x":-78,"y":-104},"delay_ms":200},
+				"4":{"key":"overlord_back_r4","size":{"x":137,"y":111},"offset":{"x":-68,"y":-111},"delay_ms":200}	
+			}
+		}
+	},
+	"2":{
+		"entity":{
+			"name":"cycloid",
+			"status":{"display":1,"hoverable":0,"selectable":0,"draggable":0},
+			"textures":{
+				"anchor":{"x":400,"y":480},
+				"offset":{"x":-100,"y":-130},
+				"animation":"stop",
+				"normal":{
+					"1":{"filter":"circular_shadow","key":"cycloid_front1","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130}}
+				},
+				"hover":{
+					"1":{"key":"cycloid_front1","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130}}
+				}
+			}
+		},
+		"type":"character",
+		"character_type":"cycloid",
+		"camera":{
+			"fov":90,
+			"plan_width":640,
+			"position":{"x":10,"y":10},
+			"direction":{"x":0,"y":1},
+			"height":300
+		},
+		"life":1000,
+		"armor":0,
+		"velocity":1.0,
+		"size":100,
+		"weapons":{
+			"1":{
+				"active":1,
+				"type":"hand",
+				"name":"crush",
+				"damages":100,
+				"textures":{
+					"fire":{
+						"third_person":{
+							"1":{"key":"cycloid_attack1","size":{"x":151,"y":132},"offset":{"x":-75,"y":-132},"delay_ms":200},
+							"2":{"key":"cycloid_attack2","size":{"x":152,"y":113},"offset":{"x":-76,"y":-113},"delay_ms":200},
+							"3":{"key":"cycloid_attack3","size":{"x":165,"y":105},"offset":{"x":-82,"y":-105},"delay_ms":200},
+							"3":{"key":"cycloid_attack4","size":{"x":139,"y":108},"offset":{"x":-70,"y":-108},"delay_ms":200}
+						}
+					}
+				}
+			}
+		},
+		"die":{
+			"textures":{
+				"third_person":{
+					"1":{"key":"cycloid_die1","size":{"x":124,"y":107},"offset":{"x":-62,"y":-107},"delay_ms":200},
+					"2":{"key":"cycloid_die2","size":{"x":152,"y":110},"offset":{"x":-76,"y":-110},"delay_ms":200},
+					"3":{"key":"cycloid_die3","size":{"x":164,"y":113},"offset":{"x":-82,"y":-113},"delay_ms":200},
+					"4":{"key":"cycloid_die4","size":{"x":159,"y":120},"offset":{"x":-80,"y":-120},"delay_ms":200},
+					"5":{"key":"cycloid_die5","size":{"x":152,"y":118},"offset":{"x":-72,"y":-118},"delay_ms":200},
+					"6":{"key":"cycloid_die6","size":{"x":153,"y":106},"offset":{"x":-76,"y":-106},"delay_ms":200},
+					"7":{"key":"cycloid_die7","size":{"x":150,"y":100},"offset":{"x":-75,"y":-100},"delay_ms":200},
+					"8":{"key":"cycloid_die8","size":{"x":148,"y":77},"offset":{"x":-74,"y":-77},"delay_ms":200},
+					"9":{"key":"cycloid_die9","size":{"x":144,"y":64},"offset":{"x":-72,"y":-64},"delay_ms":200}
+				}
+			},
+			"songs":{
+				"not_yet":"coming soon"
+			}
+		},
+		"oriented":{
+			"front":{
+				"1":{"key":"cycloid_front1","size":{"x":135,"y":110},"offset":{"x":-67,"y":-110},"delay_ms":200},
+				"2":{"key":"cycloid_front2","size":{"x":141,"y":115},"offset":{"x":-70,"y":-115},"delay_ms":200},
+				"3":{"key":"cycloid_front3","size":{"x":135,"y":109},"offset":{"x":-67,"y":-109},"delay_ms":200},
+				"4":{"key":"cycloid_front4","size":{"x":142,"y":116},"offset":{"x":-71,"y":-116},"delay_ms":200}
+			},
+			"front_l":{
+				"1":{"key":"cycloid_front_l1","size":{"x":161,"y":109},"offset":{"x":-80,"y":-109},"delay_ms":200},
+				"2":{"key":"cycloid_front_l2","size":{"x":137,"y":116},"offset":{"x":-69,"y":-116},"delay_ms":200},
+				"3":{"key":"cycloid_front_l3","size":{"x":117,"y":108},"offset":{"x":-58,"y":-108},"delay_ms":200},
+				"4":{"key":"cycloid_front_l4","size":{"x":137,"y":115},"offset":{"x":-68,"y":-115},"delay_ms":200}
+			},
+			"front_r":{
+				"1":{"key":"cycloid_front_r1","size":{"x":161,"y":109},"offset":{"x":-80,"y":-109},"delay_ms":200},
+				"2":{"key":"cycloid_front_r2","size":{"x":137,"y":116},"offset":{"x":-69,"y":-116},"delay_ms":200},
+				"3":{"key":"cycloid_front_r3","size":{"x":117,"y":108},"offset":{"x":-58,"y":-108},"delay_ms":200},
+				"4":{"key":"cycloid_front_r4","size":{"x":137,"y":115},"offset":{"x":-68,"y":-115},"delay_ms":200}
+			},
+			"left":{
+				"1":{"key":"cycloid_left1","size":{"x":180,"y":109},"offset":{"x":-90,"y":-109},"delay_ms":200},
+				"2":{"key":"cycloid_left2","size":{"x":180,"y":114},"offset":{"x":-90,"y":-114},"delay_ms":200},
+				"3":{"key":"cycloid_left3","size":{"x":198,"y":105},"offset":{"x":-99,"y":-105},"delay_ms":200},
+				"3":{"key":"cycloid_left4","size":{"x":179,"y":113},"offset":{"x":-90,"y":-113},"delay_ms":200}
+			},
+			"right":{
+				"1":{"key":"cycloid_right1","size":{"x":180,"y":109},"offset":{"x":-90,"y":-109},"delay_ms":200},
+				"2":{"key":"cycloid_right2","size":{"x":180,"y":114},"offset":{"x":-90,"y":-114},"delay_ms":200},
+				"3":{"key":"cycloid_right3","size":{"x":198,"y":105},"offset":{"x":-99,"y":-105},"delay_ms":200},
+				"3":{"key":"cycloid_right4","size":{"x":179,"y":113},"offset":{"x":-90,"y":-113},"delay_ms":200}
+			},
+			"back":{
+				"1":{"key":"cycloid_back1","size":{"x":134,"y":104},"offset":{"x":-67,"y":-104},"delay_ms":200},
+				"2":{"key":"cycloid_back2","size":{"x":131,"y":108},"offset":{"x":-65,"y":-108},"delay_ms":200},
+				"3":{"key":"cycloid_back3","size":{"x":135,"y":104},"offset":{"x":-67,"y":-104},"delay_ms":200},
+				"4":{"key":"cycloid_back4","size":{"x":134,"y":108},"offset":{"x":-67,"y":-108},"delay_ms":200}	
+			},
+			"back_l":{
+				"1":{"key":"cycloid_back_l1","size":{"x":131,"y":105},"offset":{"x":-65,"y":-105},"delay_ms":200},
+				"2":{"key":"cycloid_back_l2","size":{"x":140,"y":110},"offset":{"x":-70,"y":-110},"delay_ms":200},
+				"3":{"key":"cycloid_back_l3","size":{"x":156,"y":104},"offset":{"x":-78,"y":-104},"delay_ms":200},
+				"4":{"key":"cycloid_back_l4","size":{"x":137,"y":111},"offset":{"x":-68,"y":-111},"delay_ms":200}	
+			},
+			"back_r":{
+				"1":{"key":"cycloid_back_r1","size":{"x":131,"y":105},"offset":{"x":-65,"y":-105},"delay_ms":200},
+				"2":{"key":"cycloid_back_r2","size":{"x":140,"y":110},"offset":{"x":-70,"y":-110},"delay_ms":200},
+				"3":{"key":"cycloid_back_r3","size":{"x":156,"y":104},"offset":{"x":-78,"y":-104},"delay_ms":200},
+				"4":{"key":"cycloid_back_r4","size":{"x":137,"y":111},"offset":{"x":-68,"y":-111},"delay_ms":200}	
 			}
 		}
 	},
@@ -451,6 +589,40 @@
 				"1":{"key":"skull_play_light","size":{"x":350,"y":170}}
 			}
 		}
+	},
+	"4":{
+		"type":"ui",
+		"name":"spawner_overlord",
+		"status":{"display":0,"hoverable":0,"selectable":0,"draggable":0},
+		"textures":{
+			"anchor":{"x":400,"y":480},
+			"offset":{"x":-100,"y":-130},
+			"animation":"stop",
+			"normal":{
+				"1":{"key":"overlord_front1","size":{"x":135,"y":110}},
+				"2":{"key":"overlord_front1","size":{"x":135,"y":110},"delay_ms":100}
+			},
+			"hover":{
+				"1":{"key":"overlord_front1","size":{"x":135,"y":110}}
+			}
+		}
+	},
+	"4":{
+		"type":"ui",
+		"name":"spawner_cycloid",
+		"status":{"display":0,"hoverable":0,"selectable":0,"draggable":0},
+		"textures":{
+			"anchor":{"x":400,"y":480},
+			"offset":{"x":-100,"y":-130},
+			"animation":"stop",
+			"normal":{
+				"1":{"key":"cycloid_front1","size":{"x":152,"y":122}},
+				"2":{"key":"cycloid_front1","size":{"x":152,"y":122},"delay_ms":100}
+			},
+			"hover":{
+				"1":{"key":"cycloid_front1","size":{"x":152,"y":122}}
+			}
+		}
 	}
 },
 "maps":{
@@ -485,21 +657,21 @@
 					}
 				},
 				"1":{
-					"key":"boss level 1",
+					"key":"overlord",
 					"oriented":1,
 					"character":{
 						"camera":{"position":{"x":50,"y":300},"direction":{"x":0,"y":1}}
 					}
 				},
 				"2":{
-					"key":"boss level 1",
+					"key":"overlord",
 					"oriented":1,
 					"character":{
 						"camera":{"position":{"x":1000,"y":500},"direction":{"x":0,"y":1}}
 					}
 				},
 				"3":{
-					"key":"boss level 1",
+					"key":"overlord",
 					"oriented":1,
 					"character":{
 						"camera":{"position":{"x":500,"y":100},"direction":{"x":0,"y":1}}
@@ -515,7 +687,7 @@
 		"color_map":{
 			"animation":"none",
 			"textures":{
-				"1":{"key":"map_hell","size":{"x":1080,"y":1080}}
+				"1":{"key":"map_pyramid_color","size":{"x":1080,"y":1080}}
 			}
 		},
 		"height_map":{
@@ -526,7 +698,7 @@
 		},
 		"entities":{
 			"oriented":{
-				"0":{
+				"a":{
 					"key":"mercenary",
 					"oriented":1,
 					"current_player":1,
@@ -539,11 +711,18 @@
 						}
 					}
 				},
-				"1":{
-					"key":"boss level 1",
+				"a":{
+					"key":"overlord",
 					"oriented":1,
 					"character":{
 						"camera":{"position":{"x":300,"y":300},"direction":{"x":0,"y":1}}
+					}
+				},
+				"a":{
+					"key":"cycloid",
+					"oriented":1,
+					"character":{
+						"camera":{"position":{"x":600,"y":600},"direction":{"x":0,"y":1}}
 					}
 				}
 			}
@@ -707,7 +886,7 @@
 		"name":"map_editor",
 		"key_bindings":{
 			"1":{
-				"define":"ESCAPE",
+				"define":"SDLK_ESCAPE",
 				"SDL_Keycode":27,
 				"hold":0,
 				"action":"swap_scene",
@@ -757,10 +936,14 @@
 			}
 		},
 		"entities":{
-			"1":{
-				"key":"spawner_monster",
+			"3":{
+				"key":"spawner_overlord",
 				"entity":{
-					"status":{
+					"texture":{
+						"anchor":{"x":700,"y":170},
+						"offset":{"x":0,"y":0}
+					},
+					"listener":{
 						"display":1,
 						"selectable":1,
 						"select":{
@@ -768,9 +951,29 @@
 								"action":"spawn_character",
 								"resource":"game",
 								"args":{
-									"character_name":"boss level 1",
-									"position":{"x":50,"y":50}
+									"character_name":"overlord",
+									"character":{
+										"camera":{"position":{"x":800,"y":600}},
+										"entity":{
+											"listener":{"display":1}
+										}
+									}
 								}
+							}
+						},
+						"hoverable":1,
+						"hover_start":{
+							"1":{
+								"action":"update_entity_texture",
+								"resource":"entity",
+								"args":{"hover":1}
+							}
+						},
+						"hover_end":{
+							"1":{
+								"action":"update_entity_texture",
+								"resource":"entity",
+								"args":{"normal":1}
 							}
 						}
 					}
@@ -852,8 +1055,8 @@
 				}
 			},
 			"8":{
-				"define":"SDLK_UP",
-				"SDL_Keycode":1073741906,
+				"define":"SDLK_e",
+				"SDL_Keycode":101,
 				"hold":1,
 				"action":"translate_camera",
 				"resource":"game",
@@ -872,8 +1075,8 @@
 				}
 			},
 			"10":{
-				"define":"SDLK_DOWN",
-				"SDL_Keycode":1073741905,
+				"define":"SDLK_c",
+				"SDL_Keycode":99,
 				"hold":1,
 				"action":"translate_camera",
 				"resource":"game",

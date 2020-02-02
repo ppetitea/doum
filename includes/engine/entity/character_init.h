@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 23:21:04 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/30 17:30:24 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/02 15:43:59 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct	s_character
 	float				size;
 	float				velocity;
 	struct s_character	*target;
+	float				target_dist;
 	t_pov_textures		*hurt_texture;
 	t_pov_textures		*die_texture;
 	t_list_head			all_weapons;
@@ -99,5 +100,6 @@ typedef struct	s_character
 }				t_character;
 
 t_character		*init_new_character();
+t_character		*game_player();
 
 #endif
