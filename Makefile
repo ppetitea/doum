@@ -99,6 +99,7 @@ SRCS_LIST	=	main.c														\
 				engine/entities/entities_build.c							\
 				engine/entities/entities_dup.c								\
 				engine/entities/entities_overwrite.c						\
+				engine/entities/entity/entity_actions.c						\
 				engine/entities/entity/entity_animate.c						\
 				engine/entities/entity/entity_build.c						\
 				engine/entities/entity/entity_dup.c							\

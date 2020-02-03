@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 23:06:52 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/02 00:01:10 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/03 13:49:14 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ t_result		rotate_camera(void *game_resource,
 t_result		update_entity_texture(void *entity_resource,
 					t_resource_type resource_type, t_dnon_object *args);
 t_result		spawn_character(void *game_resource,
+					t_resource_type resource_type, t_dnon_object *args);
+t_result		entities_display_next(void *game_resource,
 					t_resource_type resource_type, t_dnon_object *args);
 
 

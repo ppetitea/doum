@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 12:00:05 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/25 02:09:09 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/03 13:47:13 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,10 @@ char			*get_string_value_by_key(t_dnon_object *tree,
 t_dnon_object	*get_child_list_object_by_key(t_dnon_object *tree, char *key);
 t_dnon_object	*get_child_object_by_key(t_dnon_object *tree, char *key);
 
+/*
+** setters
+*/
+t_result		set_int_value_by_key(t_dnon_object *obj, char *key, int set);
 
 /*
 **	debug

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 16:52:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/02 16:19:17 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/03 02:10:45 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -339,31 +339,24 @@ static t_bool	is_belong_to_camera_plan(t_voxel_map_3d_config *config,
 
 	cam = &map->character_ref->camera;
 	dir = vec2f_sub(character->camera.pos, cam->pos);
-	angle = atan2f(cam->dir.x, cam->dir.y) - atan2f(dir.x, dir.y) ;
+	angle = atan2f(cam->dir.x, cam->dir.y) - atan2f(dir.x, dir.y);
 	if (angle > PI || angle < -PI)
 		angle = angle > 0 ? -(2 * PI - angle) : 2 * PI + angle;
 	if (ft_absf(angle) <= cam->fov_half)
 	{
 		character->orientate(character);
-		character->target_dist = vec2f_magnitude(dir) * cos(angle);
+		character->target_dist = vec2f_magnitude(dir);
+		// printf("dist %.2f\n", character->target_dist);
 		character->super.texture.scale = screen->size.y / character->target_dist;
 		anchor.x = ((angle + cam->fov_half) / cam->fov) * cam->plan_width;
-		anchor.y =	screen->size.y - cam->horizon;
-		// (cam->height - character->camera.height)
-		// 	* (1 / character->target_dist * 400 * config->height_scale) + cam->horizon;
-		anchor.y = (cam->dist_to_plan / character->target_dist) * cam->height;
-
+		anchor.y = cam->height - character->camera.height;
+		anchor.y = anchor.y * (1 / character->target_dist * 400 * config->height_scale) + cam->horizon;
 		character->super.texture.anchor = anchor;
 		return (TRUE);
 	}
 	(void)config;
 	return (FALSE);
 }
-
-// float	compute_distance(t_pos2f pos1, t_pos2f pos2)
-// {
-// 	return (vec2f_magnitude(vec2f_sub(pos1, pos2)));
-// }
 
 void	update_render_list_with_player_cam(t_voxel_map_3d_config *config,
 			t_map *map, t_screen *screen)
@@ -380,21 +373,31 @@ void	update_render_list_with_player_cam(t_voxel_map_3d_config *config,
 	{
 		next = next->next;
 		character = (t_character*)pos;
-		list_del_entry(&character->super.node);
+		if (!is_belong_to_camera_plan(config, map, screen, character))
+		{
+			list_del_entry(&character->super.node);
+			list_add_entry(&character->super.node, &map->e_oriented_storage);
+		}
+	}
+	pos = &map->e_oriented_storage;
+	next = pos->next;
+	while ((pos = next) != &map->e_oriented_storage)
+	{
+		next = next->next;
+		character = (t_character*)pos;
 		if (is_belong_to_camera_plan(config, map, screen, character))
 		{
+			list_del_entry(&character->super.node);
 			list_add_entry(&character->super.node, &map->e_oriented);
 		}
-		else
-			list_add_entry(&character->super.node, &map->e_oriented_storage);
 	}
 }
 
 void	render_voxel_map3d(t_screen *screen, t_voxel_map_3d_config *config,
 			t_map *map)
 {
-	bubble_sort_linked_list(&map->e_oriented, sprite_distance_rule);
 	update_render_list_with_player_cam(config, map, screen);
+	bubble_sort_linked_list(&map->e_oriented, sprite_distance_rule);
 	map->curr_character = (t_character*)map->e_oriented.next;
 	render_voxel_map3d_floor(screen, config, map);
 	render_map3d_player(screen, config, map);
