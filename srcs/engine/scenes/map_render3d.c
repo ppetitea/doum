@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 16:52:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/03 02:10:45 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/03 18:28:57 by lugibone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -273,6 +273,15 @@ void	render_voxel_map_curr_character(t_voxel_map_3d_config *config,
 	(void)pos;
 	(void)config;
 }
+
+// map->e_oriented
+// t_list_head head;
+
+// character = (t_character*)head.next;
+
+
+// character->camera.pos
+// character->camera.height
 
 void	render_voxel_map3d_floor(t_screen *screen, t_voxel_map_3d_config *config,
 			t_map *map)
