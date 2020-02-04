@@ -193,8 +193,8 @@
 			"name":"mercenary",
 			"status":{"first":1,"display":1,"hoverable":0,"selectable":0,"draggable":0},
 			"textures":{
-				"anchor":{"x":640,"y":520},
-				"offset":{"x":-150,"y":-200},
+				"anchor":{"x":640,"y":720},
+				"offset":{"x":-100,"y":-200},
 				"animation":"stop",
 				"normal":{
 					"1":{"filter":"circular_shadow","key":"pistol_fire1","size":{"x":200,"y":200}}
@@ -720,6 +720,62 @@
 				"1":{"key":"button_render_map_light","size":{"x":50,"y":50}}
 			}
 		}
+	},
+	"entity":{
+		"type":"ui",
+		"name":"button_color_map_fake",
+		"status":{"display":0,"hoverable":0,"selectable":0,"draggable":0},
+		"textures":{
+			"animation":"stop",
+			"normal":{
+				"1":{"key":"button_color_map_light","size":{"x":50,"y":50}}
+			},
+			"hover":{
+				"1":{"key":"button_color_map_light","size":{"x":50,"y":50}}
+			}
+		}
+	},
+	"entity":{
+		"type":"ui",
+		"name":"button_height_map_fake",
+		"status":{"display":0,"hoverable":0,"selectable":0,"draggable":0},
+		"textures":{
+			"animation":"stop",
+			"normal":{
+				"1":{"key":"button_height_map_light","size":{"x":50,"y":50}}
+			},
+			"hover":{
+				"1":{"key":"button_height_map_light","size":{"x":50,"y":50}}
+			}
+		}
+	},
+	"entity":{
+		"type":"ui",
+		"name":"button_drop_map_fake",
+		"status":{"display":0,"hoverable":0,"selectable":0,"draggable":0},
+		"textures":{
+			"animation":"stop",
+			"normal":{
+				"1":{"key":"button_drop_map_light","size":{"x":50,"y":50}}
+			},
+			"hover":{
+				"1":{"key":"button_drop_map_light","size":{"x":50,"y":50}}
+			}
+		}
+	},
+	"entity":{
+		"type":"ui",
+		"name":"button_render_map_fake",
+		"status":{"display":0,"hoverable":0,"selectable":0,"draggable":0},
+		"textures":{
+			"animation":"stop",
+			"normal":{
+				"1":{"key":"button_render_map_light","size":{"x":50,"y":50}}
+			},
+			"hover":{
+				"1":{"key":"button_render_map_light","size":{"x":50,"y":50}}
+			}
+		}
 	}
 },
 "maps":{
@@ -1192,39 +1248,14 @@
 		},
 		"entities":{
 			"entity":{
-				"key":"button_color_map",
+				"key":"button_color_map_fake",
 				"entity":{
 					"texture":{
-						"anchor":{"x":250,"y":10},
+						"anchor":{"x":200,"y":10},
 						"offset":{"x":0,"y":0}
 					},
 					"listener":{
-						"display":1,
-						"selectable":1,
-						"select":{
-							"1":{
-								"action":"swap_scene",
-								"resource":"game",
-								"args":{
-									"scene_name":"color_map_editor"
-								}
-							}
-						},
-						"hoverable":1,
-						"hover_start":{
-							"1":{
-								"action":"update_entity_texture",
-								"resource":"entity",
-								"args":{"hover":1}
-							}
-						},
-						"hover_end":{
-							"1":{
-								"action":"update_entity_texture",
-								"resource":"entity",
-								"args":{"normal":1}
-							}
-						}
+						"display":1
 					}
 				}
 			},
@@ -1232,7 +1263,7 @@
 				"key":"button_height_map",
 				"entity":{
 					"texture":{
-						"anchor":{"x":500,"y":10},
+						"anchor":{"x":400,"y":10},
 						"offset":{"x":0,"y":0}
 					},
 					"listener":{
@@ -1269,7 +1300,7 @@
 				"key":"button_drop_map",
 				"entity":{
 					"texture":{
-						"anchor":{"x":750,"y":10},
+						"anchor":{"x":600,"y":10},
 						"offset":{"x":0,"y":0}
 					},
 					"listener":{
@@ -1281,6 +1312,43 @@
 								"resource":"game",
 								"args":{
 									"scene_name":"drop_map_editor"
+								}
+							}
+						},
+						"hoverable":1,
+						"hover_start":{
+							"1":{
+								"action":"update_entity_texture",
+								"resource":"entity",
+								"args":{"hover":1}
+							}
+						},
+						"hover_end":{
+							"1":{
+								"action":"update_entity_texture",
+								"resource":"entity",
+								"args":{"normal":1}
+							}
+						}
+					}
+				}
+			},
+			"entity":{
+				"key":"button_render_map",
+				"entity":{
+					"texture":{
+						"anchor":{"x":800,"y":10},
+						"offset":{"x":0,"y":0}
+					},
+					"listener":{
+						"display":1,
+						"selectable":1,
+						"select":{
+							"1":{
+								"action":"swap_scene",
+								"resource":"game",
+								"args":{
+									"scene_name":"render_map_preview"
 								}
 							}
 						},
@@ -1342,7 +1410,7 @@
 				"key":"button_color_map",
 				"entity":{
 					"texture":{
-						"anchor":{"x":250,"y":10},
+						"anchor":{"x":200,"y":10},
 						"offset":{"x":0,"y":0}
 					},
 					"listener":{
@@ -1376,10 +1444,22 @@
 				}
 			},
 			"entity":{
-				"key":"button_height_map",
+				"key":"button_height_map_fake",
 				"entity":{
 					"texture":{
-						"anchor":{"x":500,"y":10},
+						"anchor":{"x":400,"y":10},
+						"offset":{"x":0,"y":0}
+					},
+					"listener":{
+						"display":1
+					}
+				}
+			},
+			"entity":{
+				"key":"button_drop_map",
+				"entity":{
+					"texture":{
+						"anchor":{"x":600,"y":10},
 						"offset":{"x":0,"y":0}
 					},
 					"listener":{
@@ -1390,7 +1470,7 @@
 								"action":"swap_scene",
 								"resource":"game",
 								"args":{
-									"scene_name":"height_map_editor"
+									"scene_name":"drop_map_editor"
 								}
 							}
 						},
@@ -1413,10 +1493,10 @@
 				}
 			},
 			"entity":{
-				"key":"button_drop_map",
+				"key":"button_render_map",
 				"entity":{
 					"texture":{
-						"anchor":{"x":750,"y":10},
+						"anchor":{"x":800,"y":10},
 						"offset":{"x":0,"y":0}
 					},
 					"listener":{
@@ -1427,7 +1507,7 @@
 								"action":"swap_scene",
 								"resource":"game",
 								"args":{
-									"scene_name":"drop_map_editor"
+									"scene_name":"render_map_preview"
 								}
 							}
 						},
@@ -1489,7 +1569,7 @@
 				"key":"button_color_map",
 				"entity":{
 					"texture":{
-						"anchor":{"x":250,"y":10},
+						"anchor":{"x":200,"y":10},
 						"offset":{"x":0,"y":0}
 					},
 					"listener":{
@@ -1526,7 +1606,157 @@
 				"key":"button_height_map",
 				"entity":{
 					"texture":{
-						"anchor":{"x":500,"y":10},
+						"anchor":{"x":400,"y":10},
+						"offset":{"x":0,"y":0}
+					},
+					"listener":{
+						"display":1,
+						"selectable":1,
+						"select":{
+							"1":{
+								"action":"swap_scene",
+								"resource":"game",
+								"args":{
+									"scene_name":"height_map_editor"
+								}
+							}
+						},
+						"hoverable":1,
+						"hover_start":{
+							"1":{
+								"action":"update_entity_texture",
+								"resource":"entity",
+								"args":{"hover":1}
+							}
+						},
+						"hover_end":{
+							"1":{
+								"action":"update_entity_texture",
+								"resource":"entity",
+								"args":{"normal":1}
+							}
+						}
+					}
+				}
+			},
+			"entity":{
+				"key":"button_drop_map_fake",
+				"entity":{
+					"texture":{
+						"anchor":{"x":600,"y":10},
+						"offset":{"x":0,"y":0}
+					},
+					"listener":{
+						"display":1
+					}
+				}
+			},
+			"entity":{
+				"key":"button_render_map",
+				"entity":{
+					"texture":{
+						"anchor":{"x":800,"y":10},
+						"offset":{"x":0,"y":0}
+					},
+					"listener":{
+						"display":1,
+						"selectable":1,
+						"select":{
+							"1":{
+								"action":"swap_scene",
+								"resource":"game",
+								"args":{
+									"scene_name":"render_map_preview"
+								}
+							}
+						},
+						"hoverable":1,
+						"hover_start":{
+							"1":{
+								"action":"update_entity_texture",
+								"resource":"entity",
+								"args":{"hover":1}
+							}
+						},
+						"hover_end":{
+							"1":{
+								"action":"update_entity_texture",
+								"resource":"entity",
+								"args":{"normal":1}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"scene":{
+		"name":"render_map_preview",
+		"key_bindings":{
+			"key_binding":{
+				"define":"SDLK_ESCAPE",
+				"SDL_Keycode":27,
+				"hold":0,
+				"action":"swap_scene",
+				"resource":"game",
+				"args":{
+					"scene_name":"menu"
+				}
+			}
+		},
+		"map_config":{
+			"map3d":{
+				"display":1,
+				"size":{"x":972,"y":648},
+				"anchor":{"x":105,"y":69},
+				"offset":{"x":0,"y":0},
+				"display_static_entities":0,
+				"display_e_oriented":1
+			}
+		},
+		"entities":{
+			"entity":{
+				"key":"button_color_map",
+				"entity":{
+					"texture":{
+						"anchor":{"x":200,"y":10},
+						"offset":{"x":0,"y":0}
+					},
+					"listener":{
+						"display":1,
+						"selectable":1,
+						"select":{
+							"1":{
+								"action":"swap_scene",
+								"resource":"game",
+								"args":{
+									"scene_name":"color_map_editor"
+								}
+							}
+						},
+						"hoverable":1,
+						"hover_start":{
+							"1":{
+								"action":"update_entity_texture",
+								"resource":"entity",
+								"args":{"hover":1}
+							}
+						},
+						"hover_end":{
+							"1":{
+								"action":"update_entity_texture",
+								"resource":"entity",
+								"args":{"normal":1}
+							}
+						}
+					}
+				}
+			},
+			"entity":{
+				"key":"button_height_map",
+				"entity":{
+					"texture":{
+						"anchor":{"x":400,"y":10},
 						"offset":{"x":0,"y":0}
 					},
 					"listener":{
@@ -1563,7 +1793,7 @@
 				"key":"button_drop_map",
 				"entity":{
 					"texture":{
-						"anchor":{"x":750,"y":10},
+						"anchor":{"x":600,"y":10},
 						"offset":{"x":0,"y":0}
 					},
 					"listener":{
@@ -1593,6 +1823,18 @@
 								"args":{"normal":1}
 							}
 						}
+					}
+				}
+			},
+			"entity":{
+				"key":"button_render_map_fake",
+				"entity":{
+					"texture":{
+						"anchor":{"x":800,"y":10},
+						"offset":{"x":0,"y":0}
+					},
+					"listener":{
+						"display":1
 					}
 				}
 			}

@@ -6,13 +6,15 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 19:22:44 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 16:15:28 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/04 00:13:48 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "engine/interface/events/events.h"
 #include "engine/component/action.h"
 #include "engine/game/game_init.h"
 #include "utils/error.h"
+
 
 #include <stdio.h>
 
@@ -30,6 +32,7 @@ t_result		swap_scene_by_name(t_game *game, char *name)
 		if (!ft_strcmp(scene->name, name))
 		{
 			game->curr_scene = scene;
+			trigger_entities_by_hover(game);
 			return (OK);
 		}
 	}

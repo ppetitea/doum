@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 16:52:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/03 18:28:57 by lugibone         ###   ########.fr       */
+/*   Updated: 2020/02/04 01:27:55 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -326,6 +326,8 @@ void	render_map3d_player(t_screen *screen,
 			t_voxel_map_3d_config *config, t_map *map)
 {
 	t_entity_texture	*texture;
+	t_vec2i				anchor;
+	t_vec2f				scale;
 
 	if (screen == NULL || config == NULL || map == NULL)
 		return (throw_void("render_map3d_player", "NULL pointer"));
@@ -334,8 +336,12 @@ void	render_map3d_player(t_screen *screen,
 	texture = &map->character_ref->super.texture;
 	if (texture->animation != NONE && texture->animation != STOP)
 		animate_texture(&map->character_ref->super);
-	render_texture_with_scale(screen, texture->curr, texture->anchor,
-		texture->scale);
+	scale = compute_render_scale(&screen->size, &config->size);
+	anchor = vec2i_add(texture->offset, texture->anchor);
+	anchor.x *= scale.x;
+	anchor.y *= scale.y;
+	anchor = vec2i_add(anchor, config->anchor);
+	render_texture_with_scale_2d(screen, texture->curr, anchor, scale);
 }
 
 static t_bool	is_belong_to_camera_plan(t_voxel_map_3d_config *config,
