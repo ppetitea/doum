@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 14:41:00 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/05 18:06:51 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/05 18:26:34 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -319,20 +319,52 @@ void	render_character3d(t_voxel_map_3d_config *config,
 	(void)config;
 }
 
+void	render_floor3d(t_screen *screen, t_voxel_map_3d_config *config,
+		t_map *map, t_rangef range)
+{
+	t_pos3f		pos;
+	t_vec3f		delta;
+	t_column	column;
+	int			map_offset;
+
+	delta.z = 1;
+	pos.z = 1;
+	while (pos.z < range.max)
+	{
+		update_position_and_delta_with_z(map, &pos, &delta);
+		column.x = -1;
+		while (++column.x < (int)map->color_map.curr->size.x)
+		{
+			map_offset = compute_map_offset(pos, map->color_map.curr->size);
+			column.y_bot = columns_height[column.x];
+			column.y_top = compute_column_height(config, map, map_offset, pos);
+			draw_vertical_line(config, screen, column,
+					map->color_map.curr->pixels[map_offset]);
+			if (column.y_top < (int)columns_height[column.x])
+				columns_height[column.x] = column.y_top;
+			pos = ft_pos3f(pos.x + delta.x, pos.y + delta.y, pos.z);
+		}
+		pos.z += delta.z;
+		delta.z += 0.005f;
+	}
+}
+
 void	render_map3d(t_screen *screen, t_voxel_map_3d_config *config,
 		t_map *map)
 {
+	uint32_t 	columns_height[screen->size.x];
 	t_character	*character;
 	t_list_head	*pos;
 	t_rangef	range;
 
+	init_columns_height(columns_height, map->color_map.curr->size);
 	range.max = config->render_dist;
 	pos = &map->e_oriented;
 	while ((pos = pos->prev) != &map->e_oriented)
 	{
 		character = (t_character*)pos;
 		range.min = character->target_dist;
-		render_floor3d(screen, config, map);
+		render_floor3d(screen, config, map, range);
 		render_character3d(screen, config, character);
 		range.max = range.min;
 	}
