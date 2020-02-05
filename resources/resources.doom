@@ -1751,7 +1751,7 @@
 									"character":{
 										"camera":{"position":{"x":800,"y":600}},
 										"entity":{
-											"listener":{"draggable":1,"is_dragged":1}
+											"listener":{"draggable":1}
 										}
 									}
 								}
@@ -1794,7 +1794,7 @@
 									"character":{
 										"camera":{"position":{"x":800,"y":600}},
 										"entity":{
-											"listener":{"draggable":1,"is_dragged":1}
+											"listener":{"draggable":1}
 										}
 									}
 								}
@@ -1833,7 +1833,7 @@
 								"action":"display_next",
 								"resource":"game",
 								"args":{
-									"keys":{"k":"spawner_cycloid","k":"spawner_overlord"},
+									"keys":{"k":"spawner_overlord","k":"spawner_cycloid"},
 									"offset":0,
 									"amount":1
 								}
