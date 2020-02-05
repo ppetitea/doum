@@ -6,7 +6,7 @@
 /*   By: lugibone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 17:01:39 by lugibone          #+#    #+#             */
-/*   Updated: 2020/02/05 17:13:47 by lugibone         ###   ########.fr       */
+/*   Updated: 2020/02/05 17:54:36 by lugibone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ void	brush_square(t_screen *screen, int x, int y, int size, uint32_t color)
 	i = -1 - size / 2;
 	j = -1 - size / 2;
 	while (++i < size / 2)
+	{
 		while(++j < size / 2)
+		{
 			putpixel(screen, x + j, y + i, color);
+		}
+		j = -1 - size / 2;
+	}
 }
