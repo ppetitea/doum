@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 16:27:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/04 15:46:50 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/05 17:48:45 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ typedef struct		s_column
 	int		y_top;
 	int		y_bot;
 }					t_column;
+
+typedef struct		s_rangef
+{
+	float	min;
+	float	max;
+}					t_rangef;
 
 void		render_scene(t_game *game);
 t_vec2f		compute_render_scale(t_usize *by_default, t_usize *wish);
