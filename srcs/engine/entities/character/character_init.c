@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:05:38 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/02 15:43:57 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/05 16:32:24 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "engine/entity/character_action.h"
 #include "engine/entity/entity_init.h"
 #include "engine/map/map_init.h"
+#include "engine/game/game_init.h"
 #include "utils/error.h"
 
 t_character	*init_new_character()
