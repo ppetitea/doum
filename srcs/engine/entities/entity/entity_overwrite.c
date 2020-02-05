@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 06:49:05 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/01 00:46:19 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/04 22:36:09 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ t_result	overwrite_entity_texture_with_obj(t_entity_texture *self,
 	if (self == NULL || e_texture_obj == NULL)
 		return (throw_error("overwrite_e_texture", "NULL pointer provided"));
 	if ((result_f = get_float_value_by_key(e_texture_obj, "scale", -1)) != -1)
-		self->scale = result_f;
+		self->scale = ft_vec2f(result_f, result_f);
 	if ((vec2i_obj = get_child_list_object_by_key(e_texture_obj, "offset")))
 		init_vec2i_with_obj(&self->offset, vec2i_obj);
 	if ((vec2i_obj = get_child_list_object_by_key(e_texture_obj, "anchor")))

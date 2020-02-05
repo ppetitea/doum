@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:59:00 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/30 22:40:16 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/04 15:53:13 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,23 @@
 #include "utils/error.h"
 #include "build.h"
 
-static t_result	init_filter_with_obj(t_filter_type *type,
-					char *filter_type)
-{
-	if (type == NULL)
-		return (throw_error("init_filter_with_obj", "NULL pointer provided"));
-	if (filter_type == NULL)
-		return (ERROR);
-	if (!ft_strcmp(filter_type, "none"))
-		*type = FILTER_NONE;
-	else if (!ft_strcmp(filter_type, "circular_shadow"))
-		*type = FILTER_CIRCULAR_SHADOW;
-	else if (!ft_strcmp(filter_type, "blend"))
-		*type = FILTER_BLEND;
-	else
-		throw_warning("init_filter_with_obj", "unkow type detected", 2);
-	return (OK);
-}
+// static t_result	init_filter_with_obj(t_filter_type *type,
+// 					char *filter_type)
+// {
+// 	if (type == NULL)
+// 		return (throw_error("init_filter_with_obj", "NULL pointer provided"));
+// 	if (filter_type == NULL)
+// 		return (ERROR);
+// 	if (!ft_strcmp(filter_type, "none"))
+// 		*type = FILTER_NONE;
+// 	else if (!ft_strcmp(filter_type, "circular_shadow"))
+// 		*type = FILTER_CIRCULAR_SHADOW;
+// 	else if (!ft_strcmp(filter_type, "blend"))
+// 		*type = FILTER_BLEND;
+// 	else
+// 		throw_warning("init_filter_with_obj", "unkow type detected", 2);
+// 	return (OK);
+// }
 
 static t_result	build_voxel_map_2d_config_with_obj(t_voxel_map_2d_config *config,
 				t_dnon_object *map2d_config_obj)
@@ -57,8 +57,8 @@ static t_result	build_voxel_map_2d_config_with_obj(t_voxel_map_2d_config *config
 		get_int_value_by_key(map2d_config_obj, "display_e_static", 0);
 	config->display_e_static_storage =
 		get_int_value_by_key(map2d_config_obj, "display_e_static_storage", 0);
-	init_filter_with_obj(&config->character_filter,
-		get_string_value_by_key(map2d_config_obj, "character_filter", NULL));
+	config->display_player =
+		get_int_value_by_key(map2d_config_obj, "display_player", 0);
 	return (OK);
 }
 
@@ -86,8 +86,10 @@ static t_result	build_voxel_map_3d_config_with_obj(t_voxel_map_3d_config *config
 		get_int_value_by_key(map3d_config_obj, "display_e_static", 0);
 	config->display_e_static_storage =
 		get_int_value_by_key(map3d_config_obj, "display_e_static_storage", 0);
-	init_filter_with_obj(&config->character_filter,
-		get_string_value_by_key(map3d_config_obj, "character_filter", NULL));
+	config->display_player =
+		get_int_value_by_key(map3d_config_obj, "display_player", 0);
+	config->display_e_static_storage =
+		get_int_value_by_key(map3d_config_obj, "display_e_static_storage", 0);
 	return (OK);
 }
 
@@ -111,6 +113,8 @@ t_result	build_voxel_map_config_with_obj(t_voxel_map_config *config,
 	throw_debug("drop_map_config:\t\t\t", result ? "OK" : "FAIL", 0);
 	result = build_voxel_map_3d_config_with_obj(&config->map_3d,
 		get_child_list_object_by_key(map_config_obj, "map3d"));
+	config->character_obj = get_child_list_object_by_key(map_config_obj,
+		"character");
 	throw_debug("map_3d_config:\t\t\t\t", result ? "OK" : "FAIL", 0);
 	return (OK);
 }

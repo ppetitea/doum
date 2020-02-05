@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:59:00 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 18:42:11 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/04 15:28:38 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_result	init_voxel_map_2d_config(t_voxel_map_2d_config *config)
 	config->display_e_oriented_storage = FALSE;
 	config->display_e_static = FALSE;
 	config->display_e_static_storage = FALSE;
-	config->character_filter = FILTER_NONE;
+	config->display_player = FALSE;
 	config->character_size = ft_usize(50, 50);
 	return (OK);
 }
@@ -48,7 +48,7 @@ t_result	init_voxel_map_3d_config(t_voxel_map_3d_config *config)
 	config->display_e_oriented_storage = FALSE;
 	config->display_e_static = FALSE;
 	config->display_e_static_storage = FALSE;
-	config->character_filter = FILTER_NONE;
+	config->display_player = FALSE;
 	return (OK);
 }
 
@@ -60,6 +60,7 @@ t_result	init_voxel_map_config(t_voxel_map_config *config)
 	init_voxel_map_2d_config(&config->height_map);
 	init_voxel_map_2d_config(&config->drop_map);
 	init_voxel_map_3d_config(&config->map_3d);
+	config->character_obj = NULL;
 	config->map_ref = NULL;
 	return (OK);
 }

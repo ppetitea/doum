@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 16:52:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/04 01:27:55 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/04 22:46:01 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,7 +269,7 @@ void	render_voxel_map_curr_character(t_voxel_map_3d_config *config,
 	if (t->animation != NONE && t->animation != STOP)
 		animate_texture(&character->super);
 	if (t->curr != NULL)
-		render_texture_with_scale(screen, t->curr, t->anchor, t->scale);
+		render_texture_with_scale(screen, t->curr, t->anchor, t->scale.x);
 	(void)pos;
 	(void)config;
 }
@@ -362,7 +362,8 @@ static t_bool	is_belong_to_camera_plan(t_voxel_map_3d_config *config,
 		character->orientate(character);
 		character->target_dist = vec2f_magnitude(dir);
 		// printf("dist %.2f\n", character->target_dist);
-		character->super.texture.scale = screen->size.y / character->target_dist;
+		character->super.texture.scale.x = screen->size.y / character->target_dist;
+		character->super.texture.scale.y = screen->size.y / character->target_dist;
 		anchor.x = ((angle + cam->fov_half) / cam->fov) * cam->plan_width;
 		anchor.y = cam->height - character->camera.height;
 		anchor.y = anchor.y * (1 / character->target_dist * 400 * config->height_scale) + cam->horizon;
@@ -415,7 +416,8 @@ void	render_voxel_map3d(t_screen *screen, t_voxel_map_3d_config *config,
 	bubble_sort_linked_list(&map->e_oriented, sprite_distance_rule);
 	map->curr_character = (t_character*)map->e_oriented.next;
 	render_voxel_map3d_floor(screen, config, map);
-	render_map3d_player(screen, config, map);
+	if (config->display_player)
+		render_map3d_player(screen, config, map);
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 19:22:44 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/03 14:19:44 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/04 16:54:36 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,23 @@ t_result	entities_display_next(void *game_resource,
 		set_int_value_by_key(args, "offset", offset + amount - (int)list_lenght(entity_keys));
 	else
 		set_int_value_by_key(args, "offset", offset + amount);
+	return (OK);
+}
+
+t_result	drag_entity(void *entity_resource,
+				t_resource_type resource_type, t_dnon_object *args)
+{
+	t_entity	*entity;
+	t_game		*game;
+
+	ft_putstr("drag OK\n");
+	if (entity_resource == NULL)
+		return (throw_error("drag_entity", "NULL pointer provided"));
+	if (resource_type != R_ENTITY)
+		return (throw_error("drag_entity", "resource must be an entity"));
+	game = game_singleton(NULL);
+	entity = (t_entity*)entity_resource;
+	entity->texture.anchor = game->interface.mouse.pos;
+	(void)args;
 	return (OK);
 }

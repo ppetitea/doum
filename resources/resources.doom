@@ -130,6 +130,7 @@
 		"background_sinister":"resources/background/background_sinister.bmp",
 		"background_blood":"resources/background/bloody_background.bmp",
 		"wall_blood":"resources/background/wall_blood.bmp",
+		"blood_bar":"resources/background/blood_bar.bmp",
 		"height_map_pyramid":"resources/maps/heightmap.bmp",
 		"map_pyramid_color":"resources/maps/pyramid_color.bmp",
 		"map_pyramid_neon":"resources/maps/pyramid_neon.bmp",
@@ -776,6 +777,17 @@
 				"1":{"key":"button_render_map_light","size":{"x":50,"y":50}}
 			}
 		}
+	},
+	"entity":{
+		"type":"ui",
+		"name":"blood_bar",
+		"status":{"display":0,"hoverable":0,"selectable":0,"draggable":0},
+		"textures":{
+			"animation":"stop",
+			"normal":{
+				"1":{"key":"blood_bar","filter":"blend","size":{"x":1080,"y":70}}
+			}
+		}
 	}
 },
 "maps":{
@@ -840,7 +852,7 @@
 		"color_map":{
 			"animation":"none",
 			"textures":{
-				"1":{"key":"map_pyramid_color","size":{"x":1080,"y":1080}}
+				"1":{"key":"map_pyramid_color", "filter":"circular_shadow","size":{"x":1080,"y":1080}}
 			}
 		},
 		"height_map":{
@@ -851,7 +863,7 @@
 		},
 		"entities":{
 			"oriented":{
-				"a":{
+				"character":{
 					"key":"mercenary",
 					"oriented":1,
 					"current_player":1,
@@ -864,14 +876,14 @@
 						}
 					}
 				},
-				"a":{
+				"character":{
 					"key":"overlord",
 					"oriented":1,
 					"character":{
 						"camera":{"position":{"x":300,"y":300},"direction":{"x":0,"y":1}}
 					}
 				},
-				"a":{
+				"character":{
 					"key":"cycloid",
 					"oriented":1,
 					"character":{
@@ -909,7 +921,8 @@
 				"display_e_static":1,
 				"display_e_static_storage":0,
 				"character_size":{"x":25,"y":20}
-			}
+			},
+			"character":{"entity":{"listener":{"draggable":0}}}
 		},
 		"entities":{
 			"1":{
@@ -1215,6 +1228,9 @@
 	},
 	"scene":{
 		"name":"color_map_editor",
+		"background":{
+			"1":{"key":"background_blood","filter":"circular_shadow","size":{"x":1080,"y":720}}
+		},
 		"key_bindings":{
 			"key_binding":{
 				"define":"SDLK_ESCAPE",
@@ -1230,7 +1246,7 @@
 		"map_config":{
 			"color_map":{
 				"display":1,
-				"size":{"x":972,"y":648},
+				"size":{"x":648,"y":648},
 				"anchor":{"x":105,"y":69},
 				"offset":{"x":0,"y":0},
 				"display_e_oriented":0,
@@ -1238,15 +1254,29 @@
 				"character_size":{"x":50,"y":40}
 			},
 			"map3d":{
-				"display":0,
-				"size":{"x":972,"y":648},
-				"anchor":{"x":105,"y":69},
+				"display":1,
+				"size":{"x":324,"y":216},
+				"anchor":{"x":755,"y":69},
 				"offset":{"x":0,"y":0},
 				"display_static_entities":0,
-				"display_e_oriented":1
-			}
+				"display_e_oriented":0,
+				"display_player":0
+			},
+			"character":{"entity":{"listener":{"draggable":0}}}
 		},
 		"entities":{
+			"entity":{
+				"key":"blood_bar",
+				"entity":{
+					"texture":{
+						"anchor":{"x":0,"y":0},
+						"offset":{"x":0,"y":0}
+					},
+					"listener":{
+						"display":1
+					}
+				}
+			},
 			"entity":{
 				"key":"button_color_map_fake",
 				"entity":{
@@ -1254,9 +1284,7 @@
 						"anchor":{"x":200,"y":10},
 						"offset":{"x":0,"y":0}
 					},
-					"listener":{
-						"display":1
-					}
+					"listener":{"display":1}
 				}
 			},
 			"entity":{
@@ -1347,9 +1375,7 @@
 							"1":{
 								"action":"swap_scene",
 								"resource":"game",
-								"args":{
-									"scene_name":"render_map_preview"
-								}
+								"args":{"scene_name":"render_map_preview"}
 							}
 						},
 						"hoverable":1,
@@ -1374,6 +1400,9 @@
 	},
 	"scene":{
 		"name":"height_map_editor",
+		"background":{
+			"1":{"key":"background_blood","filter":"circular_shadow","size":{"x":1080,"y":720}}
+		},
 		"key_bindings":{
 			"key_binding":{
 				"define":"SDLK_ESCAPE",
@@ -1381,15 +1410,13 @@
 				"hold":0,
 				"action":"swap_scene",
 				"resource":"game",
-				"args":{
-					"scene_name":"menu"
-				}
+				"args":{"scene_name":"menu"}
 			}
 		},
 		"map_config":{
 			"height_map":{
 				"display":1,
-				"size":{"x":972,"y":648},
+				"size":{"x":648,"y":648},
 				"anchor":{"x":105,"y":69},
 				"offset":{"x":0,"y":0},
 				"display_e_oriented":0,
@@ -1397,22 +1424,28 @@
 				"character_size":{"x":50,"y":40}
 			},
 			"map3d":{
-				"display":0,
-				"size":{"x":972,"y":648},
-				"anchor":{"x":105,"y":69},
+				"display":1,
+				"size":{"x":324,"y":216},
+				"anchor":{"x":755,"y":69},
 				"offset":{"x":0,"y":0},
 				"display_static_entities":0,
-				"display_e_oriented":1
-			}
+				"display_e_oriented":0,
+				"display_player":0
+			},
+			"character":{"entity":{"listener":{"draggable":0}}}
 		},
 		"entities":{
 			"entity":{
+				"key":"blood_bar",
+				"entity":{
+					"texture":{"anchor":{"x":0,"y":0},"offset":{"x":0,"y":0}},
+					"listener":{"display":1}
+				}
+			},
+			"entity":{
 				"key":"button_color_map",
 				"entity":{
-					"texture":{
-						"anchor":{"x":200,"y":10},
-						"offset":{"x":0,"y":0}
-					},
+					"texture":{"anchor":{"x":200,"y":10},"offset":{"x":0,"y":0}},
 					"listener":{
 						"display":1,
 						"selectable":1,
@@ -1420,9 +1453,7 @@
 							"1":{
 								"action":"swap_scene",
 								"resource":"game",
-								"args":{
-									"scene_name":"color_map_editor"
-								}
+								"args":{"scene_name":"color_map_editor"}
 							}
 						},
 						"hoverable":1,
@@ -1533,6 +1564,9 @@
 	},
 	"scene":{
 		"name":"drop_map_editor",
+		"background":{
+			"1":{"key":"background_blood","filter":"circular_shadow","size":{"x":1080,"y":720}}
+		},
 		"key_bindings":{
 			"key_binding":{
 				"define":"SDLK_ESCAPE",
@@ -1548,7 +1582,7 @@
 		"map_config":{
 			"drop_map":{
 				"display":1,
-				"size":{"x":972,"y":648},
+				"size":{"x":648,"y":648},
 				"anchor":{"x":105,"y":69},
 				"offset":{"x":0,"y":0},
 				"display_e_oriented":1,
@@ -1556,15 +1590,29 @@
 				"character_size":{"x":50,"y":40}
 			},
 			"map3d":{
-				"display":0,
-				"size":{"x":972,"y":648},
-				"anchor":{"x":105,"y":69},
+				"display":1,
+				"size":{"x":324,"y":216},
+				"anchor":{"x":755,"y":69},
 				"offset":{"x":0,"y":0},
 				"display_static_entities":0,
-				"display_e_oriented":1
-			}
+				"display_e_oriented":0,
+				"display_player":0
+			},
+			"character":{"entity":{"listener":{"draggable":1}}}
 		},
 		"entities":{
+			"entity":{
+				"key":"blood_bar",
+				"entity":{
+					"texture":{
+						"anchor":{"x":0,"y":0},
+						"offset":{"x":0,"y":0}
+					},
+					"listener":{
+						"display":1
+					}
+				}
+			},
 			"entity":{
 				"key":"button_color_map",
 				"entity":{
@@ -1579,9 +1627,7 @@
 							"1":{
 								"action":"swap_scene",
 								"resource":"game",
-								"args":{
-									"scene_name":"color_map_editor"
-								}
+								"args":{"scene_name":"color_map_editor"}
 							}
 						},
 						"hoverable":1,
@@ -1692,6 +1738,9 @@
 	},
 	"scene":{
 		"name":"render_map_preview",
+		"background":{
+			"1":{"key":"background_blood","filter":"circular_shadow","size":{"x":1080,"y":720}}
+		},
 		"key_bindings":{
 			"key_binding":{
 				"define":"SDLK_ESCAPE",
@@ -1711,10 +1760,24 @@
 				"anchor":{"x":105,"y":69},
 				"offset":{"x":0,"y":0},
 				"display_static_entities":0,
-				"display_e_oriented":1
-			}
+				"display_e_oriented":0,
+				"display_player":0
+			},
+			"character":{"entity":{"listener":{"draggable":0}}}
 		},
 		"entities":{
+			"entity":{
+				"key":"blood_bar",
+				"entity":{
+					"texture":{
+						"anchor":{"x":0,"y":0},
+						"offset":{"x":0,"y":0}
+					},
+					"listener":{
+						"display":1
+					}
+				}
+			},
 			"entity":{
 				"key":"button_color_map",
 				"entity":{
@@ -1974,7 +2037,8 @@
 				"render_distance":1000,
 				"display_static_entities":1,
 				"display_e_oriented":1
-			}
+			},
+			"character":{"entity":{"listener":{"draggable":0}}}
 		}
 	}
 }

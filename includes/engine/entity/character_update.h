@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:46:49 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/31 01:43:46 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/05 13:48:59 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CHARACTER_UPDATE_H
 
 # include "engine/entity/character_init.h"
+# include "engine/game/game_init.h"
 
 /*
 **	GET
@@ -39,6 +40,13 @@ t_result	overwrite_weapon_with_obj(t_character *character, t_weapon *self,
 t_result	overwrite_camera_with_obj(t_camera *camera,
 				t_dnon_object *camera_obj);
 
+/*
+** TRIGGER
+*/
+t_result	trigger_character_action_by_drag(t_list_head *entities,
+				t_mouse *mouse);
+t_result	trigger_character_action_by_drop(t_list_head *entities,
+				t_mouse *mouse);
 
 /*
 ** UPDATE

@@ -118,6 +118,7 @@ SRCS_LIST	=	main.c														\
 				engine/entities/character/character_orientation.c			\
 				engine/entities/character/character_overwrite.c				\
 				engine/entities/character/character_texture_build.c			\
+				engine/entities/character/character_trigger.c				\
 				engine/entities/character/character_type_build.c			\
 				engine/entities/character/weapon/character_weapons_build.c	\
 				engine/entities/character/weapon/weapon_build.c				\
@@ -144,83 +145,8 @@ SRCS_LIST	=	main.c														\
 				engine/scenes/scene_build.c									\
 				engine/scenes/scene_init.c									\
 				engine/scenes/scene_render.c								\
+				engine/scenes/scene_update.c								\
 																			\
-																			\
-				#															\
-				engine/scenes/init_scene.c									\
-				engine/scenes/update_scene.c								\
-																			\
-																			\
-																			\
-				engine/entities/build_entities.c							\
-				engine/entities/get_entity.c								\
-				engine/entities/init_entity_with_obj.c						\
-				engine/entities/init_entity.c								\
-				engine/entities/sort_rules.c								\
-				engine/entities/update_entity.c								\
-				engine/entities/update/animate.c							\
-				engine/entities/update/display.c							\
-				engine/entities/update/drag.c								\
-				engine/entities/update/hover.c								\
-				engine/entities/update/select.c								\
-																			\
-				engine/entities/ui/button/build_button.c					\
-				engine/entities/ui/button/init_button_entity.c				\
-				engine/entities/ui/button/init_button.c						\
-				engine/entities/ui/button/update_button.c					\
-																			\
-				engine/entities/ui/checkbox/init_checkbox_entity.c			\
-				engine/entities/ui/checkbox/init_checkbox.c					\
-				engine/entities/ui/checkbox/update_checkbox.c				\
-																			\
-				engine/entities/ui/image/build_image.c						\
-				engine/entities/ui/image/init_image_entity.c				\
-				engine/entities/ui/image/init_image.c						\
-				engine/entities/ui/image/update_image.c						\
-																			\
-				engine/entities/ui/spawner/init_spawner_entity.c			\
-				engine/entities/ui/spawner/init_spawner.c					\
-				engine/entities/ui/spawner/update_spawner.c					\
-																			\
-																			\
-				engine/entities/player/build_player.c						\
-				engine/entities/player/init_player_entity.c					\
-				engine/entities/player/init_player.c						\
-				engine/entities/player/update_player.c						\
-				engine/entities/player/build_camera.c						\
-				engine/entities/player/init_camera.c						\
-				engine/entities/player/update_camera.c						\
-				engine/entities/player/build_weapon.c						\
-				engine/entities/player/init_weapon.c						\
-				engine/entities/player/update_weapon.c						\
-																			\
-				engine/entities/ennemy/build_ennemy.c						\
-				engine/entities/ennemy/init_ennemy_entity.c					\
-				engine/entities/ennemy/init_ennemy.c						\
-				engine/entities/ennemy/update_ennemy.c						\
-																			\
-				engine/loop.c												\
-				engine/render.c												\
-																			\
-				engine/interface/events/keyboard/handle.c					\
-				engine/interface/events/mouse/handle.c						\
-				engine/interface/events/handle.c							\
-																			\
-				scenes/build.c												\
-				scenes/build_menu.c											\
-				scenes/build_game.c											\
-																			\
-				scenes/map_editor/init_map_editor.c							\
-				scenes/map_editor/entities/init_map_editor_entities.c		\
-				scenes/map_editor/entities/button_down.c					\
-				scenes/map_editor/entities/button_up.c						\
-				scenes/map_editor/entities/spawner_sprite.c					\
-				scenes/map_editor/interface/init_map_editor_interface.c		\
-				scenes/map_editor/resources/init_map_editor_resources.c		\
-				scenes/map_editor/resources/button_down.c					\
-				scenes/map_editor/resources/button_plus.c					\
-				scenes/map_editor/resources/button_up.c						\
-				scenes/map_editor/resources/button_x.c						\
 
 
 SRCS_FOLDER	=	./srcs/

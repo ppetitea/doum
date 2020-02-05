@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 16:27:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 17:20:01 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/04 21:27:03 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ typedef struct			s_voxel_map_2d_config
 	t_bool				display_e_static_storage;
 	t_bool				display_e_oriented;
 	t_bool				display_e_oriented_storage;
+	t_bool				display_player;
 	t_usize				character_size;
-	t_filter_type		character_filter;
 }						t_voxel_map_2d_config;
 
 typedef struct			s_voxel_map_3d_config
@@ -63,7 +63,7 @@ typedef struct			s_voxel_map_3d_config
 	t_bool				display_e_static_storage;
 	t_bool				display_e_oriented;
 	t_bool				display_e_oriented_storage;
-	t_filter_type		character_filter;
+	t_bool				display_player;
 }						t_voxel_map_3d_config;
 
 typedef struct			s_voxel_map_config
@@ -73,6 +73,7 @@ typedef struct			s_voxel_map_config
 	t_voxel_map_2d_config	drop_map;
 	t_voxel_map_3d_config	map_3d;
 	t_map					*map_ref;
+	t_dnon_object			*character_obj;
 }						t_voxel_map_config;
 
 typedef struct			s_scene

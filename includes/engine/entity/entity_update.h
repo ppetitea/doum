@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 23:21:04 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/04 00:09:27 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/04 15:50:44 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ t_result	copy_entity(t_entity *src, t_entity *dest);
 /*
 ** OVERWRITE
 */
+t_result	overwrite_entities_by_type_with_obj(t_list_head *entities,
+				t_dnon_object *entity_obj);
 t_result	overwrite_entity_by_type_with_obj(t_entity *entity,
 				t_dnon_object *entity_obj);
 t_result	overwrite_entity_with_obj(t_entity *self,

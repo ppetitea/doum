@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 00:10:40 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/01 00:52:26 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/04 23:19:01 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,14 @@ t_bool		is_entity_texture_collide(t_entity_texture *e_texture, t_pos2i pos)
 	t_pos2i	min;
 	t_pos2i	max;
 
-	min.x = (int)e_texture->offset.x + (int)e_texture->anchor.x;
-	min.y = (int)e_texture->offset.y + (int)e_texture->anchor.y;
-	max.x = (int)e_texture->curr->size.x + (int)e_texture->offset.x
-			+ (int)e_texture->anchor.x;
-	max.y = (int)e_texture->curr->size.y + (int)e_texture->offset.y
-			+ (int)e_texture->anchor.y;
+	min.x = (int)((int)e_texture->offset.x * e_texture->scale.x);
+	min.x += (int)e_texture->anchor.x;
+	min.y = (int)((int)e_texture->offset.y * e_texture->scale.y);
+	min.y += (int)e_texture->anchor.y;
+	max.x = (int)((int)e_texture->curr->size.x * e_texture->scale.x + min.x);
+	max.y = (int)((int)e_texture->curr->size.y * e_texture->scale.y + min.y);
+	// printf("collide %d < x < %d && %d < y < %d\n", min.x, max.x, min.y, max.y);
+	// printf("collide scale %.2f\n", e_texture->scale);
 	if (pos.x < min.x || max.x < pos.x || pos.y < min.y || max.y < pos.y)
 		return (FALSE);
 	return (TRUE);
@@ -108,7 +110,7 @@ t_result	trigger_entity_action_by_drag(t_list_head *entities, t_mouse *mouse)
 			}
 		}
 	}
-	return (OK);
+	return (ERROR);
 }
 
 t_result	trigger_entity_action_by_drop(t_list_head *entities, t_mouse *mouse)

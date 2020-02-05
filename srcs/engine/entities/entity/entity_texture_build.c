@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:30:43 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/01 00:29:08 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/04 22:38:30 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ t_result	build_entity_textures_with_obj(t_list_head *images,
 		get_child_list_object_by_key(e_texture_obj, "anchor"));
 	init_vec2i_with_obj(&e_texture->offset,
 		get_child_list_object_by_key(e_texture_obj, "offset"));
-	e_texture->scale = get_float_value_by_key(e_texture_obj, "scale", 1.0f);
+	e_texture->scale.x = get_float_value_by_key(e_texture_obj, "scale", 1.0f);
+	e_texture->scale.y = e_texture->scale.x;
 	result = build_textures_with_obj(images, e_texture->normal,
 		get_child_list_object_by_key(e_texture_obj, "normal"));
 	throw_warning("normal texture:\t", result ? "OK" : "FAIL", 3);

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 01:17:28 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/01 00:52:31 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/05 13:55:54 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ void	handle_mouse_down(t_game *game, SDL_MouseButtonEvent event)
 
 void	handle_mouse_up(t_game *game, SDL_MouseButtonEvent event)
 {
-	game->interface.mouse.down = FALSE;
-	game->interface.mouse.drag = FALSE;
 	game->interface.mouse.pos = ft_vec2i(event.x, event.y);
 	if (game->interface.mouse.drag)
 		trigger_entities_by_drop(game);
+	game->interface.mouse.down = FALSE;
+	game->interface.mouse.drag = FALSE;
 	(void)event;
 }

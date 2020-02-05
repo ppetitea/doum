@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 23:21:04 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/27 17:14:11 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/04 22:33:57 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef enum	e_animation_status
 typedef struct			s_entity_texture
 {
 	struct timeval		last;
-	float				scale;
+	t_vec2f				scale;
 	t_vec2i				offset;
 	t_vec2i				anchor;
 	t_texture			*curr;

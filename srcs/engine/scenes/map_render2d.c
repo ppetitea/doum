@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_render.c                                       :+:      :+:    :+:   */
+/*   map_render2d.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:41:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 03:39:24 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/05 14:15:14 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,38 @@
 #include "utils/error.h"
 
 #include <stdio.h>
+
+t_bool		is_mouse_belong_to_map(t_pos2i mouse, t_usize map_size,
+				t_vec2i map_anchor)
+{
+	if (map_anchor.x < mouse.x && mouse.x < map_anchor.x + (int)map_size.x
+		&& map_anchor.y < mouse.y && mouse.y < map_anchor.y + (int)map_size.y)
+		return (TRUE);
+	return (FALSE);
+}
+
+t_result	update_character_position_by_drag(t_character *character)
+{
+	t_game					*game;
+	t_voxel_map_2d_config	*config;
+	t_vec2i					*mouse;
+	t_vec2f					pos;
+
+	pos = ft_vec2f(0, 0);
+	game = game_singleton(NULL);
+	if (character && game && game->curr_scene)
+	{
+		config = &game->curr_scene->map_render_config.drop_map;
+		mouse = &game->interface.mouse.pos;
+		if (is_mouse_belong_to_map(*mouse, config->size, config->anchor))
+		{
+			pos.x = (mouse->x - config->anchor.x) / config->scale.x;
+			pos.y = (mouse->y - config->anchor.y) / config->scale.y;
+			character->camera.pos = pos;
+		}
+	}
+	return (OK);
+}
 
 void	voxel_map_render2d_character(t_screen *screen, t_voxel_map_2d_config *config,
 			t_character *character)
@@ -28,10 +60,11 @@ void	voxel_map_render2d_character(t_screen *screen, t_voxel_map_2d_config *confi
 		return ;
 	curr = character->super.texture.curr;
 	scale = compute_render_scale(&curr->size, &config->character_size);
-	anchor.x = character->camera.pos.x * config->scale.x + config->anchor.x
-		- curr->size.x * scale.x * 0.5;
-	anchor.y = character->camera.pos.y * config->scale.y + config->anchor.y
-		- curr->size.y * scale.y;
+	character->super.texture.scale = scale;
+	if (character->super.status.is_dragged)
+		update_character_position_by_drag(character);
+	anchor.x = character->camera.pos.x * config->scale.x + config->anchor.x;
+	anchor.y = character->camera.pos.y * config->scale.y + config->anchor.y;
 	render_texture_with_scale_2d(screen, curr, anchor, scale);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 01:08:30 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/01 00:53:37 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/05 14:01:31 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "engine/interface/events/mouse.h"
 #include "engine/entity/entity_init.h"
 #include "engine/entity/entity_update.h"
+#include "engine/entity/character_update.h"
 #include "engine/scene/scene_init.h"
 #include "utils/error.h"
 
@@ -67,7 +68,10 @@ t_result	trigger_entities_by_drag(t_game *game)
 	{
 		if (trigger_entity_action_by_drag(&game->curr_map->e_static, mouse))
 			return (OK);
-		if (trigger_entity_action_by_drag(&game->curr_map->e_oriented, mouse))
+		if (trigger_character_action_by_drag(&game->curr_map->e_oriented, mouse))
+			return (OK);
+		if (trigger_character_action_by_drag(&game->curr_map->e_oriented_storage,
+			mouse))
 			return (OK);
 	}
 	if (game->curr_scene != NULL)
@@ -85,9 +89,11 @@ t_result	trigger_entities_by_drop(t_game *game)
 	mouse = &game->interface.mouse;
 	if (game->curr_map != NULL)
 	{
-		if (trigger_entity_action_by_drop(&game->curr_map->e_static, mouse))
+		if (trigger_character_action_by_drop(&game->curr_map->e_static, mouse))
 			return (OK);
-		if (trigger_entity_action_by_drop(&game->curr_map->e_oriented, mouse))
+		if (trigger_character_action_by_drop(&game->curr_map->e_oriented, mouse))
+			return (OK);
+		if (trigger_character_action_by_drop(&game->curr_map->e_oriented_storage, mouse))
 			return (OK);
 	}
 	if (game->curr_scene != NULL)
