@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 06:49:05 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/04 22:36:09 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/05 16:16:52 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ t_result	overwrite_listener_with_obj(t_entity *entity,
 		listener->is_selectable = (result_i == 1) ? TRUE : FALSE;
 	if ((result_i = get_int_value_by_key(listener_obj, "draggable", -1)) != -1)
 		listener->is_draggable = (result_i == 1) ? TRUE : FALSE;
+	if ((result_i = get_int_value_by_key(listener_obj, "is_dragged", -1)) != -1)
+		listener->is_dragged = (result_i == 1) ? TRUE : FALSE;
 	if ((obj = get_child_list_object_by_key(listener_obj, "hover_start")))
 		build_entity_actions_with_obj(entity, &listener->hover_start_actions, obj);
 	if ((obj = get_child_list_object_by_key(listener_obj, "hover_end")))
