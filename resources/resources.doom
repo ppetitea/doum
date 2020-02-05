@@ -2034,7 +2034,7 @@
 				"size":{"x":1080,"y":720},
 				"anchor":{"x":0,"y":0},
 				"offset":{"x":0,"y":0},
-				"render_distance":1000,
+				"render_distance":3000,
 				"display_static_entities":1,
 				"display_e_oriented":1
 			},
