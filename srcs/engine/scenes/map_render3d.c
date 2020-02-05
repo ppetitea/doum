@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 14:41:00 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/05 17:36:54 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/05 17:56:56 by lugibone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -301,7 +301,7 @@ void	update_render_list_with_player_cam(t_voxel_map_3d_config *config,
 // 			map->curr_character, pos);
 // 	map->curr_character = (t_character*)map->curr_character->super.node.next;
 // }
-
+/*
 void	render_map3d(t_screen *screen, t_voxel_map_3d_config *config,
 		t_map *map)
 {
@@ -316,7 +316,7 @@ void	render_map3d(t_screen *screen, t_voxel_map_3d_config *config,
 		
 	}
 }
-
+*/
 void	render_voxel_map3d(t_screen *screen, t_voxel_map_3d_config *config,
 		t_map *map)
 {
