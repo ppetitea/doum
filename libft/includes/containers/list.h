@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 18:29:38 by lbenard           #+#    #+#             */
-/*   Updated: 2019/02/20 20:20:19 by lbenard          ###   ########.fr       */
+/*   Updated: 2020/01/22 08:46:37 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,20 @@ t_result		init_list_head(t_list_head *list);
 /*
 ** Iterators
 */
-void			list_foreach(t_list_head *list, size_t offset, void (*fn)());
+typedef	enum	e_iterator_callback
+{
+	CONTINUE,
+	STOP_ITERATION,
+}				t_iterator_callback;
+t_bool			list_foreach(t_list_head *list, size_t offset,
+	t_iterator_callback (*fn)());
 
 /*
 ** Capacity
 */
 t_bool			list_is_last(const t_list_head *list, const t_list_head *head);
 t_bool			list_is_empty(const t_list_head *head);
+size_t			list_lenght(t_list_head *head);
 
 /*
 ** Modifiers
@@ -47,12 +54,14 @@ t_bool			list_is_empty(const t_list_head *head);
 void			list_add(t_list_head *new, t_list_head *prev,
 	t_list_head *next);
 void			list_add_entry(t_list_head *new, t_list_head *head);
+void			list_add_first(t_list_head *new, t_list_head *head);
 void			list_add_tail(t_list_head *new, t_list_head *head);
 void			list_del(t_list_head *prev, t_list_head *next);
 void			list_del_entry(t_list_head *entry);
 void			list_move(t_list_head *list, t_list_head *head);
 void			list_move_tail(t_list_head *list, t_list_head *head);
-
+void			bubble_sort_linked_list(t_list_head *list,
+					t_bool(*rule)(t_list_head*, t_list_head*));
 /*
 ** libft linked lists
 */

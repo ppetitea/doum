@@ -28,26 +28,124 @@ EXEC		=	doom-nukem
 #SOURCES
 SRCS_LIST	=	main.c														\
 																			\
-				bitmap/load_bmp.c												\
+				utils/color/add_blend.c										\
+				utils/error/debug_mode.c									\
+				utils/error/throw_null.c									\
+				utils/error/throw_void.c									\
+				utils/error/throw_error.c									\
+				utils/error/throw_warning.c									\
+				utils/matrix/mult.c											\
+				utils/matrix/rotate.c										\
+				utils/matrix/scale.c										\
+				utils/matrix/to_vtx.c										\
+				utils/matrix/translate.c									\
+				utils/time/get_delta.c										\
+				utils/parser/check/close_curly_braces.c						\
+				utils/parser/check/curly_braces.c							\
+				utils/parser/check/open_curly_braces.c						\
+				utils/parser/check/utility.c								\
+				utils/parser/debug/debug.c									\
+				utils/parser/get_data_in_string/get_index.c					\
+				utils/parser/get_data_in_string/get_key.c					\
+				utils/parser/get_data_in_string/get_value_type.c			\
+				utils/parser/get_data_in_string/get_value.c					\
+				utils/parser/object/getter/get_child_object.c				\
+				utils/parser/object/getter/get_float_value.c				\
+				utils/parser/object/getter/get_int_value.c					\
+				utils/parser/object/getter/get_string_value.c				\
+				utils/parser/object/getter/init_with_obj.c					\
+				utils/parser/object/getter/strcmp_obj.c						\
+				utils/parser/object/create.c								\
+				utils/parser/object/free.c									\
+				utils/parser/read_file/get_file_datas.c						\
+				utils/parser/split_data/free_string_array.c					\
+				utils/parser/split_data/new_string_array.c					\
+				utils/parser/split_data/split_data.c						\
+				utils/parser/parser.c										\
+				utils/parser/to_object.c									\
 																			\
-				debug/debug.c												\
+				engine/game/game_init.c										\
+				engine/game/game_actions.c									\
 																			\
-				error/throw_error.c											\
-				error/throw_null.c											\
-				error/throw_void.c											\
+				engine/interface/sdl/init_sdl.c								\
+				engine/interface/sdl/destroy.c								\
+				engine/interface/screen/init_screen.c						\
+				engine/interface/screen/reset.c								\
+				engine/interface/events/handle.c							\
+				engine/interface/events/mouse/handle.c						\
+				engine/interface/events/mouse/trigger.c						\
+				engine/interface/events/keyboard/handle.c					\
+				engine/interface/events/actions/action_trigger.c			\
+				engine/interface/events/actions/action_init.c				\
+				engine/interface/events/actions/action_build.c				\
 																			\
-				events/handle.c												\
-				events/keyboard/handle.c									\
-				events/mouse/handle.c										\
+				engine/build.c												\
+				engine/loop.c												\
 																			\
-				game/init.c													\
-				game/loop.c													\
+				engine/resources/images/add_bmp.c							\
+				engine/resources/images/collide_texture.c					\
+				engine/resources/images/fill_texture.c						\
+				engine/resources/images/filter_texture.c					\
+				engine/resources/images/get_bmp.c							\
+				engine/resources/images/init_texture.c						\
+				engine/resources/images/load_bmp.c							\
+				engine/resources/images/render_texture.c					\
+				engine/resources/images/render.c							\
+				engine/resources/images/set_pixel_texture.c					\
+				engine/resources/images/texture_build.c						\
+				engine/resources/images/texture_list_build.c				\
+				engine/resources/images/texture_oriented_build.c			\
 																			\
-				screen/init.c												\
-				screen/fill.c												\
+				engine/entities/entities_build.c							\
+				engine/entities/entities_dup.c								\
+				engine/entities/entities_overwrite.c						\
+				engine/entities/entity/entity_actions.c						\
+				engine/entities/entity/entity_animate.c						\
+				engine/entities/entity/entity_build.c						\
+				engine/entities/entity/entity_dup.c							\
+				engine/entities/entity/entity_get.c							\
+				engine/entities/entity/entity_init.c						\
+				engine/entities/entity/entity_overwrite.c					\
+				engine/entities/entity/entity_status_build.c				\
+				engine/entities/entity/entity_texture_build.c				\
+				engine/entities/entity/entity_trigger.c						\
+				engine/entities/entity/entity_update.c						\
+				engine/entities/character/character_actions.c				\
+				engine/entities/character/character_build.c					\
+				engine/entities/character/character_die_build.c				\
+				engine/entities/character/character_dup.c					\
+				engine/entities/character/character_init.c					\
+				engine/entities/character/character_orientation.c			\
+				engine/entities/character/character_overwrite.c				\
+				engine/entities/character/character_texture_build.c			\
+				engine/entities/character/character_trigger.c				\
+				engine/entities/character/character_type_build.c			\
+				engine/entities/character/weapon/character_weapons_build.c	\
+				engine/entities/character/weapon/weapon_build.c				\
+				engine/entities/character/weapon/weapon_dup.c				\
+				engine/entities/character/weapon/weapon_get.c				\
+				engine/entities/character/weapon/weapon_init.c				\
+				engine/entities/character/weapon/weapon_overwrite.c			\
+				engine/entities/character/weapon/weapon_texture_build.c		\
+				engine/entities/character/weapon/weapon_type_build.c		\
+				engine/entities/character/weapon/weapon_update.c			\
+				engine/entities/character/camera/camera_build.c				\
+				engine/entities/character/camera/camera_init.c				\
+				engine/entities/character/camera/camera_overwrite.c			\
+				engine/entities/character/camera/camera_update.c			\
 																			\
-				sdl/destroy.c												\
-				sdl/init.c													\
+				engine/maps/map_build.c										\
+				engine/maps/map_init.c										\
+				engine/maps/map_update.c									\
+																			\
+				engine/scenes/map_render_build.c							\
+				engine/scenes/map_render_init.c								\
+				engine/scenes/map_render2d.c								\
+				engine/scenes/map_render3d.c								\
+				engine/scenes/scene_build.c									\
+				engine/scenes/scene_init.c									\
+				engine/scenes/scene_render.c								\
+				engine/scenes/scene_update.c								\
 																			\
 
 
@@ -64,9 +162,9 @@ INCLUDES_FOLDER	=	./includes/
 INCLUDES	:=	-I includes
 
 #COMPILATION
-CC			=	gcc
-CFLAGS		:=	-Wall -Werror -Wextra
-LDFLAGS		:=	-Wall -Werror -Wextra
+CC			=	gcc -g
+CFLAGS		:=	-Wall -Werror -Wextra -O3 -Ofast -flto -g
+LDFLAGS		:=	-Wall -Werror -Wextra  -O3 -Ofast -flto -g -lm 
 
 #LIBRARIES
 #	libft

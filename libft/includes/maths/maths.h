@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maths.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 17:47:43 by lbenard           #+#    #+#             */
-/*   Updated: 2019/02/20 18:55:14 by lbenard          ###   ########.fr       */
+/*   Updated: 2020/01/28 23:04:53 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define LOG2 0.693147
 
 int		ft_abs(int i);
+float	ft_absf(float f);
 int		ft_min(int a, int b);
 int		ft_max(int a, int b);
 

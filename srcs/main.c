@@ -6,17 +6,19 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:59:39 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/12 21:49:19 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/01/28 15:39:51 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game/game.h"
+#include "build.h"
+#include "utils/error.h"
 
 int		main()
 {
 	t_game *game;
 
-	if ((game = initialize_game()) != NULL)
+	// build();
+	if ((game = build()) != NULL)
 		loop(game);
 	return (0);
 }
