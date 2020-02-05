@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 17:16:02 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/02 15:30:55 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/05 16:03:36 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,15 @@ typedef struct	s_map
 	t_character		*character_ref;
 	t_list_head		e_static;
 	t_list_head		e_oriented;
-	t_character		*curr_character;
 	t_list_head		e_static_storage;
 	t_list_head		e_oriented_storage;
-	t_map_texture	sky;
-	t_map_texture	color_map;
-	t_map_texture	height_map;
+	t_map_texture	sky_textures;
+	t_map_texture	color_map_textures;
+	t_map_texture	height_map_textures;
 }				t_map;
 
 t_map		*init_new_map();
 t_result	set_character_as_player(t_map *map,
 				t_character *character);
-t_map		*game_map();
 
 #endif

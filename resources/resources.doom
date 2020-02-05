@@ -1692,9 +1692,7 @@
 						"anchor":{"x":600,"y":10},
 						"offset":{"x":0,"y":0}
 					},
-					"listener":{
-						"display":1
-					}
+					"listener":{"display":1}
 				}
 			},
 			"entity":{
@@ -1729,6 +1727,116 @@
 								"action":"update_entity_texture",
 								"resource":"entity",
 								"args":{"normal":1}
+							}
+						}
+					}
+				}
+			},
+			"entity":{
+				"key":"spawner_overlord",
+				"entity":{
+					"texture":{
+						"anchor":{"x":10,"y":300},
+						"offset":{"x":0,"y":0}
+					},
+					"listener":{
+						"display":1,
+						"selectable":1,
+						"select":{
+							"1":{
+								"action":"spawn_character",
+								"resource":"game",
+								"args":{
+									"character_name":"overlord",
+									"character":{
+										"camera":{"position":{"x":800,"y":600}},
+										"entity":{
+											"listener":{"draggable":1,"is_dragged":1}
+										}
+									}
+								}
+							}
+						},
+						"hoverable":1,
+						"hover_start":{
+							"1":{
+								"action":"update_entity_texture",
+								"resource":"entity",
+								"args":{"hover":1}
+							}
+						},
+						"hover_end":{
+							"1":{
+								"action":"update_entity_texture",
+								"resource":"entity",
+								"args":{"normal":1}
+							}
+						}
+					}
+				}
+			},
+			"entity":{
+				"key":"spawner_cycloid",
+				"entity":{
+					"texture":{
+						"anchor":{"x":10,"y":300},
+						"offset":{"x":0,"y":0}
+					},
+					"listener":{
+						"display":0,
+						"selectable":1,
+						"select":{
+							"1":{
+								"action":"spawn_character",
+								"resource":"game",
+								"args":{
+									"character_name":"cycloid",
+									"character":{
+										"camera":{"position":{"x":800,"y":600}},
+										"entity":{
+											"listener":{"draggable":1,"is_dragged":1}
+										}
+									}
+								}
+							}
+						},
+						"hoverable":1,
+						"hover_start":{
+							"1":{
+								"action":"update_entity_texture",
+								"resource":"entity",
+								"args":{"hover":1}
+							}
+						},
+						"hover_end":{
+							"1":{
+								"action":"update_entity_texture",
+								"resource":"entity",
+								"args":{"normal":1}
+							}
+						}
+					}
+				}
+			},
+			"entity":{
+				"key":"button_down",
+				"entity":{
+					"texture":{
+						"anchor":{"x":10,"y":605},
+						"offset":{"x":0,"y":0}
+					},
+					"listener":{
+						"display":1,
+						"selectable":1,
+						"select":{
+							"1":{
+								"action":"display_next",
+								"resource":"game",
+								"args":{
+									"keys":{"k":"spawner_cycloid","k":"spawner_overlord"},
+									"offset":0,
+									"amount":1
+								}
 							}
 						}
 					}
