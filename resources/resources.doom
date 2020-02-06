@@ -2065,6 +2065,48 @@
 				}
 			},
 			"key_binding":{
+				"define":"SDLK_w",
+				"SDL_Keycode":119,
+				"hold":1,
+				"action":"orientate_characters",
+				"resource":"game"
+			},
+			"key_binding":{
+				"define":"SDLK_a",
+				"SDL_Keycode":97,
+				"hold":1,
+				"action":"orientate_characters",
+				"resource":"game"
+			},
+			"key_binding":{
+				"define":"SDLK_s",
+				"SDL_Keycode":115,
+				"hold":1,
+				"action":"orientate_characters",
+				"resource":"game"
+			},
+			"key_binding":{
+				"define":"SDLK_d",
+				"SDL_Keycode":100,
+				"hold":1,
+				"action":"orientate_characters",
+				"resource":"game"
+			},
+			"key_binding":{
+				"define":"SDLK_RIGHT",
+				"SDL_Keycode":1073741903,
+				"hold":1,
+				"action":"orientate_characters",
+				"resource":"game"
+			},
+			"key_binding":{
+				"define":"SDLK_LEFT",
+				"SDL_Keycode":1073741904,
+				"hold":1,
+				"action":"orientate_characters",
+				"resource":"game"
+			},
+			"key_binding":{
 				"define":"SDLK_RIGHT",
 				"SDL_Keycode":1073741903,
 				"hold":1,

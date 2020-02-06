@@ -6,11 +6,11 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 01:11:36 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 02:01:25 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 13:57:19 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "engine/interface/init_camera.h"
+#include "engine/entity/character_init.h"
 #include "utils/error.h"
 #include "utils/matrix.h"
 #include "libft.h"

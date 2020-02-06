@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:59:00 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/05 18:28:09 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:49:05 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,83 @@ static t_result	build_voxel_map_2d_config_with_obj(t_voxel_map_2d_config *config
 	return (OK);
 }
 
+t_result	memalloc_pre_render3d(t_voxel_map_3d_config *config)
+{
+	float		distance;
+	float		delta;
+	size_t		amount;
+	t_screen	*screen;
+	
+	if (!(screen = game_screen()))
+		return (throw_error("fill_slides_pre_render", "screen not found"));
+	distance = 1;
+	delta = 1;
+	amount = 0;
+	while (distance < config->horizon_dist)
+	{
+		distance += delta;
+		delta += 0.005f;
+		amount++;
+	}
+	config->pre_render.slides_amount = amount;
+	if (!(config->pre_render.slides =
+		(t_render_slide*)malloc(sizeof(t_render_slide) * amount)))
+		return (throw_error("memalloc_pre_render", "malloc failed"));
+	if (!(config->pre_render.columns_height =
+		(uint32_t*)malloc(sizeof(uint32_t) * screen->size.x)))
+		return (throw_error("memalloc_pre_render", "malloc failed"));
+	return (OK);
+}
+
+t_result	fill_slides_pre_render3d(t_voxel_map_3d_config *config)
+{
+	float			distance;
+	float			delta;
+	size_t			amount;
+	t_character		*player;
+	t_render_slide	*slide;
+
+	if (!(player = game_player()))
+		return (throw_error("fill_slides_pre_render", "player not found"));
+	distance = 1;
+	delta = 1;
+	amount = 0;
+	while (amount < config->pre_render.slides_amount)
+	{
+		slide = &config->pre_render.slides[amount];
+		slide->dist_to_slide = distance;
+		slide->dist_ratio = player->camera.dist_to_plan / slide->dist_to_slide;
+		slide->slide_half = slide->dist_to_slide
+			* (float)tan(player->camera.fov / 2.0f);
+		slide->slide_width = slide->slide_half * 2;
+		slide->slide_delta = slide->slide_width / player->camera.plan_width;
+		// printf(" slide %ld distance %f\n", amount, slide->dist_to_slide);
+		// printf("slide %ld delta %f\n", amount, slide->slide_delta);
+		distance += delta;
+		delta += 0.005f;
+		amount++;
+	}
+	return (OK);
+}
+
+t_result	build_pre_render3d(t_voxel_map_3d_config *config)
+{
+	t_screen	*screen;
+
+	if (config == NULL)
+		return (throw_error("build_camera_pre_render", "NULL pointer"));
+	if (!(screen = game_screen()))
+		return (throw_error("build_camera_pre_render", "screen not found"));
+	if (!(config->pre_render.columns_height =
+		(uint32_t*)malloc(sizeof(uint32_t) * (screen->size.x))))
+		return (throw_error("build_camera_pre_render", "malloc failed"));
+	if (!memalloc_pre_render3d(config))
+		return (throw_error("build_camera_pre_render", "memalloc render fail"));
+	if (!fill_slides_pre_render3d(config))
+		return (throw_error("build_camera_pre_render", "fill_pre_render fail"));
+	return (OK);
+}
+
 static t_result	build_voxel_map_3d_config_with_obj(t_voxel_map_3d_config *config,
 				t_dnon_object *map3d_config_obj)
 {
@@ -76,8 +153,10 @@ static t_result	build_voxel_map_3d_config_with_obj(t_voxel_map_3d_config *config
 		get_child_list_object_by_key(map3d_config_obj, "offset"));
 	init_usize_with_obj(&config->size,
 		get_child_list_object_by_key(map3d_config_obj, "size"));
-	config->render_dist = get_int_value_by_key(map3d_config_obj,
-		"render_distance", 300);
+	config->horizon = get_int_value_by_key(map3d_config_obj, "horizon", 130);
+	config->horizon_dist = get_int_value_by_key(map3d_config_obj,
+		"horizon_distance", 3000);
+	build_pre_render3d(config);
 	config->display_e_oriented =
 		get_int_value_by_key(map3d_config_obj, "display_e_oriented", 0);
 	config->display_e_oriented_storage =

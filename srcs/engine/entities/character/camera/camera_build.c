@@ -6,14 +6,14 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 01:00:12 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/25 02:02:16 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 17:59:22 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "build.h"
 #include <math.h>
 
-void		build_character_camera_with_obj(t_camera *self,
+void	build_character_camera_with_obj(t_camera *self,
 				t_dnon_object *camera_obj)
 {
 	if (self == NULL || camera_obj == NULL)

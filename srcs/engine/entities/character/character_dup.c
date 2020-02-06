@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 01:50:33 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/01 23:50:39 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 17:57:06 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ t_result	copy_camera(t_camera *src, t_camera *dest)
 	dest->plan_half = src->plan_half;
 	dest->dist_to_plan = src->dist_to_plan;
 	dest->height = src->height;
-	dest->horizon = src->horizon;
 	dest->pos = src->pos;
 	dest->dir = src->dir;
 	dest->to_plan = src->to_plan;

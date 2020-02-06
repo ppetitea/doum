@@ -6,11 +6,12 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:13:37 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 03:54:50 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 20:08:47 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/entity/character_init.h"
+#include "engine/component/action.h"
 #include "engine/game/game_init.h"
 #include "utils/error.h"
 #include <math.h>
@@ -76,4 +77,29 @@ void	orientate_texture(t_character *c)
 	c->super.texture.prev_head = texture;
 	if (c->super.texture.animation != INFINITE && c->super.texture.animation != FINAL)
 		c->super.texture.animation = STOP;
+}
+
+
+t_result	orientate_characters_texture(void *game_resource,
+				t_resource_type resource_type, t_dnon_object *args)
+{
+	t_game		*game;
+	t_character	*character;
+	t_list_head	*pos;
+
+	if (game_resource == NULL)
+		return (throw_error("orientate_character", "NULL pointer provided"));
+	if (resource_type != R_GAME)
+		return (throw_error("orientate_character", "resource must be game"));
+	game = (t_game*)game_resource;
+	if (game->curr_map == NULL)
+		return (throw_error("orientate_character", "map not found"));
+	pos = &game->curr_map->e_oriented;
+	while ((pos = pos->next) != &game->curr_map->e_oriented)
+	{
+		character = (t_character*)pos;
+		orientate_texture(character);
+	}
+	(void)args;
+	return (OK);
 }

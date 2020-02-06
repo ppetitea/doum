@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 23:21:04 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 03:15:15 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 17:54:25 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,18 @@
 
 typedef	struct	s_camera
 {
-	float	fov;
-	float	fov_half;
-	float	plan_width;
-	float	plan_half;
-	float	dist_to_plan;
-	float	height;
-	size_t	horizon;
-	float	horizon_dist;
-	t_vec2f	pos;
-	t_vec2f	start;
-	t_vec2f	dir;
-	t_vec2f	end;
-	t_vec2f	to_plan;
-	t_vec2f	plan;
+	float			fov;
+	float			fov_half;
+	float			plan_width;
+	float			plan_half;
+	float			dist_to_plan;
+	float			height;
+	t_vec2f			pos;
+	t_vec2f			start;
+	t_vec2f			dir;
+	t_vec2f			end;
+	t_vec2f			to_plan;
+	t_vec2f			plan;
 }				t_camera;
 
 t_result		init_camera(t_camera *self);

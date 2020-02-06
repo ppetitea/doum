@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:46:49 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 13:35:23 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 18:12:41 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_result	translate_camera_forward(t_entity *entity);
 t_result	translate_camera_right(t_entity *entity);
 t_result	translate_camera_left(t_entity *entity);
 t_result	translate_camera_backward(t_entity *entity);
-t_result	translate_camera_horizon_up(t_entity *entity);
-t_result	translate_camera_horizon_down(t_entity *entity);
+t_result	translate_camera_horizon_up(t_voxel_map_3d_config *config);
+t_result	translate_camera_horizon_down(t_voxel_map_3d_config *config);
 
 #endif

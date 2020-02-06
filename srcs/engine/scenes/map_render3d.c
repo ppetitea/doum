@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 14:41:00 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 13:49:39 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 22:05:03 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,12 +161,11 @@ static t_bool	is_belong_to_camera_plan(t_voxel_map_3d_config *config,
 		angle = angle > 0 ? -(2 * PI - angle) : 2 * PI + angle;
 	if (ft_absf(angle) <= cam->fov_half)
 	{
-		character->orientate(character);
 		character->target_dist = vec2f_magnitude(dir) * cos(angle);
 		character->super.texture.scale.x = screen->size.y / character->target_dist;
 		character->super.texture.scale.y = screen->size.y / character->target_dist;
 		anchor.x = ((angle + cam->fov_half) / cam->fov) * cam->plan_width;
-		anchor.y = cam->horizon + (cam->dist_to_plan / character->target_dist)
+		anchor.y = config->horizon + (cam->dist_to_plan / character->target_dist)
 					* (cam->height - get_floor_height(map, character));
 		anchor.x *= config->scale.x;
 		anchor.y *= config->scale.y;
@@ -251,53 +250,75 @@ int		compute_map_offset(t_pos2f pos, t_usize size)
 	return (offset);
 }
 
-void	render_floor3d(t_screen *screen, t_voxel_map_3d_config *config,
-		t_map *map, t_rangef range)
+void	render_floor3d_with_pre_render(t_screen *screen,
+		t_voxel_map_3d_config *config, t_map *map)
 {
-	uint32_t 	columns_height[screen->size.x];
+	t_render_slide	*slide;
+	int			slide_index;
 	t_camera	*cam;
 	t_pos2f		pos;
-	float		dist;
-	float		dist_delta;
 	t_vec2f		delta;
 	t_column	column;
 	int			map_offset;
 
 	cam = &map->character_ref->camera;
-	init_columns_height(columns_height, map->color_map.curr->size);
-	dist_delta = 1;
-	dist = 1;
-	while (dist < range.min)
+	slide_index = config->pre_render.index.min;
+	while (slide_index < config->pre_render.index.max)
 	{
-		dist += dist_delta;
-		dist_delta += 0.005f;
-	}
-	while (dist < range.max)
-	{
-		pos = vec2f_add(vec2f_scalar(cam->dir, dist),
-			vec2f_scalar(vec2f_opposite(cam->plan), dist));
-		delta = vec2f_add(vec2f_scalar(cam->dir, dist),
-			vec2f_scalar(cam->plan, dist));
-		delta = vec2f_sub(delta, pos);
-		delta = vec2f_scalar(delta, 1.0f / (float)map->color_map.curr->size.x);
+		slide = &config->pre_render.slides[slide_index];
+		delta = ft_vec2f(-cam->dir.y, cam->dir.x); 
+		pos = vec2f_scalar(cam->dir, slide->dist_to_slide);
+		pos = vec2f_sub(pos, vec2f_scalar(delta, slide->slide_half));
 		pos = vec2f_add(pos, cam->pos);
+		delta = vec2f_scalar(delta, slide->slide_delta);
 		column.x = -1;
-		while (++column.x < (int)map->color_map.curr->size.x)
+		while (++column.x < (int)screen->size.x)
 		{
 			map_offset = compute_map_offset(pos, map->color_map.curr->size);
-			column.y_bot = columns_height[column.x];
-			column.y_top = cam->horizon + (cam->dist_to_plan / dist)
+			column.y_bot = config->pre_render.columns_height[column.x];
+			column.y_top = config->horizon + (slide->dist_ratio)
 				* (cam->height - ((t_bgra)map->height_map.curr->pixels[map_offset]).bgra.b);
 			draw_vertical_line(config, screen, column,
 					map->color_map.curr->pixels[map_offset]);
-			if (column.y_top < (int)columns_height[column.x])
-				columns_height[column.x] = column.y_top;
+			if (column.y_top < (int)config->pre_render.columns_height[column.x])
+				config->pre_render.columns_height[column.x] = column.y_top;
 			pos = vec2f_add(pos, delta);
 		}
-		dist += dist_delta;
-		dist_delta += 0.005f;
+		slide_index++;
 	}
 }
+
+void	update_slide_index(t_pre_render3d *pre_render, t_rangef *range)
+{
+	size_t		i;
+	
+	i = pre_render->index.max - 1;
+	while (pre_render->slides[i].dist_to_slide > range->min)
+		i--;
+	pre_render->index.min = i;
+}
+
+// void	render_character_with_pre_render(t_voxel_map_3d_config *config,
+// 			t_map *map, t_character *character)
+// {
+// 	t_render_slide	*slide;
+// 	t_pos2f			start;
+// 	t_pos2f			pos;
+// 	t_vec2f			delta;
+// 	t_camera		*cam;
+	
+// 	cam = &map->character_ref->camera;
+// 	slide = &config->pre_render.slides[config->pre_render.index.min];
+// 	delta = ft_vec2f(-cam->dir.y, cam->dir.x); 
+// 	start = vec2f_scalar(cam->dir, slide->dist_to_slide);
+// 	start = vec2f_sub(start, vec2f_scalar(delta, slide->slide_half));
+// 	start = vec2f_add(start, cam->pos);
+// 	delta = vec2f_scalar(delta, slide->slide_delta);
+// 	while (start.x < character->camera.pos.x)
+// 		vec2f_add(pos, delta);
+// 	character->super.texture.anchor.x =
+
+// }
 
 void	render_map3d(t_screen *screen, t_voxel_map_3d_config *config,
 		t_map *map)
@@ -306,18 +327,24 @@ void	render_map3d(t_screen *screen, t_voxel_map_3d_config *config,
 	t_list_head	*pos;
 	t_rangef	range;
 
-	range.max = config->render_dist;
+	config->pre_render.index.max = config->pre_render.slides_amount;
+	range.max = config->horizon_dist;
 	pos = &map->e_oriented;
 	while ((pos = pos->prev) != &map->e_oriented)
 	{
 		character = (t_character*)pos;
 		range.min = character->target_dist;
-		render_floor3d(screen, config, map, range);
+		update_slide_index(&config->pre_render, &range);
+		init_columns_height(config->pre_render.columns_height, map->height_map.curr->size);
+		render_floor3d_with_pre_render(screen, config, map);
 		render_character3d(screen, config, character);
+		// render_character_with_pre_render(config, map, character);
 		range.max = range.min;
+		config->pre_render.index.max = config->pre_render.index.min;
 	}
-	range.min = 1;
-	render_floor3d(screen, config, map, range);
+	config->pre_render.index.min = 0;
+	init_columns_height(config->pre_render.columns_height, map->height_map.curr->size);
+	render_floor3d_with_pre_render(screen, config, map);
 }
 
 void	render_voxel_map3d(t_screen *screen, t_voxel_map_3d_config *config,
