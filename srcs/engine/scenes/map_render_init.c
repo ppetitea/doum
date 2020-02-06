@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:59:00 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/04 15:28:38 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 17:47:07 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,15 @@ t_result	init_voxel_map_2d_config(t_voxel_map_2d_config *config)
 	return (OK);
 }
 
+t_result	init_pre_render3d(t_pre_render3d *self)
+{
+	self->columns_height = NULL;
+	self->delta_dir = ft_vec2f(1, 0);
+	self->slides = NULL;
+	self->slides_amount = 0;
+	return (OK);
+}
+
 t_result	init_voxel_map_3d_config(t_voxel_map_3d_config *config)
 {
 	if (config == NULL)
@@ -42,13 +51,14 @@ t_result	init_voxel_map_3d_config(t_voxel_map_3d_config *config)
 	config->offset = ft_vec2i(0, 0);
 	config->size = ft_usize(640, 480);
 	config->scale = ft_vec2f(1.0f, 1.0f);
-	config->height_scale = 2;
-	config->render_dist = 300;
+	config->horizon = 130;
+	config->horizon_dist = 3000;
 	config->display_e_oriented = FALSE;
 	config->display_e_oriented_storage = FALSE;
 	config->display_e_static = FALSE;
 	config->display_e_static_storage = FALSE;
 	config->display_player = FALSE;
+	init_pre_render3d(&config->pre_render);
 	return (OK);
 }
 

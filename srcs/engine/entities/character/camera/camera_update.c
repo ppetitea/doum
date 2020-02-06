@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera_update.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 01:11:36 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 19:47:27 by lbenard          ###   ########.fr       */
+/*   Updated: 2020/02/06 22:36:07 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ t_result	rotate_camera_left(t_entity *entity)
 	character = (t_character*)entity;
 	cam = &character->camera;
 	cam->dir = to_vtx(rotate(-2.0f / 180.0f * PI), cam->dir);
-	cam->start = to_vtx(rotate(-cam->fov_half), cam->dir);
-	cam->end = to_vtx(rotate(cam->fov_half), cam->dir);
 	cam->to_plan = vec2f_scalar(cam->dir, cam->dist_to_plan);
 	cam->plan = ft_vec2f(-cam->dir.y, cam->dir.x);
 	return (OK);
@@ -48,8 +46,6 @@ t_result	rotate_camera_right(t_entity *entity)
 	character = (t_character*)entity;
 	cam = &character->camera;
 	cam->dir = to_vtx(rotate(2.0f / 180.0f * PI), cam->dir);
-	cam->start = to_vtx(rotate(-cam->fov_half), cam->dir);
-	cam->end = to_vtx(rotate(cam->fov_half), cam->dir);
 	cam->to_plan = vec2f_scalar(cam->dir, cam->dist_to_plan);
 	cam->plan = ft_vec2f(-cam->dir.y, cam->dir.x);
 	return (OK);
@@ -204,30 +200,20 @@ t_result	translate_camera(void *game_resource, t_resource_type resource_type,
 	return (OK);
 }
 
-t_result	translate_camera_horizon_up(t_entity *entity)
+t_result	translate_camera_horizon_up(t_voxel_map_3d_config *config)
 {
-	t_character	*character;
-
-	if (entity == NULL)
+	if (config == NULL)
 		return (throw_error("translate_cam up", "NULL pointer provided"));
-	if (entity->type != CHARACTER)
-		return (throw_error("translate_cam up", "entity isn't character"));
-	character = (t_character*)entity;
-	character->camera.horizon += 5.0f * character->velocity;
+	config->horizon += 5.0f;
 	return (OK);
 }
 
-t_result	translate_camera_horizon_down(t_entity *entity)
+t_result	translate_camera_horizon_down(t_voxel_map_3d_config *config)
 {
-	t_character	*character;
-
-	if (entity == NULL)
+	if (config == NULL)
 		return (throw_error("translate_cam down", "NULL pointer provided"));
-	if (entity->type != CHARACTER)
-		return (throw_error("translate_cam down", "entity isn't character"));
-	character = (t_character*)entity;
-	if (character->camera.horizon - 5.0f * character->velocity > 0)
-		character->camera.horizon -= 5.0f * character->velocity;
+	if (config->horizon - 5.0f)
+		config->horizon -= 5.0f;
 	return (OK);
 }
 
@@ -246,9 +232,9 @@ t_result	translate_camera_horizon(void *game_resource,
 	if (game->curr_map->character_ref == NULL)
 		return (throw_error("translate_camera_h", "curr_character is NULL"));
 	if (get_int_value_by_key(args, "up", 0))
-		translate_camera_horizon_up(&game->curr_map->character_ref->super);
+		translate_camera_horizon_up(&game->curr_scene->map_render_config.map_3d);
 	else if (get_int_value_by_key(args, "down", 0))
-		translate_camera_horizon_down(&game->curr_map->character_ref->super);
+		translate_camera_horizon_down(&game->curr_scene->map_render_config.map_3d);
 	else
 		return (throw_error("translate_camera_horizon", "wrong args detected"));
 	return (OK);

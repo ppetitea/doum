@@ -6,7 +6,11 @@
 /*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:46:49 by ppetitea          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/02/06 18:39:08 by lbenard          ###   ########.fr       */
+=======
+/*   Updated: 2020/02/06 18:12:41 by ppetitea         ###   ########.fr       */
+>>>>>>> render3d
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +47,10 @@ t_result	overwrite_camera_with_obj(t_camera *camera,
 /*
 ** TRIGGER
 */
+t_result	trigger_player_action_by_drag(t_character *player, t_mouse *mouse);
 t_result	trigger_character_action_by_drag(t_list_head *entities,
 				t_mouse *mouse);
+t_result	trigger_player_action_by_drop(t_character *player, t_mouse *mouse);
 t_result	trigger_character_action_by_drop(t_list_head *entities,
 				t_mouse *mouse);
 
@@ -61,7 +67,7 @@ t_result	translate_camera_forward(t_entity *entity);
 t_result	translate_camera_right(t_entity *entity);
 t_result	translate_camera_left(t_entity *entity);
 t_result	translate_camera_backward(t_entity *entity);
-t_result	translate_camera_horizon_up(t_entity *entity);
-t_result	translate_camera_horizon_down(t_entity *entity);
+t_result	translate_camera_horizon_up(t_voxel_map_3d_config *config);
+t_result	translate_camera_horizon_down(t_voxel_map_3d_config *config);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   character_trigger.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 00:10:40 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 18:40:13 by lbenard          ###   ########.fr       */
+/*   Updated: 2020/02/06 22:35:43 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,27 @@ t_bool		is_character_texture_collide(t_character *character,
 // }
 
 
+t_result	trigger_player_action_by_drag(t_character *player, t_mouse *mouse)
+{
+	t_scene		*scene;
+
+	if (player == NULL || mouse == NULL)
+		return (throw_error("trigger_c_action_by_drag", "NULL pointer"));
+	if (!(scene = game_singleton(NULL)->curr_scene))
+		return (throw_error("trigger_c_action_by_drag", "scene not found"));
+	if (player->super.status.is_draggable && player->super.type == CHARACTER)
+	{
+		if (is_character_texture_collide(player, mouse->pos,
+				&scene->map_render_config.drop_map))
+		{
+			trigger_actions(&player->super.status.drag_actions);
+			player->super.status.is_dragged = TRUE;
+			return (OK);
+		}
+	}
+	return (ERROR);
+}
+
 t_result	trigger_character_action_by_drag(t_list_head *entities,
 				t_mouse *mouse)
 {
@@ -117,6 +138,20 @@ t_result	trigger_character_action_by_drag(t_list_head *entities,
 				return (OK);
 			}
 		}
+	}
+	return (ERROR);
+}
+
+t_result	trigger_player_action_by_drop(t_character *player, t_mouse *mouse)
+{
+
+	if (player == NULL || mouse == NULL)
+		return (throw_error("trigger_c_action_by_drop", "NULL pointer"));
+	if (player->super.status.is_dragged)
+	{
+		player->super.status.is_dragged = FALSE;
+		trigger_actions(&player->super.status.drop_actions);
+		return (OK);
 	}
 	return (ERROR);
 }

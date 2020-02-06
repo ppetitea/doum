@@ -6,7 +6,11 @@
 /*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 23:06:52 by ppetitea          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/02/06 18:35:17 by lbenard          ###   ########.fr       */
+=======
+/*   Updated: 2020/02/06 20:08:48 by ppetitea         ###   ########.fr       */
+>>>>>>> render3d
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +80,8 @@ t_result		update_entity_texture(void *entity_resource,
 t_result		spawn_character(void *game_resource,
 					t_resource_type resource_type, t_dnon_object *args);
 t_result		entities_display_next(void *game_resource,
+					t_resource_type resource_type, t_dnon_object *args);
+t_result		orientate_characters_texture(void *game_resource,
 					t_resource_type resource_type, t_dnon_object *args);
 
 

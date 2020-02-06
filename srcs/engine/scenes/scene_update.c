@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 16:21:00 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/04 15:46:15 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 13:41:32 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #include "engine/map/map_update.h"
 #include "engine/map/map_init.h"
 #include "utils/error.h"
+
+#include <stdio.h>
 
 t_result	overwrite_characters_with_map_config(t_game *game)
 {
@@ -35,6 +37,8 @@ t_result	overwrite_characters_with_map_config(t_game *game)
 		overwrite_entities_by_type_with_obj(&game->curr_map->e_oriented,
 			character_obj);	
 		overwrite_entities_by_type_with_obj(&game->curr_map->e_oriented_storage,
+			character_obj);
+		overwrite_character_with_obj(game->curr_map->character_ref,
 			character_obj);
 	}
 	return (OK);

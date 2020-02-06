@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera_overwrite.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 08:24:48 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 18:13:45 by lbenard          ###   ########.fr       */
+/*   Updated: 2020/02/06 22:36:01 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ t_result	overwrite_camera_with_obj(t_camera *camera,
 		camera->plan_width = result_f;
 	if ((result_f = get_float_value_by_key(camera_obj, "height", -1)) != -1)
 		camera->height = result_f;
-	if ((result_f = get_float_value_by_key(camera_obj, "horizon", -1)) != -1)
-		camera->horizon = (size_t)result_f;
 	if ((vec2f_obj = get_child_list_object_by_key(camera_obj, "position")))
 		init_vec2f_with_obj(&camera->pos, vec2f_obj);
 	if ((vec2f_obj = get_child_list_object_by_key(camera_obj, "direction")))

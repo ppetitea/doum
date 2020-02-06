@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:41:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/05 14:15:14 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 13:20:16 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,41 @@ t_result	update_character_position_by_drag(t_character *character)
 	return (OK);
 }
 
+void	render_map2d_player(t_screen *screen,
+		t_voxel_map_2d_config *config, t_map *map)
+{
+	t_character			*player;
+	t_entity_texture	*t;
+	t_texture			*texture;
+	t_vec2f				scale;
+	t_vec2i				anchor;
+
+	if (screen == NULL || config == NULL || map == NULL)
+		return (throw_void("render_map3d_player", "NULL pointer"));
+	if (map->character_ref == NULL)
+		return (throw_void("render_map3d_player", "player not found"));
+	player = map->character_ref;
+	t = &player->super.texture;
+	if (t->normal->next != t->normal)
+	{
+		texture = (t_texture*)t->normal->next;
+		scale = compute_render_scale(&texture->size, &config->character_size);
+		player->super.texture.scale = scale;
+		if (player->super.status.is_dragged)
+			update_character_position_by_drag(player);
+		anchor.x = player->camera.pos.x * config->scale.x + config->anchor.x;
+		anchor.y = player->camera.pos.y * config->scale.y + config->anchor.y;
+		render_texture_with_scale_2d(screen, texture, anchor, scale);
+	}
+}
+
 void	voxel_map_render2d_character(t_screen *screen, t_voxel_map_2d_config *config,
 			t_character *character)
 {
 	t_texture	*curr;
 	t_pos2i		anchor;
 	t_vec2f		scale;
-	
+
 	if (character->super.texture.curr == NULL)
 		return ;
 	curr = character->super.texture.curr;
@@ -68,8 +96,9 @@ void	voxel_map_render2d_character(t_screen *screen, t_voxel_map_2d_config *confi
 	render_texture_with_scale_2d(screen, curr, anchor, scale);
 }
 
+
 void	map_render2d_oriented_entities(t_screen *screen,
-			t_voxel_map_2d_config *config, t_list_head *entities)
+			t_voxel_map_2d_config *config, t_list_head *entities, t_map *map)
 {
 	t_character	*character;
 	t_list_head	*pos;
@@ -85,4 +114,5 @@ void	map_render2d_oriented_entities(t_screen *screen,
 		character = (t_character*)pos;
 		voxel_map_render2d_character(screen, config, character);
 	}
+	render_map2d_player(screen, config, map);
 }

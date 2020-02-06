@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   game_actions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 19:22:44 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 19:44:58 by lbenard          ###   ########.fr       */
+/*   Updated: 2020/02/06 22:36:21 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "engine/entity/character_update.h"
 #include "engine/interface/events/events.h"
 #include "engine/entity/entity_update.h"
 #include "engine/scene/scene_render.h"

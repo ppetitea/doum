@@ -852,7 +852,7 @@
 		"color_map":{
 			"animation":"none",
 			"textures":{
-				"1":{"key":"map_pyramid_color", "filter":"circular_shadow","size":{"x":1080,"y":1080}}
+				"1":{"key":"map_pyramid_color","size":{"x":1080,"y":1080}}
 			}
 		},
 		"height_map":{
@@ -1153,7 +1153,7 @@
 						"offset":{"x":0,"y":0}
 					},
 					"listener":{
-						"display":1,
+						"display":0,
 						"selectable":1,
 						"select":{
 							"1":{
@@ -1203,7 +1203,7 @@
 								"action":"display_next",
 								"resource":"game",
 								"args":{
-									"keys":{"k":"spawner_cycloid","k":"spawner_overlord"},
+									"keys":{"k":"spawner_overlord","k":"spawner_cycloid"},
 									"offset":0,
 									"amount":1
 								}
@@ -1833,7 +1833,7 @@
 								"action":"display_next",
 								"resource":"game",
 								"args":{
-									"keys":{"k":"spawner_cycloid","k":"spawner_overlord"},
+									"keys":{"k":"spawner_overlord","k":"spawner_cycloid"},
 									"offset":0,
 									"amount":1
 								}
@@ -2063,6 +2063,48 @@
 				"args":{
 					"right":1
 				}
+			},
+			"key_binding":{
+				"define":"SDLK_w",
+				"SDL_Keycode":119,
+				"hold":1,
+				"action":"orientate_characters",
+				"resource":"game"
+			},
+			"key_binding":{
+				"define":"SDLK_a",
+				"SDL_Keycode":97,
+				"hold":1,
+				"action":"orientate_characters",
+				"resource":"game"
+			},
+			"key_binding":{
+				"define":"SDLK_s",
+				"SDL_Keycode":115,
+				"hold":1,
+				"action":"orientate_characters",
+				"resource":"game"
+			},
+			"key_binding":{
+				"define":"SDLK_d",
+				"SDL_Keycode":100,
+				"hold":1,
+				"action":"orientate_characters",
+				"resource":"game"
+			},
+			"key_binding":{
+				"define":"SDLK_RIGHT",
+				"SDL_Keycode":1073741903,
+				"hold":1,
+				"action":"orientate_characters",
+				"resource":"game"
+			},
+			"key_binding":{
+				"define":"SDLK_LEFT",
+				"SDL_Keycode":1073741904,
+				"hold":1,
+				"action":"orientate_characters",
+				"resource":"game"
 			},
 			"key_binding":{
 				"define":"SDLK_RIGHT",

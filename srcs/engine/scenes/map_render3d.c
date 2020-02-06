@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_render3d.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 14:41:00 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 20:05:38 by lbenard          ###   ########.fr       */
+/*   Updated: 2020/02/06 22:37:59 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,68 +65,6 @@ static	void	animate_texture(t_entity *entity)
 	}
 }
 
-// static t_bool	is_belong_to_camera_plan(t_screen *screen, t_map *map,
-// 					t_character *character, t_voxel_map_3d_config *config)
-// {
-// 	t_camera	*cam;
-// 	t_vec2f		dir;
-// 	float		angle;
-// 	float		distance;
-// 	t_vec2i		anchor;
-
-// 	cam = &map->character_ref->camera;
-// 	dir = vec2f_sub(character->camera.pos, cam->pos);
-// 	angle = atan2f(cam->dir.x, cam->dir.y) - atan2f(dir.x, dir.y) ;
-// 	if (angle > PI || angle < -PI)
-// 		angle = angle > 0 ? -(2 * PI - angle) : 2 * PI + angle;
-// 	// printf("angle %.2f\n", angle / PI * 180.0f);
-// 	// printf("player pos x %.2f y %.2f\n", cam->pos.x, cam->pos.y);
-// 	if (ft_absf(angle) <= cam->fov_half)
-// 	{
-// 		character->orientate(character);
-// 		distance = vec2f_magnitude(dir) * cos(angle);
-// 		character->super.texture.scale = screen->size.y / distance;
-// 		anchor.x = ((angle + cam->fov_half) / cam->fov) * cam->plan_width;
-// 		// anchor.y =	(cam->height - character->camera.height)
-// 		// 	* (1 / distance * 400 * config->height_scale) + cam->horizon;
-// 		anchor.y = (cam->dist_to_plan / distance) * cam->height;
-
-// 		character->super.texture.anchor = anchor;
-// 		return (TRUE);
-// 	}
-// 	(void)config;
-// 	return (FALSE);
-// }
-
-// void	render_map3d_oriented_entities(t_voxel_map_3d_config *config,
-// 			t_map *map, t_vec3f position, t_vec3f delta)
-// {
-// 	t_list_head			*pos;
-// 	t_list_head			*next;
-// 	t_entity			*entity;
-// 	t_entity_texture	*t;
-// 	t_screen			*screen;
-
-// 	screen = game_screen();
-// 	pos = &map->e_oriented;
-// 	next = pos->next;
-// 	while ((pos = next) != &map->e_oriented)
-// 	{
-// 		next = next->next;
-// 		entity = (t_entity*)pos;
-// 		t = &entity->texture;
-// 		if (is_belong_to_camera_plan(screen, map, (t_character*)entity, config))
-// 		{
-// 			if (t->animation != NONE && t->animation != STOP)
-// 				animate_texture(entity);
-// 			if (t->curr != NULL)
-// 				render_texture_with_scale(screen, t->curr, t->anchor, t->scale);
-// 		}
-// 	}
-// 	(void)config;
-// }
-
-
 t_bool	sprite_distance_rule(t_list_head *pos, t_list_head *next)
 {
 	t_character	*c1;
@@ -146,36 +84,8 @@ t_bool	sprite_distance_rule(t_list_head *pos, t_list_head *next)
 	d1.y = c1->camera.pos.y - player->camera.pos.y;
 	d2.x = c2->camera.pos.x - player->camera.pos.x;
 	d2.y = c2->camera.pos.y - player->camera.pos.y;
-	return (d1.x * d1.x + d1.y * d1.y < d2.x * d2.x + d2.y * d2.y);
+	return (d1.x * d1.x + d1.y * d1.y > d2.x * d2.x + d2.y * d2.y);
 }
-// void	render_map3d_oriented_entities(t_screen *screen,
-// 			t_voxel_map_3d_config *config, t_map *map)
-// {
-// 	t_list_head			*pos;
-// 	t_list_head			*next;
-// 	t_entity			*entity;
-// 	t_entity_texture	*t;
-
-// 	pos = &map->e_oriented;
-// 	next = pos->next;
-// 	while ((pos = next) != &map->e_oriented)
-// 	{
-// 		next = next->next;
-// 		entity = (t_entity*)pos;
-// 		t = &entity->texture;
-// 		if (is_belong_to_camera_plan(screen, map, (t_character*)entity, config))
-// 		{
-// 			if (t->animation != NONE && t->animation != STOP)
-// 				animate_texture(entity);
-// 			if (t->curr != NULL)
-// 				render_texture_with_scale(screen, t->curr, t->anchor, t->scale);
-// 		}
-// 	}
-// 	(void)config;
-// }
-
-
-
 
 void	draw_vertical_line(t_voxel_map_3d_config *config, t_screen *screen,
 		t_column column, uint32_t color)
@@ -210,118 +120,6 @@ t_result	init_columns_height(uint32_t *array, t_usize size)
 	return (OK);
 }
 
-void	limit_int(int *n, t_usize size)
-{
-	int	size_xy;
-
-	size_xy = (int)(size.x * size.y);
-	while (*n < 0)
-		*n += size_xy;
-	while (*n > size_xy)
-		*n -= size_xy;
-}
-
-int		compute_map_offset(t_vec3f pos, t_usize size)
-{
-	int	offset;
-
-	offset = (int)pos.x + (int)pos.y * size.x;
-	limit_int(&offset, size);
-	return (offset);
-}
-
-float	compute_column_height(t_voxel_map_3d_config *config, t_map *map,
-		int map_offset, t_vec3f pos)
-{
-	t_bgra		*pixel;
-	t_camera	*cam;
-	float		height;
-
-	pixel = (t_bgra*)&map->height_map.curr->pixels[map_offset];
-	cam = &map->character_ref->camera;
-	height = cam->height - pixel->bgra.b;
-	return (height * (1 / pos.z * 400 * config->height_scale) + cam->horizon);
-}
-
-void	update_position_and_delta_with_z(t_map *map,
-		t_vec3f *pos, t_vec3f *delta)
-{
-	t_camera	*cam;
-
-	cam = &map->character_ref->camera;
-	pos->x = cam->start.x * pos->z;
-	pos->y = cam->start.y * pos->z;
-	delta->x = cam->end.x * pos->z - pos->x;
-	delta->y = cam->end.y * pos->z - pos->y;
-	delta->x = delta->x / (float)map->color_map.curr->size.x;
-	delta->y = delta->y / (float)map->color_map.curr->size.x;
-	pos->x += cam->pos.x;
-	pos->y += cam->pos.y;
-}
-
-void	render_voxel_map_curr_character(t_voxel_map_3d_config *config,
-		t_screen *screen, t_character *character, t_vec3f pos)
-{
-	t_entity_texture *t;
-
-	if (screen == NULL || character == NULL)
-		return (throw_void("render_voxel_map_curr_character", "NULL pointer"));
-	t = &character->super.texture;
-	if (t->animation != NONE && t->animation != STOP)
-		animate_texture(&character->super);
-	if (t->curr != NULL)
-		render_texture_with_scale(screen, t->curr, t->anchor, t->scale.x);
-	(void)pos;
-	(void)config;
-}
-
-// map->e_oriented
-// t_list_head head;
-
-// character = (t_character*)head.next;
-
-
-// character->camera.pos
-// character->camera.height
-
-void	render_voxel_map3d_floor(t_screen *screen, t_voxel_map_3d_config *config,
-		t_map *map)
-{
-	uint32_t 	columns_height[screen->size.x];
-	t_vec3f		pos;
-	t_vec3f		delta;
-	t_column	column;
-	int			map_offset;
-
-	delta.z = 1;
-	pos.z = 1;
-	init_columns_height(columns_height, map->color_map.curr->size);
-	while (pos.z < config->render_dist)
-	{
-		update_position_and_delta_with_z(map, &pos, &delta);
-		column.x = -1;
-		if (pos.z > map->curr_character->target_dist && &map->curr_character->super.node != &map->e_oriented)
-		{
-			render_voxel_map_curr_character(config, screen,
-					map->curr_character, pos);
-			map->curr_character = (t_character*)map->curr_character->super.node.next;
-		}
-		while (++column.x < (int)map->color_map.curr->size.x)
-		{
-			map_offset = compute_map_offset(pos, map->color_map.curr->size);
-			column.y_bot = columns_height[column.x];
-			column.y_top = compute_column_height(config, map, map_offset, pos);
-			draw_vertical_line(config, screen, column,
-					map->color_map.curr->pixels[map_offset]);
-			if (column.y_top < (int)columns_height[column.x])
-				columns_height[column.x] = column.y_top;
-			pos = ft_vec3f(pos.x + delta.x, pos.y + delta.y, pos.z);
-		}
-		pos.z += delta.z;
-		delta.z += 0.005f;
-	}
-}
-
 void	render_map3d_player(t_screen *screen,
 		t_voxel_map_3d_config *config, t_map *map)
 {
@@ -336,6 +134,19 @@ void	render_map3d_player(t_screen *screen,
 		animate_texture(&map->character_ref->super);
 	render_texture_with_scale_2d(screen, texture->curr, texture->anchor,
 			texture->scale);
+}
+
+int		get_floor_height(t_map *map, t_character *character)
+{
+	t_texture	*hmap;
+	t_pos2i		pos;
+	t_bgra		color;
+
+	hmap = map->height_map.curr;
+	pos.x = (int)character->camera.pos.x;
+	pos.y = (int)character->camera.pos.y;
+	color.px = hmap->pixels[pos.x + pos.y * hmap->size.x];
+	return (color.bgra.b);
 }
 
 static t_bool	is_belong_to_camera_plan(t_voxel_map_3d_config *config,
@@ -353,14 +164,14 @@ static t_bool	is_belong_to_camera_plan(t_voxel_map_3d_config *config,
 		angle = angle > 0 ? -(2 * PI - angle) : 2 * PI + angle;
 	if (ft_absf(angle) <= cam->fov_half)
 	{
-		character->orientate(character);
-		character->target_dist = vec2f_magnitude(dir);
-		// printf("dist %.2f\n", character->target_dist);
+		character->target_dist = vec2f_magnitude(dir) * cos(angle);
 		character->super.texture.scale.x = screen->size.y / character->target_dist;
 		character->super.texture.scale.y = screen->size.y / character->target_dist;
 		anchor.x = ((angle + cam->fov_half) / cam->fov) * cam->plan_width;
-		anchor.y = cam->height - character->camera.height;
-		anchor.y = anchor.y * (1 / character->target_dist * 400 * config->height_scale) + cam->horizon;
+		anchor.y = config->horizon + (cam->dist_to_plan / character->target_dist)
+					* (cam->height - get_floor_height(map, character));
+		anchor.x *= config->scale.x;
+		anchor.y *= config->scale.y;
 		character->super.texture.anchor = anchor;
 		return (TRUE);
 	}
@@ -403,109 +214,127 @@ void	update_render_list_with_player_cam(t_voxel_map_3d_config *config,
 	}
 }
 
+void	render_character3d(t_screen *screen, t_voxel_map_3d_config *config,
+			t_character *character)
+{
+	t_entity_texture	*t;
+	t_vec2f				scale;
+	t_vec2i				anchor;
+
+	if (screen == NULL || character == NULL)
+		return (throw_void("render_voxel_map_curr_character", "NULL pointer"));
+	t = &character->super.texture;
+	if (t->animation != NONE && t->animation != STOP)
+		animate_texture(&character->super);
+	if (t->curr != NULL)
+	{
+		scale = compute_render_scale(&screen->size, &config->size);
+		scale.x *= t->scale.x;
+		scale.y *= t->scale.x;
+		anchor = vec2i_add(config->anchor, t->anchor);
+		render_texture_with_scale_2d(screen, t->curr, anchor, scale);
+	}
+	(void)config;
+}
+
+int		compute_map_offset(t_pos2f pos, t_usize size)
+{
+	int		offset;
+
+	while ((int)pos.x >= (int)size.x)
+		pos.x -= (float)size.x;
+	while ((int)pos.y >= (int)size.y)
+		pos.y -= (float)size.y;
+	while ((int)pos.x < 0)
+		pos.x += (float)size.x;
+	while ((int)pos.y < 0)
+		pos.y += (float)size.y;
+	offset = (int)pos.x + (int)pos.y * size.x;
+	return (offset);
+}
+
+void	render_floor3d_with_pre_render(t_screen *screen,
+		t_voxel_map_3d_config *config, t_map *map)
+{
+	t_render_slide	*slide;
+	int			slide_index;
+	t_camera	*cam;
+	t_pos2f		pos;
+	t_vec2f		delta;
+	t_column	column;
+	int			map_offset;
+
+	cam = &map->character_ref->camera;
+	slide_index = config->pre_render.index.min;
+	while (slide_index < config->pre_render.index.max)
+	{
+		slide = &config->pre_render.slides[slide_index];
+		delta = ft_vec2f(-cam->dir.y, cam->dir.x); 
+		pos = vec2f_scalar(cam->dir, slide->dist_to_slide);
+		pos = vec2f_sub(pos, vec2f_scalar(delta, slide->slide_half));
+		pos = vec2f_add(pos, cam->pos);
+		delta = vec2f_scalar(delta, slide->slide_delta);
+		column.x = -1;
+		while (++column.x < (int)screen->size.x)
+		{
+			map_offset = compute_map_offset(pos, map->color_map.curr->size);
+			column.y_bot = config->pre_render.columns_height[column.x];
+			column.y_top = config->horizon + (slide->dist_ratio)
+				* (cam->height - ((t_bgra)map->height_map.curr->pixels[map_offset]).bgra.b);
+			draw_vertical_line(config, screen, column,
+					map->color_map.curr->pixels[map_offset]);
+			if (column.y_top < (int)config->pre_render.columns_height[column.x])
+				config->pre_render.columns_height[column.x] = column.y_top;
+			pos = vec2f_add(pos, delta);
+		}
+		slide_index++;
+	}
+}
+
+void	update_slide_index(t_pre_render3d *pre_render, t_rangef *range)
+{
+	size_t		i;
+	
+	i = pre_render->index.max - 1;
+	while (pre_render->slides[i].dist_to_slide > range->min)
+		i--;
+	pre_render->index.min = i;
+}
+
+void	render_map3d(t_screen *screen, t_voxel_map_3d_config *config,
+		t_map *map)
+{
+	t_character	*character;
+	t_list_head	*pos;
+	t_rangef	range;
+
+	config->pre_render.index.max = config->pre_render.slides_amount;
+	range.max = config->horizon_dist;
+	pos = &map->e_oriented;
+	while ((pos = pos->prev) != &map->e_oriented)
+	{
+		character = (t_character*)pos;
+		range.min = character->target_dist;
+		update_slide_index(&config->pre_render, &range);
+		init_columns_height(config->pre_render.columns_height, map->height_map.curr->size);
+		render_floor3d_with_pre_render(screen, config, map);
+		render_character3d(screen, config, character);
+		// render_character_with_pre_render(config, map, character);
+		range.max = range.min;
+		config->pre_render.index.max = config->pre_render.index.min;
+	}
+	config->pre_render.index.min = 0;
+	init_columns_height(config->pre_render.columns_height, map->height_map.curr->size);
+	render_floor3d_with_pre_render(screen, config, map);
+}
+
 void	render_voxel_map3d(t_screen *screen, t_voxel_map_3d_config *config,
 		t_map *map)
 {
 	update_render_list_with_player_cam(config, map, screen);
 	bubble_sort_linked_list(&map->e_oriented, sprite_distance_rule);
 	map->curr_character = (t_character*)map->e_oriented.next;
-	render_voxel_map3d_floor(screen, config, map);
+	render_map3d(screen, config, map);
 	if (config->display_player)
 		render_map3d_player(screen, config, map);
 }
-
-
-// void	render_voxel_map3d(t_screen *screen, t_voxel_map_3d_config *config,
-// 			t_map *map)
-// {
-// 	uint32_t 	columns_height[screen->size.x];
-// 	t_pos2f		curr;
-// 	t_pos2f		delta;
-// 	t_camera	*cam;
-// 	float		delta_z;
-// 	float		z;
-// 	int			mapoffset;
-// 	int			mapheightperiod;
-// 	int			mapwidthperiod;
-
-// 	fill_uint32_array(columns_height, screen->size.x, (int)screen->size.y);
-// 	cam = &map->character_ref->camera;
-// 	mapwidthperiod = map->color_map.curr->size.x - 1;
-// 	mapheightperiod = map->color_map.curr->size.y - 1;
-
-// 	delta_z = 1;
-// 	z = 1;
-// 	while (z < config->render_dist)
-// 	{
-// 		curr = vec2f_scalar(cam->start, z);
-// 		delta = vec2f_sub(vec2f_scalar(cam->end, z), curr);
-// 		delta = vec2f_scalar(delta, 1.0f / (float)map->color_map.curr->size.x);
-// 		curr = vec2f_add(curr, cam->pos);
-
-// 		float invz = 1 / z * 240 * config->height_scale;
-// 		for(int i=0; i < (int)screen->size.x; i++)
-// 		{
-// 			mapoffset = (((int)floorf(curr.y) & (int)mapwidthperiod) << 10)
-// 						+ (((int)floorf(curr.x)) & ((int)mapheightperiod));
-// 			mapoffset = (int)curr.x + (int)curr.y * map->color_map.curr->size.x;
-
-
-
-
-// 			float heightonscreen = (cam->height - ((t_bgra)map->height_map.curr->pixels[mapoffset]).bgra.b) * invz + cam->horizon;
-// 			draw_vertical_line(screen, i, heightonscreen, columns_height[i], map->color_map.curr->pixels[mapoffset]);
-// 			if (heightonscreen < columns_height[i])
-// 				columns_height[i] = heightonscreen;
-// 			curr.x += delta.x;
-// 			curr.y += delta.y;
-// 		}
-// 		z += delta_z;
-// 		delta_z += 0.005f;
-// 	}
-// }
-
-// void	render_voxel_map3d(t_screen *screen, t_voxel_map_3d_config *config,
-// 			t_map *map)
-// {
-// 	uint32_t 	hiddeny[screen->size.x];
-// 	t_camera	*cam;
-
-// 	if (screen == NULL || config == NULL || map == NULL)
-// 		return (throw_void("render_voxel_map3d", "NULL pointer provided"));
-// 	cam = &map->character_ref->camera;
-// 	int mapwidthperiod = screen->size.x - 1;
-// 	int mapheightperiod = screen->size.y - 1;
-
-// 	if (map->character_ref == NULL)
-// 		return (throw_void("render_voxel_map3d", "character_ref not found"));
-
-// 	for(int i = 0; i < (int)screen->size.x; i++)
-// 		hiddeny[i] = (int)screen->size.y;
-
-// 	float deltaz = 1;
-
-// 	for(float z=1; z < config->render_dist; z += deltaz)
-// 	{
-// 		float plx =  -cam->dir.x * z - cam->dir.y * z;
-// 		float ply =   cam->dir.y * z - cam->dir.x * z;
-// 		float prx =   cam->dir.x * z - cam->dir.y * z;
-// 		float pry =  -cam->dir.y * z - cam->dir.x * z;
-
-// 		float dx = (prx - plx) / screen->size.x;
-// 		float dy = (pry - ply) / screen->size.x;
-// 		plx += cam->pos.x;
-// 		ply += cam->pos.y;
-// 		float invz = 1 / z * 240 * config->height_scale;
-// 		for(int i=0; i < (int)screen->size.x; i++)
-// 		{
-// 			int mapoffset = (((int)floorf(ply) & (int)mapwidthperiod) << 10) + (((int)floorf(plx)) & ((int)mapheightperiod));
-// 			float heightonscreen = (cam->height - ((t_bgra)map->height_map_textures.curr->pixels[mapoffset]).bgra.b) * invz + cam->horizon;
-// 			draw_vertical_line(screen, i, heightonscreen, hiddeny[i], map->color_map_textures.curr->pixels[mapoffset]);
-// 			if (heightonscreen < hiddeny[i])
-// 				hiddeny[i] = heightonscreen;
-// 			plx += dx;
-// 			ply += dy;
-// 		}
-// 		deltaz += 0.005;
-// 	}
-// }

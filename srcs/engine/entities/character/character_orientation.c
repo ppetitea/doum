@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   character_orientation.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:13:37 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 19:46:24 by lbenard          ###   ########.fr       */
+/*   Updated: 2020/02/06 22:35:40 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "engine/entity/character_init.h"
+#include "engine/component/action.h"
 #include "engine/game/game_init.h"
 #include "utils/error.h"
 #include "maths/maths.h"
@@ -75,5 +76,31 @@ void	orientate_texture(t_character *c)
 	c->super.texture.curr_head = texture;
 	c->super.texture.prev = (t_texture*)texture->next;
 	c->super.texture.prev_head = texture;
-	c->super.texture.animation = STOP;
+	if (c->super.texture.animation != INFINITE && c->super.texture.animation != FINAL)
+		c->super.texture.animation = STOP;
+}
+
+
+t_result	orientate_characters_texture(void *game_resource,
+				t_resource_type resource_type, t_dnon_object *args)
+{
+	t_game		*game;
+	t_character	*character;
+	t_list_head	*pos;
+
+	if (game_resource == NULL)
+		return (throw_error("orientate_character", "NULL pointer provided"));
+	if (resource_type != R_GAME)
+		return (throw_error("orientate_character", "resource must be game"));
+	game = (t_game*)game_resource;
+	if (game->curr_map == NULL)
+		return (throw_error("orientate_character", "map not found"));
+	pos = &game->curr_map->e_oriented;
+	while ((pos = pos->next) != &game->curr_map->e_oriented)
+	{
+		character = (t_character*)pos;
+		orientate_texture(character);
+	}
+	(void)args;
+	return (OK);
 }

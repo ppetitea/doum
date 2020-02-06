@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 01:11:36 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 19:43:04 by lbenard          ###   ########.fr       */
+/*   Updated: 2020/02/06 22:35:55 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ t_result	init_camera(t_camera *self)
 	if (self == NULL)
 		return (throw_error("init_camera", "NULL pointer provided"));
 	fov = 90.0f / 180.0f * PI;
-	plan_width = 640.0f;
-	self->horizon = 120;
+	plan_width = 1080.0f;
 	self->fov = fov;
 	self->fov_half = self->fov / 2.0f;
 	self->dir = ft_vec2f(0, 1);

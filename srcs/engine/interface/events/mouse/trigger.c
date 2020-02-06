@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 01:08:30 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/05 14:01:31 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 13:32:00 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ t_result	trigger_entities_by_drag(t_game *game)
 		if (trigger_character_action_by_drag(&game->curr_map->e_oriented_storage,
 			mouse))
 			return (OK);
+		if (trigger_player_action_by_drag(game->curr_map->character_ref, mouse))
+			return (OK);
 	}
 	if (game->curr_scene != NULL)
 		if (trigger_entity_action_by_drag(&game->curr_scene->entities, mouse))
@@ -94,6 +96,8 @@ t_result	trigger_entities_by_drop(t_game *game)
 		if (trigger_character_action_by_drop(&game->curr_map->e_oriented, mouse))
 			return (OK);
 		if (trigger_character_action_by_drop(&game->curr_map->e_oriented_storage, mouse))
+			return (OK);
+		if (trigger_player_action_by_drop(game->curr_map->character_ref, mouse))
 			return (OK);
 	}
 	if (game->curr_scene != NULL)

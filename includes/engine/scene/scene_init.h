@@ -6,7 +6,11 @@
 /*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 16:27:20 by ppetitea          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/02/06 19:24:33 by lbenard          ###   ########.fr       */
+=======
+/*   Updated: 2020/02/06 18:44:19 by ppetitea         ###   ########.fr       */
+>>>>>>> render3d
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +50,30 @@ typedef struct			s_voxel_map_2d_config
 	t_usize				character_size;
 }						t_voxel_map_2d_config;
 
+typedef struct		s_render_slide
+{
+	float	dist_to_slide;
+	float	dist_ratio;
+	float	slide_width;
+	float	slide_half;
+	float	slide_delta;
+}					t_render_slide;
+
+typedef struct		s_rangei
+{
+	int	min;
+	int	max;
+}					t_rangei;
+
+typedef struct		s_pre_render3d
+{
+	t_render_slide	*slides;
+	size_t			slides_amount;
+	t_rangei		index;
+	uint32_t		*columns_height;
+	t_vec2f			delta_dir;
+}					t_pre_render3d;
+
 typedef struct			s_voxel_map_3d_config
 {
 	t_bool				display;
@@ -54,13 +82,14 @@ typedef struct			s_voxel_map_3d_config
 	t_vec2i				offset;
 	t_usize				size;
 	t_vec2f				scale;
-	int					height_scale;
-	size_t				render_dist;
 	t_bool				display_e_static;
 	t_bool				display_e_static_storage;
 	t_bool				display_e_oriented;
 	t_bool				display_e_oriented_storage;
 	t_bool				display_player;
+	size_t				horizon;
+	float				horizon_dist;
+	t_pre_render3d		pre_render;
 }						t_voxel_map_3d_config;
 
 typedef struct			s_voxel_map_config

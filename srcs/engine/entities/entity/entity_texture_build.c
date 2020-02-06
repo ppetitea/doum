@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entity_texture_build.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:30:43 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 20:21:21 by lbenard          ###   ########.fr       */
+/*   Updated: 2020/02/06 22:36:14 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_result	build_entity_animation_type_with_obj(t_entity_texture *e_texture,
 		e_texture->animation = FINAL;
 	else if (strcmp_obj("animation", "ephemeral", e_texture_obj))
 		e_texture->animation = EPHEMERAL;
+	else if (strcmp_obj("animation", "infinite", e_texture_obj))
+		e_texture->animation = INFINITE;
 	else if (strcmp_obj("animation", "none", e_texture_obj))
 		e_texture->animation = NONE;
 	else
