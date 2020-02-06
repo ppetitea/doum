@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 14:41:00 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 02:52:48 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 13:45:31 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,105 +117,6 @@ t_result	init_columns_height(uint32_t *array, t_usize size)
 	return (OK);
 }
 
-// int	limit_int(int n, t_usize size)
-// {
-// 	int	size_xy;
-
-// 	size_xy = (int)(size.x * size.y);
-// 	while (n < 0)
-// 		n += size_xy;
-// 	while (n > size_xy)
-// 		n -= size_xy;
-// 	return (n);
-// }
-
-// float	compute_column_height(t_voxel_map_3d_config *config, t_map *map,
-// 		int map_offset, t_pos3f pos)
-// {
-// 	t_bgra		*pixel;
-// 	t_camera	*cam;
-// 	float		height;
-
-// 	pixel = (t_bgra*)&map->height_map.curr->pixels[map_offset];
-// 	cam = &map->character_ref->camera;
-// 	height = cam->height - pixel->bgra.b;
-// 	return (height * (1 / pos.z * 400 * config->height_scale) + cam->horizon);
-// }
-
-// void	update_position_and_delta_with_z(t_map *map,
-// 		t_pos3f *pos, t_vec3f *delta)
-// {
-// 	t_camera	*cam;
-
-// 	cam = &map->character_ref->camera;
-// 	pos->x = cam->start.x * pos->z;
-// 	pos->y = cam->start.y * pos->z;
-// 	delta->x = cam->end.x * pos->z - pos->x;
-// 	delta->y = cam->end.y * pos->z - pos->y;
-// 	delta->x = delta->x / (float)map->color_map.curr->size.x;
-// 	delta->y = delta->y / (float)map->color_map.curr->size.x;
-// 	pos->x += cam->pos.x;
-// 	pos->y += cam->pos.y;
-// }
-
-// void	render_voxel_map_curr_character(t_voxel_map_3d_config *config,
-// 		t_screen *screen, t_character *character, t_pos3f pos)
-// {
-// 	t_entity_texture *t;
-
-// 	if (screen == NULL || character == NULL)
-// 		return (throw_void("render_voxel_map_curr_character", "NULL pointer"));
-// 	t = &character->super.texture;
-// 	if (t->animation != NONE && t->animation != STOP)
-// 		animate_texture(&character->super);
-// 	if (t->curr != NULL)
-// 		render_texture_with_scale(screen, t->curr, t->anchor, t->scale.x);
-// 	(void)pos;
-// 	(void)config;
-// }
-
-// map->e_oriented
-// t_list_head head;
-
-// character = (t_character*)head.next;
-
-
-// character->camera.pos
-// character->camera.height
-
-// void	render_voxel_map3d_floor(t_screen *screen, t_voxel_map_3d_config *config,
-// 		t_map *map)
-// {
-// 	uint32_t 	columns_height[screen->size.x];
-// 	t_pos3f		pos;
-// 	t_vec3f		delta;
-// 	t_column	column;
-// 	int			map_offset;
-
-// 	delta.z = 1;
-// 	pos.z = 1;
-// 	init_columns_height(columns_height, map->color_map.curr->size);
-// 	while (pos.z < config->render_dist)
-// 	{
-// 		update_position_and_delta_with_z(map, &pos, &delta);
-// 		column.x = -1;
-// 		while (++column.x < (int)map->color_map.curr->size.x)
-// 		{
-
-// 			map_offset = compute_map_offset(pos, map->color_map.curr->size);
-// 			column.y_bot = columns_height[column.x];
-// 			column.y_top = compute_column_height(config, map, map_offset, pos);
-// 			draw_vertical_line(config, screen, column,
-// 					map->color_map.curr->pixels[map_offset]);
-// 			if (column.y_top < (int)columns_height[column.x])
-// 				columns_height[column.x] = column.y_top;
-// 			pos = ft_pos3f(pos.x + delta.x, pos.y + delta.y, pos.z);
-// 		}
-// 		pos.z += delta.z;
-// 		delta.z += 0.005f;
-// 	}
-// }
-
 void	render_map3d_player(t_screen *screen,
 		t_voxel_map_3d_config *config, t_map *map)
 {
@@ -314,7 +215,9 @@ void	update_render_list_with_player_cam(t_voxel_map_3d_config *config,
 void	render_character3d(t_screen *screen, t_voxel_map_3d_config *config,
 			t_character *character)
 {
-	t_entity_texture *t;
+	t_entity_texture	*t;
+	t_vec2f				scale;
+	t_vec2i				anchor;
 
 	if (screen == NULL || character == NULL)
 		return (throw_void("render_voxel_map_curr_character", "NULL pointer"));
@@ -322,7 +225,13 @@ void	render_character3d(t_screen *screen, t_voxel_map_3d_config *config,
 	if (t->animation != NONE && t->animation != STOP)
 		animate_texture(&character->super);
 	if (t->curr != NULL)
-		render_texture_with_scale(screen, t->curr, t->anchor, t->scale.x);
+	{
+		scale = compute_render_scale(&screen->size, &config->size);
+		scale.x *= t->scale.x;
+		scale.y *= t->scale.x;
+		anchor = vec2i_add(config->anchor, t->anchor);
+		render_texture_with_scale_2d(screen, t->curr, anchor, scale);
+	}
 	(void)config;
 }
 
@@ -330,9 +239,9 @@ int		compute_map_offset(t_pos2f pos, t_usize size)
 {
 	int		offset;
 
-	while ((int)pos.x > (int)size.x)
+	while ((int)pos.x >= (int)size.x)
 		pos.x -= (float)size.x;
-	while ((int)pos.y > (int)size.y)
+	while ((int)pos.y >= (int)size.y)
 		pos.y -= (float)size.y;
 	while ((int)pos.x < 0)
 		pos.x += (float)size.x;

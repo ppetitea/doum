@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:41:38 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/04 13:31:41 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 13:07:24 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,15 @@ void	render_voxel_map2d(t_screen *screen, t_texture* texture,
 	render_texture_with_scale_2d(screen, texture, config->anchor,
 		config->scale);
 	if (config->display_e_oriented)
-		map_render2d_oriented_entities(screen, config, &map->e_oriented);
+		map_render2d_oriented_entities(screen, config, &map->e_oriented, map);
 	if (config->display_e_oriented_storage)
 		map_render2d_oriented_entities(screen, config,
-			&map->e_oriented_storage);
+			&map->e_oriented_storage, map);
 	if (config->display_e_static)
-		map_render2d_oriented_entities(screen, config, &map->e_static);
+		map_render2d_oriented_entities(screen, config, &map->e_static, map);
 	if (config->display_e_static_storage)
-		map_render2d_oriented_entities(screen, config, &map->e_static_storage);
+		map_render2d_oriented_entities(screen, config,
+		&map->e_static_storage, map);
 	(void)map;
 	(void)texture;
 	(void)config;

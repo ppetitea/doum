@@ -1153,7 +1153,7 @@
 						"offset":{"x":0,"y":0}
 					},
 					"listener":{
-						"display":1,
+						"display":0,
 						"selectable":1,
 						"select":{
 							"1":{
@@ -1203,7 +1203,7 @@
 								"action":"display_next",
 								"resource":"game",
 								"args":{
-									"keys":{"k":"spawner_cycloid","k":"spawner_overlord"},
+									"keys":{"k":"spawner_overlord","k":"spawner_cycloid"},
 									"offset":0,
 									"amount":1
 								}
@@ -1833,7 +1833,7 @@
 								"action":"display_next",
 								"resource":"game",
 								"args":{
-									"keys":{"k":"spawner_cycloid","k":"spawner_overlord"},
+									"keys":{"k":"spawner_overlord","k":"spawner_cycloid"},
 									"offset":0,
 									"amount":1
 								}

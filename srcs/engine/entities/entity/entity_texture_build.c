@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:30:43 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/04 22:38:30 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 03:55:48 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_result	build_entity_animation_type_with_obj(t_entity_texture *e_texture,
 		e_texture->animation = FINAL;
 	else if (strcmp_obj("animation", "ephemeral", e_texture_obj))
 		e_texture->animation = EPHEMERAL;
+	else if (strcmp_obj("animation", "infinite", e_texture_obj))
+		e_texture->animation = INFINITE;
 	else if (strcmp_obj("animation", "none", e_texture_obj))
 		e_texture->animation = NONE;
 	else

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:13:37 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/02 05:01:16 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 03:54:50 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ void	orientate_texture(t_character *c)
 	c->super.texture.curr_head = texture;
 	c->super.texture.prev = (t_texture*)texture->next;
 	c->super.texture.prev_head = texture;
-	c->super.texture.animation = STOP;
+	if (c->super.texture.animation != INFINITE && c->super.texture.animation != FINAL)
+		c->super.texture.animation = STOP;
 }

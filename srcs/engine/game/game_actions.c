@@ -6,10 +6,11 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 19:22:44 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/04 15:49:16 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 13:22:18 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "engine/entity/character_update.h"
 #include "engine/interface/events/events.h"
 #include "engine/entity/entity_update.h"
 #include "engine/scene/scene_render.h"

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:46:49 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/05 13:48:59 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 13:35:23 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ t_result	overwrite_camera_with_obj(t_camera *camera,
 /*
 ** TRIGGER
 */
+t_result	trigger_player_action_by_drag(t_character *player, t_mouse *mouse);
 t_result	trigger_character_action_by_drag(t_list_head *entities,
 				t_mouse *mouse);
+t_result	trigger_player_action_by_drop(t_character *player, t_mouse *mouse);
 t_result	trigger_character_action_by_drop(t_list_head *entities,
 				t_mouse *mouse);
 
