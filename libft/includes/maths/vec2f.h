@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec2f.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 17:19:45 by lbenard           #+#    #+#             */
-/*   Updated: 2020/02/06 19:38:29 by lbenard          ###   ########.fr       */
+/*   Updated: 2020/02/06 22:43:48 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef struct	s_vec2f
 	float	x;
 	float	y;
 }				t_vec2f;
+
+typedef t_vec2f t_pos2f;
 
 /*
 ** Constructors
