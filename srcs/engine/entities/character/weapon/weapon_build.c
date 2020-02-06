@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   weapon_build.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:39:12 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/26 04:29:03 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 20:22:23 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "build.h"
+#include "build.h"
+#include "utils/error.h"
 
 static t_result	add_weapon_to_character_with_obj(t_character *character,
 					t_weapon *weapon, t_dnon_object *weapon_obj)

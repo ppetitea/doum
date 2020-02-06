@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_filter.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 23:41:55 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 04:26:17 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:17:20 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define TEXTURE_FILTER_H
 
 # include "engine/resource/image/texture_init.h"
-# include "libft.h"
 
 /*
 **	Un filtre peut etre applique pour creer une nouvelle texture

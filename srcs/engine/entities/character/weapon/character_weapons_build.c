@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   character_weapons_build.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:38:36 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/26 04:29:05 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 20:22:13 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "build.h"
+#include "build.h"
+#include "utils/error.h"
 
 t_result	build_character_weapons_with_obj(t_game_resources *resources,
 				t_character *character, t_dnon_object *weapons_obj)

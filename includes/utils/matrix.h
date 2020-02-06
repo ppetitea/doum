@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 05:43:29 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/17 16:50:04 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:42:48 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef		MATRIX_H
-# define	MATRIX_H
+#ifndef MATRIX_H
+# define MATRIX_H
 
-#include	"libft.h"
+#include "maths/vec2f.h"
 
-typedef struct	s_matrix {
+typedef struct	s_matrix
+{
 	float x[3];
 	float y[3];
 	float z[3];
@@ -25,6 +26,6 @@ t_matrix	scale(float k);
 t_matrix	translate (float x, float y);
 t_matrix	rotate(float alpha);
 t_matrix	mult(t_matrix m1, t_matrix m2);
-t_pos2f		to_vtx(t_matrix m, t_vec2f vtx);
+t_vec2f		to_vtx(t_matrix m, t_vec2f vtx);
 
 #endif

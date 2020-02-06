@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   listener.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 23:48:12 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/05 16:28:48 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 18:35:58 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # ifndef LISTENER_H
 # define LISTENER_H
 
-# include "libft.h"
+# include "containers/list.h"
 
 typedef struct	s_listener
 {

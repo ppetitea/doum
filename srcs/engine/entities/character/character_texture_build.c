@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   character_texture_build.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:43:30 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/26 03:12:33 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 20:21:53 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "build.h"
+#include "build.h"
+#include "utils/error.h"
 
 t_result	build_point_of_view_textures(t_list_head *images,
 				t_pov_textures *pov, t_dnon_object *pov_textures_obj)

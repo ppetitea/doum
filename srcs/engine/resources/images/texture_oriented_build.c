@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   texture_oriented_build.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:52:35 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/25 00:55:38 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 20:20:20 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "build.h"
+#include "utils/error.h"
 
 t_result	build_oriented_textures(t_list_head *images,
 				t_oriented_textures *textures, t_dnon_object *o_textures_obj)

@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   character_build.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 23:18:25 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/26 04:29:07 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 20:21:29 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/entity/character_init.h"
 #include "engine/game/game_init.h"
 #include "build.h"
+#include "utils/error.h"
 
 t_result	memalloc_character_textures(t_character *self)
 {

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   entity_status_build.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:33:01 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/01 00:29:04 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 20:21:08 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "build.h"
+#include "utils/error.h"
 
 t_result	build_entity_status_with_obj(t_listener *status,
 				t_dnon_object *status_obj)

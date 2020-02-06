@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera_overwrite.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 08:24:48 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 18:38:26 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 18:13:45 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_result	overwrite_camera_with_obj(t_camera *camera,
 	
 	if (camera == NULL || camera_obj == NULL)
 		return (throw_error("overwrite_camera", "NULL pointer provided"));
-	
 	if ((result_f = get_float_value_by_key(camera_obj, "fov", -1)) != -1)
 		camera->fov = result_f;
 	if ((result_f = get_float_value_by_key(camera_obj, "plan_width", -1)) != -1)

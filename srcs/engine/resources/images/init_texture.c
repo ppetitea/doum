@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 23:55:41 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/25 01:17:01 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 18:53:08 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "engine/resource/image/texture_init.h"
 #include "utils/error.h"
 #include "libft.h"
@@ -18,7 +19,7 @@ t_result	init_texture(t_texture *self, t_usize size)
 {
 	if (self == NULL)
 		return (throw_error("init_texture", "NULL pointer provided"));
-	if (!(self->pixels = (uint32_t*)malloc(sizeof(uint32_t)
+	if (!(self->pixels = (t_u32*)malloc(sizeof(t_u32)
 		* size.x * size.y)))
 		return (throw_error("init_texture", "pixels array -> malloc failed"));
 	init_list_head(&self->node);
@@ -49,7 +50,7 @@ t_texture		*init_new_texture(t_usize size)
 
 	if (!(self = (t_texture*)malloc(sizeof(t_texture))))
 		return (throw_null("new_texture", "texture -> malloc failed"));
-	if (!(self->pixels = (uint32_t*)malloc(sizeof(uint32_t)
+	if (!(self->pixels = (t_u32*)malloc(sizeof(t_u32)
 		* size.x * size.y)))
 		return (throw_null("new_texture", "pixels array -> malloc failed"));
 	init_list_head(&self->node);

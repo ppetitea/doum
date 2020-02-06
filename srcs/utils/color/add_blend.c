@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   add_blend.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 02:30:17 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/14 23:04:52 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:26:24 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"utils/color.h"
 
-u_int32_t	blend_add_average(t_rgba current, t_rgba old)
+t_u32	blend_add_average(t_rgba current, t_rgba old)
 {
 	t_rgba	new;
 
@@ -23,7 +23,7 @@ u_int32_t	blend_add_average(t_rgba current, t_rgba old)
 	return (new.px);
 }
 
-u_int32_t	blend_add(t_rgba curr, t_rgba old)
+t_u32	blend_add(t_rgba curr, t_rgba old)
 {
 	t_rgba	new;
 	float	curr_alpha;

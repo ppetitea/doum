@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 12:00:05 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/03 13:47:13 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:44:26 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-# include "libft.h"
+# include "containers/list.h"
+# include "maths/vec2f.h"
+# include "maths/vec2i.h"
+# include "sizes/usize.h"
 
 typedef	enum	e_dnon_value_type
 {

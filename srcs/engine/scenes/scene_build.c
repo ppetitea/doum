@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_build.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 20:36:14 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/01 00:30:14 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 20:06:48 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "engine/game/game_init.h"
 #include "utils/parser.h"
 #include "utils/error.h"
+#include "ft/io.h"
 #include "build.h"
 
 t_result	build_scene_entity_with_obj(t_game_resources *resources, 

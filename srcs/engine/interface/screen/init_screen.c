@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_screen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 23:09:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/02 05:29:08 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 18:51:07 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_result	init_screen(t_screen *self, t_usize window_size)
 		return (throw_error("initialize_screen", "NULL pointer provided"));
 	self->size = window_size;
 	self->pixels = NULL;
-	if (!(self->pixels = (uint32_t*)malloc(sizeof(uint32_t)
+	if (!(self->pixels = (t_u32*)malloc(sizeof(t_u32)
 		* window_size.x * window_size.y)))
 		return (throw_error("initialize_screen", "malloc failed"));
 	return (OK);

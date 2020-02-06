@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entity_actions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 19:22:44 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/04 16:54:36 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:45:33 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include "engine/component/action.h"
 #include "engine/game/game_init.h"
 #include "utils/error.h"
-
-#include <stdio.h>
+#include "ft/str.h"
+#include "ft/io.h"
 
 t_result		hide_scene_entity(t_game *game, char *name)
 {

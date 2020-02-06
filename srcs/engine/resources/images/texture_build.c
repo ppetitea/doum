@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   texture_build.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:47:57 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 04:38:42 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 20:19:40 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "build.h"
+#include "engine/resource/image/texture_filter.h"
+#include "utils/error.h"
 
 static t_bitmap_texture	*get_bmp_by_texture_obj(t_list_head *images,
 							t_dnon_object *texture_obj)

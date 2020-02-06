@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   character_type_build.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 01:00:45 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/25 01:06:15 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 20:22:03 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "build.h"
+#include "utils/error.h"
 
 void	build_character_type_with_obj(t_character *character,
 			t_dnon_object *char_obj)

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   entity_texture_build.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:30:43 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/04 22:38:30 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 20:21:21 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "build.h"
+#include "utils/error.h"
 
 t_result	build_entity_animation_type_with_obj(t_entity_texture *e_texture,
 				t_dnon_object *e_texture_obj)

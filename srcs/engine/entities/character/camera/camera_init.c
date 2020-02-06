@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   camera_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 01:11:36 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/30 17:35:36 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:43:04 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "engine/entity/character_init.h"
 #include "utils/error.h"
 #include "utils/matrix.h"
-#include "libft.h"
-#include <math.h>
+#include "maths/maths.h"
+
 
 t_result	init_camera(t_camera *self)
 {

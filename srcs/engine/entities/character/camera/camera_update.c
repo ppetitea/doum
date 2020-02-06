@@ -3,23 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   camera_update.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 01:11:36 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/31 01:55:51 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:47:27 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/entity/character_update.h"
-#include "engine/entity/character_init.h"
 #include "engine/component/action.h"
 #include "engine/game/game_init.h"
 #include "utils/matrix.h"
 #include "utils/error.h"
-#include "libft.h"
-#include <math.h>
-
-# include <stdio.h>
+#include "maths/maths.h"
 
 t_result	rotate_camera_left(t_entity *entity)
 {

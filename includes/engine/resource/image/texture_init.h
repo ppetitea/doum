@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   texture_init.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 23:57:01 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 04:16:23 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:22:25 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TEXTURE_INIT_H
 # define TEXTURE_INIT_H
 
-# include "libft.h"
+# include "containers/list.h"
+# include "maths/vec2f.h"
 # include "engine/resource/image/bitmap_parser.h"
-# include "engine/interface/screen_init.h"
 
 /*
 **	Chaque texture est un noeud dans une liste
@@ -32,12 +32,12 @@ typedef struct			s_texture_box
 
 typedef struct			s_texture
 {
-	t_list_head		node;
-	char			*name;
-	t_vec2i			offset;
-	t_usize			size;
-	uint32_t		*pixels;
-	uint32_t		delay_ms;
+	t_list_head	node;
+	char		*name;
+	t_vec2i		offset;
+	t_usize		size;
+	t_u32		*pixels;
+	uint32_t	delay_ms;
 }						t_texture;
 
 typedef struct	s_texture_args

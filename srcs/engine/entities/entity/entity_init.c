@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   entity_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:44:34 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/04 22:34:26 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 18:53:29 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "engine/entity/entity_init.h"
 #include "engine/entity/entity_update.h"
 #include "utils/error.h"

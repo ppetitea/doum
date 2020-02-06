@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   strcmp_obj.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 01:01:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/25 02:11:52 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:44:44 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "utils/parser.h"
 #include "utils/error.h"
-#include <stdlib.h>
+#include "ft/str.h"
 
 t_bool		strcmp_obj(char *key, char *value, t_dnon_object *obj)
 {

@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   fill_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 23:55:41 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/03 00:59:44 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:15:26 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/resource/image/texture_filter.h"
 #include "engine/resource/image/texture_init.h"
 #include "utils/error.h"
+#include "utils/color.h"
 #include "libft.h"
 
 static void		fill_texture_pixel(t_texture *self, t_bitmap_texture *bmp,

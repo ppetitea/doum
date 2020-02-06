@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+         #
+#    By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/05 18:02:14 by lbenard           #+#    #+#              #
-#    Updated: 2020/01/30 23:44:54 by ppetitea         ###   ########.fr        #
+#    Updated: 2020/02/06 19:38:47 by lbenard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ SRCS_LIST		=	containers/list/init_list_head.c		\
 					maths/vec2f/vec2f_scalar.c				\
 					maths/vec2f/vec2f_magnitude.c			\
 					maths/vec2f/vec2f_normalize.c			\
-					maths/vec2f/vec2f_is_equal.c			\
+					maths/vec2f/vec2f_equals.c				\
 					maths/vec2f/vec2f_opposite.c			\
 					maths/vec3f/ft_vec3f.c					\
 					maths/vec3f/vec3f_dot.c					\

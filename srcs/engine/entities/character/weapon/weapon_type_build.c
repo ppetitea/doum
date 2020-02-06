@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   weapon_type_build.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:59:17 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/25 00:59:32 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 20:22:43 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "build.h"
+#include "utils/error.h"
 
 t_result	build_weapon_type_with_obj(t_weapon *weapon,
 				t_dnon_object *weapon_obj)

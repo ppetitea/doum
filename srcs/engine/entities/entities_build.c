@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   entities_build.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 23:16:03 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/26 04:29:10 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 20:20:48 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/game/game_init.h"
 #include "build.h"
+#include "utils/error.h"
 
 static t_result	build_game_entity_by_type(t_game_resources *resources,
 				t_dnon_object *entity_obj)

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   texture_list_build.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:50:37 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/26 05:03:20 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 20:19:49 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "build.h"
+#include "utils/error.h"
 
 t_result	build_textures_with_obj(t_list_head *images, t_list_head *list,
 				t_dnon_object *textures_obj)

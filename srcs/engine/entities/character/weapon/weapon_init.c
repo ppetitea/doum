@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   weapon_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 01:16:28 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/26 03:36:40 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 18:53:51 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 #include "utils/error.h"
 #include "engine/entity/character_init.h"

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 23:23:33 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/26 00:09:02 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:27:23 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_H
 # define ERROR_H
 
-# include "libft.h"
+# include "types.h"
 
 /*
 **	Gestion des erreurs

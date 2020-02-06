@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   scene_init.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 16:27:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/04 21:27:03 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:24:33 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCENE_INIT_H
 # define SCENE_INIT_H
 
-# include "libft.h"
-# include "engine/interface/screen_init.h"
-# include "engine/resource/image/texture_filter.h"
 # include "engine/map/map_init.h"
 # include "utils/parser.h"
 

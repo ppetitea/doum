@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   character_actions.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:06:50 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/26 07:49:24 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:27:44 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/entity/character_init.h"
 #include "engine/entity/entity_init.h"
 #include "utils/error.h"
+#include "ft/str.h"
 
 void	character_crawl(t_character *self)
 {

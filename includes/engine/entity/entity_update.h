@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   entity_update.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 23:21:04 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/04 15:50:44 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 18:43:43 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENTITY_UPDATE_H
 # define ENTITY_UPDATE_H
 
-# include "engine/game/game_init.h"
+# include "engine/scene/scene_init.h"
 # include "engine/entity/entity_init.h"
 
 /*

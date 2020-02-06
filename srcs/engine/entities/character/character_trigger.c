@@ -3,23 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   character_trigger.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 00:10:40 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/05 14:33:03 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 18:40:13 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "engine/resource/image/texture_init.h"
-#include "engine/entity/entity_init.h"
-#include "engine/component/action.h"
-#include "engine/entity/entity_update.h"
-#include "engine/entity/character_update.h"
 #include "engine/game/game_init.h"
-#include "utils/parser.h"
+#include "engine/component/action.h"
+#include "engine/entity/character_update.h"
 #include "utils/error.h"
-
-#include <stdio.h>
 
 t_bool		is_character_texture_collide(t_character *character,
 				t_pos2i pos, t_voxel_map_2d_config *config)

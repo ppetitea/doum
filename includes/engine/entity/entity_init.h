@@ -3,21 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   entity_init.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 23:21:04 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/04 22:33:57 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 18:42:24 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENTITY_INIT_H
 # define ENTITY_INIT_H
 
+# include <sys/time.h>
 # include "engine/resource/image/texture_init.h"
 # include "engine/component/listener.h"
-# include "utils/parser.h"
-# include "libft.h"
-# include <sys/time.h>
 
 typedef enum	e_animation_status
 {

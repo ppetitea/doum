@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   action.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 23:06:52 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/05 14:15:55 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 18:35:17 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ACTION_H
 # define ACTION_H
 
-# include "libft.h"
+# include <SDL_keycode.h>
 # include "utils/parser.h"
-# include "SDL.h"
+# include "containers/list.h"
 
 typedef enum	e_resource_type
 {

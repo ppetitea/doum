@@ -3,21 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 17:16:02 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/05 16:44:45 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:00:13 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_INIT_H
 # define MAP_INIT_H
 
-# include "engine/resource/image/texture_init.h"
+# include <sys/time.h>
 # include "engine/entity/character_init.h"
 # include "engine/entity/entity_init.h"
-# include "libft.h"
-# include <sys/time.h>
 
 typedef enum	e_map_type
 {
@@ -50,7 +48,6 @@ typedef struct	s_map
 }				t_map;
 
 t_map		*init_new_map();
-t_result	set_character_as_player(t_map *map,
-				t_character *character);
+t_result	set_character_as_player(t_map *map, t_character *character);
 
 #endif

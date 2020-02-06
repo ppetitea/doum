@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   entity_get.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 00:36:19 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/01 00:27:45 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:45:55 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/game/game_init.h"
 #include "engine/entity/entity_update.h"
 #include "utils/error.h"
+#include "ft/str.h"
 
 t_entity	*get_entity_by_name(t_list_head *entities, char *name)
 {

@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   weapon_get.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:41:10 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/26 14:33:56 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:28:10 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/entity/character_init.h"
 #include "utils/error.h"
-
-#include <stdio.h>
+#include "ft/str.h"
 
 t_weapon	*get_weapon_by_name(t_list_head *weapons, char *name)
 {

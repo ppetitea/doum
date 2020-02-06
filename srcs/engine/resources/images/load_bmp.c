@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   load_bmp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:36:31 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/01 14:58:42 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:18:03 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <stdio.h>
 #include "engine/resource/image/bitmap_parser.h"
 #include "engine/resource/image/texture_init.h"
 #include "utils/parser.h"
 #include "utils/error.h"
+#include "utils/color.h"
 #include "libft.h"
-#include <stdlib.h>
-
-#include <stdio.h>
 
 static t_result		fill_pixels(FILE *file, uint32_t *pixels,
 						t_bitmap_header	*head)

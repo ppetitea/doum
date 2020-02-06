@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bitmap_parser.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:31:09 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/25 01:37:02 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:16:36 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 # define BITMAP_PARSER_H
 
 # include "engine/interface/screen_init.h"
-# include "utils/color.h"
-# include "libft.h"
+# include "maths/vec2i.h"
 
 # define BMP_HEADER_SIZE 54
 # define DIB_HEADER_SIZE 40
-#pragma pack(push)  // save the original data alignment
-#pragma pack(1)
+# pragma pack(push)  // save the original data alignment
+# pragma pack(1)
+
 typedef int int32;
 typedef short int16;
 typedef int int32_t;

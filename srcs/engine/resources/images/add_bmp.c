@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   add_bmp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 20:54:28 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/25 01:47:47 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 18:51:36 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 #include "engine/resource/image/bitmap_list.h"
 #include "utils/error.h"

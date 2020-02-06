@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:52:07 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/05 16:37:12 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 18:45:39 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 # include "engine/interface/screen_init.h"
 # include "engine/interface/sdl_init.h"
 # include "engine/scene/scene_init.h"
-# include "engine/map/map_init.h"
-# include "libft.h"
+# include "containers/list.h"
 
 typedef struct			s_game_resources
 {

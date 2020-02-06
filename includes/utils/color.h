@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 02:40:52 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/15 00:24:50 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:26:47 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DN_COLOR_H
 # define DN_COLOR_H
 
-# include "libft.h"
+# include "types.h"
 
 /*
 **	Gestion des format d'encodage des pixels
@@ -40,7 +40,7 @@ typedef struct		s_rgba_uchar
 typedef union		u_rgba
 {
 	t_rgba_uchar	rgba;
-	u_int32_t		px;
+	t_u32			px;
 }					t_rgba;
 
 typedef struct		s_bgra_uchar
@@ -54,10 +54,10 @@ typedef struct		s_bgra_uchar
 typedef union		u_bgra
 {
 	t_bgra_uchar	bgra;
-	u_int32_t		px;
+	t_u32			px;
 }					t_bgra;
 
-u_int32_t	blend_add(t_rgba current, t_rgba old);
-u_int32_t	blend_add_average(t_rgba current, t_rgba old);
+t_u32	blend_add(t_rgba current, t_rgba old);
+t_u32	blend_add_average(t_rgba current, t_rgba old);
 
 #endif

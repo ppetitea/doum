@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   weapon_texture_build.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:42:36 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/26 04:28:59 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 20:22:40 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "build.h"
+#include "utils/error.h"
 
-t_result		build_character_weapon_textures(t_list_head *images,
-					t_weapon *weapon, t_dnon_object *w_textures_obj)
+t_result	build_character_weapon_textures(t_list_head *images,
+				t_weapon *weapon, t_dnon_object *w_textures_obj)
 {
 	if (images == NULL || weapon == NULL || w_textures_obj == NULL)
 		return (throw_error("build_character_weapon_textures", "NULL pointer"));

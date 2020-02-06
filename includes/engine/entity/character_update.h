@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   character_update.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:46:49 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/05 13:48:59 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 18:39:08 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CHARACTER_UPDATE_H
 
 # include "engine/entity/character_init.h"
-# include "engine/game/game_init.h"
+# include "engine/scene/scene_init.h"
 
 /*
 **	GET

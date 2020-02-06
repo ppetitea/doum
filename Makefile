@@ -145,9 +145,7 @@ SRCS_LIST	=	main.c														\
 				engine/scenes/scene_build.c									\
 				engine/scenes/scene_init.c									\
 				engine/scenes/scene_render.c								\
-				engine/scenes/scene_update.c								\
-																			\
-
+				engine/scenes/scene_update.c
 
 SRCS_FOLDER	=	./srcs/
 SRCS		=	$(addprefix $(SRCS_FOLDER), $(SRCS_LIST))
@@ -162,9 +160,10 @@ INCLUDES_FOLDER	=	./includes/
 INCLUDES	:=	-I includes
 
 #COMPILATION
-CC			=	gcc -g
-CFLAGS		:=	-Wall -Werror -Wextra -O3 -Ofast -flto -g
-LDFLAGS		:=	-Wall -Werror -Wextra  -O3 -Ofast -flto -g -lm 
+CC			=	gcc
+LD			=	gcc
+CFLAGS		:=	-Wall -Werror -Wextra -O3 -Ofast -flto
+LDFLAGS		:=	-lm 
 
 #LIBRARIES
 #	libft
@@ -174,21 +173,48 @@ INCLUDES	:=	$(INCLUDES) -I $(LIBFT_FOLDER)/includes
 LDFLAGS		:=	$(LDFLAGS) -L $(LIBFT_FOLDER) -lft
 #	SDL
 SDL_FOLDER	=	./SDL
-SDL			=	$(SDL_FOLDER)/build
+SDL			=	$(SDL_FOLDER)/build/.libs/libSDL2.a
 INCLUDES	:=	$(INCLUDES) -I $(SDL_FOLDER)/include
 LDFLAGS		:=	$(LDFLAGS) -L $(SDL_FOLDER) `sdl2-config --cflags --libs`
 
+# Colors
+BOLD			=	\e[1m
+DIM				=	\e[2m
+ITALIC			=	\e[3m
+UNDERLINED		=	\e[4m
 
+BLACK			=	\e[30m
+RED				=	\e[31m
+GREEN			=	\e[32m
+YELLOW			=	\e[33m
+BLUE			=	\e[34m
+MAGENTA			=	\e[35m
+CYAN			=	\e[36m
+LIGHT_GRAY		=	\e[37m
+DARK_GRAY		=	\e[90m
+LIGHT_RED		=	\e[91m
+LIGHT_GREEN		=	\e[92m
+LIGHT_YELLOW	=	\e[93m
+LIGHT_BLUE		=	\e[94m
+LIGHT_MAGENTA	=	\e[95m
+LIGHT_CYAN		=	\e[96m
+WHITE			=	\e[97m
+RESET			=	\e[0m
+
+PREFIX			=	$(BOLD)$(LIGHT_CYAN)[$(EXEC)]$(RESET):
 
 #****************	RULES	****************
 all: $(SDL) $(LIBFT) $(EXEC)
 
 $(EXEC): $(OBJS)
 	@$(CC) $(OBJS) -o $(EXEC) $(LDFLAGS)
+	@printf "\e[0K$(PREFIX) done\n"
 
 $(OBJS_FOLDER)%.o: $(SRCS_FOLDER)%.c
+	@printf "$(PREFIX) $<\n"
 	@mkdir -p $(dir $@)
 	@$(CC) -c $< -o $@ $(INCLUDES) $(CFLAGS)
+	@printf "\e[1A\e[0K"
 
 $(LIBFT):
 	@make -C libft
@@ -198,6 +224,9 @@ $(SDL):
 	@cd $(SDL_FOLDER) &&\
 	./configure > /dev/null &&\
 	make > /dev/null;
+
+run: all
+	@./$(EXEC)
 
 cl:
 	@rm -rf $(OBJS_FOLDER)
@@ -222,8 +251,7 @@ libft-fclean:
 	@make -C $(LIBFT_FOLDER) fclean > /dev/null
 
 sdl-fclean:
-	@cd $(SDL_FOLDER);\
-	make clean > /dev/null
+	@make -C $(SDL_FOLDER) clean > /dev/null
 
 r: cl all
 

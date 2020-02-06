@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   character_orientation.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:13:37 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/02 05:01:16 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:46:24 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "engine/entity/character_init.h"
 #include "engine/game/game_init.h"
 #include "utils/error.h"
-#include <math.h>
+#include "maths/maths.h"
 
 static float	angle_gap(float f1, float f2)
 {
@@ -33,7 +34,7 @@ static float	compute_angle_to_target(t_character *curr)
 {
 	t_character	*player;
 	t_vec2f		dir_to_target;
-	t_pos2f		target_pos;
+	t_vec2f		target_pos;
 	float		target_angle;
 	float		character_angle;
 

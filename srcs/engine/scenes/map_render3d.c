@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_render3d.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 14:41:00 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/05 14:46:38 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 20:05:38 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 #include "utils/matrix.h"
 #include "utils/error.h"
 #include "utils/color.h"
+#include "maths/maths.h"
+#include "maths/vec2f.h"
+#include "maths/vec3f.h"
 
 #include <stdio.h>
 
@@ -96,7 +99,7 @@ static	void	animate_texture(t_entity *entity)
 // }
 
 // void	render_map3d_oriented_entities(t_voxel_map_3d_config *config,
-// 			t_map *map, t_pos3f position, t_vec3f delta)
+// 			t_map *map, t_vec3f position, t_vec3f delta)
 // {
 // 	t_list_head			*pos;
 // 	t_list_head			*next;
@@ -218,7 +221,7 @@ void	limit_int(int *n, t_usize size)
 		*n -= size_xy;
 }
 
-int		compute_map_offset(t_pos3f pos, t_usize size)
+int		compute_map_offset(t_vec3f pos, t_usize size)
 {
 	int	offset;
 
@@ -228,7 +231,7 @@ int		compute_map_offset(t_pos3f pos, t_usize size)
 }
 
 float	compute_column_height(t_voxel_map_3d_config *config, t_map *map,
-		int map_offset, t_pos3f pos)
+		int map_offset, t_vec3f pos)
 {
 	t_bgra		*pixel;
 	t_camera	*cam;
@@ -241,7 +244,7 @@ float	compute_column_height(t_voxel_map_3d_config *config, t_map *map,
 }
 
 void	update_position_and_delta_with_z(t_map *map,
-		t_pos3f *pos, t_vec3f *delta)
+		t_vec3f *pos, t_vec3f *delta)
 {
 	t_camera	*cam;
 
@@ -257,7 +260,7 @@ void	update_position_and_delta_with_z(t_map *map,
 }
 
 void	render_voxel_map_curr_character(t_voxel_map_3d_config *config,
-		t_screen *screen, t_character *character, t_pos3f pos)
+		t_screen *screen, t_character *character, t_vec3f pos)
 {
 	t_entity_texture *t;
 
@@ -285,7 +288,7 @@ void	render_voxel_map3d_floor(t_screen *screen, t_voxel_map_3d_config *config,
 		t_map *map)
 {
 	uint32_t 	columns_height[screen->size.x];
-	t_pos3f		pos;
+	t_vec3f		pos;
 	t_vec3f		delta;
 	t_column	column;
 	int			map_offset;
@@ -312,7 +315,7 @@ void	render_voxel_map3d_floor(t_screen *screen, t_voxel_map_3d_config *config,
 					map->color_map.curr->pixels[map_offset]);
 			if (column.y_top < (int)columns_height[column.x])
 				columns_height[column.x] = column.y_top;
-			pos = ft_pos3f(pos.x + delta.x, pos.y + delta.y, pos.z);
+			pos = ft_vec3f(pos.x + delta.x, pos.y + delta.y, pos.z);
 		}
 		pos.z += delta.z;
 		delta.z += 0.005f;

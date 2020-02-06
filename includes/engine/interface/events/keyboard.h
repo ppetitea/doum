@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 01:15:15 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 15:38:39 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 18:47:23 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEYBOARD_H
 # define KEYBOARD_H
 
-# include "engine/game/game_init.h"
+# include <SDL_keycode.h>
+# include "containers/list.h"
 # include "engine/scene/scene_init.h"
-# include "engine/entity/entity_init.h"
-# include <sys/time.h>
 
 // typedef	enum		s_key_bind_type
 // {

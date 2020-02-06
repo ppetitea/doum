@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 01:15:15 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 01:42:17 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 18:46:40 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 # define EVENTS_H
 
 # include "engine/game/game_init.h"
-# include "engine/entity/entity_init.h"
 
 void		handle_events(t_game *game);
-
 
 /*
 ** triggers
