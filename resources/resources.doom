@@ -852,7 +852,7 @@
 		"color_map":{
 			"animation":"none",
 			"textures":{
-				"1":{"key":"map_pyramid_color", "filter":"circular_shadow","size":{"x":1080,"y":1080}}
+				"1":{"key":"map_pyramid_color","size":{"x":1080,"y":1080}}
 			}
 		},
 		"height_map":{

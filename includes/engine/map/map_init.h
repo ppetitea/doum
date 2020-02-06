@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 17:16:02 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/05 16:44:45 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/06 03:12:15 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,23 @@ typedef struct	s_map_texture
 	t_list_head			textures;
 	t_texture			*curr;
 }				t_map_texture;
+
+typedef struct		s_render_slide
+{
+	float	dist_to_slide;
+	float	dist_ratio;
+	float	slide_width;
+	float	slide_half;
+	float	slide_delta;
+}					t_render_slide;
+
+typedef struct		s_pre_render3d
+{
+	t_render_slide	*slides;
+	size_t			slides_amount;
+	uint32_t		*columns_height;
+	t_vec2f			delta_dir;
+}					t_pre_render3d;
 
 typedef struct	s_map
 {
