@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 01:19:09 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 03:11:34 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/07 15:26:02 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,20 @@ void	set_pixel(t_screen *screen, t_usize i, t_texture texture, t_usize j)
 	screen->pixels[i.x + i.y * screen->size.x] = new.px;
 }
 
-void	render_texture_with_scale_2d(t_screen *screen, t_texture *texture,
-			t_vec2i anchor, t_vec2f scale)
+void	update_texture_box_with_screen(t_screen *screen, t_texture_box *box, 
+			t_texture *texture)
+{
+	if (box->start.x > screen->size.x)
+	if (box->start.x < 0)
+		box->pos.x = -box->start.x;
+	if (box->start.y < 0)
+		box->pos.y = -box->start.y;
+
+
+}
+
+void	render_texture_with_box(t_screen *screen, t_texture *texture,
+			t_texture_box box)
 {
 	t_usize		start;
 	t_vec2i		offset;
@@ -95,6 +107,33 @@ void	render_texture_with_scale_2d(t_screen *screen, t_texture *texture,
 		i.y++;
 	}
 }
+
+// void	render_texture_with_scale_2d(t_screen *screen, t_texture *texture,
+// 			t_vec2i anchor, t_vec2f scale)
+// {
+// 	t_usize		start;
+// 	t_vec2i		offset;
+// 	t_usize		size;
+// 	t_usize		i;
+
+// 	size = ft_usize(texture->size.x * scale.x, texture->size.y * scale.y);
+// 	offset = ft_vec2i(texture->offset.x * scale.x, texture->offset.y * scale.y);
+// 	offset = ft_vec2i(offset.x + anchor.x, offset.y + anchor.y);
+// 	start.x = (offset.x >= 0) ? 0 : -offset.x;
+// 	start.y = (offset.y >= 0) ? 0 : -offset.y;
+// 	i.y = start.y;
+// 	while (offset.y + i.y < screen->size.y && i.y < size.y)
+// 	{
+// 		i.x = start.x;
+// 		while (offset.x + i.x < screen->size.x && i.x < size.x)
+// 		{
+// 			set_pixel(screen, ft_usize(offset.x + i.x, offset.y + i.y), 
+// 					*texture, ft_usize(i.x / scale.x, i.y / scale.y));
+// 			i.x++;
+// 		}
+// 		i.y++;
+// 	}
+// }
 
 void	render_texture_with_scale(t_screen *screen, t_texture *texture,
 			t_vec2i anchor, float scale)

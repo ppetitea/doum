@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_init.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 23:57:01 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 19:22:25 by lbenard          ###   ########.fr       */
+/*   Updated: 2020/02/07 15:27:01 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@
 
 typedef struct			s_texture_box
 {
-	t_vec2i			anchor;
-	float			scale;
-	t_vec2i			offset;
-	t_usize			limit;
+	t_pos2i			pos;
+	t_pos2i			start;
+	t_pos2i			end;
+	t_vec2f			scale;
+	t_bool			is_belong_to_screen;
 }						t_texture_box;
 
 typedef struct			s_texture
