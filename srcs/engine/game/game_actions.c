@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 19:22:44 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/04 15:49:16 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/07 18:35:29 by lugibone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ t_result		swap_scene_by_name(t_game *game, char *name)
 	if (game == NULL || name == NULL)
 		return (throw_error("swap_scene_by_name", "NULL pointer provided"));
 	pos = &game->resources.scenes;
+	if (!ft_strcmp(name, "render3d"))
+		SDL_ShowCursor(SDL_DISABLE);
+	else
+		SDL_ShowCursor(SDL_ENABLE);
 	while ((pos = pos->next) != &game->resources.scenes)
 	{
 		scene = (t_scene*)pos;
