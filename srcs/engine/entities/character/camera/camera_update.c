@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera_update.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 01:11:36 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 22:36:07 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/08 19:55:59 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "engine/game/game_init.h"
 #include "utils/matrix.h"
 #include "utils/error.h"
+#include "utils/time.h"
 #include "maths/maths.h"
 
 t_result	rotate_camera_left(t_entity *entity)
@@ -28,7 +29,7 @@ t_result	rotate_camera_left(t_entity *entity)
 		return (throw_error("entity_turn_right", "entity isn't character"));
 	character = (t_character*)entity;
 	cam = &character->camera;
-	cam->dir = to_vtx(rotate(-2.0f / 180.0f * PI), cam->dir);
+	cam->dir = to_vtx(rotate(delta(-60.0f) / 180.0f * PI), cam->dir);
 	cam->to_plan = vec2f_scalar(cam->dir, cam->dist_to_plan);
 	cam->plan = ft_vec2f(-cam->dir.y, cam->dir.x);
 	return (OK);
@@ -45,7 +46,7 @@ t_result	rotate_camera_right(t_entity *entity)
 		return (throw_error("entity_turn_right", "entity isn't character"));
 	character = (t_character*)entity;
 	cam = &character->camera;
-	cam->dir = to_vtx(rotate(2.0f / 180.0f * PI), cam->dir);
+	cam->dir = to_vtx(rotate(delta(60.0f) / 180.0f * PI), cam->dir);
 	cam->to_plan = vec2f_scalar(cam->dir, cam->dist_to_plan);
 	cam->plan = ft_vec2f(-cam->dir.y, cam->dir.x);
 	return (OK);
@@ -83,7 +84,7 @@ t_result	translate_camera_up(t_entity *entity)
 	if (entity->type != CHARACTER)
 		return (throw_error("translate_cam up", "entity isn't character"));
 	character = (t_character*)entity;
-	character->camera.height += 5.0f * character->velocity;
+	character->camera.height += delta(100.0f) * character->velocity;
 	return (OK);
 }
 
@@ -97,7 +98,7 @@ t_result	translate_camera_down(t_entity *entity)
 		return (throw_error("translate_cam down", "entity isn't character"));
 	character = (t_character*)entity;
 	if (character->camera.height - 5.0f * character->velocity > 0)
-		character->camera.height -= 5.0f * character->velocity;
+		character->camera.height -= delta(100.0f) * character->velocity;
 	return (OK);
 }
 
@@ -114,6 +115,7 @@ t_result	translate_camera_forward(t_entity *entity)
 	character = (t_character*)entity;
 	cam = &character->camera;
 	move = vec2f_scalar(ft_vec2f(cam->dir.x, cam->dir.y), character->velocity);
+	move = vec2f_scalar(move, get_delta() * 60.0f);
 	cam->pos = vec2f_add(cam->pos, move);
 	return (OK);
 }
@@ -131,6 +133,7 @@ t_result	translate_camera_right(t_entity *entity)
 	character = (t_character*)entity;
 	cam = &character->camera;
 	move = vec2f_scalar(ft_vec2f(-cam->dir.y, cam->dir.x), character->velocity);
+	move = vec2f_scalar(move, get_delta() * 60.0f);
 	cam->pos = vec2f_add(cam->pos, move);
 	return (OK);
 }
@@ -148,6 +151,7 @@ t_result	translate_camera_left(t_entity *entity)
 	character = (t_character*)entity;
 	cam = &character->camera;
 	move = vec2f_scalar(ft_vec2f(cam->dir.y, -cam->dir.x), character->velocity);
+	move = vec2f_scalar(move, get_delta() * 60.0f);
 	cam->pos = vec2f_add(cam->pos, move);
 	return (OK);
 }
@@ -165,6 +169,7 @@ t_result	translate_camera_backward(t_entity *entity)
 	character = (t_character*)entity;
 	cam = &character->camera;
 	move = vec2f_scalar(ft_vec2f(-cam->dir.x, -cam->dir.y), character->velocity);
+	move = vec2f_scalar(move, get_delta() * 60.0f);
 	cam->pos = vec2f_add(cam->pos, move);
 	return (OK);
 }
@@ -204,7 +209,9 @@ t_result	translate_camera_horizon_up(t_voxel_map_3d_config *config)
 {
 	if (config == NULL)
 		return (throw_error("translate_cam up", "NULL pointer provided"));
-	config->horizon += 5.0f;
+	config->horizon += delta(500.0f);
+	if (config->horizon >= 1000.0f)
+		config->horizon = 1000.0f;
 	return (OK);
 }
 
@@ -212,8 +219,9 @@ t_result	translate_camera_horizon_down(t_voxel_map_3d_config *config)
 {
 	if (config == NULL)
 		return (throw_error("translate_cam down", "NULL pointer provided"));
-	if (config->horizon - 5.0f)
-		config->horizon -= 5.0f;
+	config->horizon -= delta(500.0f);
+	if (config->horizon < 100.0f)
+		config->horizon = 100.0f;
 	return (OK);
 }
 

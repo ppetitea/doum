@@ -39,7 +39,11 @@ SRCS_LIST	=	main.c														\
 				utils/matrix/scale.c										\
 				utils/matrix/to_vtx.c										\
 				utils/matrix/translate.c									\
+				utils/time/get_delta_ptr.c									\
+				utils/time/set_delta.c										\
 				utils/time/get_delta.c										\
+				utils/time/delta.c											\
+				utils/time/get_wall_time.c									\
 				utils/parser/check/close_curly_braces.c						\
 				utils/parser/check/curly_braces.c							\
 				utils/parser/check/open_curly_braces.c						\

@@ -6,24 +6,25 @@
 /*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:06:50 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 19:27:44 by lbenard          ###   ########.fr       */
+/*   Updated: 2020/02/08 19:38:49 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/entity/character_init.h"
 #include "engine/entity/entity_init.h"
 #include "utils/error.h"
+#include "utils/time.h"
 #include "ft/str.h"
 
 void	character_crawl(t_character *self)
 {
 	if (self == NULL)
 		throw_warning("character_crawl", "NULL pointer provided", 3);
-	else if (self->camera.height <= 10.0f)
-		throw_warning("character_crawl", "camera is already on floor", 3);
 	else
 	{
-		self->camera.height -= 10.0f;
+		self->camera.height -= delta(10.0f);
+		if (self->camera.height < 10.0f)
+			self->camera.height = 10.0f;
 	}
 }
 
@@ -32,9 +33,7 @@ void	character_jump(t_character *self)
 	if (self == NULL)
 		throw_warning("character_jump", "NULL pointer provided", 3);
 	else
-	{
-		self->camera.height += 10.0f;
-	}
+		self->camera.height += delta(10.0f);
 }
 
 void	character_run(t_character *self)
@@ -42,9 +41,7 @@ void	character_run(t_character *self)
 	if (self == NULL)
 		throw_warning("character_run", "NULL pointer provided", 3);
 	else
-	{
-		self->velocity += 5.0f;
-	}
+		self->velocity += delta(5.0f);
 }
 
 void	character_attack(t_character *self)

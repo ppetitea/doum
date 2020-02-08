@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:34:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/29 16:34:14 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/08 19:20:02 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,17 @@
 #include "engine/scene/scene_render.h"
 #include "engine/map/map_update.h"
 #include "utils/error.h"
+#include "utils/time.h"
 
 void	loop(t_game *game)
 {
+	double	last_time;
+	double	spf;
+
 	game->is_running = TRUE;
 	while (game->is_running)
 	{
+		last_time = get_wall_time();
 		reset_screen(game->interface.screen);
 		render_scene(game);
 		if (SDL_UpdateTexture(game->interface.sdl.texture, NULL,
@@ -40,5 +45,8 @@ void	loop(t_game *game)
 		SDL_RenderPresent(game->interface.sdl.renderer);
 		if (SDL_RenderClear(game->interface.sdl.renderer) == SDL_ERROR)
 			return (throw_void("loop", "SDL_RenderClear failed"));
+		spf = get_wall_time() - last_time;
+		printf("fps: %f\n", 1.0f / spf);
+		set_delta(spf);
 	}
 }
