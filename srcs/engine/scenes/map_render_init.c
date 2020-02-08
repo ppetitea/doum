@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:59:00 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 17:47:07 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/08 03:46:20 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ t_result	init_voxel_map_2d_config(t_voxel_map_2d_config *config)
 	if (config == NULL)
 		return (throw_error("init_voxel_map_2d_config", "NULL pointer"));
 	config->display = FALSE;
-	config->anchor = ft_vec2i(0, 0);
-	config->offset = ft_vec2i(0, 0);
+	config->box.anchor = ft_vec2i(0, 0);
+	config->box.offset = ft_vec2i(0, 0);
+	config->box.size = ft_vec2i(640, 480);
 	config->size = ft_usize(640, 480);
-	config->scale = ft_vec2f(1.0f, 1.0f);
+	config->box.scale = ft_vec2f(1.0f, 1.0f);
 	config->display_e_oriented = FALSE;
 	config->display_e_oriented_storage = FALSE;
 	config->display_e_static = FALSE;

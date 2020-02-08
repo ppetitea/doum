@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 16:27:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 22:42:01 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/08 01:45:46 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct		s_rangef
 }					t_rangef;
 
 void		render_scene(t_game *game);
-t_vec2f		compute_render_scale(t_usize *by_default, t_usize *wish);
+t_vec2f		compute_render_scale(t_usize by_default, t_usize wish);
 void		update_map_render_config(t_voxel_map_config *config, t_map *map);
 void		render_map2d_player(t_screen *screen, t_voxel_map_2d_config *config,
 				t_map *map);

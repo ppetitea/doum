@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entity_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:44:34 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 18:53:29 by lbenard          ###   ########.fr       */
+/*   Updated: 2020/02/08 00:35:55 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,12 @@ t_result	init_entity_texture(t_entity_texture *self)
 	if (self == NULL)
 		return (throw_error("init_entity_texture", "NULL pointer provided"));
 	gettimeofday(&self->last, NULL);
-	self->scale = ft_vec2f(1.0f, 1.0f);
-	self->offset = ft_vec2i(0, 0);
-	self->anchor = ft_vec2i(0, 0);
+	self->box.anchor = ft_vec2i(0, 0);
+	self->box.scale = ft_vec2f(1.0f, 1.0f);
+	self->box.offset = ft_vec2i(0, 0);
+	self->box.size = ft_vec2i(1, 1);
+	self->box.start = ft_vec2i(0, 0);
+	self->box.end = ft_vec2i(1, 1);
 	self->curr = NULL;
 	self->curr_head = NULL;
 	self->prev = NULL;

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 16:27:20 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 22:41:31 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/08 03:53:25 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,8 @@ typedef struct			s_scene_interface
 typedef struct			s_voxel_map_2d_config
 {
 	t_bool				display;
-	t_vec2i				anchor;
-	t_vec2i				offset;
+	t_texture_box		box;
 	t_usize				size;
-	t_vec2f				scale;
 	t_bool				display_e_static;
 	t_bool				display_e_static_storage;
 	t_bool				display_e_oriented;

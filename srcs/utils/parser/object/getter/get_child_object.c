@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 20:45:31 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/24 22:38:16 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/08 04:19:13 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,5 @@ t_dnon_object	*get_child_object_by_key(t_dnon_object *tree, char *key)
 		if (!ft_strcmp(child->key, key))
 			return (child);
 	}
-	return (throw_null("get_child_object_by_key",
-		"do not find the key"));
+	return (NULL);
 }

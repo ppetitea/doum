@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 01:19:09 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/07 16:29:39 by lugibone         ###   ########.fr       */
+/*   Updated: 2020/02/08 04:00:12 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,147 +17,69 @@
 
 #include <stdio.h>
 
-static void	set_screen_pixel(t_texture texture, t_screen *screen, t_vec2i offset,
-	t_usize i)
+void	update_texture_box_with_screen(t_screen *screen, t_texture_box *box,
+			t_texture *texture)
+{
+	if (box->scale.x <= 0)
+		box->scale.x = 1;
+	if (box->scale.y <= 0)
+		box->scale.y = 1;
+	box->offset.x = (int)(texture->offset.x / box->scale.x) + box->anchor.x;
+	box->offset.y = (int)(texture->offset.y / box->scale.y) + box->anchor.y;
+	box->start.x = (box->offset.x < 0) ? -box->offset.x : 0;
+	box->start.y = (box->offset.y < 0) ? -box->offset.y : 0;
+	box->size.x = (int)((float)texture->size.x / box->scale.x);
+	box->size.y = (int)((float)texture->size.y / box->scale.y);
+	box->end = vec2i_add(box->offset, box->size);
+	if (box->end.x > (int)screen->size.x)
+		box->end.x = (int)screen->size.x;
+	if (box->end.y > (int)screen->size.y)
+		box->end.y = (int)screen->size.y;
+}
+
+void	update_entity_texture_box_with_size(t_screen *screen,
+			t_texture_box *box, t_texture *texture, t_usize	size)
+{
+	box->scale.x = (float)texture->size.x / (float)size.x;
+	box->scale.y = (float)texture->size.y / (float)size.y;
+	update_texture_box_with_screen(screen, box, texture);
+}
+
+
+static void	fill_screen_pixel_with_texture(t_screen *screen, t_texture *texture,
+			t_texture_box *box, t_vec2i i)
 {
 	t_rgba old;
 	t_rgba curr;
 	t_rgba new;
 
-	old.px = screen->pixels[(offset.x + i.x) + (offset.y + i.y) * screen->size.x];
-	curr.px = texture.pixels[i.x + i.y * texture.size.x];
-	new.px = blend_add(curr, old);
-	screen->pixels[(offset.x + i.x) + (offset.y + i.y) * screen->size.x] = new.px;
-	// printf("r %d ", new.rgba.r);
-	// printf("g %d ", new.rgba.g);
-	// printf("b %d ", new.rgba.b);
-	// printf("a %d\n", new.rgba.a);
+	old.px = screen->pixels[box->offset.x + i.x
+		+ (i.y + box->offset.y) * screen->size.x];
+	curr.px = texture->pixels[(int)(i.x * box->scale.x)
+		+ (int)(i.y * box->scale.y) * texture->size.x];
+	if (curr.rgba.a == 0)
+		new.px = old.px;
+	else
+		new.px = blend_add(curr, old);
+	screen->pixels[box->offset.x + i.x
+		+ (i.y + box->offset.y) * screen->size.x] = new.px;
 }
 
-void	render_texture(t_screen *screen, t_texture *texture, t_vec2i anchor)
-{
-	t_usize		start;
-	t_usize		i;
-	t_vec2i		offset;
-
-	offset = ft_vec2i(texture->offset.x + anchor.x, texture->offset.y + anchor.y);
-	start.x = (offset.x >= 0) ? 0 : -offset.x;
-	start.y = (offset.y >= 0) ? 0 : -offset.y;
-	i.y = start.y;
-	while (offset.y + i.y < screen->size.y && i.y < (size_t)texture->size.y)
-	{
-		i.x = start.x;
-		while (offset.x + i.x < screen->size.x && i.x < (size_t)texture->size.x)
-		{
-			// if (((t_rgba)texture->pixels[i.x + i.y * texture->size.x]).rgba.a)
-			set_screen_pixel(*texture, screen, offset, i);
-			i.x++;
-		}
-		i.y++;
-	}
-}
-
-void	set_pixel(t_screen *screen, t_usize i, t_texture texture, t_usize j)
-{
-	t_rgba old;
-	t_rgba curr;
-	t_rgba new;
-
-	old.px = screen->pixels[i.x + i.y * screen->size.x];
-	curr.px = texture.pixels[j.x + j.y * texture.size.x];
-	new.px = blend_add(curr, old);
-	screen->pixels[i.x + i.y * screen->size.x] = new.px;
-}
-/*
-void	update_texture_box_with_screen(t_screen *screen, t_texture_box *box, t_texture *texture)
-{
-	if (box->start.x > screen->size.x)
-	if (box->start.x < 0)
-		box->pos.x = -box->start.x;
-	if (box->start.y < 0)
-		box->pos.y = -box->start.y;
-
-
-}
-*/
-/*
 void	render_texture_with_box(t_screen *screen, t_texture *texture,
-			t_texture_box box)
+			t_texture_box *box)
 {
-	t_usize		start;
-	t_vec2i		offset;
-	t_usize		size;
-	t_usize		i;
+	t_vec2i		i;
 
-	size = ft_usize(texture->size.x * scale.x, texture->size.y * scale.y);
-	offset = ft_vec2i(texture->offset.x * scale.x, texture->offset.y * scale.y);
-	offset = ft_vec2i(offset.x + anchor.x, offset.y + anchor.y);
-	start.x = (offset.x >= 0) ? 0 : -offset.x;
-	start.y = (offset.y >= 0) ? 0 : -offset.y;
-	i.y = start.y;
-	while (offset.y + i.y < screen->size.y && i.y < size.y)
+	i.y = box->start.y;
+	while (box->offset.y + i.y < box->end.y)
 	{
-		i.x = start.x;
-		while (offset.x + i.x < screen->size.x && i.x < size.x)
+		i.x = box->start.x;
+		while (box->offset.x + i.x < box->end.x)
 		{
-			set_pixel(screen, ft_usize(offset.x + i.x, offset.y + i.y), 
-					*texture, ft_usize(i.x / scale.x, i.y / scale.y));
-			i.x++;
+			fill_screen_pixel_with_texture(screen, texture, box, i);
+			++i.x;
 		}
-		i.y++;
+		++i.y;
 	}
 }
-*/
-void	render_texture_with_scale_2d(t_screen *screen, t_texture *texture,
- 			t_vec2i anchor, t_vec2f scale)
- {
- 	t_usize		start;
- 	t_vec2i		offset;
- 	t_usize		size;
- 	t_usize		i;
 
- 	size = ft_usize(texture->size.x * scale.x, texture->size.y * scale.y);
- 	offset = ft_vec2i(texture->offset.x * scale.x, texture->offset.y * scale.y);
- 	offset = ft_vec2i(offset.x + anchor.x, offset.y + anchor.y);
- 	start.x = (offset.x >= 0) ? 0 : -offset.x;
- 	start.y = (offset.y >= 0) ? 0 : -offset.y;
- 	i.y = start.y;
- 	while (offset.y + i.y < screen->size.y && i.y < size.y)
- 	{
- 		i.x = start.x;
- 		while (offset.x + i.x < screen->size.x && i.x < size.x)
- 		{
- 			set_pixel(screen, ft_usize(offset.x + i.x, offset.y + i.y), 
-					*texture, ft_usize(i.x / scale.x, i.y / scale.y));
- 			i.x++;
- 		}
- 		i.y++;
- 	}
- }
-
-void	render_texture_with_scale(t_screen *screen, t_texture *texture,
-			t_vec2i anchor, float scale)
-{
-	t_usize		start;
-	t_vec2i		offset;
-	t_usize		size;
-	t_usize		i;
-
-	size = ft_usize(texture->size.x * scale, texture->size.y * scale);
-	offset = ft_vec2i(texture->offset.x * scale, texture->offset.y * scale);
-	offset = ft_vec2i(offset.x + anchor.x, offset.y + anchor.y);
-	start.x = (offset.x >= 0) ? 0 : -offset.x;
-	start.y = (offset.y >= 0) ? 0 : -offset.y;
-	i.y = start.y;
-	while (offset.y + i.y < screen->size.y && i.y < size.y)
-	{
-		i.x = start.x;
-		while (offset.x + i.x < screen->size.x && i.x < size.x)
-		{
-			set_pixel(screen, ft_usize(offset.x + i.x, offset.y + i.y), 
-					*texture, ft_usize(i.x / scale, i.y / scale));
-			i.x++;
-		}
-		i.y++;
-	}
-}

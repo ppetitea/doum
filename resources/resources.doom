@@ -195,16 +195,15 @@
 			"status":{"first":1,"display":1,"hoverable":0,"selectable":0,"draggable":0},
 			"textures":{
 				"anchor":{"x":640,"y":720},
-				"offset":{"x":-100,"y":-200},
 				"animation":"stop",
 				"normal":{
-					"1":{"filter":"circular_shadow","key":"pistol_fire1","size":{"x":200,"y":200}}
+					"1":{"key":"pistol_fire1","filter":"circular_shadow","size":{"x":200,"y":200},"offset":{"x":-100,"y":-200}}
 				},
 				"hover":{
-					"1":{"key":"pistol_fire1","size":{"x":300,"y":300}}
+					"1":{"key":"pistol_fire1","size":{"x":200,"y":200},"offset":{"x":-100,"y":-200}}
 				},
 				"dragged":{
-					"1":{"filter":"blend","key":"pistol_fire1","size":{"x":300,"y":300}}
+					"1":{"key":"pistol_fire1","filter":"blend","size":{"x":200,"y":200},"offset":{"x":-100,"y":-200}}
 				}
 			}
 		},
@@ -307,7 +306,6 @@
 			"status":{"display":1,"hoverable":0,"selectable":0,"draggable":0},
 			"textures":{
 				"anchor":{"x":400,"y":480},
-				"offset":{"x":-100,"y":-130},
 				"animation":"stop",
 				"normal":{
 					"1":{"filter":"circular_shadow","key":"overlord_front1","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130}}
@@ -424,7 +422,6 @@
 			"status":{"display":1,"hoverable":0,"selectable":0,"draggable":0},
 			"textures":{
 				"anchor":{"x":400,"y":480},
-				"offset":{"x":-100,"y":-130},
 				"animation":"stop",
 				"normal":{
 					"1":{"filter":"circular_shadow","key":"cycloid_front1","size":{"x":200,"y":130},"offset":{"x":-100,"y":-130}}
@@ -540,7 +537,6 @@
 		"status":{"display":0,"hoverable":0,"selectable":0,"draggable":0},
 		"textures":{
 			"anchor":{"x":400,"y":480},
-			"offset":{"x":-100,"y":-130},
 			"animation":"stop",
 			"normal":{
 				"1":{"key":"doum_doum_doum","size":{"x":900,"y":120}},
@@ -557,7 +553,6 @@
 		"status":{"display":0,"hoverable":0,"selectable":0,"draggable":0},
 		"textures":{
 			"anchor":{"x":400,"y":480},
-			"offset":{"x":-100,"y":-130},
 			"animation":"stop",
 			"normal":{
 				"1":{"key":"arrow_next_dark","size":{"x":370,"y":120}},
@@ -574,7 +569,6 @@
 		"status":{"display":0,"hoverable":0,"selectable":0,"draggable":0},
 		"textures":{
 			"anchor":{"x":400,"y":480},
-			"offset":{"x":-100,"y":-130},
 			"animation":"stop",
 			"normal":{
 				"1":{"key":"hand_edit_dark","size":{"x":350,"y":200}},
@@ -591,7 +585,6 @@
 		"status":{"display":0,"hoverable":0,"selectable":0,"draggable":0},
 		"textures":{
 			"anchor":{"x":400,"y":480},
-			"offset":{"x":-100,"y":-130},
 			"animation":"stop",
 			"normal":{
 				"1":{"key":"skull_play_dark","size":{"x":350,"y":170}},
@@ -625,7 +618,6 @@
 		"status":{"display":0,"hoverable":0,"selectable":0,"draggable":0},
 		"textures":{
 			"anchor":{"x":400,"y":480},
-			"offset":{"x":-100,"y":-130},
 			"animation":"stop",
 			"normal":{
 				"1":{"key":"cycloid_front1","size":{"x":152,"y":122}},
@@ -880,7 +872,8 @@
 					"key":"overlord",
 					"oriented":1,
 					"character":{
-						"camera":{"position":{"x":300,"y":300},"direction":{"x":0,"y":1}}
+						"camera":{"position":{"x":300,"y":300},"direction":{"x":0,"y":1}},
+						"entity":{"texture":{"animation":"infinite"}}
 					}
 				},
 				"character":{
@@ -915,7 +908,6 @@
 				"display":1,
 				"size":{"x":640,"y":480},
 				"anchor":{"x":40,"y":200},
-				"offset":{"x":0,"y":0},
 				"display_e_oriented":1,
 				"display_e_oriented_storage":0,
 				"display_e_static":1,
@@ -929,8 +921,7 @@
 				"key":"title",
 				"entity":{
 					"texture":{
-						"anchor":{"x":100,"y":50},
-						"offset":{"x":0,"y":0}
+						"anchor":{"x":100,"y":50}
 					},
 					"listener":{"display":1}
 				}
@@ -976,8 +967,7 @@
 				"key":"button_play",
 				"entity":{
 					"texture":{
-						"anchor":{"x":720,"y":520},
-						"offset":{"x":0,"y":0}
+						"anchor":{"x":720,"y":520}
 					},
 					"listener":{
 						"display":1,
