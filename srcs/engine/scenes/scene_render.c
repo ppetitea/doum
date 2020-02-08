@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:41:38 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/08 03:46:27 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/08 05:34:44 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void	render_scene_background(t_screen *screen, t_texture* background)
 
 	if (screen == NULL || background == NULL)
 		throw_error("render_scene_background", "NULL pointer provided");
+	box.anchor = ft_vec2i(0, 0);
 	update_entity_texture_box_with_size(screen, &box, background,
 		screen->size);
 	render_texture_with_box(screen, background, &box);

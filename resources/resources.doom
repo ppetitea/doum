@@ -1040,184 +1040,6 @@
 		}
 	},
 	"scene":{
-		"name":"map_editor",
-		"key_bindings":{
-			"key_binding":{
-				"define":"SDLK_ESCAPE",
-				"SDL_Keycode":27,
-				"hold":0,
-				"action":"swap_scene",
-				"resource":"game",
-				"args":{
-					"scene_name":"menu"
-				}
-			}
-		},
-		"map_config":{
-			"color_map":{
-				"display":1,
-				"size":{"x":480,"y":360},
-				"anchor":{"x":0,"y":0},
-				"offset":{"x":0,"y":0},
-				"display_e_oriented":0,
-				"display_e_oriented_storage":0,
-				"character_size":{"x":50,"y":40}
-			},
-			"height_map":{
-				"display":1,
-				"size":{"x":480,"y":360},
-				"anchor":{"x":0,"y":360},
-				"offset":{"x":0,"y":0},
-				"display_e_oriented":0,
-				"display_e_oriented_storage":0,
-				"character_size":{"x":50,"y":40}
-			},
-			"drop_map":{
-				"display":1,
-				"size":{"x":480,"y":360},
-				"anchor":{"x":480,"y":0},
-				"offset":{"x":0,"y":0},
-				"display_e_oriented":1,
-				"display_e_oriented_storage":1,
-				"display_e_static":1,
-				"display_e_static_storage":0,
-				"character_size":{"x":50,"y":40}
-			},
-			"map3d":{
-				"display":1,
-				"size":{"x":480,"y":360},
-				"anchor":{"x":480,"y":360},
-				"offset":{"x":0,"y":0},
-				"display_static_entities":0,
-				"display_e_oriented":1
-			}
-		},
-		"entities":{
-			"entity":{
-				"key":"spawner_overlord",
-				"entity":{
-					"texture":{
-						"anchor":{"x":950,"y":300},
-						"offset":{"x":0,"y":0}
-					},
-					"listener":{
-						"display":1,
-						"selectable":1,
-						"select":{
-							"1":{
-								"action":"spawn_character",
-								"resource":"game",
-								"args":{
-									"character_name":"overlord",
-									"character":{
-										"camera":{"position":{"x":800,"y":600}},
-										"entity":{
-											"listener":{"display":1}
-										}
-									}
-								}
-							}
-						},
-						"hoverable":1,
-						"hover_start":{
-							"1":{
-								"action":"update_entity_texture",
-								"resource":"entity",
-								"args":{"hover":1}
-							}
-						},
-						"hover_end":{
-							"1":{
-								"action":"update_entity_texture",
-								"resource":"entity",
-								"args":{"normal":1}
-							}
-						}
-					}
-				}
-			},
-			"entity":{
-				"key":"spawner_cycloid",
-				"entity":{
-					"texture":{
-						"anchor":{"x":950,"y":300},
-						"offset":{"x":0,"y":0}
-					},
-					"listener":{
-						"display":0,
-						"selectable":1,
-						"select":{
-							"1":{
-								"action":"spawn_character",
-								"resource":"game",
-								"args":{
-									"character_name":"cycloid",
-									"character":{
-										"camera":{"position":{"x":800,"y":600}},
-										"entity":{
-											"listener":{"display":1}
-										}
-									}
-								}
-							}
-						},
-						"hoverable":1,
-						"hover_start":{
-							"1":{
-								"action":"update_entity_texture",
-								"resource":"entity",
-								"args":{"hover":1}
-							}
-						},
-						"hover_end":{
-							"1":{
-								"action":"update_entity_texture",
-								"resource":"entity",
-								"args":{"normal":1}
-							}
-						}
-					}
-				}
-			},
-			"entity":{
-				"key":"button_down",
-				"entity":{
-					"texture":{
-						"anchor":{"x":985,"y":605},
-						"offset":{"x":0,"y":0}
-					},
-					"listener":{
-						"display":1,
-						"selectable":1,
-						"select":{
-							"1":{
-								"action":"display_next",
-								"resource":"game",
-								"args":{
-									"keys":{"k":"spawner_overlord","k":"spawner_cycloid"},
-									"offset":0,
-									"amount":1
-								}
-							}
-						}
-					}
-				}
-			},
-			"entity":{
-				"key":"button_up",
-				"entity":{
-					"texture":{
-						"anchor":{"x":985,"y":65},
-						"offset":{"x":0,"y":0}
-					},
-					"listener":{
-						"display":1
-					}
-				}
-			}
-		}
-	},
-	"scene":{
 		"name":"color_map_editor",
 		"background":{
 			"1":{"key":"background_blood","filter":"circular_shadow","size":{"x":1080,"y":720}}
@@ -1742,7 +1564,8 @@
 									"character":{
 										"camera":{"position":{"x":800,"y":600}},
 										"entity":{
-											"listener":{"draggable":1,"is_dragged":1}
+											"listener":{"draggable":1,"is_dragged":1},
+											"texture":{"animation":"infinite"}
 										}
 									}
 								}
@@ -1785,7 +1608,8 @@
 									"character":{
 										"camera":{"position":{"x":800,"y":600}},
 										"entity":{
-											"listener":{"draggable":1,"is_dragged":1}
+											"listener":{"draggable":1,"is_dragged":1},
+											"texture":{"animation":"infinite"}
 										}
 									}
 								}
