@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/02/08 21:27:29 by lbenard           #+#    #+#              #
+#    Updated: 2020/02/08 21:27:32 by lbenard          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 #****************	RAPPEL	****************
 #	commentaire mono-ligne
 
@@ -175,11 +187,18 @@ LIBFT_FOLDER=	./libft
 LIBFT		=	$(LIBFT_FOLDER)/libft.a
 INCLUDES	:=	$(INCLUDES) -I $(LIBFT_FOLDER)/includes
 LDFLAGS		:=	$(LDFLAGS) -L $(LIBFT_FOLDER) -lft
+
 #	SDL
 SDL_FOLDER	=	./SDL
 SDL			=	$(SDL_FOLDER)/build/.libs/libSDL2.a
 INCLUDES	:=	$(INCLUDES) -I $(SDL_FOLDER)/include
-LDFLAGS		:=	$(LDFLAGS) -L $(SDL_FOLDER) `sdl2-config --cflags --libs`
+LDFLAGS		:=	$(LDFLAGS) -L $(SDL_FOLDER) `sdl2-config --libs`
+
+#	SDL_ttf
+SDL_TTF_FOLDER	=	./SDL2_ttf
+SDL_TTF			=	$(SDL_TTF_FOLDER)/.libs/libSDL2_ttf.a
+INCLUDES		:=	$(INCLUDES) -I $(SDL_TTF_FOLDER)
+LDFLAGS			:=	$(LDFLAGS) -L $(SDL_TTF_FOLDER)/.libs -lSDL2_ttf
 
 # Colors
 BOLD			=	\e[1m
