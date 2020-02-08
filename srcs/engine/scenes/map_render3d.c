@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_render3d.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 14:41:00 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 22:42:57 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/08 19:28:22 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -301,6 +301,28 @@ void	update_slide_index(t_pre_render3d *pre_render, t_rangef *range)
 	pre_render->index.min = i;
 }
 
+static void	render_sky(t_screen *const screen, const t_rgba color)
+{
+	t_bgra	convert;
+	t_usize	i;
+
+	convert.bgra.r = color.rgba.r;
+	convert.bgra.g = color.rgba.g;
+	convert.bgra.b = color.rgba.b;
+	convert.bgra.a = color.rgba.a;
+	i.y = 0;
+	while (i.y < screen->size.y)
+	{
+		i.x = 0;
+		while (i.x < screen->size.x)
+		{
+			screen->pixels[i.y * screen->size.x + i.x] = convert.px;
+			i.x++;
+		}
+		i.y++;
+	}
+}
+
 void	render_map3d(t_screen *screen, t_voxel_map_3d_config *config,
 		t_map *map)
 {
@@ -311,6 +333,7 @@ void	render_map3d(t_screen *screen, t_voxel_map_3d_config *config,
 	config->pre_render.index.max = config->pre_render.slides_amount;
 	range.max = config->horizon_dist;
 	pos = &map->e_oriented;
+	render_sky(screen, (t_rgba){{80, 80, 255, 255}});
 	while ((pos = pos->prev) != &map->e_oriented)
 	{
 		character = (t_character*)pos;
