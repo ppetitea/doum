@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+         #
+#    By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/08 21:27:29 by lbenard           #+#    #+#              #
-#    Updated: 2020/02/08 21:27:32 by lbenard          ###   ########.fr        #
+#    Updated: 2020/02/09 19:59:32 by ppetitea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -198,7 +198,7 @@ LDFLAGS		:=	$(LDFLAGS) -L $(SDL_FOLDER) `sdl2-config --libs`
 SDL_TTF_FOLDER	=	./SDL2_ttf
 SDL_TTF			=	$(SDL_TTF_FOLDER)/.libs/libSDL2_ttf.a
 INCLUDES		:=	$(INCLUDES) -I $(SDL_TTF_FOLDER)
-LDFLAGS			:=	$(LDFLAGS) -L $(SDL_TTF_FOLDER)/.libs -lSDL2_ttf
+LDFLAGS			:=	$(LDFLAGS) -L $(SDL_TTF_FOLDER) -lSDL2_ttf
 
 # Colors
 BOLD			=	\e[1m
@@ -227,7 +227,7 @@ RESET			=	\e[0m
 PREFIX			=	$(BOLD)$(LIGHT_CYAN)[$(EXEC)]$(RESET):
 
 #****************	RULES	****************
-all: $(SDL) $(LIBFT) $(EXEC)
+all: $(SDL) $(SDL_TTF) $(LIBFT) $(EXEC)
 
 $(EXEC): $(OBJS)
 	@$(CC) $(OBJS) -o $(EXEC) $(LDFLAGS)
@@ -245,6 +245,12 @@ $(LIBFT):
 $(SDL):
 	@printf "compiling SDL it may takes long time ~3mn <3\n";
 	@cd $(SDL_FOLDER) &&\
+	./configure > /dev/null &&\
+	make > /dev/null;
+
+$(SDL_TTF):
+	@printf "compiling SDL it may takes long time ~3mn <3\n";
+	@cd $(SDL_TTF_FOLDER) &&\
 	./configure > /dev/null &&\
 	make > /dev/null;
 
