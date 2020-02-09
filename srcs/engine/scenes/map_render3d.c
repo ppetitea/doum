@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 14:41:00 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/09 02:42:38 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/09 03:34:12 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -364,7 +364,7 @@ void	render_sky_box(t_screen *screen, t_voxel_map_3d_config *config,
 	scale = (float)screen->size.y / (float)texture->size.y;
 	zbox.texture_size.x = (int)(texture->size.x * scale);
 	zbox.texture_size.y = (int)(texture->size.y * scale);
-	zbox.box_offset.x = (int)(((float)zbox.texture_size.x / (PI * 2))
+	zbox.box_offset.x = (int)(((float)zbox.texture_size.x / (PI))
 		* (atan2f(cam->dir.y, cam->dir.x) + PI));
 	zbox.box_offset.y = 0;
 	zbox.box_size.x = (int)screen->size.x;

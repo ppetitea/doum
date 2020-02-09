@@ -127,6 +127,7 @@
 		"cycloid_back_r3":"resources/characters/cycloid/back_right/cycloid_back_right3.bmp",
 		"cycloid_back_r4":"resources/characters/cycloid/back_right/cycloid_back_right4.bmp",
 		"sky_cloud":"resources/sky/sky_cloud.bmp",
+		"sky_night":"resources/sky/sky_night.bmp",
 		"menu_background":"resources/background/dark_background.bmp",
 		"background_sinister":"resources/background/background_sinister.bmp",
 		"background_blood":"resources/background/bloody_background.bmp",
@@ -135,6 +136,7 @@
 		"height_map_pyramid":"resources/maps/heightmap.bmp",
 		"map_pyramid_color":"resources/maps/pyramid_color.bmp",
 		"map_pyramid_neon":"resources/maps/pyramid_neon.bmp",
+		"map_pyramid_wave":"resources/maps/pyramid_wave.bmp",
 		"map_pyramid_red":"resources/maps/pyramid_red.bmp",
 		"map_pyramid":"resources/maps/texture.bmp",
 		"map_canion":"resources/maps/canions.bmp",
@@ -790,7 +792,8 @@
 		"sky":{
 			"animation":"none",
 			"textures":{
-				"1":{"key":"sky_cloud","size":{"x":1600,"y":392}}
+				"1":{"key":"sky_cloud","size":{"x":1600,"y":392}},
+				"2":{"key":"sky_night","size":{"x":1600,"y":533}}
 			}
 		},
 		"color_map":{
@@ -851,6 +854,7 @@
 		"sky":{
 			"animation":"none",
 			"textures":{
+				"2":{"key":"sky_night","size":{"x":3000,"y":1500},"offset":{"x":0,"y":-1500}},
 				"1":{"key":"sky_cloud","size":{"x":1600,"y":392},"offset":{"x":0,"y":-392}}
 			}
 		},
