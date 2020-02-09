@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 23:21:04 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 17:54:25 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/08 16:28:31 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef	struct	s_camera
 	float			plan_half;
 	float			dist_to_plan;
 	float			height;
+	float			height_scale;
 	t_vec2f			pos;
 	t_vec2f			start;
 	t_vec2f			dir;
@@ -34,7 +35,7 @@ typedef	struct	s_camera
 t_result		init_camera(t_camera *self);
 t_result		overwrite_camera_plan(t_camera *self, float fov,
 					float plan_width, float height);
-				
+
 typedef enum	e_weapon_type
 {
 	HAND,

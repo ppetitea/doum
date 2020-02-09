@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:41:38 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/08 05:34:44 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/08 16:40:50 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,13 @@ void	update_map_render_config(t_voxel_map_config *config, t_map *map)
 		map->height_map.curr->size, config->height_map.size);
 	config->drop_map.box.scale = compute_render_scale(
 		map->color_map.curr->size, config->drop_map.size);
-	config->map_3d.scale = compute_render_scale(map->color_map.curr->size,
+	config->map_3d.scale = compute_render_scale(game_screen()->size,
 		config->map_3d.size);
+	config->map_3d.inv_scale.x = 1.0f / config->map_3d.scale.x;
+	config->map_3d.inv_scale.y = 1.0f / config->map_3d.scale.y;
 	config->map_ref = map;
-
-	// printf("2scale x %.2f y %.2f\n", config->color_map.scale.x, config->color_map.scale.y);
+	// printf("3dscale x %.2f y %.2f\n", config->map_3d.scale.x, config->map_3d.scale.y);
+	// printf("3dinv_scale x %.2f y %.2f\n", config->map_3d.inv_scale.x, config->map_3d.inv_scale.y);
 }
 
 void	render_current_map(t_screen *screen, t_voxel_map_config *config,

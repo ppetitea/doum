@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 08:24:48 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/08 03:04:45 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/08 16:35:10 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ t_result	overwrite_camera_with_obj(t_camera *camera,
 		camera->plan_width = result_f;
 	if ((result_f = get_float_value_by_key(camera_obj, "height", -1)) != -1)
 		camera->height = result_f;
+	camera->height_scale =
+		1.0f / (camera->height / (float)game_screen()->size.y);
 	if ((vec2f_obj = get_child_list_object_by_key(camera_obj, "position")))
 		init_vec2f_with_obj(&camera->pos, vec2f_obj);
 	if ((vec2f_obj = get_child_list_object_by_key(camera_obj, "direction")))

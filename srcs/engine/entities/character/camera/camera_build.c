@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 01:00:12 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 22:35:45 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/08 16:35:08 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	build_character_camera_with_obj(t_camera *self,
 	self->fov_half = self->fov / 2.0f;
 	self->plan_width = get_float_value_by_key(camera_obj, "plan_width", 640.0f);
 	self->height = get_float_value_by_key(camera_obj, "height", 160);
+	self->height_scale = 1.0f / (self->height / (float)game_screen()->size.y);
 	self->plan_half = self->plan_width / 2.0f;
 	self->dist_to_plan = self->plan_half / (float)tan(self->fov / 2.0f);
 	self->to_plan = vec2f_scalar(self->dir, self->dist_to_plan);

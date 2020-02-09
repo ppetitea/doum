@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 23:57:01 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/08 02:33:49 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/09 01:45:31 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@
 **	Chaque texture est un noeud dans une liste
 **	ce qui permet de creer des animations
 */
+
+typedef struct			s_zoom_box
+{
+	t_pos2i		texture_size;
+	t_pos2i		box_offset;
+	t_vec2i		box_size;
+}						t_zoom_box;  
 
 typedef struct			s_texture_box
 {
@@ -75,6 +82,8 @@ void			update_texture_box_with_screen(t_screen *screen,
 					t_texture_box *box, t_texture *texture);
 void			update_entity_texture_box_with_size(t_screen *screen,
 					t_texture_box *box, t_texture *texture, t_usize	size);
+void			update_entity_texture_box_with_zoom_box(t_screen *screen,
+					t_texture_box *box, t_texture *texture, t_zoom_box zbox);
 void			render_texture_with_box(t_screen *screen, t_texture *texture,
 					t_texture_box *box);
 // void			render_texture(t_screen *screen, t_texture *texture,
