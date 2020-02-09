@@ -316,8 +316,6 @@ configure:7830: checking whether make sets $(MAKE)
 configure:7852: result: yes
 configure:7874: checking whether make supports the include directive
 configure:7889: make -f confmf.GNU && cat confinc.out
-make[1]: Entering directory '/home/pp/Projets/doum/SDL2_ttf'
-make[1]: Leaving directory '/home/pp/Projets/doum/SDL2_ttf'
 this is the am__doit target
 configure:7892: $? = 0
 configure:7911: result: yes (GNU style)
@@ -526,9 +524,7 @@ config.status:1017: creating SDL2_ttf.pc
 config.status:1189: executing libtool commands
 config.status:1189: executing depfiles commands
 config.status:1907: cd .       && sed -e '/# am--include-marker/d' Makefile         | make -f - am--depfiles
-make[1]: Entering directory '/home/pp/Projets/doum/SDL2_ttf'
-make[1]: Nothing to be done for 'am--depfiles'.
-make[1]: Leaving directory '/home/pp/Projets/doum/SDL2_ttf'
+make: Nothing to be done for 'am--depfiles'.
 config.status:1912: $? = 0
 
 ## ---------------- ##
