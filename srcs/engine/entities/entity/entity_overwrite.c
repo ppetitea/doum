@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 06:49:05 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 03:56:01 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/08 05:25:58 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,23 +95,20 @@ t_result	overwrite_listener_with_obj(t_entity *entity,
 	return (OK);
 }
 
+#include "libft.h"
+
 t_result	overwrite_entity_texture_with_obj(t_entity_texture *self,
 				t_dnon_object *e_texture_obj)
 {
-	char			*string;
-	float			result_f;
 	t_dnon_object	*vec2i_obj;
+	t_dnon_object	*string_obj;
 
 	if (self == NULL || e_texture_obj == NULL)
 		return (throw_error("overwrite_e_texture", "NULL pointer provided"));
-	if ((result_f = get_float_value_by_key(e_texture_obj, "scale", -1)) != -1)
-		self->scale = ft_vec2f(result_f, result_f);
-	if ((vec2i_obj = get_child_list_object_by_key(e_texture_obj, "offset")))
-		init_vec2i_with_obj(&self->offset, vec2i_obj);
-	if ((vec2i_obj = get_child_list_object_by_key(e_texture_obj, "anchor")))
-		init_vec2i_with_obj(&self->anchor, vec2i_obj);
-	if ((string = get_string_value_by_key(e_texture_obj, "animation", NULL)))
+	if ((string_obj = get_child_object_by_key(e_texture_obj, "animation")))
 		build_entity_animation_type_with_obj(self, e_texture_obj);
+	if ((vec2i_obj = get_child_list_object_by_key(e_texture_obj, "anchor")))
+		init_vec2i_with_obj(&self->box.anchor, vec2i_obj);
 	return (OK);
 }
 

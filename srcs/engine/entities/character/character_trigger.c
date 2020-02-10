@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 00:10:40 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 22:35:43 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/08 03:47:46 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "engine/component/action.h"
 #include "engine/entity/character_update.h"
 #include "utils/error.h"
+
+#include <stdio.h>
 
 t_bool		is_character_texture_collide(t_character *character,
 				t_pos2i pos, t_voxel_map_2d_config *config)
@@ -23,12 +25,11 @@ t_bool		is_character_texture_collide(t_character *character,
 	t_pos2i				max;
 
 	texture = &character->super.texture;
-	min.x = character->camera.pos.x * config->scale.x + config->anchor.x
-				+ texture->curr->offset.x * texture->scale.x;
-	min.y = character->camera.pos.y * config->scale.y + config->anchor.y
-				+ texture->curr->offset.y * texture->scale.y;
-	max.x = min.x + texture->curr->size.x * texture->scale.x;
-	max.y = min.y + texture->curr->size.y * texture->scale.y;
+	min.x = texture->box.offset.x;
+	min.y = texture->box.offset.y;
+	max.x = min.x + texture->box.size.x;
+	max.y = min.y + texture->box.size.y;
+	(void)config;
 	// printf("mouse x %d y %d\n", pos.x, pos.y);
 	// printf("collide %d < x < %d && %d < y < %d\n", min.x, max.x, min.y, max.y);
 	if (pos.x < min.x || max.x < pos.x || pos.y < min.y || max.y < pos.y)

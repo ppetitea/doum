@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:41:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 13:20:16 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/08 03:41:05 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include <stdio.h>
 
-t_bool		is_mouse_belong_to_map(t_pos2i mouse, t_usize map_size,
+t_bool		is_mouse_belong_to_map(t_pos2i mouse, t_vec2i map_size,
 				t_vec2i map_anchor)
 {
 	if (map_anchor.x < mouse.x && mouse.x < map_anchor.x + (int)map_size.x
@@ -39,10 +39,10 @@ t_result	update_character_position_by_drag(t_character *character)
 	{
 		config = &game->curr_scene->map_render_config.drop_map;
 		mouse = &game->interface.mouse.pos;
-		if (is_mouse_belong_to_map(*mouse, config->size, config->anchor))
+		if (is_mouse_belong_to_map(*mouse, config->box.size, config->box.anchor))
 		{
-			pos.x = (mouse->x - config->anchor.x) / config->scale.x;
-			pos.y = (mouse->y - config->anchor.y) / config->scale.y;
+			pos.x = (mouse->x - config->box.anchor.x) * config->box.scale.x;
+			pos.y = (mouse->y - config->box.anchor.y) * config->box.scale.y;
 			character->camera.pos = pos;
 		}
 	}
@@ -55,8 +55,6 @@ void	render_map2d_player(t_screen *screen,
 	t_character			*player;
 	t_entity_texture	*t;
 	t_texture			*texture;
-	t_vec2f				scale;
-	t_vec2i				anchor;
 
 	if (screen == NULL || config == NULL || map == NULL)
 		return (throw_void("render_map3d_player", "NULL pointer"));
@@ -67,33 +65,37 @@ void	render_map2d_player(t_screen *screen,
 	if (t->normal->next != t->normal)
 	{
 		texture = (t_texture*)t->normal->next;
-		scale = compute_render_scale(&texture->size, &config->character_size);
-		player->super.texture.scale = scale;
 		if (player->super.status.is_dragged)
 			update_character_position_by_drag(player);
-		anchor.x = player->camera.pos.x * config->scale.x + config->anchor.x;
-		anchor.y = player->camera.pos.y * config->scale.y + config->anchor.y;
-		render_texture_with_scale_2d(screen, texture, anchor, scale);
+		t->box.anchor.x = player->camera.pos.x / config->box.scale.x
+			+ config->box.anchor.x;
+		t->box.anchor.y = player->camera.pos.y / config->box.scale.y
+			+ config->box.anchor.y;
+		update_entity_texture_box_with_size(screen, &t->box, texture,
+			config->character_size);
+		render_texture_with_box(screen, texture, &t->box);
 	}
 }
 
 void	voxel_map_render2d_character(t_screen *screen, t_voxel_map_2d_config *config,
 			t_character *character)
 {
-	t_texture	*curr;
+	t_texture	*texture;
 	t_pos2i		anchor;
-	t_vec2f		scale;
 
 	if (character->super.texture.curr == NULL)
 		return ;
-	curr = character->super.texture.curr;
-	scale = compute_render_scale(&curr->size, &config->character_size);
-	character->super.texture.scale = scale;
+	texture = character->super.texture.curr;
 	if (character->super.status.is_dragged)
 		update_character_position_by_drag(character);
-	anchor.x = character->camera.pos.x * config->scale.x + config->anchor.x;
-	anchor.y = character->camera.pos.y * config->scale.y + config->anchor.y;
-	render_texture_with_scale_2d(screen, curr, anchor, scale);
+	anchor.x = character->camera.pos.x / config->box.scale.x
+		+ config->box.anchor.x;
+	anchor.y = character->camera.pos.y / config->box.scale.y
+		+ config->box.anchor.y;
+	character->super.texture.box.anchor = anchor;
+	update_entity_texture_box_with_size(screen, &character->super.texture.box,
+		texture, config->character_size);
+	render_texture_with_box(screen, texture, &character->super.texture.box);
 }
 
 

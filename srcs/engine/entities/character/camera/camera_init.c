@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 01:11:36 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 22:35:55 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/09 23:38:14 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,14 @@ t_result	init_camera(t_camera *self)
 	self->end = to_vtx(rotate(self->fov_half), self->dir);
 	self->plan_width = plan_width;
 	self->height = self->plan_width / 4.0f;
+	self->height_scale = 1.0f / (self->height / (float)game_screen()->size.y);
 	self->plan_half = self->plan_width / 2.0f;
 	self->dist_to_plan = self->plan_half / (float)tan(self->fov / 2.0f);
 	self->to_plan = vec2f_scalar(self->dir, self->dist_to_plan);
 	self->plan = ft_vec2f(-self->dir.y, self->dir.x);
 	self->pos = ft_vec2f(0, 0);
+	self->rotation_delta = 2.0f;
+	self->translation_delta = 5.0f;
 	return (OK);
 }
 

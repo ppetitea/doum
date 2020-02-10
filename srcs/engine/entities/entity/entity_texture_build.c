@@ -6,12 +6,14 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:30:43 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 22:36:14 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/08 04:21:33 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "build.h"
 #include "utils/error.h"
+
+#include <stdio.h>
 
 t_result	build_entity_animation_type_with_obj(t_entity_texture *e_texture,
 				t_dnon_object *e_texture_obj)
@@ -78,12 +80,10 @@ t_result	build_entity_textures_with_obj(t_list_head *images,
 	if (!memalloc_entity_textures(e_texture))
 		return (throw_error("build_entity_texture", "memalloc_textures fail"));
 	build_entity_animation_type_with_obj(e_texture, e_texture_obj);
-	init_vec2i_with_obj(&e_texture->anchor,
+	init_vec2i_with_obj(&e_texture->box.anchor,
 		get_child_list_object_by_key(e_texture_obj, "anchor"));
-	init_vec2i_with_obj(&e_texture->offset,
-		get_child_list_object_by_key(e_texture_obj, "offset"));
-	e_texture->scale.x = get_float_value_by_key(e_texture_obj, "scale", 1.0f);
-	e_texture->scale.y = e_texture->scale.x;
+	init_vec2f_with_obj(&e_texture->box.scale,
+		get_child_list_object_by_key(e_texture_obj, "scale"));
 	result = build_textures_with_obj(images, e_texture->normal,
 		get_child_list_object_by_key(e_texture_obj, "normal"));
 	throw_warning("normal texture:\t", result ? "OK" : "FAIL", 3);

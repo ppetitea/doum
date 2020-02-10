@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 00:52:05 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/01 00:27:43 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/08 00:56:59 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_result	copy_entity_texture(t_entity_texture *src, t_entity_texture *dest)
 	if (src == NULL || dest == NULL)
 		return (throw_error("copy_entity_texture", "NULL pointer provided"));
 	dest->animation = src->animation;
-	dest->anchor = src->anchor;
+	dest->box = src->box;
 	dest->animate = src->animate;
 	dest->curr = src->curr;
 	dest->curr_head = src->curr_head;
@@ -47,10 +47,8 @@ t_result	copy_entity_texture(t_entity_texture *src, t_entity_texture *dest)
 	dest->hover = src->hover;
 	dest->last = src->last;
 	dest->normal = src->normal;
-	dest->offset = src->offset;
 	dest->prev = src->prev;
 	dest->prev_head = src->prev_head;
-	dest->scale = src->scale;
 	dest->update_by_status = src->update_by_status;
 	return (OK);
 }

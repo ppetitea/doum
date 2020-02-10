@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entity_actions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 19:22:44 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 19:45:33 by lbenard          ###   ########.fr       */
+/*   Updated: 2020/02/08 02:11:31 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ t_result	drag_entity(void *entity_resource,
 		return (throw_error("drag_entity", "resource must be an entity"));
 	game = game_singleton(NULL);
 	entity = (t_entity*)entity_resource;
-	entity->texture.anchor = game->interface.mouse.pos;
+	entity->texture.box.anchor = game->interface.mouse.pos;
 	(void)args;
 	return (OK);
 }

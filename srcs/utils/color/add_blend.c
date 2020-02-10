@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_blend.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 02:30:17 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 19:26:24 by lbenard          ###   ########.fr       */
+/*   Updated: 2020/02/08 13:53:39 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,15 @@ t_u32	blend_add_average(t_rgba current, t_rgba old)
 
 t_u32	blend_add(t_rgba curr, t_rgba old)
 {
-	t_rgba	new;
-	float	curr_alpha;
-	float	old_alpha;
-	float	final_alpha;
+	unsigned int	alpha;
+	unsigned int	inv_alpha;
+	t_rgba			new;
 
-	curr_alpha = (float)curr.rgba.a / 255.0f;
-	old_alpha = (float)old.rgba.a / 255.0f;
-	final_alpha = old_alpha + curr_alpha - old_alpha * curr_alpha;
-	curr.rgba.r = curr.rgba.r * curr_alpha;
-	curr.rgba.g = curr.rgba.g * curr_alpha;
-	curr.rgba.b = curr.rgba.b * curr_alpha;
-	old.rgba.r = old.rgba.r * old_alpha;
-	old.rgba.g = old.rgba.g * old_alpha;
-	old.rgba.b = old.rgba.b * old_alpha;
-	new.rgba.r = (curr.rgba.r + old.rgba.r * (1 - curr_alpha)) / final_alpha;
-	new.rgba.g = (curr.rgba.g + old.rgba.g * (1 - curr_alpha)) / final_alpha;
-	new.rgba.b = (curr.rgba.b + old.rgba.b * (1 - curr_alpha)) / final_alpha;
-	new.rgba.a = final_alpha * 255.0f;
+	alpha = curr.rgba.a + 1;
+	inv_alpha = 256 - curr.rgba.a;
+	new.rgba.r = (unsigned char)((alpha * curr.rgba.r + inv_alpha * old.rgba.r) >> 8);
+	new.rgba.g = (unsigned char)((alpha * curr.rgba.g + inv_alpha * old.rgba.g) >> 8);
+	new.rgba.b = (unsigned char)((alpha * curr.rgba.b + inv_alpha * old.rgba.b) >> 8);
+	new.rgba.a = 0xff;
 	return (new.px);
 }

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:13:37 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 22:35:40 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/08 04:26:59 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,16 @@ void	orientate_texture(t_character *c)
 		texture = (angle > 0) ? &c->oriented->right : &c->oriented->left;
 	else
 		texture = (angle > 0) ? &c->oriented->back_r : &c->oriented->back_l;
-	c->super.texture.curr = (t_texture*)texture->next;
-	c->super.texture.curr_head = texture;
-	c->super.texture.prev = (t_texture*)texture->next;
-	c->super.texture.prev_head = texture;
-	if (c->super.texture.animation != INFINITE && c->super.texture.animation != FINAL)
-		c->super.texture.animation = STOP;
+	if (c->super.texture.curr_head != texture)
+	{
+		c->super.texture.curr = (t_texture*)texture->next;
+		c->super.texture.curr_head = texture;
+		c->super.texture.prev = (t_texture*)texture->next;
+		c->super.texture.prev_head = texture;
+		if (c->super.texture.animation != INFINITE
+			&& c->super.texture.animation != FINAL)
+			c->super.texture.animation = STOP;
+	}
 }
 
 

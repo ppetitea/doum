@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_build.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 20:36:14 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 20:06:48 by lbenard          ###   ########.fr       */
+/*   Updated: 2020/02/08 05:32:53 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,7 @@ t_result	build_game_resources_scenes(t_game *game,
 	t_list_head		*pos;
 	t_result		result;
 
+	// debug_mode(D_START);
 	if (game == NULL || scenes_obj == NULL)
 		return (throw_error("build_game_scenes", "NULL pointer provided"));
 	pos = (t_list_head*)scenes_obj->value;
@@ -200,6 +201,5 @@ t_result	build_game_resources_scenes(t_game *game,
 			throw_debug("scene added:\t\t\t\t", result ? "OK" : "FAIL", 1);
 		}
 	}
-	ft_putstr("scenes_added\n");
 	return (OK);
 }

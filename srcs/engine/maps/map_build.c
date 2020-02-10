@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 21:37:42 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/05 16:41:45 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/09 01:21:04 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,12 @@ t_result	build_voxel_map_textures_with_obj(t_list_head *images,
 	result = build_voxel_map_texture_with_obj(images, &map->height_map,
 				get_child_list_object_by_key(map_obj, "height_map"));
 	throw_warning("height_map textures:", result ? "OK" : "FAIL", 3);
-	map->sky.curr = (t_texture*)map->sky.textures.next;
-	map->color_map.curr =
-		(t_texture*)map->color_map.textures.next;
-	map->height_map.curr =
-		(t_texture*)map->height_map.textures.next;
+	if (&map->sky.textures != map->sky.textures.next)
+		map->sky.curr = (t_texture*)map->sky.textures.next;
+	if (&map->color_map.textures != map->color_map.textures.next)
+		map->color_map.curr = (t_texture*)map->color_map.textures.next;
+	if (&map->height_map.textures != map->height_map.textures.next)
+		map->height_map.curr = (t_texture*)map->height_map.textures.next;
 	return (OK);
 }
 

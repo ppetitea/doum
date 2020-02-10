@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:59:00 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 19:49:05 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/08 03:46:17 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,8 @@ static t_result	build_voxel_map_2d_config_with_obj(t_voxel_map_2d_config *config
 	if (map2d_config_obj == NULL)
 		return (ERROR);
 	config->display = get_int_value_by_key(map2d_config_obj, "display", 0);
-	init_vec2i_with_obj(&config->anchor,
+	init_vec2i_with_obj(&config->box.anchor,
 		get_child_list_object_by_key(map2d_config_obj, "anchor"));
-	init_vec2i_with_obj(&config->offset,
-		get_child_list_object_by_key(map2d_config_obj, "offset"));
 	init_usize_with_obj(&config->size,
 		get_child_list_object_by_key(map2d_config_obj, "size"));
 	init_usize_with_obj(&config->character_size,

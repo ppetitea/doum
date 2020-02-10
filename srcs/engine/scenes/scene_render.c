@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:41:38 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 13:07:24 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/08 16:40:50 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ void	render_voxel_map2d(t_screen *screen, t_texture* texture,
 {
 	if (screen == NULL || texture == NULL || config == NULL || map == NULL)
 		throw_error("render_voxel_map2d", "NULL pointer provided");
-	render_texture_with_scale_2d(screen, texture, config->anchor,
-		config->scale);
+	update_entity_texture_box_with_size(screen, &config->box, texture,
+		config->size);
+	render_texture_with_box(screen, texture, &config->box);
 	if (config->display_e_oriented)
 		map_render2d_oriented_entities(screen, config, &map->e_oriented, map);
 	if (config->display_e_oriented_storage)
@@ -40,15 +41,12 @@ void	render_voxel_map2d(t_screen *screen, t_texture* texture,
 	(void)config;
 	(void)screen;
 }
-t_vec2f	compute_render_scale(t_usize *by_default, t_usize *wish)
+t_vec2f	compute_render_scale(t_usize by_default, t_usize wish)
 {
 	t_vec2f	scale;
 
-	if (by_default == NULL || wish == NULL)
-		throw_error("compute_render_scale", "NULL pointer provided");
-	scale.x = (float)wish->x / (float)by_default->x;
-	scale.y = (float)wish->y / (float)by_default->y;
-
+	scale.x =  (float)wish.x / (float)by_default.x;
+	scale.y =  (float)wish.y / (float)by_default.y;
 	// printf("wish x %zu y %zu\n", wish->x, wish->y);
 	// printf("by_default x %zu y %zu\n", by_default->x, by_default->y);
 	// printf("1scale x %.2f y %.2f\n", scale.x, scale.y);
@@ -60,17 +58,19 @@ void	update_map_render_config(t_voxel_map_config *config, t_map *map)
 	if (config == NULL || map == NULL)
 		throw_error("update_map_render_config", "NULL pointer provided");
 	// printf("update_map_config\n");
-	config->color_map.scale = compute_render_scale(
-		&map->color_map.curr->size, &config->color_map.size);
-	config->height_map.scale = compute_render_scale(
-		&map->height_map.curr->size, &config->height_map.size);
-	config->drop_map.scale = compute_render_scale(
-		&map->color_map.curr->size, &config->drop_map.size);
-	config->map_3d.scale = compute_render_scale(&map->color_map.curr->size,
-		&config->map_3d.size);
+	config->color_map.box.scale = compute_render_scale(
+		map->color_map.curr->size, config->color_map.size);
+	config->height_map.box.scale = compute_render_scale(
+		map->height_map.curr->size, config->height_map.size);
+	config->drop_map.box.scale = compute_render_scale(
+		map->color_map.curr->size, config->drop_map.size);
+	config->map_3d.scale = compute_render_scale(game_screen()->size,
+		config->map_3d.size);
+	config->map_3d.inv_scale.x = 1.0f / config->map_3d.scale.x;
+	config->map_3d.inv_scale.y = 1.0f / config->map_3d.scale.y;
 	config->map_ref = map;
-
-	// printf("2scale x %.2f y %.2f\n", config->color_map.scale.x, config->color_map.scale.y);
+	// printf("3dscale x %.2f y %.2f\n", config->map_3d.scale.x, config->map_3d.scale.y);
+	// printf("3dinv_scale x %.2f y %.2f\n", config->map_3d.inv_scale.x, config->map_3d.inv_scale.y);
 }
 
 void	render_current_map(t_screen *screen, t_voxel_map_config *config,
@@ -95,14 +95,14 @@ void	render_current_map(t_screen *screen, t_voxel_map_config *config,
 
 void	render_scene_background(t_screen *screen, t_texture* background)
 {
-	t_vec2f	scale;
-	t_vec2i	anchor;
+	t_texture_box	box;
 
 	if (screen == NULL || background == NULL)
 		throw_error("render_scene_background", "NULL pointer provided");
-	scale = compute_render_scale(&background->size, &screen->size);
-	anchor = ft_vec2i(0, 0);
-	render_texture_with_scale_2d(screen, background, anchor, scale);
+	box.anchor = ft_vec2i(0, 0);
+	update_entity_texture_box_with_size(screen, &box, background,
+		screen->size);
+	render_texture_with_box(screen, background, &box);
 }
 
 void	render_scene_entities(t_screen *screen, t_list_head *entities)
@@ -119,7 +119,13 @@ void	render_scene_entities(t_screen *screen, t_list_head *entities)
 	{
 		next = next->next;
 		entity = (t_entity*)pos;
-		render_texture(screen, entity->texture.curr, entity->texture.anchor);
+		if (entity->texture.curr)
+		{
+			update_texture_box_with_screen(screen, &entity->texture.box,
+				entity->texture.curr);
+			render_texture_with_box(screen, entity->texture.curr,
+				&entity->texture.box);
+		}
 	}
 }
 
