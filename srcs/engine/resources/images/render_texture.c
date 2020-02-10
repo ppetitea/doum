@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 01:19:09 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/09 02:28:07 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/10 03:32:38 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,16 @@
 #include "libft.h"
 
 #include <stdio.h>
+
+t_vec2i		pos_in_screen(t_pos2i pos, t_vec2f render_scale)
+{
+	return (ft_vec2i(pos.x / render_scale.x, pos.y / render_scale.y));
+}
+
+t_vec2i		pos_in_texture(t_pos2i pos, t_vec2f render_scale)
+{
+	return (ft_vec2i(pos.x * render_scale.x, pos.y * render_scale.y));
+}
 
 void	limit_texture_box_with_size(t_usize size, t_texture_box *box)
 {
@@ -27,6 +37,30 @@ void	limit_texture_box_with_size(t_usize size, t_texture_box *box)
 		box->end.x = (int)size.x;
 	if (box->end.y > (int)size.y)
 		box->end.y = (int)size.y;
+}
+
+void	limit_render_box_with_size(t_usize size, t_render_box *box)
+{
+	if (box->start.x < 0)
+		box->start.x = 0;
+	if (box->start.y < 0)
+		box->start.y = 0;
+	if (box->end.x > (int)size.x)
+		box->end.x = (int)size.x;
+	if (box->end.y > (int)size.y)
+		box->end.y = (int)size.y;
+}
+
+void	limit_pos2i_in_size(t_pos2i *pos, t_usize size)
+{
+	while (pos->x < 0)
+		pos->x += size.x;
+	while (pos->y < 0)
+		pos->y += size.y;
+	while (pos->x >= (int)size.x)
+		pos->x -= size.x;
+	while (pos->y >= (int)size.y)
+		pos->y -= size.y;
 }
 
 void	update_texture_box_with_screen(t_screen *screen, t_texture_box *box,
@@ -46,22 +80,22 @@ void	update_texture_box_with_screen(t_screen *screen, t_texture_box *box,
 	limit_texture_box_with_size(screen->size, box);
 }
 
-void	update_entity_texture_box_with_zoom_box(t_screen *screen,
-			t_texture_box *box, t_texture *texture, t_zoom_box zbox)
-{
-	box->scale.x = (float)texture->size.x / (float)zbox.texture_size.x;
-	box->scale.y = (float)texture->size.y / (float)zbox.texture_size.y;
-	box->offset.x = (int)(texture->offset.x / box->scale.x)
-		- zbox.box_offset.x + box->anchor.x;
-	box->offset.y = (int)(texture->offset.y / box->scale.y)
-		- zbox.box_offset.y + box->anchor.y;
-	box->size.x = (int)((float)texture->size.x / box->scale.x);
-	box->size.y = (int)((float)texture->size.y / box->scale.y);
-	box->start.x = (box->offset.x < 0) ? -box->offset.x : 0;
-	box->start.y = (box->offset.y < 0) ? -box->offset.y : 0;
-	box->end = vec2i_add(box->start, zbox.box_size);
-	limit_texture_box_with_size(screen->size, box);
-}
+// void	update_entity_texture_box_with_zoom_box(t_screen *screen,
+// 			t_texture_box *box, t_texture *texture, t_zoom_box zbox)
+// {
+// 	box->scale.x = (float)texture->size.x / (float)zbox.texture_size.x;
+// 	box->scale.y = (float)texture->size.y / (float)zbox.texture_size.y;
+// 	box->offset.x = (int)(texture->offset.x / box->scale.x)
+// 		- zbox.box_offset.x + box->anchor.x;
+// 	box->offset.y = (int)(texture->offset.y / box->scale.y)
+// 		- zbox.box_offset.y + box->anchor.y;
+// 	box->size.x = (int)((float)texture->size.x / box->scale.x);
+// 	box->size.y = (int)((float)texture->size.y / box->scale.y);
+// 	box->start.x = (box->offset.x < 0) ? -box->offset.x : 0;
+// 	box->start.y = (box->offset.y < 0) ? -box->offset.y : 0;
+// 	box->end = vec2i_add(box->start, zbox.box_size);
+// 	limit_texture_box_with_size(screen->size, box);
+// }
 
 void	update_entity_texture_box_with_size(t_screen *screen,
 			t_texture_box *box, t_texture *texture, t_usize	size)
@@ -71,25 +105,65 @@ void	update_entity_texture_box_with_size(t_screen *screen,
 	update_texture_box_with_screen(screen, box, texture);
 }
 
-static void	fill_screen_pixel_with_texture(t_screen *screen, t_texture *texture,
-			t_texture_box *box, t_vec2i i)
+static void	fill_screen_pixel_with_render_box(t_screen *screen,
+			t_texture *texture, t_render_box box, t_vec2i i)
 {
 	t_rgba old;
 	t_rgba curr;
-	t_rgba new;
+	t_vec2i	j;
 
-	old.px = screen->pixels[box->offset.x + i.x
-		+ (i.y + box->offset.y) * screen->size.x];
-	curr.px = texture->pixels[(int)(i.x * box->scale.x)
-		+ (int)(i.y * box->scale.y) * texture->size.x];
+	j = vec2i_add(pos_in_texture(i, box.scale), box.texture.offset);
+	limit_pos2i_in_size(&j, texture->size);
+	curr.px = texture->pixels[j.x + j.y * texture->size.x];
 	if (curr.rgba.a == 0)
-		new.px = old.px;
-	else if (curr.rgba.a == 255)
-		new.px = curr.px;
+		return ;
+	i = vec2i_add(i, box.screen.offset);
+	if (curr.rgba.a == 255)
+		screen->pixels[i.x + i.y * screen->size.x] = curr.px;
 	else
-		new.px = blend_add(curr, old);
-	screen->pixels[box->offset.x + i.x
-		+ (i.y + box->offset.y) * screen->size.x] = new.px;
+	{
+		old.px = screen->pixels[i.x + i.y * screen->size.x];
+		screen->pixels[i.x + i.y * screen->size.x] = blend_add(curr, old);
+	}
+}
+
+void	render_texture_with_render_box(t_screen *screen, t_texture *texture,
+			t_render_box box)
+{
+	t_vec2i		i;
+
+	i.y = box.start.y;
+	while (box.screen.offset.y + i.y < box.end.y)
+	{
+		i.x = box.start.x;
+		while (box.screen.offset.x + i.x < box.end.x)
+		{
+			fill_screen_pixel_with_render_box(screen, texture, box, i);
+			++i.x;
+		}
+		++i.y;
+	}
+}
+
+static void	fill_screen_pixel_with_texture(t_screen *screen, t_texture *texture,
+			t_texture_box box, t_vec2i i)
+{
+	t_rgba old;
+	t_rgba curr;
+	t_vec2i	j;
+
+	j = pos_in_texture(i, box.scale);
+	i = vec2i_add(i, box.offset);
+	curr.px = texture->pixels[j.x + j.y * texture->size.x];
+	if (curr.rgba.a == 0)
+		return ;
+	if (curr.rgba.a == 255)
+		screen->pixels[i.x + i.y * screen->size.x] = curr.px;
+	else
+	{
+		old.px = screen->pixels[i.x + i.y * screen->size.x];
+		screen->pixels[i.x + i.y * screen->size.x] = blend_add(curr, old);
+	}
 }
 
 void	render_texture_with_box(t_screen *screen, t_texture *texture,
@@ -103,7 +177,7 @@ void	render_texture_with_box(t_screen *screen, t_texture *texture,
 		i.x = box->start.x;
 		while (box->offset.x + i.x < box->end.x)
 		{
-			fill_screen_pixel_with_texture(screen, texture, box, i);
+			fill_screen_pixel_with_texture(screen, texture, *box, i);
 			++i.x;
 		}
 		++i.y;

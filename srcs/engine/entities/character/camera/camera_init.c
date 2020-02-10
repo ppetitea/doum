@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 01:11:36 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/08 16:35:06 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/09 23:38:14 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ t_result	init_camera(t_camera *self)
 	self->to_plan = vec2f_scalar(self->dir, self->dist_to_plan);
 	self->plan = ft_vec2f(-self->dir.y, self->dir.x);
 	self->pos = ft_vec2f(0, 0);
+	self->rotation_delta = 2.0f;
+	self->translation_delta = 5.0f;
 	return (OK);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 14:41:00 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/09 03:34:12 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/10 04:46:40 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -349,30 +349,87 @@ void	render_map3d_player(t_screen *screen,
 	render_texture_with_box(screen, t->curr, &t->box);
 }
 
+// void	render_sky_box(t_screen *screen, t_voxel_map_3d_config *config,
+// 		t_map *map)
+// {
+// 	t_texture_box	box;
+// 	t_zoom_box		zbox;
+// 	t_texture		*texture;
+// 	float			scale;
+// 	t_camera		*cam;
+
+// 	if (!(texture = map->sky.curr))
+// 		return ;
+// 	cam = &map->character_ref->camera;
+// 	scale = (float)screen->size.y / (float)texture->size.y;
+// 	zbox.texture_size.x = (int)(texture->size.x * scale);
+// 	zbox.texture_size.y = (int)(texture->size.y * scale);
+// 	zbox.box_offset.x = (int)(((float)zbox.texture_size.x / (PI))
+// 		* (atan2f(cam->dir.y, cam->dir.x) + PI));
+// 	zbox.box_offset.y = 0;
+// 	zbox.box_size.x = (int)screen->size.x;
+// 	zbox.box_size.y = (int)screen->size.y;
+// 	box.anchor.y = config->horizon + (cam->dist_to_plan / config->horizon_dist)
+// 					* cam->height;
+// 	update_entity_texture_box_with_zoom_box(screen, &box, texture, zbox);
+// 	render_texture_with_box(screen, texture, &box);
+// 	(void)config;
+// }
+
+int		horizon_height(t_voxel_map_3d_config *config,
+			t_camera *cam)
+{
+	int	height;
+
+	height = config->horizon;
+	height += (cam->dist_to_plan / config->horizon_dist) * cam->height;
+	return (height);
+}
+
+t_vec2f		render_scale(t_usize original, t_usize wish)
+{
+	t_vec2f	scale;
+
+	scale.x = (float)original.x / (float)wish.x;
+	scale.y = (float)original.y / (float)wish.y;
+	return (scale);
+}
+
+float		angle_in_percent(t_vec2f dir)
+{
+	return ((atan2f(dir.y, dir.x) + PI) / (PI * 2));
+}
+
+int		offset_x_with_dir(t_camera *cam, size_t width)
+{
+	return ((int)(width * 2 * angle_in_percent(cam->dir)));
+}
+
 void	render_sky_box(t_screen *screen, t_voxel_map_3d_config *config,
 		t_map *map)
 {
-	t_texture_box	box;
-	t_zoom_box		zbox;
+	t_render_box	box;
 	t_texture		*texture;
-	float			scale;
 	t_camera		*cam;
 
 	if (!(texture = map->sky.curr))
 		return ;
 	cam = &map->character_ref->camera;
-	scale = (float)screen->size.y / (float)texture->size.y;
-	zbox.texture_size.x = (int)(texture->size.x * scale);
-	zbox.texture_size.y = (int)(texture->size.y * scale);
-	zbox.box_offset.x = (int)(((float)zbox.texture_size.x / (PI))
-		* (atan2f(cam->dir.y, cam->dir.x) + PI));
-	zbox.box_offset.y = 0;
-	zbox.box_size.x = (int)screen->size.x;
-	zbox.box_size.y = (int)screen->size.y;
-	box.anchor.y = config->horizon + (cam->dist_to_plan / config->horizon_dist)
-					* cam->height;
-	update_entity_texture_box_with_zoom_box(screen, &box, texture, zbox);
-	render_texture_with_box(screen, texture, &box);
+	box.scale = render_scale(texture->size, config->size);
+	box.scale.x *= 0.5f;
+	box.texture.size.y = (int)texture->size.y;
+	box.texture.size.x = texture->size.y * (config->size.x / config->size.y);
+	box.texture.offset = texture->offset;
+	box.texture.offset.x += offset_x_with_dir(cam, texture->size.x);
+	box.screen.size = ft_vec2i(config->size.x, config->size.y);
+	box.screen.offset = pos_in_screen(texture->offset, box.scale);
+	box.screen.offset = vec2i_add(box.screen.offset, config->anchor);
+	box.screen.offset.y += horizon_height(config, cam);
+	box.start.x = (box.screen.offset.x < 0) ? -box.screen.offset.x : 0;
+	box.start.y	= box.screen.size.y - horizon_height(config, cam);
+	box.end = vec2i_add(box.screen.offset, box.screen.size);
+	limit_render_box_with_size(screen->size, &box);
+	render_texture_with_render_box(screen, texture, box);
 	(void)config;
 }
 
@@ -385,6 +442,9 @@ void	render_voxel_map3d(t_screen *screen, t_voxel_map_3d_config *config,
 	map->curr_character = (t_character*)map->e_oriented.next;
 	render_sky_box(screen, config, map);
 	render_map3d(screen, config, map);
-	if (config->display_player)
-		render_map3d_player(screen, config, map);
+	// if (config->display_player)
+	// 	render_map3d_player(screen, config, map);
+	(void)screen;
+	(void)config;
+	(void)map;
 }

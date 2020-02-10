@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 23:57:01 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/09 01:45:31 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/10 03:10:09 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,30 @@
 **	ce qui permet de creer des animations
 */
 
-typedef struct			s_zoom_box
+typedef	struct			s_box
 {
-	t_pos2i		texture_size;
-	t_pos2i		box_offset;
-	t_vec2i		box_size;
-}						t_zoom_box;  
+	t_pos2i				offset;
+	t_pos2i				size;
+}						t_box;
+
+typedef struct			s_render_box
+{
+	t_box		screen;
+	t_box		texture;
+	t_vec2f		scale;
+	t_pos2i		start;
+	t_pos2i		end;
+}						t_render_box;
 
 typedef struct			s_texture_box
 {
-	t_pos2i			anchor;
-	t_vec2f			scale;
-	t_pos2i			offset;
-	t_pos2i			size;
-	t_pos2i			start;
-	t_pos2i			end;
+	t_pos2i			anchor;		// in screen
+	t_vec2f			scale;		//	orignal_size / wish_size
+	t_pos2i			size;		//	in screen
+	t_pos2i			offset;		//	in screen
+	t_pos2i			start;		//	relative to offset
+	t_pos2i			end;		//	in screent_pos2i
+
 }						t_texture_box;
 
 typedef struct			s_texture
@@ -78,21 +87,21 @@ t_result		add_texture(t_list_head *textures, t_list_head *bmp_src,
 					char *name, t_texture_args args);
 
 
+t_vec2i			pos_in_screen(t_pos2i pos, t_vec2f render_scale);
+t_vec2i			pos_in_texture(t_pos2i pos, t_vec2f render_scale);
+void			limit_render_box_with_size(t_usize size, t_render_box *box);
+void			limit_texture_box_with_size(t_usize size, t_texture_box *box);
 void			update_texture_box_with_screen(t_screen *screen,
 					t_texture_box *box, t_texture *texture);
 void			update_entity_texture_box_with_size(t_screen *screen,
 					t_texture_box *box, t_texture *texture, t_usize	size);
-void			update_entity_texture_box_with_zoom_box(t_screen *screen,
-					t_texture_box *box, t_texture *texture, t_zoom_box zbox);
+// void			update_entity_texture_box_with_zoom_box(t_screen *screen,
+// 					t_texture_box *box, t_texture *texture, t_zoom_box zbox);
 void			render_texture_with_box(t_screen *screen, t_texture *texture,
 					t_texture_box *box);
-// void			render_texture(t_screen *screen, t_texture *texture,
-// 					t_vec2i anchor);
-// void			render_texture_with_scale(t_screen *screen, t_texture *texture,
-// 					t_vec2i anchor, float scale);
-// void			render_texture_with_scale_2d(t_screen *screen, t_texture *texture,
-// 					t_vec2i anchor, t_vec2f scale);
-// t_bool			is_texture_collide(t_texture self, t_vec2i pos, t_vec2i anchor);
+void			render_texture_with_render_box(t_screen *screen,
+					t_texture *texture, t_render_box box);
+
 t_result		list_add_image(t_list_head *list, t_bitmap_texture *image,
 					char *name);
 

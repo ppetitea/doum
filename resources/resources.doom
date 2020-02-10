@@ -126,6 +126,7 @@
 		"cycloid_back_r2":"resources/characters/cycloid/back_right/cycloid_back_right2.bmp",
 		"cycloid_back_r3":"resources/characters/cycloid/back_right/cycloid_back_right3.bmp",
 		"cycloid_back_r4":"resources/characters/cycloid/back_right/cycloid_back_right4.bmp",
+		"sky_cloud_inverse":"resources/sky/sky_cloud_inverse.bmp",
 		"sky_cloud":"resources/sky/sky_cloud.bmp",
 		"sky_night":"resources/sky/sky_night.bmp",
 		"menu_background":"resources/background/dark_background.bmp",
@@ -191,7 +192,7 @@
 		},
 		"life":100,
 		"armor":42,
-		"velocity":1.5,
+		"velocity":5,
 		"size":100,
 		"entity":{
 			"name":"mercenary",
@@ -792,8 +793,9 @@
 		"sky":{
 			"animation":"none",
 			"textures":{
-				"1":{"key":"sky_cloud","size":{"x":1600,"y":392}},
-				"2":{"key":"sky_night","size":{"x":1600,"y":533}}
+				"1":{"key":"sky_cloud_inverse","size":{"x":1470,"y":360},"offset":{"x":0,"y":-360}},
+				"1":{"key":"sky_cloud","size":{"x":1470,"y":360},"offset":{"x":0,"y":-360}},
+				"2":{"key":"sky_night","size":{"x":3000,"y":1500},"offset":{"x":0,"y":-1500}}
 			}
 		},
 		"color_map":{
@@ -854,8 +856,9 @@
 		"sky":{
 			"animation":"none",
 			"textures":{
-				"2":{"key":"sky_night","size":{"x":3000,"y":1500},"offset":{"x":0,"y":-1500}},
-				"1":{"key":"sky_cloud","size":{"x":1600,"y":392},"offset":{"x":0,"y":-392}}
+				"1":{"key":"sky_cloud","size":{"x":1470,"y":360},"offset":{"x":0,"y":-360}},
+				"1":{"key":"sky_cloud_inverse","size":{"x":1470,"y":360},"offset":{"x":0,"y":-360}},
+				"2":{"key":"sky_night","size":{"x":3000,"y":1500},"offset":{"x":0,"y":-1500}}
 			}
 		},
 		"color_map":{

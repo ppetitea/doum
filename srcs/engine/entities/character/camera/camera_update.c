@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 01:11:36 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/08 16:35:00 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/09 23:44:14 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_result	rotate_camera_left(t_entity *entity)
 		return (throw_error("entity_turn_right", "entity isn't character"));
 	character = (t_character*)entity;
 	cam = &character->camera;
-	cam->dir = to_vtx(rotate(-2.0f / 180.0f * PI), cam->dir);
+	cam->dir = to_vtx(rotate(-cam->rotation_delta / 180.0f * PI), cam->dir);
 	cam->to_plan = vec2f_scalar(cam->dir, cam->dist_to_plan);
 	cam->plan = ft_vec2f(-cam->dir.y, cam->dir.x);
 	return (OK);
@@ -45,7 +45,7 @@ t_result	rotate_camera_right(t_entity *entity)
 		return (throw_error("entity_turn_right", "entity isn't character"));
 	character = (t_character*)entity;
 	cam = &character->camera;
-	cam->dir = to_vtx(rotate(2.0f / 180.0f * PI), cam->dir);
+	cam->dir = to_vtx(rotate(cam->rotation_delta / 180.0f * PI), cam->dir);
 	cam->to_plan = vec2f_scalar(cam->dir, cam->dist_to_plan);
 	cam->plan = ft_vec2f(-cam->dir.y, cam->dir.x);
 	return (OK);
@@ -76,28 +76,30 @@ t_result	rotate_camera(void *game_resource, t_resource_type resource_type,
 
 t_result	translate_camera_up(t_entity *entity)
 {
-	t_character	*character;
+	t_camera	*cam;
 
 	if (entity == NULL)
 		return (throw_error("translate_cam up", "NULL pointer provided"));
 	if (entity->type != CHARACTER)
 		return (throw_error("translate_cam up", "entity isn't character"));
-	character = (t_character*)entity;
-	character->camera.height += 5.0f * character->velocity;
+	cam = &((t_character*)entity)->camera;
+	cam->height += cam->translation_delta * ((t_character*)entity)->velocity;
 	return (OK);
 }
 
 t_result	translate_camera_down(t_entity *entity)
 {
 	t_character	*character;
+	t_camera	*cam;
 
 	if (entity == NULL)
 		return (throw_error("translate_cam down", "NULL pointer provided"));
 	if (entity->type != CHARACTER)
 		return (throw_error("translate_cam down", "entity isn't character"));
 	character = (t_character*)entity;
-	if (character->camera.height - 5.0f * character->velocity > 0)
-		character->camera.height -= 5.0f * character->velocity;
+	cam = &((t_character*)entity)->camera;
+	if (cam->height - cam->translation_delta * character->velocity > 0)
+		cam->height -= cam->translation_delta * character->velocity;
 	return (OK);
 }
 
