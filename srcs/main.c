@@ -152,7 +152,7 @@ void	draw_bg(uint32_t *pixels, uint32_t *texture)
 		pixels[i] = texture[i];
 }
 
-void	bomb(int *hm, int x, int y, float radius)
+void	bomb(int *hm, int x, int y, float radius, int h)
 {
 	int x1;
 	int y1;
@@ -177,7 +177,7 @@ void	bomb(int *hm, int x, int y, float radius)
 			a.y = y1;
 			b.x = x2;
 			b.y = y2;
-			pp_liner_int(hm, &a, &b, 100);
+			pp_liner_int(hm, &a, &b, h);
 		}
 	}
 	ft_putstr("ok");
@@ -410,7 +410,6 @@ int main(int argc, char **argv)
 	int cursor = 0;
 	int speed = 10;
 	int dy = 1;
-	bomb(hm, WIDTH/2, HEIGHT/2, 50);
 	while(!quit)
 	{
 		if(!cursor)
@@ -462,6 +461,8 @@ int main(int argc, char **argv)
 					cursor = cursor ? 0:1;
 					cursor ? SDL_ShowCursor(SDL_ENABLE) : SDL_ShowCursor(SDL_DISABLE);
 				}
+				if (e.key.keysym.sym == SDLK_p)
+					bomb(hm, player.x % WIDTH, player.y % HEIGHT, 50, height);
 			}
 			if (e.type == SDL_KEYUP)
 			{
