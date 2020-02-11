@@ -34,7 +34,7 @@ uint32_t	pp_get_SDLcolor(SDL_Color color)
 	return (c);
 }
 
-int pp_putpixel(uint32_t *pixel, int x, int y, uint32_t color)
+int pp_putint(int *pixel, int x, int y, int color)
 {
 	if(y < 0 || y > HEIGHT)
 		return (0);
@@ -44,21 +44,38 @@ int pp_putpixel(uint32_t *pixel, int x, int y, uint32_t color)
 	return (0);
 }
 
-void	brush_square(uint32_t *screen, int x, int y, int size, uint32_t color)
+void	pp_liner_int(int *pixel, t_point *a, t_point *b, int color)
 {
-	int i;
-	int j;
+	int tab[10];
 
-	i = -1 - size / 2;
-	j = -1 - size / 2;
-	while (++i < size / 2)
+	tab[0] = a->x;
+	tab[1] = b->x;
+	tab[2] = a->y;
+	tab[3] = b->y;
+	tab[4] = abs(tab[1] - tab[0]);
+	tab[5] = tab[0] < tab[1] ? 1 : -1;
+	tab[6] = abs(tab[3] - tab[2]);
+	tab[7] = tab[2] < tab[3] ? 1 : -1;
+	tab[8] = (tab[4] > tab[6] ? tab[4] : -tab[6]) / 2;
+	while (!(tab[0] == tab[1] && tab[2] == tab[3]))
 	{
-		while(++j < size / 2)
-		{
-			pp_putpixel(screen, x + j, y + i, color);
-		}
-	j = -1 - size / 2;
+		pp_putint(pixel, tab[0], tab[2], color);
+		tab[9] = tab[8];
+		tab[8] -= (tab[9] > -tab[4]) ? tab[6] : 0;
+		tab[0] += (tab[9] > -tab[4]) ? tab[5] : 0;
+		tab[8] += (tab[9] < tab[6]) ? tab[4] : 0;
+		tab[2] += (tab[9] < tab[6]) ? tab[7] : 0;
 	}
+}
+
+int pp_putpixel(uint32_t *pixel, int x, int y, uint32_t color)
+{
+	if(y < 0 || y > HEIGHT)
+		return (0);
+	if (x < 0 || x > WIDTH)
+		return (0);
+	pixel[y * WIDTH + x] = color; 
+	return (0);
 }
 
 void	pp_liner(uint32_t *pixel, t_point *a, t_point *b, uint32_t color)
@@ -94,82 +111,86 @@ int	get_blue(uint32_t color)
 	return (c);
 }
 
-void	draw_column(uint32_t *pixels, int x, int height, uint32_t color)
-{
-	if (height > HEIGHT)
-		height = HEIGHT;
-	if (height < 0)
-		height = 0;
-	while(height--)
-		pixels[(HEIGHT - height - 1) * WIDTH + x] = color;
-}
-
 void	draw_vertical_line(uint32_t *pixels, int x, int ytop, int ybot, uint32_t color)
 {
+	if (ytop > ybot)
+		return ;
+	if (ytop < 0)
+		ytop = 0;
+	if (ybot > HEIGHT)
+		ybot = HEIGHT;
+	if (ybot < 0)
+		ybot = 0;
+	while (ytop < ybot)
+		pixels[(ytop++) * WIDTH + x] = color;
+}
+
+uint32_t nocturne(uint32_t c)
+{
+	return((c & 255) << 8);
+}
+
+unsigned char get_r(uint32_t c)
+{
+	return(c & 0xFF);
+}
+
+
+unsigned char get_g(uint32_t c)
+{
+	return((c >> 8) & 0xFF);
+}
+
+unsigned char get_b(uint32_t c)
+{
+	return((c >> 16) & 0xFF);
+}
+
+void	draw_bg(uint32_t *pixels, uint32_t *texture)
+{
+	for (int i = 0; i < HEIGHT * HEIGHT; i++)
+		pixels[i] = texture[i];
+}
+
+void	bomb(int *hm, int x, int y, float radius)
+{
+	int x1;
+	int y1;
+	int x2;
+	int y2;
 	t_point a;
 	t_point b;
 
+	//pour set la hm a la bonne valeur on aura 
+	//if(hm[x,y] > hm[xp,yp])
+	//hm[x,y] = hm[xp,xyp]
 
-	if (ytop > ybot)
-		return ;
-
-	if (ytop < 0)
-		ytop = 0;
-	/*
-	   if (ytop > HEIGHT)
-	   ytop = HEIGHT - 1;
-	   if (ybot < 1)
-	   ybot = 1;
-	   if (ybot > HEIGHT)
-	   ybot = HEIGHT - 1;
-	 */
-
-	a.x = x;
-	b.x = x;
-
-	a.y = ytop;
-	b.y = ybot;
-
-	pp_liner(pixels, &a, &b, color);
+	for(float theta = 0; theta <= M_PI; theta += 0.1)
+	{
+		for(float invtheta = 0; invtheta >= -M_PI; invtheta -= 0.1)
+		{
+			x1 = x + cos(theta) * radius;
+			y1 = y + sin(theta) * radius;
+			x2 = x + cos(invtheta) * radius;
+			y2 = y + sin(invtheta) * radius;
+			a.x = x1;
+			a.y = y1;
+			b.x = x2;
+			b.y = y2;
+			pp_liner_int(hm, &a, &b, 100);
+		}
+	}
+	ft_putstr("ok");
 }
-/*
-   void	render(uint32_t *pixels, int *heightmap, uint32_t *img, t_point player, float ag, int renderdistance)
-   {
-   memset(pixels, 0xFFFFFFFF, WIDTH * HEIGHT * (sizeof(uint32_t)));
-   float value;
-   int columny;
-   int columnx;
-   float dx = 60 * M_PI / 180;
-   float ad;
-   ad = dx / WIDTH;
-   dx = ad;
-   dx = 0;
-   float gd;
-   while(renderdistance > 0)
-   {		
-   for(int i = 0; i < WIDTH; i++)
-   {
-   columny = sin(ag + dx) * (float)renderdistance + player.y;
-   columnx = cos(ag + dx) * (float)renderdistance + player.x;
-   value = (float)heightmap[columny * WIDTH + columnx];
-   gd = (float)heightmap[columny * WIDTH + columnx];
-   value *= HEIGHT;
-   value /= 255;
-//draw_column(pixels, i, value, 0xFFAAAAAA - renderdistance);	
-draw_column(pixels, i, value, img[(int)gd]);	
-dx += ad;
-}
-renderdistance--;
-}
-}
- */
 
-
-void	render2(uint32_t *pixels, int *hm, uint32_t *colormap, t_point player, float phi, int height, int horizon, int scale_height, int distance)
+void	render2(uint32_t *pixels, int *hm, uint32_t *colormap, t_point player, float phi, int height, int horizon, int scale_height, int distance, uint32_t *bg)
 {
 	memset(pixels, 0xFFFFFFFF, sizeof(uint32_t) * WIDTH * HEIGHT);
+	draw_bg(pixels, bg);
 	int mapwidthperiod = WIDTH - 1;
 	int mapheightperiod = HEIGHT - 1;
+
+	(void)scale_height;
 
 	float sinang = sin(phi);
 	float cosang = cos(phi);
@@ -195,10 +216,11 @@ void	render2(uint32_t *pixels, int *hm, uint32_t *colormap, t_point player, floa
 		float dy = (pry - ply) / WIDTH;
 		plx += player.x;
 		ply += player.y;
-		float invz = 1 / z * 240;
+		float invz = 1 / z * 240 * scale_height;
+		int mapoffset = 0;
 		for(int i=0; i< WIDTH; i++)
 		{
-			int mapoffset = (((int)floorf(ply) & (int)mapwidthperiod) << 10) + (((int)floorf(plx)) & ((int)mapheightperiod));
+			mapoffset = (((int)floorf(ply) & (int)mapwidthperiod) << 10) + (((int)floorf(plx)) & ((int)mapheightperiod));
 			float heightonscreen = (height - hm[mapoffset]) * invz + horizon;
 			draw_vertical_line(pixels, i, heightonscreen, hiddeny[i], colormap[mapoffset]);
 			if (heightonscreen < hiddeny[i]) hiddeny[i] = heightonscreen;
@@ -209,6 +231,115 @@ void	render2(uint32_t *pixels, int *hm, uint32_t *colormap, t_point player, floa
 	}
 }
 
+static const char *arrow[] = {
+	/* width height num_colors chars_per_pixel */
+	"    32    32        3            1",
+	/* colors */
+	"X c #00ff00",
+	". c #000000",
+	"  c None",
+	/* pixels */
+	"X                               ",
+	"X.X                             ",
+	"X..X                            ",
+	"X...X                           ",
+	"X....X                          ",
+	"X.....X                         ",
+	"X......X                        ",
+	"X.......X                       ",
+	"X........X                      ",
+	"X.........X                     ",
+	"X....XXXXXXX                    ",
+	"X..XX                           ",
+	"X.X                             ",
+	"XX                              ",
+	"X                               ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"0,0"
+};
+
+static SDL_Cursor *init_system_cursor(const char *image[])
+{
+	int i, row, col;
+	Uint8 data[4*32];
+	Uint8 mask[4*32];
+	int hot_x, hot_y;
+
+	i = -1;
+	for (row=0; row<32; ++row) {
+		for (col=0; col<32; ++col) {
+			if (col % 8) {
+				data[i] <<= 1;
+				mask[i] <<= 1;
+			} else {
+				++i;
+				data[i] = mask[i] = 0;
+			}
+			switch (image[4+row][col]) {
+				case 'X':
+					data[i] |= 0x01;
+					mask[i] |= 0x01;
+					break;
+				case '.':
+					mask[i] |= 0x01;
+					break;
+				case ' ':
+					break;
+			}
+		}
+	}
+	sscanf(image[4+row], "%d,%d", &hot_x, &hot_y);
+	return SDL_CreateCursor(data, mask, 32, 32, hot_x, hot_y);
+}
+
+int	collision_height(int *hm, t_point *player, int *height, int playerheight)
+{
+	int x;
+	int y;
+
+	x = abs(player->x % WIDTH);
+	y = abs(player->y % HEIGHT);
+	if (*height < hm[y * WIDTH + x] + playerheight)
+		*height = hm[y * WIDTH + x] + playerheight;
+	return (1);
+}
+
+int	collision_walls(int *hm, t_point *player, int dx, int dy, int height, int playerheight, int wallheight)
+{
+	int x;
+	int y;
+
+	x = abs(player->x % WIDTH);
+	y = abs(player->y % HEIGHT);
+	if (hm[(y + dy) * WIDTH + (x + dx)] + playerheight > hm[y * WIDTH + x] + height + playerheight + wallheight)
+		return (0);
+	return (1); 
+}
+
+int	collisions(int *hm, t_point *player, int *height, int playerheight, int dx, int dy, int wallheight)
+{
+	if (collision_walls(hm, player, dx, dy, *height, playerheight, wallheight) == 0)
+		return (0);
+	if (collision_height(hm, player, height, playerheight) == 0)
+		return (0);
+	return (1);
+}
 
 int main(int argc, char **argv)
 {
@@ -219,10 +350,11 @@ int main(int argc, char **argv)
 	int statut = EXIT_FAILURE;
 	SDL_Texture *texture = NULL;
 
-	if (argc != 3)
+	if (argc != 4)
 		return (0);
 	t_bitmap_texture *img = load_bmp(argv[1]);
 	t_bitmap_texture *texturemap = load_bmp(argv[2]);
+	t_bitmap_texture *bg = load_bmp(argv[3]);
 	uint32_t *map = img->pixels;
 	uint32_t *colormap = texturemap->pixels;
 
@@ -237,6 +369,8 @@ int main(int argc, char **argv)
 		goto Quit;
 	texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STATIC, WIDTH, HEIGHT);
 
+	//SDL_ShowCursor(SDL_DISABLE);
+	SDL_SetCursor(init_system_cursor(arrow));
 	SDL_RenderClear(renderer);
 
 	uint32_t *screen;
@@ -258,15 +392,29 @@ int main(int argc, char **argv)
 
 	(void)player.x;
 
+	char *mapinside;
+	mapinside = malloc(sizeof(char) * HEIGHT * WIDTH);
+	for(int i = 0; i < WIDTH * HEIGHT; i++)
+		mapinside[i] = 0;
+//	fill_map(mapinside);
+
 	for(int i = 0; i < WIDTH * HEIGHT - 1; i++)
 		hm[i] = get_blue(map[i]);	
 	float ag = 0;
 	int height = 50;
 	int horizon = 120;
-	int mx;
-	int my;
+
+	float incx = 0;
+	int incy = 0;
+	int angley = HEIGHT / 2;
+	int cursor = 0;
+	int speed = 10;
+	int dy = 1;
+	bomb(hm, WIDTH/2, HEIGHT/2, 50);
 	while(!quit)
 	{
+		if(!cursor)
+		SDL_WarpMouseInWindow(window, WIDTH / 2, HEIGHT / 2);
 		SDL_UpdateTexture(texture, NULL, screen, WIDTH * sizeof(uint32_t));
 		while(SDL_PollEvent(&e))
 		{
@@ -274,37 +422,90 @@ int main(int argc, char **argv)
 			if (e.type == SDL_KEYDOWN)
 			{
 				if (e.key.keysym.sym == SDLK_SPACE)
-					height++;
+					height += 5;
 				if (e.key.keysym.sym == SDLK_x)
-					height--;
+					height -= 5;
 				if (e.key.keysym.sym == SDLK_r)
-					horizon++;
+					horizon += 5;
+				if (e.key.keysym.sym == SDLK_r)
+					angley += 5;
 				if (e.key.keysym.sym == SDLK_f)
-					horizon--;
-				if (e.key.keysym.sym == SDLK_UP)
-					player.y--;
-				if (e.key.keysym.sym == SDLK_DOWN)
-					player.y++;
-				if (e.key.keysym.sym == SDLK_LEFT)
-					player.x--;
-				if (e.key.keysym.sym == SDLK_RIGHT)
-					player.x++;
+					angley -= 5;
+				if (e.key.keysym.sym == SDLK_f)
+					horizon -= 5;
+				if (e.key.keysym.sym == SDLK_w)
+				{
+					player.y -= speed * (float)cos(ag);//10 == player speed;
+					player.x -= speed * (float)sin(ag);
+				}
+				if (e.key.keysym.sym == SDLK_s)
+				{					
+					player.y += speed * (float)cos(ag);//10 == player speed;
+					player.x += speed * (float)sin(ag);
+				}
+				if (e.key.keysym.sym == SDLK_a)
+				{
+					player.y -= speed * (float)cos(ag + M_PI/2);//10 == player speed;
+					player.x -= speed * (float)sin(ag + M_PI/2);
+				}
+				if (e.key.keysym.sym == SDLK_d)
+				{
+					player.y += speed * (float)cos(ag + M_PI/2);//10 == player speed;
+					player.x += speed * (float)sin(ag + M_PI/2);
+				}
 				if (e.key.keysym.sym == SDLK_ESCAPE)
 					quit = 1;
+				if (e.key.keysym.sym == SDLK_LSHIFT)
+					speed = 20;
+				if (e.key.keysym.sym == SDLK_LCTRL)
+				{
+					cursor = cursor ? 0:1;
+					cursor ? SDL_ShowCursor(SDL_ENABLE) : SDL_ShowCursor(SDL_DISABLE);
+				}
 			}
-			if (e.type == SDL_MOUSEMOTION)
+			if (e.type == SDL_KEYUP)
 			{
-				mx = e.button.x;
-				my = e.button.y;
+				if (e.key.keysym.sym == SDLK_LSHIFT)
+					speed = 10;
+			}
+			if (e.type == SDL_MOUSEBUTTONDOWN)
+			{
 				if (e.button.button == SDL_BUTTON_LEFT)
 					ag += 0.1;
 				if (e.button.button == SDL_BUTTON_RIGHT)
 					ag -= 0.1;
 			}
+			if (e.type == SDL_MOUSEMOTION)
+			{
+				//////////rc inside//////////////
+				/*
+				if (e.button.x > WIDTH / 2)
+					ag += 0.01 * (e.button.x - WIDTH / 2);
+				if (e.button.x < WIDTH / 2)
+					ag -= 0.01 * (WIDTH/2 - e.button.x );
+
+				if (e.button.y > HEIGHT / 2)
+					angley -= 1 * (e.button.y - HEIGHT/2);
+					//angley -= 1;
+				if (e.button.y < HEIGHT / 2)
+					angley += 1 * (HEIGHT/2 - e.button.y);
+
+				*/	
+				/////////////////////////////////	
+				if (e.button.x > WIDTH / 2)
+					ag -= 0.01 * (e.button.x - WIDTH / 2);
+				if (e.button.x < WIDTH / 2)
+					ag += 0.01 * (WIDTH/2 - e.button.x );
+				if (e.button.y > HEIGHT / 2)
+					horizon -= 10;
+				if (e.button.y < HEIGHT / 2)
+					horizon += 10;
+				/////////////////////////////////	
+			}
 		}
-		//render(screen, hm,colormap, player, ag, 300);
-		render2(screen, hm, colormap, player, ag, height, horizon, 120, 300);
-		brush_square(screen, mx, my, 10, 0xFFFFFFFF);
+		collision_height(hm, &player, &height, 10);
+		render2(screen, hm, colormap, player, ag, height, horizon, 2, 3000, bg->pixels);
+		//render_inside_raycast(screen, mapinside, &player, ag, angley);
 		SDL_RenderClear(renderer);
 		SDL_RenderCopy(renderer, texture, NULL, NULL);
 		SDL_RenderPresent(renderer);
