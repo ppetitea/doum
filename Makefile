@@ -6,7 +6,7 @@
 #    By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/08 21:27:29 by lbenard           #+#    #+#              #
-#    Updated: 2020/02/09 20:27:05 by ppetitea         ###   ########.fr        #
+#    Updated: 2020/02/12 16:23:02 by ppetitea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -196,9 +196,15 @@ LDFLAGS		:=	$(LDFLAGS) -L $(SDL_FOLDER) `sdl2-config --libs`
 
 #	SDL_ttf
 SDL_TTF_FOLDER	=	./SDL2_ttf
-SDL_TTF			=	$(SDL_TTF_FOLDER)/.libs/libSDL2_ttf.a
+SDL_TTF			=	$(SDL_TTF_FOLDER)/.libs
 INCLUDES		:=	$(INCLUDES) -I $(SDL_TTF_FOLDER)
-LDFLAGS			:=	$(LDFLAGS) -L $(SDL_TTF_FOLDER)/.libs -lSDL2_ttf
+LDFLAGS			:=	$(LDFLAGS) -L $(SDL_TTF_FOLDER)/.libs
+
+#	SDL_mixer
+MIXER_FOLDER	= ./SDL2_mixer-2.0.0
+MIXER		=	$(MIXER_FOLDER)/build
+INCLUDES	:=	$(INCLUDES) -I $(MIXER_FOLDER)
+LDFLAGS		:=	$(LDFLAGS) -L $(MIXER_FOLDER)
 
 # Colors
 BOLD			=	\e[1m
@@ -227,7 +233,7 @@ RESET			=	\e[0m
 PREFIX			=	$(BOLD)$(LIGHT_CYAN)[$(EXEC)]$(RESET):
 
 #****************	RULES	****************
-all: $(SDL) $(SDL_TTF) $(LIBFT) $(EXEC)
+all: $(SDL) $(MIXER) $(SDL_TTF) $(LIBFT) $(EXEC)
 
 $(EXEC): $(OBJS)
 	@$(CC) $(OBJS) -o $(EXEC) $(LDFLAGS)
@@ -249,8 +255,12 @@ $(SDL):
 	make > /dev/null;
 
 $(SDL_TTF):
-	@printf "compiling SDL it may takes long time ~3mn <3\n";
 	@cd $(SDL_TTF_FOLDER) &&\
+	./configure > /dev/null &&\
+	make > /dev/null;
+
+$(MIXER):
+	@cd $(MIXER_FOLDER) &&\
 	./configure > /dev/null &&\
 	make > /dev/null;
 
@@ -260,7 +270,7 @@ run: all
 cl:
 	@rm -rf $(OBJS_FOLDER)
 
-clean: libft-clean sdl-clean
+clean: libft-clean sdl-clean mixer-clean ttf-clean
 	@rm -rf $(OBJS_FOLDER)
 
 libft-clean:
@@ -270,10 +280,16 @@ sdl-clean:
 	@cd $(SDL_FOLDER) &&\
 	make clean > /dev/null;
 
+mixer-clean:
+	make -C $(MIXER_FOLDER) clean > /dev/null;
+
+ttf-clean:
+	make -C $(SDL_TTF_FOLDER) clean > /dev/null;
+
 fcl: cl
 	@rm -rf $(EXEC)
 
-fclean: clean libft-fclean sdl-fclean
+fclean: clean libft-fclean sdl-fclean mixer-fclean ttf-fclean
 	@rm -rf $(EXEC)
 
 libft-fclean:
@@ -281,6 +297,14 @@ libft-fclean:
 
 sdl-fclean:
 	@make -C $(SDL_FOLDER) clean > /dev/null
+
+mixer-fclean:
+	@cd $(MIXER_FOLDER);\
+	make clean > /dev/null
+
+ttf-fclean:
+	@cd $(SDL_TTF_FOLDER);\
+	make clean > /dev/null
 
 r: cl all
 

@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 17:47:58 by lbenard           #+#    #+#             */
-/*   Updated: 2020/01/17 13:06:03 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/12 16:51:28 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,4 @@ t_bool	list_foreach(t_list_head *list, size_t offset, t_iterator_callback (*fn)(
 	}
 	return (FALSE);
 }
+

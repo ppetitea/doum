@@ -5,19 +5,19 @@
 # It is necessary for linking the library.
 
 # The name that we can dlopen(3).
-dlname='libSDL2_ttf-2.0.so.0'
+dlname='libSDL2_ttf-2.0.0.dylib'
 
 # Names of this library.
-library_names='libSDL2_ttf-2.0.so.0.14.1 libSDL2_ttf-2.0.so.0 libSDL2_ttf.so'
+library_names='libSDL2_ttf-2.0.0.dylib libSDL2_ttf.dylib'
 
 # The name of the static archive.
 old_library='libSDL2_ttf.a'
 
 # Linker flags that can not go in dependency_libs.
-inherited_linker_flags=''
+inherited_linker_flags=' '
 
 # Libraries that this one depends upon.
-dependency_libs=' -lfreetype -L/usr/local/lib /usr/local/lib/libSDL2.la -lm -ldl -lpthread -lrt'
+dependency_libs=' -L/Users/ppetitea/.brew/opt/freetype/lib -lfreetype -L/Users/ppetitea/.brew/lib -lSDL2'
 
 # Names of additional weak libraries provided by this library
 weak_library_names=''
