@@ -152,46 +152,7 @@ void	draw_bg(uint32_t *pixels, uint32_t *texture)
 		pixels[i] = texture[i];
 }
 
-void	draw_line(int *hm, int x, int y, int size, int h, int radius)
-{
-	int hauteur;
-	for(int i = 0; i < size * 2; i++)
-	{
-		hm[y * WIDTH + (x + i)] = h;
-	}
-}
-
 void	bomb(int *hm, int x, int y, float radius, int h)
-{
-	int x1;
-	int y1;
-	//pour set la hm a la bonne valeur on aura 
-	//if(hm[x,y] > hm[xp,yp])
-	//hm[x,y] = hm[xp,xyp]
-	float tmp = radius;
-	float inc = 0;
-	float a = 0;
-	h = hm[y*WIDTH+x];
-	while(h <= radius * 2 && a <= M_PI/2)
-	{
-		putchar('a');
-		for(float theta = M_PI/2; theta <= (3 * M_PI)/2; theta += 0.01)
-		{
-			x1 = x + cos(theta) * radius;
-			y1 = y + sin(theta) * radius;
-			draw_line(hm, x1, y1, fabs(cos(theta)) * radius , h, radius);
-		}
-		h -= 1;
-		//h += radius / (M_PI/2);
-		inc = (tmp * cos(a));
-		//a += 0.06;
-		a += (M_PI/2) / (radius - h);
-		//a += radius / (M_PI/2);
-		radius = inc;	
-	}
-}
-
-void	bomb2(int *hm, int x, int y, float radius, int h)
 {
 	int x1;
 	int y1;
@@ -451,8 +412,6 @@ int main(int argc, char **argv)
 	int cursor = 0;
 	int speed = 10;
 	int dy = 1;
-
-
 	while(!quit)
 	{
 		if(!cursor)
@@ -541,17 +500,12 @@ int main(int argc, char **argv)
 				if (e.button.x < WIDTH / 2)
 					ag += 0.01 * (WIDTH/2 - e.button.x );
 				if (e.button.y > HEIGHT / 2)
-					horizon -= 1 * (e.button.y - HEIGHT / 2);
-					//horizon -= 10;
+					horizon -= 10;
 				if (e.button.y < HEIGHT / 2)
-					horizon += 1 * (HEIGHT/2 - e.button.y);
-					//horizon += 10;
+					horizon += 10;
 				/////////////////////////////////	
 			}
 		}
-		ft_putnbr(horizon);
-		ft_putchar('\n');
-		height += (horizon - 600) / 200 ;
 		collision_height(hm, &player, &height, 10);
 		render2(screen, hm, colormap, player, ag, height, horizon, 2, 3000, bg->pixels);
 		//render_inside_raycast(screen, mapinside, &player, ag, angley);
