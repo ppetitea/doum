@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 23:51:42 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 22:42:39 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/14 15:27:31 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 # define SDL_OK 0
 # define SDL_ERROR -1
+# define NUM_CHAN 32
 
 typedef struct		s_sdl
 {
