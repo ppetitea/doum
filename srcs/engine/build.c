@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 15:18:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/31 15:38:38 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/17 18:19:39 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include "utils/parser.h"
 #include "libft.h"
 #include "build.h"
-
+#include "engine/resource/sound/sound.h"
+#include <stdio.h>
 
 t_result	build_game_resources(t_game *game,
 				t_dnon_object *game_obj)
@@ -53,5 +54,7 @@ t_game	*build()
 		return (throw_null("build_game", "build_game failed"));
 	if (!build_game_resources(game, obj))
 		return (throw_null("build_game", "build_resources failed"));
+	if (!load_sounds(&game->resources.songs))
+		return (throw_null("build_game", "load_sounds failed"));
 	return (game);
 }

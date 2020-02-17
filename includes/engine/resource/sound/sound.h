@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 16:24:01 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/14 15:11:27 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/17 18:21:39 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ typedef struct		s_sound_node
 	Mix_Chunk		*sound;
 	char			*name;
 }					t_sound_node;
+
+t_result			load_sounds(t_list_head *sounds);
 
 #endif

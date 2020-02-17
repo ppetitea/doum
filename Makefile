@@ -6,7 +6,7 @@
 #    By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/08 21:27:29 by lbenard           #+#    #+#              #
-#    Updated: 2020/02/14 16:52:52 by ppetitea         ###   ########.fr        #
+#    Updated: 2020/02/17 16:39:29 by ppetitea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -198,13 +198,13 @@ LDFLAGS		:=	$(LDFLAGS) -L $(SDL_FOLDER) `sdl2-config --libs`
 SDL_TTF_FOLDER	=	./SDL2_ttf
 SDL_TTF			=	$(SDL_TTF_FOLDER)/.libs
 INCLUDES		:=	$(INCLUDES) -I $(SDL_TTF_FOLDER)
-LDFLAGS			:=	$(LDFLAGS) -L $(SDL_TTF_FOLDER)/.libs `sdl2-config --libs`
+LDFLAGS			:=	$(LDFLAGS) -L $(SDL_TTF_FOLDER)/.libs
 
 #	SDL_mixer
 MIXER_FOLDER	= ./SDL2_mixer-2.0.0
 MIXER		=	$(MIXER_FOLDER)/build/.libs/libSDL2_mixer.a
 INCLUDES	:=	$(INCLUDES) -I $(MIXER_FOLDER)
-LDFLAGS		:=	$(LDFLAGS) -L $(MIXER_FOLDER)/build/.libs/ `sdl2-config --libs`
+LDFLAGS		:=	$(LDFLAGS) -L $(MIXER_FOLDER)/build/.libs/ -lSDL2_mixer
 
 # Colors
 BOLD			=	\e[1m
