@@ -6,7 +6,7 @@
 #    By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/08 21:27:29 by lbenard           #+#    #+#              #
-#    Updated: 2020/02/17 16:39:29 by ppetitea         ###   ########.fr        #
+#    Updated: 2020/02/17 19:26:08 by ppetitea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,6 +111,8 @@ SRCS_LIST	=	main.c														\
 				engine/resources/images/texture_build.c						\
 				engine/resources/images/texture_list_build.c				\
 				engine/resources/images/texture_oriented_build.c			\
+				engine/resources/sounds/load_sounds.c						\
+				engine/resources/sounds/play_sound.c						\
 																			\
 				engine/entities/entities_build.c							\
 				engine/entities/entities_dup.c								\

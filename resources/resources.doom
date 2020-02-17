@@ -922,6 +922,14 @@
 				"hold":1,
 				"action":"stop_game",
 				"resource":"game"
+			},
+			"2":{
+				"define":"SDLK_SPACE",
+				"SDL_Keycode":32,
+				"hold":1,
+				"action":"trigger_sound",
+				"resource":"game",
+				"args":{"name":"gun_fire"}
 			}
 		},
 		"map_config":{

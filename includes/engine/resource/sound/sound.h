@@ -6,13 +6,12 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 16:24:01 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/17 18:21:39 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/17 19:10:41 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SOUND_H
 # define SOUND_H
-
 # include "containers/list.h"
 # include "SDL_mixer.h"
 
@@ -30,5 +29,6 @@ typedef struct		s_sound_node
 }					t_sound_node;
 
 t_result			load_sounds(t_list_head *sounds);
+void				play_sound(Mix_Chunk *sound, int volume, int rep);
 
 #endif

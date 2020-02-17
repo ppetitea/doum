@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 05:42:05 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 20:08:51 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/17 19:29:59 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ t_result	build_action_by_key(t_action_node *action,
 		action->action = entities_display_next;
 	else if (strcmp_obj("action", "orientate_characters", action_obj))
 		action->action = orientate_characters_texture;
+	else if (strcmp_obj("action", "trigger_sound", action_obj))
+		action->action = trigger_sound;
 	else
 		return (throw_error("build_action_by_key", "unknow action detected"));
 	return (OK);

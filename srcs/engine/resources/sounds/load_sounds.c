@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 18:17:42 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/17 18:20:57 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/17 19:08:09 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "libft.h"
 #include "engine/resource/sound/sound.h"
 
-t_result	load_sound(char *path, char *name, t_list_head *sounds)
+static t_result	load_sound(char *path, char *name, t_list_head *sounds)
 {
 	t_sound_node	*sound;
 

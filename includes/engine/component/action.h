@@ -6,7 +6,7 @@
 /*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 23:06:52 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/06 22:41:58 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/17 19:29:32 by ppetitea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ t_result		entities_display_next(void *game_resource,
 					t_resource_type resource_type, t_dnon_object *args);
 t_result		orientate_characters_texture(void *game_resource,
 					t_resource_type resource_type, t_dnon_object *args);
-
+t_result	trigger_sound(void *game, t_resource_type resource_type,
+					t_dnon_object *args);
 
 t_action_node	*init_new_action();
 t_result		build_action_by_key(t_action_node *action,
