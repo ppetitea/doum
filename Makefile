@@ -29,6 +29,7 @@ EXEC		=	doom-nukem
 SRCS_LIST	=	main.c														\
 																			\
 				bitmap/load_bmp.c												\
+				perlin/perlin.c												\
 																			\
 				debug/debug.c												\
 																			\

@@ -6,6 +6,7 @@
 #include <stdlib.h>
 
 #include "bitmap/bitmap.h"
+#include "perlin/perlin.h"
 #include "error/error.h"
 
 //#define RATIO 16 / 9
@@ -14,11 +15,11 @@
 //#define WIDTH (HEIGHT * RATIO) 
 #include <math.h>
 
-typedef struct s_point
+typedef struct	s_point
 {
 	int x;
 	int y;
-} t_point;
+}		t_point;
 
 uint32_t	pp_get_SDLcolor(SDL_Color color)
 {
@@ -157,7 +158,8 @@ void	draw_line(int *hm, int x, int y, int size, int h, int radius)
 	int hauteur;
 	for(int i = 0; i < size * 2; i++)
 	{
-		hm[y * WIDTH + (x + i)] = h;
+		if (hm[y * WIDTH + (x + i)] > h)
+			hm[y * WIDTH + (x + i)] = h;
 	}
 }
 
@@ -174,7 +176,6 @@ void	bomb(int *hm, int x, int y, float radius, int h)
 	h = hm[y*WIDTH+x];
 	while(h <= radius * 2 && a <= M_PI/2)
 	{
-		putchar('a');
 		for(float theta = M_PI/2; theta <= (3 * M_PI)/2; theta += 0.01)
 		{
 			x1 = x + cos(theta) * radius;
@@ -264,6 +265,63 @@ void	render2(uint32_t *pixels, int *hm, uint32_t *colormap, t_point player, floa
 			mapoffset = (((int)floorf(ply) & (int)mapwidthperiod) << 10) + (((int)floorf(plx)) & ((int)mapheightperiod));
 			float heightonscreen = (height - hm[mapoffset]) * invz + horizon;
 			draw_vertical_line(pixels, i, heightonscreen, hiddeny[i], colormap[mapoffset]);
+			if (heightonscreen < hiddeny[i]) hiddeny[i] = heightonscreen;
+			plx += dx;
+			ply += dy;
+		}
+		deltaz += 0.005;
+	}
+}
+
+//perlinhm[y * WIDTH + x] = ((int)(perlin2d(x, y, 0.001, 10) * 355));
+void	render3(uint32_t *pixels, t_point player, float phi, int height, int horizon, int scale_height, int distance, uint32_t *bg)
+{
+	memset(pixels, 0xFFFFFFFF, sizeof(uint32_t) * WIDTH * HEIGHT);
+	draw_bg(pixels, bg);
+	int mapwidthperiod = WIDTH * 100 - 1;
+	int mapheightperiod = HEIGHT * 100 - 1;
+	uint32_t color;
+	color = 0x00000000;
+	(void)scale_height;
+
+	float sinang = sin(phi);
+	float cosang = cos(phi);
+
+	uint32_t hiddeny[WIDTH];
+
+	for (int i = 0; i < WIDTH; i++)
+		hiddeny[i] = 0;
+
+	for(int i = 0; i < WIDTH; i++)
+		hiddeny[i] = HEIGHT;
+
+	float deltaz = 1;
+
+	for(float z=1; z < distance; z += deltaz)
+	{
+		float plx =  -cosang * z - sinang * z;
+		float ply =   sinang * z - cosang * z;
+		float prx =   cosang * z - sinang * z;
+		float pry =  -sinang * z - cosang * z;
+
+		float dx = (prx - plx) / WIDTH;
+		float dy = (pry - ply) / WIDTH;
+		plx += player.x;
+		ply += player.y;
+		float invz = 1 / z * 240 * scale_height;
+		int mapoffset = 0;
+		for(int i=0; i< WIDTH; i++)
+		{
+			mapoffset = (((int)floorf(ply) & (int)mapwidthperiod) << 10) + (((int)floorf(plx)) & ((int)mapheightperiod));
+			int a = ((int)(perlin2d(mapoffset % WIDTH, mapoffset / WIDTH, 0.001, 10) * 355));
+			if (a < 200)
+				color = a / 2;
+			else if (a >= 200 && a <= 300)
+				color = a / 2 << 8;
+			else
+				color = 0xFFFFFFFF |  a/ 2;
+			float heightonscreen = (height - a) * invz + horizon;
+			draw_vertical_line(pixels, i, heightonscreen, hiddeny[i], color);
 			if (heightonscreen < hiddeny[i]) hiddeny[i] = heightonscreen;
 			plx += dx;
 			ply += dy;
@@ -405,7 +463,8 @@ int main(int argc, char **argv)
 			WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
 	if(NULL == window)
 		goto Quit;
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+	//renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
 	if(NULL == renderer)
 		goto Quit;
 	texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STATIC, WIDTH, HEIGHT);
@@ -443,7 +502,7 @@ int main(int argc, char **argv)
 		hm[i] = get_blue(map[i]);	
 	float ag = 0;
 	int height = 50;
-	int horizon = 120;
+	int horizon = 650;
 
 	float incx = 0;
 	int incy = 0;
@@ -452,6 +511,32 @@ int main(int argc, char **argv)
 	int speed = 10;
 	int dy = 1;
 
+	int *perlinhm;
+	perlinhm = malloc(sizeof(int) * HEIGHT * WIDTH);
+	for(int x = 0; x < HEIGHT; x++)
+	{
+		for(int y = 0; y < WIDTH; y++)
+		{
+			perlinhm[y * WIDTH + x] = ((int)(perlin2d(x, y, 0.001, 10) * 355));
+		}
+	}
+
+	uint32_t *perlincolor;
+	perlincolor = malloc(sizeof(uint32_t) * HEIGHT * WIDTH);
+	for(int x = 0; x < HEIGHT; x++)
+	{
+		for(int y = 0; y < WIDTH; y++)
+		{
+			if (perlinhm[y * WIDTH + x] < 200)
+				perlincolor[y * WIDTH + x] = perlinhm[y * WIDTH + x] / 2;
+			else if (perlinhm[y * WIDTH + x] >= 200 && perlinhm[y * WIDTH + x] <= 300)
+				perlincolor[y * WIDTH + x] = perlinhm[y * WIDTH + x] / 2 << 8;
+			else
+				perlincolor[y * WIDTH + x] = 0xFFFFFFFF | perlinhm[y * WIDTH + x] / 2;
+		}
+	}
+
+	//printf("perlin2d: %d", (int)(perlin2d(21,20, 0.1, 4) * 100));
 
 	while(!quit)
 	{
@@ -505,7 +590,7 @@ int main(int argc, char **argv)
 					cursor ? SDL_ShowCursor(SDL_ENABLE) : SDL_ShowCursor(SDL_DISABLE);
 				}
 				if (e.key.keysym.sym == SDLK_p)
-					bomb(hm, player.x % WIDTH, player.y % HEIGHT, 50, height);
+					bomb(perlinhm, player.x % WIDTH, player.y % HEIGHT, 50, height);
 			}
 			if (e.type == SDL_KEYUP)
 			{
@@ -515,9 +600,9 @@ int main(int argc, char **argv)
 			if (e.type == SDL_MOUSEBUTTONDOWN)
 			{
 				if (e.button.button == SDL_BUTTON_LEFT)
-					ag += 0.1;
+					printf("height:%d\n", height);
 				if (e.button.button == SDL_BUTTON_RIGHT)
-					ag -= 0.1;
+					printf("x:%d y: %d\n", player.x, player.y);
 			}
 			if (e.type == SDL_MOUSEMOTION)
 			{
@@ -549,11 +634,10 @@ int main(int argc, char **argv)
 				/////////////////////////////////	
 			}
 		}
-		ft_putnbr(horizon);
-		ft_putchar('\n');
-		height += (horizon - 600) / 200 ;
-		collision_height(hm, &player, &height, 10);
-		render2(screen, hm, colormap, player, ag, height, horizon, 2, 3000, bg->pixels);
+		//height += (horizon - 600) / 200 ;
+		collision_height(perlinhm, &player, &height, 10);
+		//render2(screen, perlinhm, perlincolor, player, ag, height, horizon, 3, 3000, bg->pixels);
+		render3(screen, player, ag, height, horizon, 3, 300, bg->pixels);
 		//render_inside_raycast(screen, mapinside, &player, ag, angley);
 		SDL_RenderClear(renderer);
 		SDL_RenderCopy(renderer, texture, NULL, NULL);
