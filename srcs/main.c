@@ -182,7 +182,7 @@ void	bomb(int *hm, int x, int y, float radius, int h)
 	float tmp = radius;
 	float inc = 0;
 	float a = 0;
-	h = hm[y*WIDTH+x];
+	h = hm[y*WIDTH*MAPEXPOSANT+x];
 	while(h <= radius * 2 && a <= M_PI/2)
 	{
 		for(float theta = M_PI/2; theta <= (3 * M_PI)/2; theta += 0.01)
