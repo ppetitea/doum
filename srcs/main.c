@@ -12,6 +12,7 @@
 //#define RATIO 16 / 9
 #define HEIGHT 1024
 #define WIDTH 1024
+#define MAPEXPOSANT 1
 //#define WIDTH (HEIGHT * RATIO) 
 #include <math.h>
 
@@ -20,6 +21,14 @@ typedef struct	s_point
 	int x;
 	int y;
 }		t_point;
+
+uint32_t lerp_uint32(uint32_t v0, uint32_t v1, float t) {
+  return (1 - t) * v0 + t * v1;
+}
+
+float lerp(float v0, float v1, float t) {
+  return (1 - t) * v0 + t * v1;
+}
 
 uint32_t	pp_get_SDLcolor(SDL_Color color)
 {
@@ -229,8 +238,8 @@ void	render2(uint32_t *pixels, int *hm, uint32_t *colormap, t_point player, floa
 {
 	memset(pixels, 0xFFFFFFFF, sizeof(uint32_t) * WIDTH * HEIGHT);
 	draw_bg(pixels, bg);
-	int mapwidthperiod = WIDTH - 1;
-	int mapheightperiod = HEIGHT - 1;
+	int mapwidthperiod = MAPEXPOSANT * WIDTH - 1;
+	int mapheightperiod = MAPEXPOSANT * HEIGHT - 1;
 
 	(void)scale_height;
 
@@ -433,8 +442,8 @@ int	collision_walls(int *hm, t_point *player, int dx, int dy, int height, int pl
 
 int	collisions(int *hm, t_point *player, int *height, int playerheight, int dx, int dy, int wallheight)
 {
-	if (collision_walls(hm, player, dx, dy, *height, playerheight, wallheight) == 0)
-		return (0);
+//	if (collision_walls(hm, player, dx, dy, *height, playerheight, wallheight) == 0)
+//		return (0);
 	if (collision_height(hm, player, height, playerheight) == 0)
 		return (0);
 	return (1);
@@ -512,27 +521,27 @@ int main(int argc, char **argv)
 	int dy = 1;
 
 	int *perlinhm;
-	perlinhm = malloc(sizeof(int) * HEIGHT * WIDTH);
-	for(int x = 0; x < HEIGHT; x++)
+	perlinhm = malloc(sizeof(int) * HEIGHT * MAPEXPOSANT * WIDTH * MAPEXPOSANT);
+	for(int x = 0; x < HEIGHT * MAPEXPOSANT; x++)
 	{
-		for(int y = 0; y < WIDTH; y++)
+		for(int y = 0; y < WIDTH * MAPEXPOSANT; y++)
 		{
-			perlinhm[y * WIDTH + x] = ((int)(perlin2d(x, y, 0.001, 10) * 355));
+			perlinhm[y * WIDTH * MAPEXPOSANT + x] = ((int)(perlin2d(x, y, 0.001, 20) * 555));
 		}
 	}
 
 	uint32_t *perlincolor;
-	perlincolor = malloc(sizeof(uint32_t) * HEIGHT * WIDTH);
-	for(int x = 0; x < HEIGHT; x++)
+	perlincolor = malloc(sizeof(uint32_t) * HEIGHT * MAPEXPOSANT * WIDTH * MAPEXPOSANT);
+	for(int x = 0; x < HEIGHT * MAPEXPOSANT; x++)
 	{
-		for(int y = 0; y < WIDTH; y++)
+		for(int y = 0; y < WIDTH * MAPEXPOSANT; y++)
 		{
-			if (perlinhm[y * WIDTH + x] < 200)
-				perlincolor[y * WIDTH + x] = perlinhm[y * WIDTH + x] / 2;
-			else if (perlinhm[y * WIDTH + x] >= 200 && perlinhm[y * WIDTH + x] <= 300)
-				perlincolor[y * WIDTH + x] = perlinhm[y * WIDTH + x] / 2 << 8;
+			if (perlinhm[y * WIDTH * MAPEXPOSANT + x] < 200)
+				perlincolor[y * WIDTH * MAPEXPOSANT + x] = perlinhm[y * WIDTH * MAPEXPOSANT + x] / 2;
+			else if (perlinhm[y * WIDTH * MAPEXPOSANT + x] >= 200 && perlinhm[y * WIDTH * MAPEXPOSANT + x] <= 350)
+				perlincolor[y * WIDTH * MAPEXPOSANT + x] = perlinhm[y * WIDTH * MAPEXPOSANT + x] / 2 << 8;
 			else
-				perlincolor[y * WIDTH + x] = 0xFFFFFFFF | perlinhm[y * WIDTH + x] / 2;
+				perlincolor[y * WIDTH * MAPEXPOSANT + x] = 0xFF000000 | (0x00010000 * (perlinhm[y * WIDTH * MAPEXPOSANT + x] * 255 / 100)) | (0x00000100 * (perlinhm[y * WIDTH * MAPEXPOSANT + x] * 255 / 100 )) | (0x00000001 * (perlinhm[y * WIDTH * MAPEXPOSANT + x] * 255 / 100 ));
 		}
 	}
 
@@ -590,7 +599,7 @@ int main(int argc, char **argv)
 					cursor ? SDL_ShowCursor(SDL_ENABLE) : SDL_ShowCursor(SDL_DISABLE);
 				}
 				if (e.key.keysym.sym == SDLK_p)
-					bomb(perlinhm, player.x % WIDTH, player.y % HEIGHT, 50, height);
+					bomb(perlinhm, abs(player.x % (WIDTH * MAPEXPOSANT)), abs(player.y % (HEIGHT * MAPEXPOSANT)), 50, height);
 			}
 			if (e.type == SDL_KEYUP)
 			{
@@ -634,10 +643,12 @@ int main(int argc, char **argv)
 				/////////////////////////////////	
 			}
 		}
+		ft_putnbr(horizon);
+		ft_putchar('\n');
 		//height += (horizon - 600) / 200 ;
 		collision_height(perlinhm, &player, &height, 10);
-		//render2(screen, perlinhm, perlincolor, player, ag, height, horizon, 3, 3000, bg->pixels);
-		render3(screen, player, ag, height, horizon, 3, 300, bg->pixels);
+		render2(screen, perlinhm, perlincolor, player, ag, height, horizon, 3, 3000, bg->pixels);
+		//render3(screen, player, ag, height, horizon, 3, 300, bg->pixels);
 		//render_inside_raycast(screen, mapinside, &player, ag, angley);
 		SDL_RenderClear(renderer);
 		SDL_RenderCopy(renderer, texture, NULL, NULL);
