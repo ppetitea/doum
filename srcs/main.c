@@ -183,6 +183,7 @@ void	bomb(int *hm, int x, int y, float radius, int h)
 	float inc = 0;
 	float a = 0;
 	h = hm[y*WIDTH*MAPEXPOSANT+x];
+	ft_putnbr(h);
 	while(h <= radius * 2 && a <= M_PI/2)
 	{
 		for(float theta = M_PI/2; theta <= (3 * M_PI)/2; theta += 0.01)
@@ -599,7 +600,7 @@ int main(int argc, char **argv)
 					cursor ? SDL_ShowCursor(SDL_ENABLE) : SDL_ShowCursor(SDL_DISABLE);
 				}
 				if (e.key.keysym.sym == SDLK_p)
-					bomb(perlinhm, abs(player.x % (WIDTH * MAPEXPOSANT)), abs(player.y % (HEIGHT * MAPEXPOSANT)), 50, height);
+					bomb(perlinhm, abs(player.x % (WIDTH * MAPEXPOSANT)), abs(player.y % (HEIGHT * MAPEXPOSANT)), 300, height);
 			}
 			if (e.type == SDL_KEYUP)
 			{
@@ -643,8 +644,6 @@ int main(int argc, char **argv)
 				/////////////////////////////////	
 			}
 		}
-		ft_putnbr(horizon);
-		ft_putchar('\n');
 		//height += (horizon - 600) / 200 ;
 		collision_height(perlinhm, &player, &height, 10);
 		render2(screen, perlinhm, perlincolor, player, ag, height, horizon, 3, 3000, bg->pixels);
