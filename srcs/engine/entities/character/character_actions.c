@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   character_actions.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mribouch <mribouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:06:50 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/08 19:38:49 by lbenard          ###   ########.fr       */
+/*   Updated: 2020/02/19 16:51:13 by mribouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,35 @@
 #include "utils/error.h"
 #include "utils/time.h"
 #include "ft/str.h"
+#include "math.h"
+#include "engine/resource/sound/sound.h"
+
+#include <stdio.h>
+
+t_result	active_monster(t_character *monster, t_character *target)
+{
+	float	dist;
+	float	dist2;
+	float	endist;
+	Mix_Chunk	*sound;
+
+	if ((sound = Mix_LoadWAV("resources/sound/active_monster.wav")) == NULL)
+		return (throw_error("load_sound", "Mix_Load failed"));
+	dist = fabsf(monster->camera.pos.y - target->camera.pos.y);
+	dist2 = fabsf(monster->camera.pos.x - target->camera.pos.x);
+	endist = powf(dist, 2) + powf(dist2, 2);
+	endist = sqrtf(endist);
+	printf("dist = %f\n", endist);
+	if (endist <= 150)
+	{
+		if (monster->intrus == 0)
+			play_sound(sound, 1, 0);
+		monster->intrus = 1;
+	}
+	else
+		monster->intrus = 0;
+	return (OK);
+}
 
 void	character_crawl(t_character *self)
 {
@@ -122,7 +151,7 @@ void	character_drop_weapon(t_character *self)
 		throw_warning("character_catch_weapon", "NULL pointer provided", 3);
 	else if (self->curr_weapon == NULL)
 		throw_warning("character_catch_weapon", "curr weapon is NULL", 3);
-	else 
+	else
 	{
 		drop = self->curr_weapon;
 		if (self->curr_weapon->node.prev == &self->weapons)

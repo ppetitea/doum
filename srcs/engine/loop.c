@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mribouch <mribouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 22:34:54 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/08 19:20:02 by lbenard          ###   ########.fr       */
+/*   Updated: 2020/02/19 13:56:24 by mribouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	loop(t_game *game)
 		if (SDL_RenderClear(game->interface.sdl.renderer) == SDL_ERROR)
 			return (throw_void("loop", "SDL_RenderClear failed"));
 		spf = get_wall_time() - last_time;
-		printf("fps: %f\n", 1.0f / spf);
+		// printf("fps: %f\n", 1.0f / spf);
 		set_delta(spf);
 	}
 }

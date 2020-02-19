@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play_sound.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mribouch <mribouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:08:42 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/17 19:41:32 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/19 15:54:46 by mribouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,23 @@
 
 void		play_sound(Mix_Chunk *sound, int volume, int rep)
 {
-	Mix_VolumeChunk(sound, MIX_MAX_VOLUME / volume);
-	Mix_PlayChannel(-1, sound, rep);
+	int	i;
+	
+	i = 1;
+	while (i < NUM_CHAN)
+	{
+		if (Mix_GetChunk(i) == sound)
+		{
+			ft_putendl("c'est le meme son");
+			return ;
+		}
+		if (Mix_Playing(i) == 0)
+		{
+			Mix_VolumeChunk(sound, MIX_MAX_VOLUME / volume);
+			Mix_PlayChannel(i, sound, rep);
+		}
+		i++;
+	}
 }
 
 

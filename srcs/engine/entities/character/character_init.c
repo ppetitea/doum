@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   character_init.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mribouch <mribouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 00:05:38 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/05 16:32:24 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:50:17 by mribouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_character	*init_new_character()
 	init_camera(&self->camera);
 	self->life = 100;
 	self->armor = 0;
+	self->intrus = 0;
 	self->size = 10;
 	self->velocity = 1.0f;
 	self->target = NULL;

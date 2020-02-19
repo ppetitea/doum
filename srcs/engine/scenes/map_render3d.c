@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_render3d.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mribouch <mribouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 14:41:00 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/10 05:16:35 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/19 14:14:45 by mribouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 #include "maths/maths.h"
 #include "maths/vec2f.h"
 #include "maths/vec3f.h"
+// #include "engine/entity/entity_init.h"
+#include "engine/entity/character_action.h"
 
 #include <stdio.h>
 
@@ -344,6 +346,7 @@ void	render_map3d(t_screen *screen, t_voxel_map_3d_config *config,
 		init_columns_height(config->pre_render.columns_height, config->size);
 		render_floor3d_with_pre_render(screen, config, map);
 		render_character3d(screen, config, character);
+		active_monster(character, map->character_ref);
 		range.max = range.min;
 		config->pre_render.index.max = config->pre_render.index.min;
 	}

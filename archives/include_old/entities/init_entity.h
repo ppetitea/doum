@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_entity.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mribouch <mribouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 04:13:23 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/01/25 01:49:57 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/19 13:44:48 by mribouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,8 @@ void			character_jump(t_character *self);
 void			character_crawl(t_character *self);
 void			character_attack(t_character *self);
 void			character_die(t_character *self);
+t_result		active_monster(t_character *monster, t_character *target);
+
 
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   character_init.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppetitea <ppetitea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mribouch <mribouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 23:21:04 by ppetitea          #+#    #+#             */
-/*   Updated: 2020/02/09 23:44:19 by ppetitea         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:50:34 by mribouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct	s_character
 	t_bool				is_player;
 	ssize_t				life;
 	size_t				armor;
+	int					intrus;
 	float				size;
 	float				velocity;
 	struct s_character	*target;
